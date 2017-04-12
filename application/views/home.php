@@ -129,21 +129,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="deliver"></div>
         <img src="<?= base_url('assets/public/imgs/home_steps.jpg') ?>" class="img-responsive" alt="Registration steps in pmticket.com">
     </div>
-    <hr>
-    <div id="organize-work">
-        <h2 class="text-center">Organizing Your Work Life</h2>
-        <div class="deliver"></div>
-        <div class="row">
-
-        </div>
-    </div>
-    <hr>
+    <hr> 
     <div id="carousel-blog">
-        <h2 class="text-center">Recent topics</h2>
-        <p class="text-center">Latest news from our blog</p>
+        <h2 class="text-center"><?= lang('comming_features') ?></h2> 
         <div class="deliver"></div>
         <div class="carousel slide" data-ride="carousel" id="quote-carousel">
-
-        </div>                          
+            <ol class="carousel-indicators">
+                <?php
+                $num_articles = count($last_articles);
+                for ($s = 0; $s <= $num_articles - 1; $s++) {
+                    ?>
+                    <li data-target="#quote-carousel" data-slide-to="<?= $s ?>" <?= $s == 0 ? ' class="active"' : '' ?>></li>
+                <?php } ?>
+            </ol>
+            <div class="carousel-inner">
+                <?php
+                $i = 0;
+                foreach ($last_articles as $article) {
+                    ?>
+                    <div class="item <?= $i == 0 ? 'active' : '' ?>">
+                        <blockquote>
+                            <div class="row">
+                                <div class="col-sm-3 text-center">
+                                    <div class="text-center date-body">
+                                        <label class="date-title"><?= date('F/Y', $article['time']) ?></label>
+                                        <div class="date-content">
+                                            <p class="dia"><?= date('m', $article['time']) ?></p>
+                                            <hr class="nomargin"/>
+                                            <p class="nomargin"><strong>published</strong></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p><i class="fa fa-quote-left" aria-hidden="true"></i> <a href="<?= base_url($article['url']) ?>"><?= character_limiter($article['title'], 50) ?></a></p>
+                                    <small><?= character_limiter(strip_tags($article['description']), 80) ?></small>
+                                </div>
+                            </div>
+                        </blockquote>
+                    </div>
+                    <?php
+                    $i++;
+                }
+                ?>
+            </div>
+            <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
+            <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>
+        </div>      
     </div>
-</div>
+</div> 
