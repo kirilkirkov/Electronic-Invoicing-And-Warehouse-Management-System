@@ -24,14 +24,31 @@
                 <header>
                     <div class="container">
                         <div class="collapse" id="collapseLogin">
-                            <span class="shadows-font">https://</span>
-                            <input type="text" class="my-addr">
-                            <span class="shadows-font">.pmticket.com</span>
+                            <form method="POST" action="">
+                                <div class="form-group">
+                                    <span><?= lang('login_email') ?></span>
+                                    <input type="text" placeholder="name@example.com" class="my-addr">
+                                </div>
+                                <div class="form-group">
+                                    <span><?= lang('login_pass') ?></span>
+                                    <input type="password" placeholder="" class="my-addr">
+                                </div>
+                                <div class="form-group">
+                                    <div class="pull-right">
+                                        <a href="" class="forgot"><?= lang('forgotten_pass') ?></a>
+                                        <input type="submit" class="btn btn-orange logme" value="<?= lang('btn_logme') ?>">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="clearfix"></div>
-                        <a class="login" data-toggle="collapse" href="#collapseLogin" aria-expanded="false" aria-controls="collapseExample">Login <i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                        <a class="login" data-toggle="collapse" href="#collapseLogin" aria-expanded="false" aria-controls="collapseExample"><?= lang('btn_login') ?> <i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                        <span class="support-top">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            <a href="mailto:support@domain.com">support@domain.com</a>
+                        </span>
                         <div id="site-top">
-                            <h1 class="pull-right">Issue Tracking System</h1>
+                            <h1 class="pull-right"><?= lang('header_text') ?></h1>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -43,18 +60,16 @@
                                     <i class="fa fa-bars" aria-hidden="true"></i>
                                 </button>
                                 <a class="navbar-brand" href="<?= base_url() ?>">
-                                    <img src="<?= base_url('assets/public/imgs/pmTicket-logo.png') ?>" alt="pmTicket.com logo">
+                                    <img src="<?= base_url('assets/public/imgs/logo.png') ?>" alt="pminvoice.com">
                                 </a>
                             </div>
                             <div id="navbar" class="collapse navbar-collapse pull-right">
                                 <ul class="nav navbar-nav">
-                                    <li <?= uri_string() == '' ? ' class="active"' : '' ?>><a href="<?= base_url() ?>">Home</a></li>
-                                    <li <?= uri_string() == 'open-source-issue-tracking-system-with-many-features' ? ' class="active"' : '' ?>><a href="<?= base_url('open-source-issue-tracking-system-with-many-features') ?>">Features</a></li>
-                                    <li <?= uri_string() == 'one-month-free-usage-project-management-system' ? ' class="active"' : '' ?>><a href="<?= base_url('one-month-free-usage-project-management-system') ?>">Plans</a></li>
-                                    <li><a href="https://github.com/issue-tracking-system" target="_blank"><i class="fa fa-2x fa-github" aria-hidden="true"></i></a></li>     
-                                    <li><a href="<?= base_url('blog') ?>">Blog</a></li>
+                                    <li <?= uri_string() == '' ? ' class="active"' : '' ?>><a href="<?= lang_url() ?>"><?= lang('btn_home') ?></a></li>
+                                    <li><a href=""><?= lang('btn_register') ?></a></li>
+                                    <li><a href=""><?= lang('btn_plans') ?></a></li>
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= lang('btn_features') ?> <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
                                             <li class="dropdown-header">For beginners</li>
                                             <li><a href="<?= base_url('usage-guide-of-support-ticketing-system') ?>">Usage Guide</a></li>
@@ -66,8 +81,8 @@
                                             <li><a href="#">Api</a></li>
                                         </ul>
                                     </li>
-                                    <li <?= uri_string() == 'support-of-online-project-issue-management-system' ? ' class="active"' : '' ?>><a href="<?= base_url('support-of-online-project-issue-management-system') ?>">Support</a></li>  
-                                    <li <?= uri_string() == 'about-our-support-ticketing-system' ? ' class="active"' : '' ?>><a href="<?= base_url('about-our-support-ticketing-system') ?>">About us</a></li>  
+                                    <li><a href=""><?= lang('btn_help') ?></a></li>
+                                    <li><a href=""><?= lang('btn_contacts') ?></a></li>
                                 </ul>
                             </div>
                         </div>

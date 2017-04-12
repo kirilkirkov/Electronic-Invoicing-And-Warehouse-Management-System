@@ -1,0 +1,33 @@
+<?php
+
+$lang['btn_home'] = 'Home';
+$lang['btn_register'] = 'Register now for free';
+$lang['btn_plans'] = 'Plans';
+$lang['btn_features'] = 'Features';
+$lang['btn_help'] = 'Help';
+$lang['btn_contacts'] = 'Contacts';
+$lang['btn_login'] = 'Login';
+$lang['header_text'] = 'Easily Create And Send Invoices';
+$lang['login_email'] = 'Email';
+$lang['login_pass'] = 'Password';
+$lang['btn_logme'] = 'Log Me';
+$lang['home_slide_tx1'] = 'Create';
+$lang['home_slide_free'] = 'free';
+$lang['check_our_options'] = 'Check our options and features!';
+$lang['home_slide_register_now'] = 'Register now!';
+$lang['electronic_invoices'] = 'electronic invoices';
+$lang['register_now'] = 'Register now!';
+$lang['text_register_after_carousel'] = 'Register a';
+$lang['text_free_after_carousel'] = 'free';
+$lang['text_account_after_carousel'] = 'account and start issuing invoices!';
+$lang['text_bottom_after_carousel'] = 'For registration need to fill only 3 fields! It will take less than 30 seconds and start to issue invoices!';
+$lang['what_is'] = 'What is';
+$lang['and_how_it_works'] = 'and how it works?';
+$lang['forgotten_pass'] = 'Forgot your password?';
+$lang['one_acc'] = '1 Account - multiple firms';
+$lang['send_by_email'] = 'Send by email';
+$lang['el_sign'] = 'Electronic signature';
+$lang['down_pdf'] = 'Generate to PDF';
+$lang['24_support'] = '27/7 Support';
+$lang['inv_templates'] = 'Invoice Templates';
+$lang['become_member_in_3'] = 'Become member just in 3 easy steps!';
