@@ -66,7 +66,7 @@
                             <div id="navbar" class="collapse navbar-collapse pull-right">
                                 <ul class="nav navbar-nav">
                                     <li <?= uri_string() == '' ? ' class="active"' : '' ?>><a href="<?= lang_url() ?>"><?= lang('btn_home') ?></a></li>
-                                    <li><a href=""><?= lang('btn_register') ?></a></li>
+                                    <li><a href="javascript:void(0);" data-toggle="modal" data-target="#modalRegister"><?= lang('btn_register') ?></a></li>
                                     <li><a href=""><?= lang('btn_plans') ?></a></li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= lang('btn_features') ?> <span class="caret"></span></a>

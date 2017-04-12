@@ -33,7 +33,6 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 #carousel-main .carousel-inner .item {height: 500px;}
 #carousel-main .carousel-caption {bottom:auto; width: 950px; left:50%; right:0; margin: 0 auto 0 -475px;}
 #carousel-main .carousel-caption h1, #carousel-main .carousel-caption h3, #carousel-example-generic .carousel-caption span {text-transform: uppercase;}
-#carousel-main .carousel-control {z-index: 22000;}
 
 #collapseLogin {background-color: #eb8900; border-bottom-left-radius: 5px; padding: 10px; color:#fff; float:right;}
 #collapseLogin .my-addr {border:0; color:#333; width:175px; padding:0 8px; font-size:12px;}
@@ -94,22 +93,16 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 #register .intro span {display: block; color: #fff; padding-left: 8px; padding-right: 8px; background-color: #eb8900; width:80px; margin: 0 auto;}
 #register .pay-details {max-width:920px; margin: 0 auto; font-size:16px; padding: 20px 0;}
 
-#ModalRegister {z-index: 23000;}
-form#registration .form-group {margin-bottom: 20px; position: relative;}
-form#registration input.form-control, form#registration select.form-control {border:0; border:1px solid #d7d7d7; border-radius: 0; box-shadow: none; width:100%;}
-form#registration .form-group span.pmticketcom {position:absolute; right: 10px; top:34px;}
-form#registration .form-group.domain input.form-control {padding-right: 108px;}
-form#registration #check-errors, form#registration #custom-values {display: none;}
-form#registration #custom-values {background-color: #f1f1f1;padding: 10px;}
-form#registration #custom-values .inline {margin-bottom: 10px;}
-form#registration i.fa-spinner {display: none; position: absolute;right: 55px; top: 18px; color:#fff;}
-form#registration .modal-footer {position:relative;}
-
 #after-carousel {background-color: #292929; padding-top:20px; padding-bottom:20px; color:#fff;}
 #after-carousel p { font-size:22px; font-weight: 300; margin: 0;}
 #after-carousel p em {color:#eb8900; font-size:32px;}
 #after-carousel span {color:#999;}
 #after-carousel .right-side {padding-top:15px;}
+
+.modal-content {border-radius: 0; }
+.form-registration .form-control {border:1px solid #e9e9e9; border-radius: 0; box-shadow: none; height: 40px;}
+.form-registration label {font-size:12px;}
+.form-registration sup {color:red; font-size:14px;} 
 
 #carousel-blog #quote-carousel a {color:#777;}
 #carousel-blog #quote-carousel { padding: 0 10px 30px 10px;    margin-top: 30px;}

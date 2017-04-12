@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <a href="<?= base_url('features') ?>"><?= lang('check_our_options') ?></a>
                         <img alt="pmTicket arrow" class="hand-made-arrow  hidden-xs" src="<?= base_url('assets/public/imgs/hand-made-arrow.png') ?>">
                         <img alt="pmTicket arrow" class="hand-made-cicle" src="<?= base_url('assets/public/imgs/hand-made-cicle.png') ?>">
-                        <a href="javascript:void(0);" data-toggle="modal" data-target="#ModalRegister" class="shadows-font down">
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#modalRegister" class="shadows-font down">
                             <h4><?= lang('home_slide_register_now') ?></h4>
                         </a>
                     </div>
@@ -61,7 +61,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <span><?= lang('text_bottom_after_carousel') ?></span>
             </div>
             <div class="col-sm-4 right-side">
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#ModalRegister" class="btn btn-orange uppercase pull-right"><?= lang('register_now') ?></a>
+                <a href="javascript:void(0);" data-toggle="modal" data-target="#modalRegister" class="btn btn-orange uppercase pull-right"><?= lang('register_now') ?></a>
             </div>
         </div>
     </div>
