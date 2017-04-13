@@ -28,20 +28,25 @@ function registerValidate()
     var n2 = password2.length;
 
     if (result_email == false) {
-        $('.err-email').text('Invalid email address!');
+        $('.err-email').text(lang.invalid_email);
         valid = false;
     }
     if (n1 == 0) {
-        $('.err-password').text('Please enter password!');
+        $('.err-password').text(lang.invalid_pass);
         valid = false;
     }
     if (n2 == 0) {
-        $('.err-password2').text('Please repeat the passwrod!');
+        $('.err-password2').text(lang.invalid_pass2);
         valid = false;
     }
     if ((password != password2) && (n1 != 0 && n2 != 0)) {
-        $('.err-password').text('Passwords dont match!');
-        $('.err-password2').text('Passwords dont match!');
+        $('.err-password').text(lang.passwords_dont_match);
+        $('.err-password2').text(lang.passwords_dont_match);
+        valid = false;
+    }
+    var check_rules = $('#user_rules').is(":checked");
+    if (!check_rules) {
+        $('.err-rules').text(lang.rules_not_checked);
         valid = false;
     }
     if (valid == true) {

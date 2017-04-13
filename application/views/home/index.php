@@ -156,12 +156,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="date-content">
                                             <p class="dia"><?= date('m', $article['time']) ?></p>
                                             <hr class="nomargin"/>
-                                            <p class="nomargin"><strong>published</strong></p>
+                                            <p class="nomargin"><strong><?= lang('published') ?></strong></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p><i class="fa fa-quote-left" aria-hidden="true"></i> <a href="<?= base_url($article['url']) ?>"><?= character_limiter($article['title'], 50) ?></a></p>
+                                    <p><i class="fa fa-quote-left" aria-hidden="true"></i> <a href="<?= lang_url('blog/' . $article['url']) ?>"><?= character_limiter($article['title'], 50) ?></a></p>
                                     <small><?= character_limiter(strip_tags($article['description']), 80) ?></small>
                                 </div>
                             </div>

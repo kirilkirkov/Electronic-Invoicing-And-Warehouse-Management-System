@@ -2,17 +2,17 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller
+class Welcome extends MY_Controller
 {
 
     private $blogLimit = 5;
 
     public function index()
     {
-        $this->load->view('parts/header');
+        $data = array();
+        $head = array();
         $data['last_articles'] = $this->PublicModel->lastInBlog($this->blogLimit);
-        $this->load->view('home', $data);
-        $this->load->view('parts/footer');
+        $this->render('home/index', $head, $data);
     }
 
 }

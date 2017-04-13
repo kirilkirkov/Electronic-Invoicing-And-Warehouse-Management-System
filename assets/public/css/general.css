@@ -102,7 +102,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 .modal-content {border-radius: 0; }
 .form-registration .form-control {border:1px solid #e9e9e9; border-radius: 0; box-shadow: none; height: 40px;}
 .form-registration label {font-size:12px;}
-.form-registration sup {color:red; font-size:14px;} 
+.form-registration sup {color:red; font-size:14px;}
 
 #carousel-blog #quote-carousel a {color:#777;}
 #carousel-blog #quote-carousel { padding: 0 10px 30px 10px;    margin-top: 30px;}
@@ -150,6 +150,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 #blog #custom-search-input .search-query { padding-right: 3px; padding-right: 4px \9;  padding-left: 3px; padding-left: 4px \9;  margin-bottom: 0;   -webkit-border-radius: 3px; -moz-border-radius: 3px;   border-radius: 3px; }
 #blog #custom-search-input button { border: 0; background: none;  padding: 2px 5px;  margin-top: 2px; position: relative; left: -28px;  margin-bottom: 0; -webkit-border-radius: 3px; -moz-border-radius: 3px;border-radius: 3px;  color:#eb8900;}
 #blog #tags a {margin-bottom: 5px; display:inline-block;}
+#blog nav {text-align: right;}
 
 #installation .how-to {padding-top: 30px; padding-bottom: 10px;}
 #installation .guide-step { background-color: #f8f8f8; border-radius: 10px; margin-bottom: 20px; padding: 10px;}
@@ -166,9 +167,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 #support {padding-top: 30px;}
 #support .contact-form form {margin-bottom:30px;}
 #support .contact-form .form-group {position: relative;}
-#support .contact-form input, #support .contact-form textarea {padding: 16px 16px 16px 54px; height: auto;}
-#support .contact-form input.domain {padding-right: 125px;}
-#support .contact-form span.pmticketcom {position: absolute; font-size: 16px; right: 16px; top: 16px; color:#b3b3b3;}
+#support .contact-form input, #support .contact-form textarea {padding: 16px 16px 16px 54px; height: auto;} 
 #support .contact-form i {position: absolute; top:13px; left:18px; color:#dedbdb;}
 #support .contact-form h2 {font-size:20px; border-bottom: 1px solid #dedbdb; padding-bottom: 15px; margin-bottom: 20px; margin-top:0;}
 #support .contact-form button {font-size: 22px; text-transform: uppercase; background: rgb(51,122,183); background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzMzN2FiNyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxMTZhYjIiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);background: -moz-linear-gradient(top, rgba(51,122,183,1) 0%, rgba(17,106,178,1) 100%);background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(51,122,183,1)), color-stop(100%,rgba(17,106,178,1))); background: -webkit-linear-gradient(top, rgba(51,122,183,1) 0%,rgba(17,106,178,1) 100%);background: -o-linear-gradient(top, rgba(51,122,183,1) 0%,rgba(17,106,178,1) 100%); background: -ms-linear-gradient(top, rgba(51,122,183,1) 0%,rgba(17,106,178,1) 100%); background: linear-gradient(to bottom, rgba(51,122,183,1) 0%,rgba(17,106,178,1) 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#337ab7', endColorstr='#116ab2',GradientType=0 );}
@@ -256,7 +255,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
     #carousel-main #slide-1 .carousel-caption .left-side h4 {font-size: 30px;}
     h2 {font-size:22px;}
     .icons-features {width: auto;}
-    .icons-features li {}
+    #support .contact-form input, #support .contact-form textarea {padding: 12px 12px 12px 54px; height: auto;} 
 
     /* Dont zoom fileds! */
     input[type="color"],
