@@ -18,7 +18,7 @@
                 </div> 
                 <div class="form-group">
                     <input type="submit" value="<?= lang('btn_logme') ?>" class="btn btn-orange">
-                    <a href="<?= lang_url('password-forgotten') ?>"><?= lang('forgotten_pass') ?></a>
+                    <a href="<?= lang_url('password-forgotten') ?>" class="btn btn-default"><?= lang('forgotten_pass') ?></a>
                 </div>
             </form>
         </div>
