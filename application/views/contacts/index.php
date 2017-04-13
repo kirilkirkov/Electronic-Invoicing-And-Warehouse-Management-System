@@ -1,6 +1,6 @@
 <div id="subpage">
     <div class="container">
-        <h1><img src="<?= base_url('assets/imgs/pm-subpages.png') ?>" alt="pm:"><?= lang('contacts') ?></h1>
+        <h1><img src="<?= base_url('assets/public/imgs/pm-subpages.png') ?>" alt="pm:"><?= lang('contacts') ?></h1>
     </div>
 </div>
 <div class="container" id="support">

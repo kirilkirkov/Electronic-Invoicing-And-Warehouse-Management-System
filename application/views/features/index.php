@@ -1,15 +1,12 @@
 <div id="subpage">
     <div class="container">
-        <h1><img src="<?= base_url('assets/imgs/pm-subpages.png') ?>" alt="pm:">Features</h1>
+        <h1><img src="<?= base_url('assets/public/imgs/pm-subpages.png') ?>" alt="pm:"><?= lang('features') ?></h1>
     </div>
 </div>
 <div class="container" id="features">
     <h4>We have a great set of features that can be useful in any area. 
         pmTicket is designed to be useful for any type of users and working environment of companies.<br>
-        It is available on <img src="<?= base_url('assets/imgs/en_flag.jpg') ?>" alt="England flag"><b>English</b>, 
-        <img src="<?= base_url('assets/imgs/gr_flag.jpg') ?>" alt="Germany flag"><b>German</b>,
-		<img src="<?= base_url('assets/imgs/fr_flag.jpg') ?>" alt="England flag"><b>French</b>
-        and <img src="<?= base_url('assets/imgs/bg_flag.jpg') ?>" alt="Bulgarian flag"><b>Bulgarian</b> languages!
+        It is available on
     </h4>
     <hr>
     <?php
@@ -36,6 +33,4 @@
         }
     }
     ?>
-    <hr>
-    <h4 class="text-center">Just part of all features! We can't present you all, they are so many..</h4>
 </div>

@@ -36,11 +36,11 @@ class Registration extends MY_Controller
         if (mb_strlen(trim($_POST['password'])) == 0) {
             $errors[] = lang('empty_password');
         } else {
-            if (mb_strlen(trim($_POST['repeat_password'])) == 0) {
+            if (mb_strlen(trim($_POST['password2'])) == 0) {
                 $errors[] = lang('empty_password_repeat');
             } else {
-                if ($_POST['password'] != $_POST['repeat_password']) {
-                    $errors[] = lang('passwords_dont_mutch');
+                if ($_POST['password'] != $_POST['password2']) {
+                    $errors[] = lang('passwords_dont_match');
                 }
             }
         }
@@ -52,7 +52,7 @@ class Registration extends MY_Controller
         }
         $this->session->set_flashdata('email', $_POST['email']);
         $this->session->set_flashdata('password', $_POST['password']);
-        $this->session->set_flashdata('repeat_password', $_POST['repeat_password']);
+        $this->session->set_flashdata('password2', $_POST['password2']);
         if (isset($_POST['rules'])) {
             $this->session->set_flashdata('rules', $_POST['rules']);
         }
@@ -71,6 +71,20 @@ class Registration extends MY_Controller
                 return $_POST['email'];
             }
         }
+    }
+
+    public function login()
+    {
+        $data = array();
+        $head = array();
+        $this->render('registration/login', $head, $data);
+    }
+
+    public function forgotten()
+    {
+        $data = array();
+        $head = array();
+        $this->render('registration/forgotten', $head, $data);
     }
 
 }

@@ -25,18 +25,18 @@
                 <header>
                     <div class="container">
                         <div class="collapse" id="collapseLogin">
-                            <form method="POST" action="">
+                            <form method="POST" action="<?= lang_url('login') ?>">
                                 <div class="form-group">
                                     <span><?= lang('login_email') ?></span>
-                                    <input type="text" placeholder="name@example.com" class="my-addr">
+                                    <input type="text" name="email" placeholder="name@example.com" class="my-addr">
                                 </div>
                                 <div class="form-group">
                                     <span><?= lang('login_pass') ?></span>
-                                    <input type="password" placeholder="" class="my-addr">
+                                    <input type="password" name="password" class="my-addr">
                                 </div>
                                 <div class="form-group">
                                     <div class="pull-right">
-                                        <a href="" class="forgot"><?= lang('forgotten_pass') ?></a>
+                                        <a href="<?= lang_url('password-forgotten') ?>" class="forgot"><?= lang('forgotten_pass') ?></a>
                                         <input type="submit" class="btn btn-orange logme" value="<?= lang('btn_logme') ?>">
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                             <div id="navbar" class="collapse navbar-collapse pull-right">
                                 <ul class="nav navbar-nav">
                                     <li <?= uri_string() == '' ? ' class="active"' : '' ?>><a href="<?= lang_url() ?>"><?= lang('btn_home') ?></a></li>
-                                    <li><a href="javascript:void(0);" data-toggle="modal" data-target="#modalRegister"><?= lang('btn_register') ?></a></li>
+                                    <li <?= uri_string() == 'registration' ? ' class="active"' : '' ?>><a href="javascript:void(0);" data-toggle="modal" data-target="#modalRegister"><?= lang('btn_register') ?></a></li>
                                     <li><a href=""><?= lang('btn_plans') ?></a></li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= lang('btn_features') ?> <span class="caret"></span></a>

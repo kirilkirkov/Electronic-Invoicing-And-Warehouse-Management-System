@@ -29,6 +29,9 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 
 .uppercase {text-transform: uppercase;}
 
+.alert-errors {background-color: #e11c16;    color: #fff;    font-weight: bold;    left: 50%;    margin-left: -140px;    padding: 40px;    position: absolute;    text-align: center;    top: 10px;    width: 280px;    z-index: 2000;}
+.alert-errors a {position: absolute; top:10px; right:10px; color:#fff;}
+
 #carousel-main .carousel {height: 500px; background-image: url('../imgs/carousel-bg.jpg'); }
 #carousel-main .carousel-inner .item {height: 500px;}
 #carousel-main .carousel-caption {bottom:auto; width: 950px; left:50%; right:0; margin: 0 auto 0 -475px;}
@@ -62,36 +65,6 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 #carousel-main #slide-2 .carousel-caption h4 {color:#777;}
 #carousel-main #slide-2 .carousel-caption p {margin-top: 40px;}
 #carousel-main #slide-2 .carousel-caption span {background-color:#eb8900; color:#fff;}
-
-#register .membership-pricing-table{margin: 0 auto;width: 920px;}
-#register .membership-pricing-table table .icon-no, #register .membership-pricing-table table .icon-yes {font-size: 22px;}
-#register .membership-pricing-table table .icon-no{color: #a93717;}
-#register .membership-pricing-table table .icon-yes{color: #209e61;}
-#register .membership-pricing-table table .plan-header{	border: 1px solid #e2e2e2;font-size: 48px;padding: 25px 0;text-align: center;}
-#register .membership-pricing-table table .plan-header-free{background-color: #eee;color: #555;}
-#register .membership-pricing-table table .plan-header-blue{background-color: #61a1d1;	border-color: #3989c6;	color: #fff;}
-#register .membership-pricing-table table .plan-header-standard{background-color: #ff9317;border-color: #e37900;color: #fff;}
-#register .membership-pricing-table table td {background-color: #fafafa;box-shadow: 0 1px 0 #fff inset;	font-size: 14px;padding: 7px 10px;	text-align: center;	webkit-box-shadow: 0 1px 0 #fff inset;	width: 15%;}
-#register .membership-pricing-table table,.membership-pricing-table table td{	border: 1px solid #ebebeb;}
-#register .membership-pricing-table table tr td:first-child{background-color: transparent;text-align: right;width: 24%;}
-#register .membership-pricing-table table tr td:nth-child(5){background-color: #FFF;}
-#register .membership-pricing-table table tr:first-child td,.membership-pricing-table table tr:nth-child(2) td{	box-shadow: none;webkit-box-shadow: none;}
-#register .membership-pricing-table table tr:first-child th:first-child{border-left-color: transparent;	border-right-color: #e2e2e2;	border-top-color: transparent;}
-#register .membership-pricing-table table tr:first-child th .pricing-plan-name{	font-size: 22px;}
-#register .membership-pricing-table table tr:first-child th .pricing-plan-price{line-height: 35px;}
-#register .membership-pricing-table table tr:first-child th .pricing-plan-price>sup{font-size: 45%;}
-#register .membership-pricing-table table tr:first-child th .pricing-plan-price>span{font-size: 30%;}
-#register .membership-pricing-table table tr:first-child th .pricing-plan-period{font-size: 25%;margin-top: -7px;}
-#register .membership-pricing-table table .header-plan-inner{position: relative;}
-#register .membership-pricing-table table .recommended-plan-ribbon{background-color: #dc3b5d;box-shadow: 0 -1px #c2284c inset;box-sizing: content-box;color: #FFF;font-size: 11px!important;font-weight: 500;left: -6px;padding: 3px 6px;	position: absolute;	text-shadow: 0 -1px #c2284c;	top: -22px;webkit-box-shadow: 0 -1px #c2284c inset;width: 100%;	z-index: 99;}
-#register .membership-pricing-table table .recommended-plan-ribbon:before{border: solid;border-color: #c2284c transparent;border-width: 6px 0 0 6px;bottom: -5px;content: "";left: 0;position: absolute;z-index: 90;}
-#register .membership-pricing-table table .recommended-plan-ribbon:after{border: solid;	border-color: #c2284c transparent;border-width: 6px 6px 0 0;bottom: -5px;content: "";position: absolute;right: 0;	z-index: 90;}
-#register .membership-pricing-table table .plan-head{background-color: #ff9c00;border: 1px solid #cf7300;border-bottom: none;	box-sizing: content-box;height: 30px;left: -1px;position: absolute;top: -33px;width: 100%;}
-#register {position: relative;}
-#register h1 {text-align:center; font-size:24px;}
-#register .intro {text-align:center; font-size:18px; padding-top: 20px; margin-bottom: 80px;}
-#register .intro span {display: block; color: #fff; padding-left: 8px; padding-right: 8px; background-color: #eb8900; width:80px; margin: 0 auto;}
-#register .pay-details {max-width:920px; margin: 0 auto; font-size:16px; padding: 20px 0;}
 
 #after-carousel {background-color: #292929; padding-top:20px; padding-bottom:20px; color:#fff;}
 #after-carousel p { font-size:22px; font-weight: 300; margin: 0;}
@@ -144,7 +117,6 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 #blog .article {color:#777; border-bottom: 1px solid #ddd; padding-bottom: 10px;}
 #blog .article h2 a, #postPreview h1 {color:#eb8900;}
 #blog .article span.posted-on, #postPreview span.posted-on {font-size:18px;}
-
 #blog .right-side {padding-top:20px;}
 #blog #custom-search-input {margin:0; padding: 0; }
 #blog #custom-search-input .search-query { padding-right: 3px; padding-right: 4px \9;  padding-left: 3px; padding-left: 4px \9;  margin-bottom: 0;   -webkit-border-radius: 3px; -moz-border-radius: 3px;   border-radius: 3px; }
@@ -152,17 +124,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 #blog #tags a {margin-bottom: 5px; display:inline-block;}
 #blog nav {text-align: right;}
 
-#installation .how-to {padding-top: 30px; padding-bottom: 10px;}
-#installation .guide-step { background-color: #f8f8f8; border-radius: 10px; margin-bottom: 20px; padding: 10px;}
-
-#about-us {padding-top: 20px;}
-#about-us .row.first {margin-bottom: 40px;}
-#about-us span.orange {color:#eb8900;}
-#about-us .first.left span {display: block;text-align: right; text-transform: uppercase; font-size:60px; font-weight: bold; line-height: 50px;}
-#about-us .first.right span {color:#eb8900; font-weight: bold; font-size:22px;}
-#about-us .second h2 {position: relative;}
-#about-us .second h2 img {position: absolute;top: -15px;}
-#about-us .second .just-col {overflow: hidden; margin-bottom: 20px;}
+#registration h1 {text-align: center; margin-bottom: 20px;}
 
 #support {padding-top: 30px;}
 #support .contact-form form {margin-bottom:30px;}
@@ -256,6 +218,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
     h2 {font-size:22px;}
     .icons-features {width: auto;}
     #support .contact-form input, #support .contact-form textarea {padding: 12px 12px 12px 54px; height: auto;} 
+    #registration h1 {font-size:20px;}
 
     /* Dont zoom fileds! */
     input[type="color"],
@@ -288,4 +251,5 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
     #organize-work .organize {padding: 5px;}
     nav.navbar a.navbar-brand img {width:200px;}
     header .support-top, header .login {font-size: 12px;}
+    .alert-errors {width: 100%; left: auto; margin-left: auto; top:0;}
 }

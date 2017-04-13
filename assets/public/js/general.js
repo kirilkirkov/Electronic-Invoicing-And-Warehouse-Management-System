@@ -10,6 +10,9 @@ $(document).ready(function () {
     $('#collapseLogin').on("hidden.bs.collapse", function () {
         $('.support-top').show();
     });
+    $('.close-alert').click(function () {
+        $('.alert-errors').hide();
+    });
 });
 function registerValidate()
 {

@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <div id="subpage">
     <div class="container">
-        <h1><img src="<?= base_url('assets/imgs/pm-subpages.png') ?>" alt="pm:">Blog post preview</h1>
+        <h1><img src="<?= base_url('assets/public/imgs/pm-subpages.png') ?>" alt="pm:"><?= lang('blog_preview') ?></h1>
     </div>
 </div>
 <div class="container" id="postPreview">

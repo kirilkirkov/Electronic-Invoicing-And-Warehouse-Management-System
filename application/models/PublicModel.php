@@ -20,6 +20,7 @@ class PublicModel extends CI_Model
     {
         $this->db->limit($limit);
         $this->db->order_by('blog.id', 'desc');
+        $this->db->where('abbr', MY_LANGUAGE_ABBR);
         $this->db->join('blog_translates', 'blog_translates.for_id = blog.id');
         $query = $this->db->get('blog');
         return $query->result_array();
@@ -51,6 +52,7 @@ class PublicModel extends CI_Model
         if ($tag != null) {
             $this->db->like('tags', $tag);
         }
+        $this->db->where('abbr', MY_LANGUAGE_ABBR);
         $this->db->join('blog_translates', 'blog_translates.for_id = blog.id');
         return $this->db->count_all_results('blog');
     }
@@ -66,6 +68,7 @@ class PublicModel extends CI_Model
         if ($tag != null) {
             $this->db->like('tags', $tag);
         }
+        $this->db->where('abbr', MY_LANGUAGE_ABBR);
         $this->db->order_by('blog.id', 'DESC');
         $this->db->join('blog_translates', 'blog_translates.for_id = blog.id');
         $query = $this->db->get('blog');
@@ -88,9 +91,18 @@ class PublicModel extends CI_Model
     public function getOneArticle($id)
     {
         $this->db->where('blog.id', $id);
+        $this->db->where('abbr', MY_LANGUAGE_ABBR);
         $this->db->join('blog_translates', 'blog_translates.for_id = blog.id');
         $query = $this->db->get('blog');
         return $query->row_array();
+    }
+
+    public function getFeatures()
+    {
+        $this->db->where('abbr', MY_LANGUAGE_ABBR);
+        $this->db->join('features_translates', 'features_translates.for_id = features.id');
+        $query = $this->db->get('features');
+        return $query->result_array();
     }
 
 }

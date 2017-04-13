@@ -51,8 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   |		my-controller/my-method	-> my_controller/my_method
  */
 $route['loadlanguage/(:any)'] = "Loader/jsFile/$1";
-$route['default_controller'] = 'welcome';
-$route['registration'] = 'registration';
+$route['default_controller'] = 'home'; 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -61,3 +60,6 @@ $route['^(\w{2})/(:any)$'] = '$2';
 
 $route['blog/(:num)'] = "blog/index/$1";
 $route['blog/(:any)_(:num)'] = "blog/viewArticle/$2";
+
+$route['login'] = "registration/login";
+$route['password-forgotten'] = "registration/forgotten";
