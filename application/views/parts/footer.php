@@ -11,6 +11,11 @@
                     </div>
                     <div class="col-sm-3">
                         <h4><?= lang('support_questions') ?></h4>
+                        <ul>
+                            <li>
+                                <a href="<?= lang_url('help') ?>"><?= lang('help_footer') ?></a>
+                            </li>
+                        </ul>
                     </div> 
                     <div class="col-sm-3">
                         <h4><?= lang('support_menu') ?></h4>

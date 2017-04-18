@@ -73,3 +73,4 @@ $lang['rules_not_checked'] = 'Rules are not confirmed!';
 $lang['blog_preview'] = 'Blog preview';
 $lang['recover_your_pass'] = 'Recover your password';
 $lang['send_pass_link'] = 'Send me new password';
+$lang['help_footer'] = 'Read the most frequently asked questions if you need further assistance, please contact us!';

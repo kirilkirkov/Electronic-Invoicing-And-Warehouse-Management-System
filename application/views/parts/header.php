@@ -82,7 +82,7 @@
                                             <li><a href="#">Api</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href=""><?= lang('btn_help') ?></a></li>
+                                    <li><a href="<?= lang_url('help') ?>"><?= lang('btn_help') ?></a></li>
                                     <li><a href="<?= lang_url('contacts') ?>"><?= lang('btn_contacts') ?></a></li>
                                 </ul>
                             </div>

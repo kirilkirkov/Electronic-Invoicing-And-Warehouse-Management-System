@@ -55,6 +55,7 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+/* ADMIN PANEL ROUTES */
 $route['admin'] = "admin/home/login";
 $route['admin/logout'] = "admin/home/login/logout";
 // BLOG GROUP
@@ -69,6 +70,7 @@ $route['admin/questions'] = "admin/texts/questions";
 $route['admin/addfeature'] = "admin/features/addfeature";
 $route['admin/features'] = "admin/features/features";
 $route['admin/features/(:num)'] = "admin/features/features/index/$1";
+/* ADMIN PANEL ROUTES */
 
 $route['^(\w{2})$'] = $route['default_controller'];
 $route['^(\w{2})/(:any)$'] = '$2';
