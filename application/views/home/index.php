@@ -115,7 +115,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             We are present you software for create and send invoices absolutley online. 
             Your data will be stored to our high protected servers to prevent you from data loss. 
             You can choose the best template design for your invoices to have professional view.
-            Invoices can be signed with electronic signature.
+            Invoices can be signed with electronic signature and manually translated to every language you want.
             <br>
             Our support team will waiting for all yours questions and help need.
         </p>

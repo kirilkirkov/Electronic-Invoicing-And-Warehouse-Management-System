@@ -16,6 +16,7 @@
                         <h4><?= lang('support_menu') ?></h4>
                         <ul>
                             <li><a href="<?= lang_url('registration') ?>"><?= lang('registration') ?></a></li>
+                            <li><a href="<?= lang_url('login') ?>"><?= lang('login') ?></a></li>
                         </ul>
                     </div>
                     <div class="col-sm-3">
