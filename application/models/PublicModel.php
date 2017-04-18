@@ -105,4 +105,12 @@ class PublicModel extends CI_Model
         return $query->result_array();
     }
 
+    public function getTexts()
+    {
+        $this->db->where('abbr', MY_LANGUAGE_ABBR);
+        $this->db->join('texts_translates', 'texts_translates.for_id = texts.id');
+        $result = $this->db->get('texts');
+        return $result->result_array();
+    }
+
 }
