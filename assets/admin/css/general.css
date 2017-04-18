@@ -1,5 +1,5 @@
 /*
-Created on : Mar 21, 2016, 3:20:16 PM
+Created on : Apr 04, 2017, 3:20:16 PM
 Author     : Kiril Kirkov
 Gitgub     : https://github.com/kirilkirkov
 */
@@ -8,73 +8,26 @@ body { color:#6b6b6b; font-size: 13px; }
 #wrapper { min-height: 100%; position: relative;}
 #content {padding-bottom:100px;}
 h1 {font-size:30px; }
-nav.navbar, div.left-side, h1 {text-transform: uppercase; }
+nav.navbar, .left-side, h1 {text-transform: uppercase; }
 input.form-control {border:1px solid #dadada; border-radius: 0; box-shadow:none;}
-
- 
-
- 
-
-.fadeInUp {  -webkit-animation-name: fadeInUp;  animation-name: fadeInUp;}
 
 nav.navbar {z-index: 55;}
 nav.navbar a { color:#fff;}
 nav.navbar li a:hover, nav.navbar li a:focus, nav.navbar li a:active {background-color: transparent;}
 .navbar-nav li a i {margin-right: 7px;}
-nav.navbar ul.dropdown-menu li {margin-bottom: 3px;}
-nav.navbar ul.dropdown-menu li a { color:#333;}
+nav.navbar .dropdown-menu li {margin-bottom: 3px;}
+nav.navbar .dropdown-menu li a { color:#333;}
 .nav .open > a, .nav .open > a:focus, .nav .open > a:hover {background-color: transparent;}
 .left-side { border-right:1px solid #e7e7e7; padding:0; bottom: 0;  display: block;left: 0; overflow: auto;position: absolute;    top: 51px;}
-.left-side ul.sidebar-menu {list-style: none; margin:0 0 80px;padding:0;}
-.left-side ul.sidebar-menu li {margin: 0; padding: 0; position: relative; border-bottom: 1px solid #e7e7e7;}
-.left-side ul.sidebar-menu li a {display: block;   border-left: 3px solid transparent;  color: #337ab7;    padding: 12px 5px 12px 15px; }
-.left-side ul.sidebar-menu li a i {margin-right: 7px;}
-.left-side ul.sidebar-menu li a:hover, div.left-side ul.sidebar-menu li a.active { background-color: #eeeeee; text-decoration: none; }
-.left-side ul.sidebar-menu li.header {  color: #4b646f; padding: 12px 5px 12px 15px; }
+.left-side .sidebar-menu {list-style: none; margin:0 0 80px;padding:0;}
+.left-side .sidebar-menu li {margin: 0; padding: 0; position: relative; border-bottom: 1px solid #e7e7e7;}
+.left-side .sidebar-menu li a {display: block;   border-left: 3px solid transparent;  color: #337ab7;    padding: 12px 5px 12px 15px; }
+.left-side .sidebar-menu li a i {margin-right: 7px;}
+.left-side .sidebar-menu li a:hover, div.left-side ul.sidebar-menu li a.active { background-color: #eeeeee; text-decoration: none; }
+.left-side .sidebar-menu li.header {  color: #4b646f; padding: 12px 5px 12px 15px; }
 .sidebar-menu .sidebar-search {padding: 15px !important;}
-.left-side span.alert-admin {padding-left:10px; padding-right: 10px; padding-bottom: 10px; display: inline-block;}
-.custab{ border: 1px solid #ccc;  padding: 5px; box-shadow: 3px 3px 2px #ccc; transition: 0.5s; }
-.custab:hover{ box-shadow: 3px 3px 0px transparent; transition: 0.5s;}
-.relative {position:relative;}
-.settings {position: absolute; width:320px;  z-index: 1000; display: none; color:#222d32 !important;}
-.settings .panel-body a:hover, .settings .panel-body a:focus {background-color: #2989d8;}
-.settings #pass_result {display:none;}
-ul.list-none {list-style:none;}
-.red {color:red}
-.green {color:green}
-div.well {margin-top:15px;}
-h3.title {word-break: break-all;overflow: hidden;}
-.find {margin-bottom:36px;}
-a.article-image img {height:250px;}
-div.article.invisible-status {opacity:0.4;}
-span.dropdown-toggle {cursor: pointer;}
-.url {overflow: hidden;}
-.url a {word-break: break-all;}
-.description-article {max-height: 140px; overflow:hidden; margin-bottom:10px;}
-#categories a.btn-xs {margin-bottom: 15px;}
-footer {padding: 20px 0; color:#333; text-align: center; background-color: #f8f8f8; border-top:1px solid #e7e7e7; width:100%;height:60px;position:absolute;bottom:0;left:0;}
-footer a {color:#333; text-decoration:underline;}
-.orders-settings { margin-top: -60px; font-size:20px; color:#6b6b6b;}
-.orders-settings span {display: block;}
-.orders-settings i {margin-left: 24px;}
-.home-page .fast-view-panel {height: 130px;}
-.home-page .panel-green {border-color: #5cb85c;}
-.home-page .panel-green .panel-heading { background-color: #5cb85c; border-color: #5cb85c; color: #fff;}
-.home-page .panel-yellow {  border-color: #f0ad4e;}
-.home-page .panel-yellow .panel-heading {  background-color: #f0ad4e;    border-color: #f0ad4e;    color: #fff;}
-.home-page .panel-red {  border-color: #d9534f;}
-.home-page .panel-red .panel-heading {   background-color: #d9534f;  border-color: #d9534f;  color: #fff;}
-.home-page .huge {font-size: 40px;}
-.home-page .panel {font-size:14px;}
-a.orders-referral {display:block; word-break:break-all;}
-.bordered-group {border:1px solid #e7e7e7; padding: 5px;}
-.loadUploadOthers {display: none;}
-.others-images-container {margin-bottom: 5px;}
-#positionEditor {position: absolute; display: none; width:230px;}
-#positionEditor input, #positionEditor button {float: left;}
-#positionEditor input {width: 150px;}
-#positionEditor .yesSavePosition {display: none;}
-#positionEditor button {width:39px;}
+#show-xs-nav { border: 1px solid #666;  padding: 5px; text-decoration: none; color: #666;  font-size: 13px; text-align: center; margin-top: 10px; border-radius: 5px;}
+#nav-categories, #show-xs-nav .hidde-sp {display: none;}
 
 @media (min-width: 767px) {
     .sidebar-menu {display: block !important;}

@@ -16,7 +16,7 @@ class ADMIN_Controller extends HEAD_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper(array('pagination'));
+        $this->load->helper(array('pagination', 'uploader', 'except_letters'));
         $this->load->model(array('GeneralAdminModel'));
         $this->login_check();
         $this->history = $this->config->item('admin_history');

@@ -51,11 +51,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   |		my-controller/my-method	-> my_controller/my_method
  */
 $route['loadlanguage/(:any)'] = "Loader/jsFile/$1";
-$route['default_controller'] = 'home'; 
+$route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['admin'] = "admin/home/login";
+$route['admin/logout'] = "admin/home/login/logout";
+// BLOG GROUP
+$route['admin/blogpublish'] = "admin/blog/BlogPublish";
+$route['admin/blogpublish/(:num)'] = "admin/blog/BlogPublish/index/$1";
+$route['admin/blog'] = "admin/blog/blog";
+$route['admin/blog/(:num)'] = "admin/blog/blog/index/$1";
 
 $route['^(\w{2})$'] = $route['default_controller'];
 $route['^(\w{2})/(:any)$'] = '$2';
