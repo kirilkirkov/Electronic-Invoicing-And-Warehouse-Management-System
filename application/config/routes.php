@@ -62,6 +62,10 @@ $route['admin/blogpublish'] = "admin/blog/BlogPublish";
 $route['admin/blogpublish/(:num)'] = "admin/blog/BlogPublish/index/$1";
 $route['admin/blog'] = "admin/blog/blog";
 $route['admin/blog/(:num)'] = "admin/blog/blog/index/$1";
+// BLOG GROUP FINISH
+$route['admin/texts'] = "admin/texts/texts";
+$route['admin/addquestion'] = "admin/texts/addquestion";
+$route['admin/questions'] = "admin/texts/questions";
 
 $route['^(\w{2})$'] = $route['default_controller'];
 $route['^(\w{2})/(:any)$'] = '$2';
