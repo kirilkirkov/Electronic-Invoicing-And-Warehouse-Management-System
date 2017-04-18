@@ -66,6 +66,9 @@ $route['admin/blog/(:num)'] = "admin/blog/blog/index/$1";
 $route['admin/texts'] = "admin/texts/texts";
 $route['admin/addquestion'] = "admin/texts/addquestion";
 $route['admin/questions'] = "admin/texts/questions";
+$route['admin/addfeature'] = "admin/features/addfeature";
+$route['admin/features'] = "admin/features/features";
+$route['admin/features/(:num)'] = "admin/features/features/index/$1";
 
 $route['^(\w{2})$'] = $route['default_controller'];
 $route['^(\w{2})/(:any)$'] = '$2';
