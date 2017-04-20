@@ -4,10 +4,9 @@
     </div>
 </div>
 <div class="container" id="features">
-    <h4>We have a great set of features that can be useful in any area. 
-        pmTicket is designed to be useful for any type of users and working environment of companies.<br>
-        It is available on
-    </h4>
+    <div class="top-text">
+        <?= $featuresText ?>
+    </div>
     <hr>
     <?php
     if (!empty($features)) {

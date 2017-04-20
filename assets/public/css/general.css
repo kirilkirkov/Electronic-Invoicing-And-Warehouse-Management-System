@@ -27,6 +27,31 @@ nav.navbar ul.nav ul.dropdown-menu li a {color: #fff;}
 nav.navbar a.navbar-brand {margin-top:-40px;}
 nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 
+.membership-pricing-table { margin: 0 auto; margin-top: 30px;  width: 920px;}
+.membership-pricing-table table .icon-no,.membership-pricing-table table .icon-yes {    font-size: 22px;}
+.membership-pricing-table table .icon-no {    color: #a93717;}
+.membership-pricing-table table .icon-yes {    color: #209e61;}
+.membership-pricing-table table .plan-header {    text-align: center;    font-size: 48px;    border: 1px solid #e2e2e2;    padding: 25px 0;}
+.membership-pricing-table table .plan-header-free {    background-color: #eee;    color: #555;}
+.membership-pricing-table table .plan-header-blue {    color: #fff;    background-color: #61a1d1;    border-color: #3989c6;}
+.membership-pricing-table table .plan-header-standard {    color: #fff;    background-color: #ff9317;    border-color: #e37900;}
+.membership-pricing-table table td {    text-align: center;    width: 15%;    padding: 7px 10px;    background-color: #fafafa;    font-size: 14px;    -webkit-box-shadow: 0 1px 0 #fff inset;    box-shadow: 0 1px 0 #fff inset;}
+.membership-pricing-table table,.membership-pricing-table table td {    border: 1px solid #ebebeb;}
+.membership-pricing-table table tr td:first-child {    background-color: transparent;    text-align: right;    width: 24%;}
+.membership-pricing-table table tr td:nth-child(5) {    background-color: #FFF;}
+.membership-pricing-table table tr:first-child td,.membership-pricing-table table tr:nth-child(2) td {    -webkit-box-shadow: none;    box-shadow: none;}
+.membership-pricing-table table tr:first-child th:first-child {    border-top-color: transparent;    border-left-color: transparent;    border-right-color: #e2e2e2;}
+.membership-pricing-table table tr:first-child th .pricing-plan-name {    font-size: 22px;}
+.membership-pricing-table table tr:first-child th .pricing-plan-price {    line-height: 35px;}
+.membership-pricing-table table tr:first-child th .pricing-plan-price>sup {    font-size: 45%;}
+.membership-pricing-table table tr:first-child th .pricing-plan-price>span {    font-size: 30%;}
+.membership-pricing-table table tr:first-child th .pricing-plan-period {    margin-top: -7px;    font-size: 25%;}
+.membership-pricing-table table .header-plan-inner {    position: relative;}
+.membership-pricing-table table .recommended-plan-ribbon {    box-sizing: content-box;    background-color: #dc3b5d;    color: #FFF;    position: absolute;    padding: 3px 6px;    font-size: 11px!important;    font-weight: 500;    left: -6px;    top: -22px;    z-index: 99;    width: 100%;    -webkit-box-shadow: 0 -1px #c2284c inset;    box-shadow: 0 -1px #c2284c inset;    text-shadow: 0 -1px #c2284c}
+.membership-pricing-table table .recommended-plan-ribbon:before {    border: solid;    border-color: #c2284c transparent;    border-width: 6px 0 0 6px;    bottom: -5px;    content: "";    left: 0;    position: absolute;    z-index: 90;}
+.membership-pricing-table table .recommended-plan-ribbon:after {    border: solid;    border-color: #c2284c transparent;    border-width: 6px 6px 0 0;    bottom: -5px;    content: "";    right: 0;    position: absolute;    z-index: 90;}
+.membership-pricing-table table .plan-head {    box-sizing: content-box;    background-color: #ff9c00;    border: 1px solid #cf7300;    position: absolute;    top: -33px;    left: -1px;    height: 30px;    width: 100%;    border-bottom: none;}
+
 .uppercase {text-transform: uppercase;}
 
 .alert-errors {background-color: #e11c16;    color: #fff;    font-weight: bold;    left: 50%;    margin-left: -140px;    padding: 40px;    position: absolute;    text-align: center;    top: 10px;    width: 280px;    z-index: 2000;}
@@ -36,6 +61,8 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 #carousel-main .carousel-inner .item {height: 500px;}
 #carousel-main .carousel-caption {bottom:auto; width: 950px; left:50%; right:0; margin: 0 auto 0 -475px;}
 #carousel-main .carousel-caption h1, #carousel-main .carousel-caption h3, #carousel-example-generic .carousel-caption span {text-transform: uppercase;}
+
+.terms-and-condit {padding: 20px 0;}
 
 #collapseLogin {background-color: #eb8900; border-bottom-left-radius: 5px; padding: 10px; color:#fff; float:right;}
 #collapseLogin .my-addr {border:0; color:#333; width:175px; padding:0 8px; font-size:12px;}
@@ -97,13 +124,13 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 
 .btn-orange {background-color: #eba800; background-image: linear-gradient(to bottom, #eb8900, #ebd700); background-repeat: repeat-x; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);color: #fff; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);}
 
-#intro h2 span {color:#fff; padding-left:8px; padding-right:8px;}
-#intro p {color:#777; line-height: 30px; font-size:20px; text-align:center;}
+.intro h2 span {color:#fff; padding-left:8px; padding-right:8px;}
+.intro p {color:#777; line-height: 30px; font-size:20px; text-align:center;}
 
 #subpage {background-color: #292929; padding-top:20px; padding-bottom:20px; color:#fff; font-size:20px;} /*dont change font size, picture PM is with the same*/
 
 #features {color:#777;}
-#features h4 {margin-bottom: 20px; margin-top: 20px;}
+#features .top-text {margin-bottom: 20px; margin-top: 20px; font-size:26px;}
 #features .row {margin-bottom: 20px;}
 #features .part {padding-top:10px; padding-bottom: 10px;}
 #features .description h3 {margin: 0; font-size:36px;}
@@ -145,6 +172,10 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 
 #terms, #support {padding-bottom: 40px;}
 
+#faqAccordion .panel-heading {background-color: #fff; border-radius: 0;}
+#faqAccordion .panel-title {cursor: pointer;}
+#faqAccordion .panel-title a:hover {text-decoration: none;}
+
 .footer { bottom: 0;  left: 0;  padding-bottom: 0;  position: absolute; width: 100%;}
 .footer .extra {  border-bottom: 1px solid #000;border-top: 1px solid #585858;}
 .footer .extra-inner { background: #1a1a1a none repeat scroll 0 0; color: #bbb; font-size: 11px;padding: 20px 0;}
@@ -162,7 +193,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 @media (min-width: 992px) and (max-width: 1199px) { 
     footer {height: 390px;} 
     nav.navbar a.navbar-brand {position: absolute; margin-top:-40px;}
-    #intro p {font-size:18px;  line-height: 25px;}
+    .intro p {font-size:18px;  line-height: 25px;}
     h2 {font-size:28px;}
     #site-top h1 {font-size:28px;}
 }
@@ -190,7 +221,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
     #carousel-main #slide-2 .carousel-caption .left-side img.hand-made-cicle {width: 140px; margin-left: -20px;}
     #carousel-main #slide-2 .carousel-caption p {font-size:12px;}
     #carousel-main #slide-2 .carousel-caption h3.right-h3 {font-size:25px; margin-top: 130px;}
-    #intro p {font-size:16px;  line-height: 22px;}
+    .intro p {font-size:16px;  line-height: 22px;}
     h2 {font-size:25px;}
     #site-top h1 {font-size:24px;}
 
@@ -205,6 +236,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
     nav.navbar ul.navbar-nav {margin: 0;}
     #carousel-blog .date-body {float:none !important;}
     #features .row { border-bottom: 1px solid #777; padding-bottom:20px;}
+    #features .top-text {font-size:18px;}
     footer {height: 750px;}
     #content {padding-bottom:400px;}
     #register .intro {margin-bottom: 0;}
@@ -212,7 +244,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
     footer .the-social {float:none;}
     footer .fast-links { margin-bottom: 10px;}
     footer .apps { margin-top: 25px;}
-    #intro p {font-size:15px;  line-height: 22px;}
+    .intro p {font-size:15px;  line-height: 22px;}
     #carousel-main #slide-1 .carousel-caption h1 {font-size:40px; line-height: 40px;}
     #carousel-main #slide-1 .carousel-caption .left-side h4 {font-size: 30px;}
     h2 {font-size:22px;}

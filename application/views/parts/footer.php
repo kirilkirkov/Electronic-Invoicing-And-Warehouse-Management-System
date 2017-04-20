@@ -69,7 +69,7 @@
                             <label for="user_password2"><?= lang('reg_pass_repeat') ?></label><sup class="err-password2"></sup>
                             <input type="password" id="user_password2" name="password2" placeholder="<?= lang('reg_p_secret2') ?>" class="form-control">
                         </div>
-                        <a href=""><?= lang('read_rules') ?></a>
+                        <a href="<?= lang_url('rules') ?>" target="_blank"><?= lang('read_rules') ?></a>
                         <div class="checkbox">
                             <label><input type="checkbox" id="user_rules" <?= $this->session->flashdata('rules') != null ? 'checked' : '' ?> name="rules" value=""><?= lang('confirm_rules') ?><sup class="err-rules"></sup></label>
                         </div> 

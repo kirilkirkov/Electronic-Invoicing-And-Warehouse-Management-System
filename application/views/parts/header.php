@@ -68,22 +68,19 @@
                                 <ul class="nav navbar-nav">
                                     <li <?= uri_string() == '' ? ' class="active"' : '' ?>><a href="<?= lang_url() ?>"><?= lang('btn_home') ?></a></li>
                                     <li <?= uri_string() == 'registration' ? ' class="active"' : '' ?>><a href="javascript:void(0);" data-toggle="modal" data-target="#modalRegister"><?= lang('btn_register') ?></a></li>
-                                    <li><a href=""><?= lang('btn_plans') ?></a></li>
+                                    <li <?= uri_string() == 'plans' ? ' class="active"' : '' ?>><a href="<?= lang_url('plans') ?>"><?= lang('btn_plans') ?></a></li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= lang('btn_features') ?> <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
-                                            <li class="dropdown-header">For beginners</li>
-                                            <li><a href="<?= base_url('usage-guide-of-support-ticketing-system') ?>">Usage Guide</a></li>
-                                            <li><a href="<?= base_url('more-about-ticketing-system') ?>">More about systems</a></li>
-                                            <li><a href="<?= base_url('home/translate') ?>">Translate</a></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li class="dropdown-header">For advanced</li>
-                                            <li><a href="#">Migration</a></li>
-                                            <li><a href="#">Api</a></li>
+                                            <li><a href="<?= lang_url('features') ?>"><?= lang('store') ?></a></li>
+                                            <li><a href="<?= lang_url('features') ?>"><?= lang('saved_clients') ?></a></li>
+                                            <li><a href="<?= lang_url('features') ?>"><?= lang('saved_articles') ?></a></li>
+                                            <li><a href="<?= lang_url('features') ?>"><?= lang('create_protocols') ?></a></li>
+                                            <li><a href="<?= lang_url('features') ?>"><?= lang('periodic_invoices') ?></a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="<?= lang_url('help') ?>"><?= lang('btn_help') ?></a></li>
-                                    <li><a href="<?= lang_url('contacts') ?>"><?= lang('btn_contacts') ?></a></li>
+                                    <li <?= uri_string() == 'help' ? ' class="active"' : '' ?>><a href="<?= lang_url('help') ?>"><?= lang('btn_help') ?></a></li>
+                                    <li <?= uri_string() == 'contacts' ? ' class="active"' : '' ?>><a href="<?= lang_url('contacts') ?>"><?= lang('btn_contacts') ?></a></li>
                                 </ul>
                             </div>
                         </div>

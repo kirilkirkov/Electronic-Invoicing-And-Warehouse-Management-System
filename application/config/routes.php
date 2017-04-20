@@ -78,5 +78,7 @@ $route['^(\w{2})/(:any)$'] = '$2';
 $route['blog/(:num)'] = "blog/index/$1";
 $route['blog/(:any)_(:num)'] = "blog/viewArticle/$2";
 
+$route['rules'] = "help/rules";
+
 $route['login'] = "registration/login";
 $route['password-forgotten'] = "registration/forgotten";

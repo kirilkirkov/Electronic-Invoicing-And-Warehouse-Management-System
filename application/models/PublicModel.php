@@ -26,21 +26,13 @@ class PublicModel extends CI_Model
         return $query->result_array();
     }
 
-    public function checkFreeEmail($email)
+    public function checkUserFreeEmail($email)
     {
-        /*
-          $this->db->where('email', $email);
-          $num = $this->db->count_all_results('users');
-          if ($num > 0) {
-          return lang('registered_by_user');
-          }
-
-          $this->db->where('email', $email);
-          $num2 = $this->db->count_all_results('team_members');
-          if ($num2 > 0) {
-          return lang('registered_by_member');
-          }
-         * */
+        $this->db->where('email', $email);
+        $num = $this->db->count_all_results('users');
+        if ($num > 0) {
+            return lang('registered_by_user');
+        }
         return true;
     }
 
@@ -111,6 +103,47 @@ class PublicModel extends CI_Model
         $this->db->join('texts_translates', 'texts_translates.for_id = texts.id');
         $result = $this->db->get('texts');
         return $result->result_array();
+    }
+
+    public function getQuestions()
+    {
+        $this->db->order_by('position', 'asc');
+        $this->db->where('abbr', MY_LANGUAGE_ABBR);
+        $this->db->select('questions.id, questions.position, questions_translates.question, questions_translates.answer');
+        $this->db->join('questions_translates', 'questions_translates.for_id = questions.id');
+        $result = $this->db->get('questions');
+        return $result->result_array();
+    }
+
+    public function registerUser($post)
+    {
+        $result = $this->db->insert('users', array(
+            'email' => $post['email'],
+            'password' => md5($post['password']),
+            'time_registered' => time()
+        ));
+        if ($result == true) {
+            return $post['email'];
+        }
+        return false;
+    }
+
+    public function getUserInfoFromEmail($email)
+    {
+        $this->db->where('email', $email);
+        $result = $this->db->get('users');
+        return $result->row_array();
+    }
+
+    public function loginCheck($post)
+    {
+        $this->db->where('email', $post['email']);
+        $this->db->where('password', md5($post['password']));
+        $num = $this->db->count_all_results('users');
+        if ($num > 0) {
+            return true;
+        }
+        return false;
     }
 
 }

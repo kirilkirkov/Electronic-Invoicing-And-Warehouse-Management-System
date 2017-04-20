@@ -28,7 +28,7 @@ class Registration extends MY_Controller
         if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             $errors[] = lang('invalid_email');
         } else {
-            $result_email_free = $this->PublicModel->checkFreeEmail($_POST['email']);
+            $result_email_free = $this->PublicModel->checkUserFreeEmail($_POST['email']);
             if ($result_email_free !== true) {
                 $errors[] = $result_email_free;
             }
@@ -77,7 +77,22 @@ class Registration extends MY_Controller
     {
         $data = array();
         $head = array();
+        if (isset($_POST['email'])) {
+            $this->loginCheck();
+        }
         $this->render('registration/login', $head, $data);
+    }
+
+    private function loginCheck()
+    {
+        $result = $this->PublicModel->loginCheck($_POST);
+        if ($result === true) {
+            $this->setUserLogin($_POST['email']);
+        } else {
+            $this->session->set_flashdata('email', $_POST['email']);
+            $this->session->set_flashdata('loginErrors', lang('usr_or_pass_invalid'));
+            redirect(lang_url('login'));
+        }
     }
 
     public function forgotten()

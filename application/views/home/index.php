@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="pull-right  hidden-xs">
                         <h3 class="right-h3">We will support you</h3>
                         <h4 class="text-right">Make it easy!</h4>
-                        <a href="<?= base_url('one-month-free-usage-project-management-system') ?>" class="btn btn-orange pull-right">Check our plans</a>
+                        <a href="<?= base_url('plans') ?>" class="btn btn-orange pull-right">Check our plans</a>
                     </div>
                 </div>
             </div>
@@ -70,36 +70,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="container">
         <ul class="icons-features">
             <li>
-                <a href="">
+                <a href="<?= lang_url('features') ?>">
                     <img src="<?= base_url('assets/public/imgs/flat-icons/accounts.png') ?>" alt="">
                     <span><?= lang('one_acc') ?></span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="<?= lang_url('features') ?>">
                     <img src="<?= base_url('assets/public/imgs/flat-icons/email.png') ?>" alt="">
                     <span><?= lang('send_by_email') ?></span>
                 </a>
             </li>
-            <li><a href="">
+            <li><a href="<?= lang_url('features') ?>">
                     <img src="<?= base_url('assets/public/imgs/flat-icons/pdf-flat.png') ?>" alt="">
                     <span><?= lang('down_pdf') ?></span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="<?= lang_url('features') ?>">
                     <img src="<?= base_url('assets/public/imgs/flat-icons/sign.png') ?>" alt="">
                     <span><?= lang('el_sign') ?></span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="<?= lang_url('features') ?>">
                     <img src="<?= base_url('assets/public/imgs/flat-icons/support.png') ?>" alt="">
                     <span><?= lang('24_support') ?></span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="<?= lang_url('features') ?>">
                     <img src="<?= base_url('assets/public/imgs/flat-icons/template.png') ?>" alt="">
                     <span><?= lang('inv_templates') ?></span>
                 </a>
@@ -108,17 +108,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 </div>
 <div class="container">
-    <div id="intro">
+    <div class="intro">
         <h2 class="text-center"><?= lang('what_is') ?> <img src="<?= base_url('assets/public/imgs/pm-small-bg_backgr.png') ?>" alt="pm:"><span class="orange-gradient">Invoice</span> <?= lang('and_how_it_works') ?></h2>
         <div class="deliver"></div>
-        <p>
-            We are present you software for create and send invoices absolutley online. 
-            Your data will be stored to our high protected servers to prevent you from data loss. 
-            You can choose the best template design for your invoices to have professional view.
-            Invoices can be signed with electronic signature and manually translated to every language you want.
-            <br>
-            Our support team will waiting for all yours questions and help need.
-        </p>
+        <div>
+            <?= $homeOne ?>
+        </div>
     </div>
     <hr>
     <div id="become-member">
@@ -130,6 +125,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <img src="<?= base_url('assets/public/imgs/home_steps.jpg') ?>" class="img-responsive" alt="Registration steps in pmticket.com">
     </div>
     <hr> 
+    <div class="intro">
+        <h2 class="text-center"><?= lang('specifications') ?></h2>
+        <div class="deliver"></div>
+        <div>
+            <?= $homeSpecifications ?>
+        </div>
+    </div>
+    <hr>
     <div id="carousel-blog">
         <h2 class="text-center"><?= lang('comming_features') ?></h2> 
         <div class="deliver"></div>
