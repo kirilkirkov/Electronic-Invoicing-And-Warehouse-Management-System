@@ -5,7 +5,7 @@ class MY_Controller extends HEAD_Controller
 
     public function __construct()
     {
-        parent::__construct(); 
+        parent::__construct();
     }
 
     public function render($view, $head, $data = null)
@@ -19,10 +19,10 @@ class MY_Controller extends HEAD_Controller
     {
         $userInfo = $this->PublicModel->getUserInfoFromEmail($email);
         if (!empty($userInfo)) {
-            $_SESSION['user_login'] = $userInfo;
+            $_SESSION['user_login'] = $userInfo['email'];
             redirect(lang_url('user'));
         } else {
-            log_message('error', 'Cant set user login for email: ' . $email);
+            log_message('error', ':Error: - Cant set user login for email: ' . $email);
             redirect(base_url());
         }
     }

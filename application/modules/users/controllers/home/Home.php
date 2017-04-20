@@ -8,7 +8,7 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Home extends ADMIN_Controller
+class Home extends USER_Controller
 {
 
     public function __construct()
@@ -24,6 +24,12 @@ class Home extends ADMIN_Controller
         $head['title'] = 'Administration - Home';
         $this->render('home/index', $head, $data);
         $this->saveHistory('Go to home page');
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['user_login']);
+        redirect(base_url());
     }
 
 }

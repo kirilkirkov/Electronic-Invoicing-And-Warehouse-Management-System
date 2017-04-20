@@ -28,6 +28,7 @@ class PublicModel extends CI_Model
 
     public function checkUserFreeEmail($email)
     {
+        $this->db->where('enabled', 1);
         $this->db->where('email', $email);
         $num = $this->db->count_all_results('users');
         if ($num > 0) {
@@ -119,7 +120,7 @@ class PublicModel extends CI_Model
     {
         $result = $this->db->insert('users', array(
             'email' => $post['email'],
-            'password' => md5($post['password']),
+            'password' => md5salt($post['password']),
             'time_registered' => time()
         ));
         if ($result == true) {
@@ -130,6 +131,7 @@ class PublicModel extends CI_Model
 
     public function getUserInfoFromEmail($email)
     {
+        $this->db->where('enabled', 1);
         $this->db->where('email', $email);
         $result = $this->db->get('users');
         return $result->row_array();
@@ -137,8 +139,9 @@ class PublicModel extends CI_Model
 
     public function loginCheck($post)
     {
+        $this->db->where('enabled', 1);
         $this->db->where('email', $post['email']);
-        $this->db->where('password', md5($post['password']));
+        $this->db->where('password', md5salt($post['password']));
         $num = $this->db->count_all_results('users');
         if ($num > 0) {
             return true;

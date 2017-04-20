@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'language', 'lang_url', 'text', 'geterror');
+$autoload['helper'] = array('url', 'language', 'lang_url', 'text', 'geterror', 'md5salt');
 
 /*
 | -------------------------------------------------------------------

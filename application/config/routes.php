@@ -72,6 +72,11 @@ $route['admin/features'] = "admin/features/features";
 $route['admin/features/(:num)'] = "admin/features/features/index/$1";
 /* ADMIN PANEL ROUTES */
 
+/* USERS PANEL ROUTES */
+$route['user'] = "users/home";
+$route['user/logout'] = "users/home/home/logout";
+/* USERS PANEL ROUTES */
+
 $route['^(\w{2})$'] = $route['default_controller'];
 $route['^(\w{2})/(:any)$'] = '$2';
 
