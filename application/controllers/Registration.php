@@ -65,7 +65,7 @@ class Registration extends MY_Controller
         if ($_SESSION['reg_times'] < 20) {
             $registered = $this->PublicModel->registerUser($_POST);
             if ($registered == false) {
-                log_message('error', 'Cant save user: ' . print_r($_POST, true));
+                log_message('error', 'Cant insert to database: ' . print_r($_POST, true));
                 show_error(lang('registration_error'));
             } else {
                 return $_POST['email'];
