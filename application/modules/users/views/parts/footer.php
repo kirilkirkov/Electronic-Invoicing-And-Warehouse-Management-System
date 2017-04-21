@@ -14,6 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </div> 
 <script src="<?= base_url('assets/plugins/placeholders.min.js') ?>"></script>
 <script src="<?= base_url('assets/bootstrap/js/bootstrap.min.js') ?>"></script>  
+<script src="<?= base_url('assets/plugins/bootbox.min.js') ?>"></script> 
 <script src="<?= base_url('assets/users/js/general.js') ?>"></script> 
 </body>
 </html>

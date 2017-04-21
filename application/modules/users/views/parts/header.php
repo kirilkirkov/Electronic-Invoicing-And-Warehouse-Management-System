@@ -35,9 +35,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <ul class="dropdown-menu">
                                     <?php if (empty($myFirms)) { ?>
                                         <li><a href="#"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <?= lang('dont_have_firms') ?></a></li> 
-                                    <?php } ?>
+                                        <?php
+                                    } else {
+                                        foreach ($myFirms as $firm) {
+                                            ?>
+                                            <li><a href="#"><?= $firm['name'] ?></a></li> 
+                                            <?php
+                                        }
+                                    }
+                                    ?>
                                     <li class="divider"></li>
-                                    <li><a href="#" class="text-center"><?= lang('manage_firms') ?></a></li>
+                                    <li><a href="<?= lang_url('user/managefirms') ?>" class="text-center"><?= lang('manage_firms') ?></a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -69,6 +77,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="left-menu">
                                     <ul>
                                         <li>
+                                            <a href="<?= lang_url('user') ?>">
+                                                <i class="fa fa-home" aria-hidden="true"></i>
+                                                <?= lang('menu_home') ?> 
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="#">
                                                 <i class="fa fa-file-text-o" aria-hidden="true"></i>
                                                 <?= lang('menu_create_invoice') ?> 
@@ -84,20 +98,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                             </div>
                             <div class="col-sm-9 col-md-9 col-lg-10 col-sm-offset-3 col-md-offset-3 col-lg-offset-2">
-                                <div class="selected-page">
-                                    <div class="inner">
-                                        <h1>
-                                            <i class="fa fa-home"></i>
-                                            Dashboard
-                                        </h1>
-                                        <ol class="breadcrumb">
-                                            <li><a href="#">Home</a></li>
-                                            <li><a href="#">Library</a></li>
-                                            <li class="active">Data</li>
-                                        </ol>
-                                    </div>
-                                    <div class="border"></div>
-                                </div>
                                 <div class="right-side">
                                 <?php } else { ?> 
                                     <div class="container-fluid">

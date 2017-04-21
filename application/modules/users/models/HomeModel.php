@@ -10,7 +10,10 @@ class HomeModel extends CI_Model
 
     public function getFirms($user_id)
     {
-        $this->db->where('for_user', $user_id);
+        $this->db->where('firms_users.is_deleted', 0);
+        $this->db->where('firms_users.for_user', $user_id);
+        $this->db->where('firms_translations.is_default', 1);
+        $this->db->join('firms_translations', 'firms_translations.for_firm = firms_users.id');
         $result = $this->db->get('firms_users');
         return $result->result_array();
     }
