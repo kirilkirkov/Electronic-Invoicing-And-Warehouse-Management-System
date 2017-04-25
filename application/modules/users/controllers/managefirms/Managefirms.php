@@ -22,7 +22,7 @@ class Managefirms extends USER_Controller
         $data = array();
         $head = array();
         $head['title'] = 'Administration - Home';
-        $data['firms'] = $this->HomeModel->getFirms(USER_ID);
+        $data['firms'] = $this->HomeModel->getFirms();
         if (isset($_GET['delete'])) {
             $this->deleteCompany();
             $this->session->set_flashdata('resultAction', lang('company_deleted'));
@@ -125,13 +125,6 @@ class Managefirms extends USER_Controller
             return true;
         } else {
             return $errors;
-        }
-    }
-
-    private function addCompanyFolders($companyId)
-    {
-        if (!mkdir('./attachments/' . COMPANIES_IMAGES_DIR . '/' . $companyId, 0777)) {
-            log_message('error', 'Error create company folder: ./attachments/' . COMPANIES_IMAGES_DIR . '/' . $companyId);
         }
     }
 

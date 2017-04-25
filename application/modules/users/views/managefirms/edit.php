@@ -66,7 +66,7 @@
 <div class="modal fade" id="modalAddTranslation" tabindex="-1" role="dialog" aria-labelledby="modalAddTranslation">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form class="site-form" method="POST" action="">
+            <form class="site-form" method="POST" action="" enctype="multipart/form-data"> 
                 <input type="hidden" name="addFirm" value="">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

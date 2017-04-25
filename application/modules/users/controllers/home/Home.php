@@ -23,9 +23,10 @@ class Home extends USER_Controller
         $head = array();
         $head['title'] = 'Administration - Home';
         if (isset($_POST['firm_name'])) {
-            $errors = $this->validateCompanyDetails();
-            if (empty($errors)) {
-                $this->setFirm();
+            $result = $this->validateCompanyDetails();
+            if ($result === true) {
+                $companyId = $this->setFirm();
+                $this->addCompanyFolders($companyId);
                 $this->saveHistory('Add company - ' . print_r($_POST, true));
                 redirect(lang_url('user'));
             } else {
@@ -40,7 +41,8 @@ class Home extends USER_Controller
     private function setFirm()
     {
         $_POST['is_default'] = 1;
-        $this->HomeModel->setFirm($_POST);
+        $id = $this->HomeModel->setFirm($_POST);
+        return $id;
     }
 
     public function logout()

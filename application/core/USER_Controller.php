@@ -95,6 +95,13 @@ class USER_Controller extends HEAD_Controller
         return $errors;
     }
 
+    protected function addCompanyFolders($companyId)
+    {
+        if (!mkdir('./attachments/' . COMPANIES_IMAGES_DIR . '/' . $companyId, 0777)) {
+            log_message('error', 'Error create company folder: ./attachments/' . COMPANIES_IMAGES_DIR . '/' . $companyId);
+        }
+    }
+
     private function checkBulstatIsFree()
     {
         $result = $this->HomeModel->checkBulstatIsFree($_POST['firm_bulstat']);
