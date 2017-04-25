@@ -24,7 +24,16 @@
         <h2><?= lang('firms_translations') ?></h2>
         <hr>
         <?php foreach ($companyInfo['translations'] as $translate) { ?> 
-            <a href="<?= lang_url('user/managefirms/edit/' . $companyInfo['company']['id'] . '/' . $translate['id']) ?>"> <?= $translate['trans_name'] ?></a>
+            <a href="<?= lang_url('user/managefirms/edit/' . $companyInfo['company']['id'] . '/' . $translate['id']) ?>"> 
+                <?= $translate['trans_name'] ?>
+                <?php if ($translate['is_default'] == 1) { ?>
+                    <span class="label label-success"><?= lang('translation_is_default') ?></span>
+                <?php } ?>
+            </a>
+            <?php if ($translate['is_default'] == 0) { ?>
+                <a href="<?= lang_url('user/managefirms/edit/' . $companyInfo['company']['id'] . '?makeDefault=' . $translate['id']) ?>"><?= lang('make_translation_default') ?></a>
+            <?php } ?>
+            <br>
         <?php } ?>  
         <br>
         <a href="javascript:void(0);" data-toggle="modal" data-target="#modalAddTranslation" class="btn btn-default"><?= lang('add_translation') ?></a>

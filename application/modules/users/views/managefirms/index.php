@@ -24,7 +24,7 @@
                         <?php foreach ($firms as $firm) { ?>
                             <li>
                                 <?= $firm['name'] ?>
-                                <a href="?delete=<?= $firm['id'] ?>" class="confirm" data-my-message="<?= lang('delete_firm_confirm') ?>">
+                                <a href="<?= lang_url('user/managefirms?delete=' . $firm['id']) ?>" class="confirm" data-my-message="<?= lang('delete_firm_confirm') ?>">
                                     <i class="fa fa-remove" aria-hidden="true"></i>
                                 </a>
                                 <a href="<?= lang_url('user/managefirms/edit/' . $firm['id']) ?>">
@@ -33,7 +33,7 @@
                                 <?php if ($firm['is_default'] == 1) { ?>
                                     <span class="label label-success"><?= lang('firm_default') ?></span>
                                 <?php } else { ?>
-                                    <a href="" class="confirm" data-my-message="<?= lang('default_firm_confirm') ?>">
+                                    <a href="<?= lang_url('user/managefirms?makeDefault=' . $firm['id']) ?>" class="confirm" data-my-message="<?= lang('default_firm_confirm') ?>">
                                         <span class="label label-danger"><?= lang('make_firm_default') ?></span>
                                     </a>
                                 <?php } ?>

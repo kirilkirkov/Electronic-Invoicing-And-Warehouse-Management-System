@@ -44,3 +44,5 @@ $lang['translation_updated'] = 'Translation is successful updated!';
 $lang['upload_img_error'] = 'Upload image error - ';
 $lang['add_translation'] = 'Add translation';
 $lang['new_translation_added'] = 'New translation is added!';
+$lang['translation_is_default'] = 'default';
+$lang['make_translation_default'] = 'Make default';

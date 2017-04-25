@@ -83,7 +83,7 @@ class ManagefirmsModel extends CI_Model
     }
 
     public function setNewTranslation($post, $companyId)
-    { 
+    {
         $result = $this->db->insert('firms_translations', array(
             'for_firm' => $companyId,
             'trans_name' => $post['trans_name'],
@@ -93,9 +93,35 @@ class ManagefirmsModel extends CI_Model
             'mol' => $post['firm_mol'],
             'image' => $post['image'],
             'is_default' => 0
-        )); 
+        ));
         if ($result === false) {
             log_message('error', 'Cant save new translation for company - ' . $companyId . ': ' . print_r($post, true));
+        }
+    }
+
+    public function makeDefaultFirmWithId($firmId)
+    {
+        $this->db->where('for_user', USER_ID);
+        $this->db->update('firms_users', array('is_default' => 0));
+
+        $this->db->where('id', $firmId);
+        $this->db->where('for_user', USER_ID);
+        $result = $this->db->update('firms_users', array('is_default' => 1));
+        if ($result === false) {
+            log_message('error', 'User with id: ' . USER_ID . ' cant change to default firm with id: ' . $firmId);
+        }
+    }
+
+    public function makeDefaultTranslationWithId($companyId, $translationId)
+    {
+        $this->db->where('for_firm', $companyId);
+        $this->db->update('firms_translations', array('is_default' => 0));
+
+        $this->db->where('id', $translationId);
+        $this->db->where('for_firm', $companyId);
+        $result = $this->db->update('firms_translations', array('is_default' => 1));
+        if ($result === false) {
+            log_message('error', 'User with id: ' . USER_ID . ' cant change to default tranlsation for firm id: ' . $companyId);
         }
     }
 
