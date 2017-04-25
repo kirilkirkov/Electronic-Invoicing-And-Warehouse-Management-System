@@ -35,7 +35,7 @@ class Addfeature extends ADMIN_Controller
 
     private function addFeature()
     {
-        $_POST['image'] = uploader('./attachments/featuresimages/');
+        $_POST['image'] = uploader('./attachments/' . FEATURES_IMAGES_DIR . '/');
         if ($_POST['image'] == false) {
             $_POST['image'] = $_POST['old_image'];
         }

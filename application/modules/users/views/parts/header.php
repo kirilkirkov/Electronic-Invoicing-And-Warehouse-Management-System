@@ -94,6 +94,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <?= lang('menu_list_invoices') ?> 
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-users" aria-hidden="true"></i>
+                                                <?= lang('menu_list_clients') ?> 
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -103,8 +109,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-                                                <form class="form-verifing site-form" method="POST" action="" enctype="multipart/form-data">
-                                                    <input type="hidden" value="" name="user_id">
+                                                <form class="form-verifing site-form" method="POST" action="">
                                                     <h2>
                                                         <img src="<?= base_url('assets/users/imgs/notok.png') ?>" alt="Verified">
                                                         <?= lang('no_firm_data') ?>
@@ -135,9 +140,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </div>
                                     </div>
                                     <?php
-                                    if ($this->session->flashdata('problemAddFirm')) {
-                                        geterror($this->session->flashdata('problemAddFirm'));
-                                    }
                                 }
                                 ?>
 
