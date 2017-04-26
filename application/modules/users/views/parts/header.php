@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     } else {
                                         foreach ($myFirms as $firm) {
                                             ?>
-                                            <li <?= SELECTED_COMPANY_ID == $firm['id'] ? 'class="active"' : '' ?>><a href="<?= base_url('user/usecompany/' . $firm['id']) ?>"><?= $firm['name'] ?></a></li> 
+                                            <li <?= SELECTED_COMPANY_ID == $firm['id'] ? 'class="active"' : '' ?>><a href="<?= lang_url('user/usecompany/' . $firm['id']) ?>"><?= $firm['name'] ?></a></li> 
                                             <?php
                                         }
                                     }

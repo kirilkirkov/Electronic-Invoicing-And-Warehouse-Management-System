@@ -163,7 +163,10 @@ class ManagefirmsModel extends CI_Model
             } else {
                 $this->checkThatWeHaveDefaultTranslate($companyId);
             }
+        } else {
+            return false;
         }
+        return $result;
     }
 
     /*
@@ -184,6 +187,18 @@ class ManagefirmsModel extends CI_Model
                 'is_default' => 1
             ));
         }
+    }
+
+    public function getLastAddedCompanyId()
+    {
+        $this->db->select('id');
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('is_deleted', 0);
+        $this->db->limit(1);
+        $this->db->order_by('id', 'desc');
+        $result = $this->db->get('firms_users');
+        $row = $result->row_array();
+        return $row['id'];
     }
 
 }

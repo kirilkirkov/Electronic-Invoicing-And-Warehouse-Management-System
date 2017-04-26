@@ -50,3 +50,4 @@ $lang['default_translate_confirm'] = 'Are you sure want to make this translation
 $lang['delete_translation'] = 'Delete translation';
 $lang['translation_deleted'] = 'Translation is deleted successful!';
 $lang['translation_delete_confirm'] = 'Are you sure want to delete this translation?';
+$lang['error_delete_translation'] = 'Error delete translation!';

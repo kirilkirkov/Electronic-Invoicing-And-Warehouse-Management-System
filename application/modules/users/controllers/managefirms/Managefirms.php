@@ -43,8 +43,14 @@ class Managefirms extends USER_Controller
     public function deleteCompany($companyId)
     {
         $result = $this->ManagefirmsModel->deleteCompany($companyId);
-        if ($result == false) {
+        if ($result === false) {
             show_error(lang('error_delete_company'));
+        }
+        if ($companyId == SELECTED_COMPANY_ID) {
+            $lastAddedCompanyId = $this->ManagefirmsModel->getLastAddedCompanyId();
+            if ($lastAddedCompanyId != null) {
+                redirect(lang_url('user/usecompany/' . $lastAddedCompanyId));
+            }
         }
         $this->session->set_flashdata('resultAction', lang('company_deleted'));
         $this->saveHistory('Delete company id - ' . $companyId);
@@ -116,7 +122,10 @@ class Managefirms extends USER_Controller
 
     public function deleteTranslation($companyId, $translationid)
     {
-        $this->ManagefirmsModel->deleteTranslation($companyId, $translationid);
+        $result = $this->ManagefirmsModel->deleteTranslation($companyId, $translationid);
+        if ($result === false) {
+            show_error(lang('error_delete_translation'));
+        }
         $this->session->set_flashdata('resultAction', lang('translation_deleted'));
         $this->saveHistory('Delete tanslation id - ' . $translationid);
         redirect(lang_url('user/managefirms/edit/' . $companyId));
