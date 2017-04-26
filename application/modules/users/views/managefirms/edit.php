@@ -54,7 +54,7 @@
             </div> 
             <div class="form-group">
                 <label><?= lang('firm_name') ?></label>
-                <input type="text" name="firm_name" class="form-control field" value="<?= $this->session->flashdata('firm_name') != null ? $this->session->flashdata('firm_reg_address') : $companyTranslate['name'] ?>">
+                <input type="text" name="firm_name" class="form-control field" value="<?= $this->session->flashdata('firm_name') != null ? $this->session->flashdata('firm_name') : $companyTranslate['name'] ?>">
             </div> 
             <div class="form-group">
                 <label><?= lang('firm_reg_address') ?></label>
