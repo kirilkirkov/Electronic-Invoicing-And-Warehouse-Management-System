@@ -80,6 +80,9 @@ $route['user/managefirms/edit/(:num)'] = "users/managefirms/managefirms/editComp
 $route['user/managefirms/edit/(:num)/(:num)'] = "users/managefirms/managefirms/editCompany/$1/$2";
 $route['user/usecompany/(:num)'] = "users/home/home/useCompany/$1";
 $route['user/managefirms/delete-translation/(:num)/(:num)'] = "users/managefirms/managefirms/deleteTranslation/$1/$2";
+$route['user/managefirms/delete-company/(:num)'] = "users/managefirms/managefirms/deleteCompany/$1";
+$route['user/managefirms/make-default/(:num)'] = "users/managefirms/managefirms/makeDefaultFirm/$1";
+$route['user/managefirms/make-default-translation/(:num)/(:num)'] = "users/managefirms/managefirms/makeDefaultTranslation/$1/$2";
 /* USERS PANEL ROUTES */
 
 $route['^(\w{2})$'] = $route['default_controller'];

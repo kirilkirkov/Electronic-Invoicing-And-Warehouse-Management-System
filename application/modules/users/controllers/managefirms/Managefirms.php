@@ -23,15 +23,6 @@ class Managefirms extends USER_Controller
         $head = array();
         $head['title'] = 'Administration - Home';
         $data['firms'] = $this->HomeModel->getFirms();
-        if (isset($_GET['delete'])) {
-            $this->deleteCompany();
-            $this->session->set_flashdata('resultAction', lang('company_deleted'));
-            $this->saveHistory('Delete company id - ' . $_GET['delete']);
-            redirect(lang_url('user/managefirms'));
-        }
-        if (isset($_GET['makeDefault'])) {
-            $this->makeDefaultFirm($_GET['makeDefault']);
-        }
         if (isset($_POST['firm_name'])) {
             $result = $this->validateCompanyDetails();
             if ($result === true) {
@@ -47,6 +38,17 @@ class Managefirms extends USER_Controller
         }
         $this->render('managefirms/index', $head, $data);
         $this->saveHistory('Go to manage firms page');
+    }
+
+    public function deleteCompany($companyId)
+    {
+        $result = $this->ManagefirmsModel->deleteCompany($companyId);
+        if ($result == false) {
+            show_error(lang('error_delete_company'));
+        }
+        $this->session->set_flashdata('resultAction', lang('company_deleted'));
+        $this->saveHistory('Delete company id - ' . $companyId);
+        redirect(lang_url('user/managefirms'));
     }
 
     public function editCompany($companyId, $translateId = 0)
@@ -66,12 +68,6 @@ class Managefirms extends USER_Controller
             $data['companyTranslate'] = $companyTranslate;
         } else {
             $data['companyTranslate'] = $this->ManagefirmsModel->getMyCompanyDefaultTranslation($companyId);
-        }
-        /*
-         * Make default translation
-         */
-        if (isset($_GET['makeDefault'])) {
-            $this->makeDefaultTranslation($companyId, $_GET['makeDefault']);
         }
         /*
          * Save Bulstat Data
@@ -122,18 +118,21 @@ class Managefirms extends USER_Controller
     {
         $this->ManagefirmsModel->deleteTranslation($companyId, $translationid);
         $this->session->set_flashdata('resultAction', lang('translation_deleted'));
+        $this->saveHistory('Delete tanslation id - ' . $translationid);
         redirect(lang_url('user/managefirms/edit/' . $companyId));
     }
 
-    private function makeDefaultTranslation($companyId, $translationId)
+    public function makeDefaultTranslation($companyId, $translationId)
     {
         $this->ManagefirmsModel->makeDefaultTranslationWithId($companyId, $translationId);
+        $this->saveHistory('Make default tanslation id - ' . $translationid);
         redirect(lang_url('user/managefirms/edit/' . $companyId));
     }
 
-    private function makeDefaultFirm($firmId)
+    public function makeDefaultFirm($firmId)
     {
         $this->ManagefirmsModel->makeDefaultFirmWithId($firmId);
+        $this->saveHistory('Make default company id - ' . $firmId);
         redirect(lang_url('user/managefirms'));
     }
 
@@ -188,14 +187,6 @@ class Managefirms extends USER_Controller
     {
         $result = $this->ManagefirmsModel->getCompanyInfo($companyId);
         return $result;
-    }
-
-    private function deleteCompany()
-    {
-        $result = $this->ManagefirmsModel->deleteCompany($_GET['delete']);
-        if ($result == false) {
-            show_error(lang('error_delete_company'));
-        }
     }
 
     private function setFirm()

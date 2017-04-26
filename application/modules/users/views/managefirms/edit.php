@@ -31,7 +31,7 @@
                 <?php } ?>
             </a>
             <?php if ($translate['is_default'] == 0) { ?>
-                <a href="<?= lang_url('user/managefirms/edit/' . $companyInfo['company']['id'] . '?makeDefault=' . $translate['id']) ?>" class="confirm" data-my-message="<?= lang('default_translate_confirm') ?>"><?= lang('make_translation_default') ?></a>
+                <a href="<?= lang_url('user/managefirms/make-default-translation/' . $companyInfo['company']['id'] . '/' . $translate['id']) ?>" class="confirm" data-my-message="<?= lang('default_translate_confirm') ?>"><?= lang('make_translation_default') ?></a>
             <?php } ?>
             <a href="<?= lang_url('user/managefirms/delete-translation/' . $companyInfo['company']['id'] . '/' . $translate['id']) ?>" class="confirm" data-my-message="<?= lang('translation_delete_confirm') ?>"><?= lang('delete_translation') ?></a>
             <br>
