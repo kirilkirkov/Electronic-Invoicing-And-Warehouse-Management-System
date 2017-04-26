@@ -38,6 +38,18 @@ class Home extends USER_Controller
         $this->saveHistory('Go to home page');
     }
 
+    public function useCompany($companyId)
+    {
+        $canIUse = $this->HomeModel->checkCompanyIsValidForUser($companyId); 
+        if (!empty($canIUse)) {
+            $_SESSION['selected_company'] = array(
+                'id' => $canIUse['id'],
+                'name' => $canIUse['name']
+            );
+        }
+        redirect(lang_url('user'));
+    }
+
     private function setFirm()
     {
         $_POST['is_default'] = 1;
@@ -48,6 +60,7 @@ class Home extends USER_Controller
     public function logout()
     {
         unset($_SESSION['user_login']);
+        unset($_SESSION['selected_company']);
         redirect(base_url());
     }
 

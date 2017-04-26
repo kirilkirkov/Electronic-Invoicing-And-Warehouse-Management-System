@@ -118,6 +118,13 @@ class Managefirms extends USER_Controller
         $this->saveHistory('Go to edit firms id - ' . $companyId);
     }
 
+    public function deleteTranslation($companyId, $translationid)
+    {
+        $this->ManagefirmsModel->deleteTranslation($companyId, $translationid);
+        $this->session->set_flashdata('resultAction', lang('translation_deleted'));
+        redirect(lang_url('user/managefirms/edit/' . $companyId));
+    }
+
     private function makeDefaultTranslation($companyId, $translationId)
     {
         $this->ManagefirmsModel->makeDefaultTranslationWithId($companyId, $translationId);

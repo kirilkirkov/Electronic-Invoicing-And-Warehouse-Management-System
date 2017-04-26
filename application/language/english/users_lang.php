@@ -46,3 +46,7 @@ $lang['add_translation'] = 'Add translation';
 $lang['new_translation_added'] = 'New translation is added!';
 $lang['translation_is_default'] = 'default';
 $lang['make_translation_default'] = 'Make default';
+$lang['default_translate_confirm'] = 'Are you sure want to make this translation to default?';
+$lang['delete_translation'] = 'Delete translation';
+$lang['translation_deleted'] = 'Translation is deleted successful!';
+$lang['translation_delete_confirm'] = 'Are you sure want to delete this translation?';

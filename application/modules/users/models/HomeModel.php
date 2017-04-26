@@ -58,4 +58,28 @@ class HomeModel extends CI_Model
         return $lastId;
     }
 
+    public function getDefaultCompany($userId)
+    {
+        $this->db->select('firms_users.id, firms_translations.name');
+        $this->db->limit(1);
+        $this->db->where('for_user', $userId);
+        $this->db->where('firms_translations.is_default', 1);
+        $this->db->where('firms_users.is_default', 1);
+        $this->db->join('firms_translations', 'firms_translations.for_firm = firms_users.id');
+        $result = $this->db->get('firms_users');
+        return $result->row_array();
+    }
+
+    public function checkCompanyIsValidForUser($companyId)
+    {
+        $this->db->select('firms_users.id, firms_translations.name');
+        $this->db->limit(1);
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('firms_users.id', $companyId);
+        $this->db->where('firms_translations.is_default', 1);
+        $this->db->join('firms_translations', 'firms_translations.for_firm = firms_users.id');
+        $result = $this->db->get('firms_users');
+        return $result->row_array();
+    }
+
 }

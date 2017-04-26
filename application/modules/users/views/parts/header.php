@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     } else {
                                         foreach ($myFirms as $firm) {
                                             ?>
-                                            <li><a href="#"><?= $firm['name'] ?></a></li> 
+                                            <li <?= SELECTED_COMPANY_ID == $firm['id'] ? 'class="active"' : '' ?>><a href="<?= base_url('user/usecompany/' . $firm['id']) ?>"><?= $firm['name'] ?></a></li> 
                                             <?php
                                         }
                                     }
@@ -54,6 +54,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input class="form-control" type="text" placeholder="<?= lang('search_header_u') ?>">
                             </div>
                         </form>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="<?= base_url('user/logout') ?>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                        </ul>
                     </div>
                 </nav>
                 <?php if (!empty($myFirms)) { ?>
@@ -61,7 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="container-fluid"> 
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <h1>FirmName OOD</h1>
+                                    <h1><?= SELECTED_COMPANY_NAME ?></h1>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="stats">

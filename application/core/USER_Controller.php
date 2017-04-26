@@ -10,6 +10,7 @@ class USER_Controller extends HEAD_Controller
         parent::__construct();
         $this->loginCheck();
         $this->hasFirmCkeck();
+
         $this->load->helper('uploader');
     }
 
@@ -32,11 +33,22 @@ class USER_Controller extends HEAD_Controller
             $userInfo = $this->PublicModel->getUserInfoFromEmail($_SESSION['user_login']);
             if (!empty($userInfo)) {
                 /*
+                 * Get default company if user is not select manually
+                 */
+                if (!isset($_SESSION['selected_company'])) {
+                    $this->load->model('HomeModel');
+                    $useCompany = $this->HomeModel->getDefaultCompany($userInfo['id']);
+                } else {
+                    $useCompany = $_SESSION['selected_company'];
+                }
+                /*
                  *  DEFINE USER CONSTANTS
                  */
                 define('USER_EMAIL', $userInfo['email']);
                 define('USER_REGISTERED', $userInfo['time_registered']);
                 define('USER_ID', $userInfo['id']);
+                define('SELECTED_COMPANY_ID', $useCompany['id']);
+                define('SELECTED_COMPANY_NAME', $useCompany['name']);
             } else {
                 log_message('error', ':Error: - User try to login, he have session but cant get user info from email: ' . $_SESSION['user_login']);
                 redirect(base_url());
