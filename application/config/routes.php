@@ -83,6 +83,7 @@ $route['user/managefirms/delete-translation/(:num)/(:num)'] = "users/managefirms
 $route['user/managefirms/delete-company/(:num)'] = "users/managefirms/managefirms/deleteCompany/$1";
 $route['user/managefirms/make-default/(:num)'] = "users/managefirms/managefirms/makeDefaultFirm/$1";
 $route['user/managefirms/make-default-translation/(:num)/(:num)'] = "users/managefirms/managefirms/makeDefaultTranslation/$1/$2";
+$route['user/new/invoice'] = "users/newinvoice/newinvoice";
 /* USERS PANEL ROUTES */
 
 $route['^(\w{2})$'] = $route['default_controller'];

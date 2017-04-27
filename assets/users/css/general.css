@@ -38,6 +38,39 @@ header .stats {float:right;}
 .list-firms li span {float:right;}
 .list-firms li a {color:#333; float: right; margin-left: 5px;}
 .list-firms li a i {background: #ccc none repeat scroll 0 0;    border-radius: 50px;    font-size: 10px;    height: 17px;    line-height: 17px;    text-align: center;    width: 17px;}
+.btn-green {background-color: #32cd32; color:#fff}
+.btn-green:hover {background-color: #29b329; color:#fff;}
+.special-radio .control {font-size: 14px;position: relative; padding-left: 23px; margin-left: 5px; cursor: pointer; padding-top: 3px;}
+.special-radio .control input {	position: absolute;	z-index: -1;	opacity: 0;}
+.special-radio .control__indicator {	position: absolute;top: 2px;left: 0;width: 20px;height: 20px;background: #e6e6e6;}
+.special-radio .control--radio .control__indicator {	border-radius: 50%;}
+.special-radio .control:hover input ~ .control__indicator,.special-radio .control input:focus ~ .control__indicator {	background: #2aa1c0;}
+.special-radio .control input:checked ~ .control__indicator {	background: #2aa1c0;}
+.special-radio .control:hover input:not([disabled]):checked ~ .control__indicator,.special-radio .control input:checked:focus ~ .control__indicator {	background: #0e647d;}
+.special-radio .control input:disabled ~ .control__indicator {	pointer-events: none;opacity: .6;	background: #e6e6e6;}
+.special-radio .control__indicator:after {position: absolute;display: none;	content: '';}
+.special-radio .control input:checked ~ .control__indicator:after {display: block;}
+.special-radio .control--checkbox .control__indicator:after {top: 4px;left: 8px;width: 3px;height: 8px;transform: rotate(45deg);border: solid #fff;border-width: 0 2px 2px 0;}
+.special-radio .control--checkbox input:disabled ~ .control__indicator:after {border-color: #7b7b7b;}
+.special-radio .control--radio .control__indicator:after {top: 7px;left: 7px;width: 6px;height: 6px;border-radius: 50%;background: #fff;}
+.special-radio .control--radio input:disabled ~ .control__indicator:after {background: #7b7b7b;}
+.new-invoice {padding:0 100px;}
+.new-invoice .type {margin-bottom: 10px;} 
+.new-invoice .type .special-radio {display: inline;}
+.new-invoice .type .special-radio .control {font-weight: normal;}
+.new-invoice .inner {padding:50px; border: 1px solid #d8d8d8; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15); margin-bottom: 15px;}
+.new-invoice .choose {color:#26b6e8; text-transform: uppercase; font-size: 12px;}
+.new-invoice .choose:hover {text-decoration: none;}
+.new-invoice .choose i {  background: #eee none repeat scroll 0 0;    border: 1px solid #ccc;    border-radius: 30px;    color: #888;    display: inline-block;    height: 28px;    line-height: 25px;    margin-right: 5px;    text-align: center;    width: 28px;}
+.new-invoice .client .form-control {display: inline; width:auto;}
+.new-invoice .maturity-date {display:  none;}
+.new-invoice .table-items {border:1px solid #d8d8d8;}
+.new-invoice .table-items tr td {border-top:0;}
+.new-invoice .table-items thead tr th {border-bottom:1px solid #d8d8d8;}
+.new-invoice .add-new-item {background-color: #f8f8f8; display: inline-block;  border-radius: 1000px; padding: 6px 20px 7px;   transition: background-color 0.1s ease-in-out 0s;}
+.new-invoice .add-new-item:hover {text-decoration: none; background-color: #f3f3f3;}
+.new-invoice .head-content, .new-invoice .items-features, .new-invoice .remarks, .new-invoice .amounts {margin-bottom: 20px;} 
+.new-invoice .amounts {}
 footer { background-color: #f8f8f8;    border-top: 1px solid #e7e7e7;    bottom: 0;    color: #333;    height: 60px;    left: 0;    padding: 20px 0;    position: absolute;    text-align: center;    width: 100%;}
 
 @media screen and (max-width: 767px) {

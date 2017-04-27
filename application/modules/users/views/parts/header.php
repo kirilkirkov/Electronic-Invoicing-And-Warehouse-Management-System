@@ -11,6 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <link href="<?= base_url('assets/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/users/css/general.css') ?>" rel="stylesheet">
+        <link href="<?= base_url('assets/bootstrap-select-1.12.2/dist/css/bootstrap-select.min.css') ?>" rel="stylesheet">
         <script src="<?= base_url('assets/jquery/jquery.min.js') ?>"></script> 
         <script src="<?= base_url('loadlanguage/all.js') ?>"></script>
         <!--[if lt IE 9]>
@@ -86,7 +87,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="<?= lang_url('user/new/invoice') ?>">
                                                 <i class="fa fa-file-text-o" aria-hidden="true"></i>
                                                 <?= lang('menu_create_invoice') ?> 
                                             </a>
