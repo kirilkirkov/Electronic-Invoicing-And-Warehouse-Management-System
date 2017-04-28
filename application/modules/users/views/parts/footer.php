@@ -18,6 +18,7 @@ if ($this->session->flashdata('resultAction')) {
 }
 ?>
 <script src="<?= base_url('assets/bootstrap-select-1.12.2/dist/js/bootstrap-select.min.js') ?>"></script>
+<script src="<?= base_url('assets/bootstrap-datepicker-1.6.4-dist/js/bootstrap-datepicker.min.js') ?>"></script>
 <script src="<?= base_url('assets/plugins/placeholders.min.js') ?>"></script>
 <script src="<?= base_url('assets/bootstrap/js/bootstrap.min.js') ?>"></script>  
 <script src="<?= base_url('assets/plugins/bootbox.min.js') ?>"></script> 

@@ -35,6 +35,9 @@ $(document).ready(function () {
     if ($('.alert-errors').length) {
         $('.alert-errors').delay(4000).fadeOut(1500);
     }
+    $('.datepicker').datepicker({
+        format: 'dd.mm.yyyy'
+    });
 });
 /*
  * Alerts close
@@ -66,3 +69,21 @@ $('#no-vat').change(function () {
         $('.no-vat-txt').hide();
     }
 });
+/*
+ * Add Item in create invoice page
+ */
+$('.add-new-item').click(function () {
+    var obj = $('.body-items tr:first').clone(true).insertAfter('tr:last');
+    obj.find('.field').val(''); 
+    obj.find('.item-total-price').text('0');
+    $('.body-items .delete-item').css('display', 'inline-block'); 
+});
+/*
+ * Remove Item in create invoice page
+ */
+$('.delete-item').on("click", function () {
+    $(this).closest('tr').remove();
+    if ($('.body-items tr').length < 2) {
+        $('.body-items tr:first .delete-item').hide();
+    }
+}); 

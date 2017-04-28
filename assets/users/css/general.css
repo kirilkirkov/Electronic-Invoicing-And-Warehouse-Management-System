@@ -54,8 +54,8 @@ header .stats {float:right;}
 .special-radio .control--checkbox input:disabled ~ .control__indicator:after {border-color: #7b7b7b;}
 .special-radio .control--radio .control__indicator:after {top: 7px;left: 7px;width: 6px;height: 6px;border-radius: 50%;background: #fff;}
 .special-radio .control--radio input:disabled ~ .control__indicator:after {background: #7b7b7b;}
-.new-invoice {padding:0 100px; color:#414141;}
-.new-invoice .type {margin-bottom: 10px;} 
+.new-invoice {padding:0 100px; padding-top:20px; color:#414141;}
+.new-invoice .type {margin-bottom: 30px;} 
 .new-invoice .type .special-radio {display: inline;}
 .new-invoice .type .special-radio .control {font-weight: normal;}
 .new-invoice .inner {padding:50px; border: 1px solid #d8d8d8; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15); margin-bottom: 15px;}
@@ -88,6 +88,9 @@ header .stats {float:right;}
 .new-invoice .invoice-setting {max-width: 400px; float: right;}
 .new-invoice .amount-row {margin-bottom: 15px;}
 .new-invoice .discount-txt {padding-top: 12px;}
+.new-invoice .total-row {border-top: 1px solid #f3f3f3; padding-top: 15px;}
+.new-invoice .item-total-price {padding-top: 7px;} 
+.new-invoice .table-items .delete-item {display: none;}
 footer { background-color: #f8f8f8;    border-top: 1px solid #e7e7e7;    bottom: 0;    color: #333;    height: 60px;    left: 0;    padding: 20px 0;    position: absolute;    text-align: center;    width: 100%;}
 
 @media screen and (max-width: 767px) {

@@ -78,11 +78,11 @@
                         </div>
                         <div class="column-data">
                             <label><?= lang('create_inv_date_create') ?></label>
-                            <input type="text" class="form-control field">
+                            <input type="text" placeholder="dd.mm.yy" class="form-control field datepicker">
                         </div>
                         <div class="column-data">
                             <label><?= lang('create_inv_date_tax') ?></label>
-                            <input type="text" class="form-control field">
+                            <input type="text" placeholder="dd.mm.yy" class="form-control field datepicker">
                         </div>
                         <div class="column-data">
                             <div class="checkbox">
@@ -90,7 +90,7 @@
                             </div>
                             <div class="maturity-date">
                                 <label><?= lang('create_inv_maturity_date') ?></label>
-                                <input type="text" class="form-control field">
+                                <input type="text" placeholder="dd.mm.yy" class="form-control field datepicker">
                             </div>
                         </div>
                         <div class="column-data">
@@ -112,10 +112,10 @@
                             <th class="text-right"><?= lang('create_inv_total') ?></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="body-items">
                         <tr>
                             <td>
-                                <a href="" class="btn btn-default confirm" data-my-message="<?= lang('sure_want_to_del_item') ?>">
+                                <a href="javascript:void(0);" class="btn btn-default delete-item" data-my-message="<?= lang('sure_want_to_del_item') ?>">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
                                 <a href="" class="btn btn-default">
@@ -123,10 +123,10 @@
                                 </a>
                             </td>
                             <td>
-                                <input type="text" class="form-control field">
+                                <input type="text" value="" class="form-control field">
                             </td>
                             <td>
-                                <input type="text" class="form-control field quantity-field">
+                                <input type="text" value="" class="form-control field quantity-field">
                                 <div class="quantity-type">
                                     <select class="selectpicker form-control">
                                         <option>Mustard</option>
@@ -136,17 +136,19 @@
                                 </div>
                             </td>
                             <td>
-                                <input type="text" class="form-control field price-field">
+                                <input type="text" value="" class="form-control field price-field">
                             </td>
                             <td class="text-right">
-                                20
+                                <div class="item-total-price">
+                                    0
+                                </div>
                             </td>
                         </tr> 
                     </tbody>
                 </table>
             </div>
             <div class="items-features">
-                <a href="#" class="add-new-item">
+                <a href="javascript:void(0);" class="add-new-item">
                     <i class="fa fa-plus"></i>
                     <?= lang('add_new_item_to_table') ?>
                 </a>
@@ -158,7 +160,7 @@
                             <?= lang('create_inv_invoice_amount') ?>
                         </div>
                         <div class="col-sm-6">
-                            <div class="amount">2.00$</div> 
+                            <div class="amount">0</div> 
                         </div>
                     </div>
                     <div class="row amount-row">
@@ -184,7 +186,7 @@
                             <?= lang('create_inv_tax_base') ?>
                         </div>
                         <div class="col-sm-6">
-                            <div class="amount">2.00$</div> 
+                            <div class="amount">0</div> 
                         </div>
                     </div>
                     <div class="row amount-row">
@@ -202,15 +204,15 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="no-vat-txt"><?= lang('create_inv_no_vat_mark') ?></div>
-                            <div class="amount the-vat">2.00$</div> 
+                            <div class="amount the-vat">0</div> 
                         </div>
                     </div>
-                    <div class="row amount-row">
+                    <div class="row amount-row total-row">
                         <div class="col-sm-6">
                             <span class="total"><?= lang('create_inv_total') ?></span> 
                         </div>
                         <div class="col-sm-6">
-                            <div class="amount total">2.00$</div> 
+                            <div class="amount total">0</div> 
                         </div>
                     </div>
                 </div>
