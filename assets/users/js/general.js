@@ -52,3 +52,17 @@ $('#maturity-date').change(function () {
         $('.maturity-date').hide();
     }
 });
+/*
+ * Checkbox no vat in craete invoice page
+ */
+$('#no-vat').change(function () {
+    if ($(this).is(":checked")) {
+        $('.no-vat-container').hide();
+        $('.the-vat').hide();
+        $('.no-vat-txt').show();
+    } else {
+        $('.no-vat-container').show();
+        $('.the-vat').show();
+        $('.no-vat-txt').hide();
+    }
+});

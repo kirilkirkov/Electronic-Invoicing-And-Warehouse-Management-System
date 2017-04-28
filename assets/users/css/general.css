@@ -54,7 +54,7 @@ header .stats {float:right;}
 .special-radio .control--checkbox input:disabled ~ .control__indicator:after {border-color: #7b7b7b;}
 .special-radio .control--radio .control__indicator:after {top: 7px;left: 7px;width: 6px;height: 6px;border-radius: 50%;background: #fff;}
 .special-radio .control--radio input:disabled ~ .control__indicator:after {background: #7b7b7b;}
-.new-invoice {padding:0 100px;}
+.new-invoice {padding:0 100px; color:#414141;}
 .new-invoice .type {margin-bottom: 10px;} 
 .new-invoice .type .special-radio {display: inline;}
 .new-invoice .type .special-radio .control {font-weight: normal;}
@@ -63,18 +63,35 @@ header .stats {float:right;}
 .new-invoice .choose:hover {text-decoration: none;}
 .new-invoice .choose i {  background: #eee none repeat scroll 0 0;    border: 1px solid #ccc;    border-radius: 30px;    color: #888;    display: inline-block;    height: 28px;    line-height: 25px;    margin-right: 5px;    text-align: center;    width: 28px;}
 .new-invoice .client .form-control {display: inline; width:auto;}
+.new-invoice .client label {display: block;}
 .new-invoice .maturity-date {display:  none;}
-.new-invoice .table-items {border:1px solid #d8d8d8;}
+.new-invoice .table-items {border:1px solid #d8d8d8; margin-bottom: 15px;}
 .new-invoice .table-items tr td {border-top:0;}
 .new-invoice .table-items thead tr th {border-bottom:1px solid #d8d8d8;}
 .new-invoice .add-new-item {background-color: #f8f8f8; display: inline-block;  border-radius: 1000px; padding: 6px 20px 7px;   transition: background-color 0.1s ease-in-out 0s;}
 .new-invoice .add-new-item:hover {text-decoration: none; background-color: #f3f3f3;}
-.new-invoice .head-content, .new-invoice .items-features, .new-invoice .remarks, .new-invoice .amounts {margin-bottom: 20px;} 
-.new-invoice .amounts {}
+.new-invoice .items-features, .new-invoice .remarks, .new-invoice .amounts {margin-bottom: 20px;} 
+.new-invoice .amounts .text-discount, .new-invoice .amounts .select-discount {width:80px; display: inline-block;} 
+.new-invoice .amounts .amount {text-align: right;}
+.new-invoice .amounts .vat-field {width:50px; display: inline-block;}
+.new-invoice .amounts .discount {float: right;}
+.new-invoice .amounts .total {font-size:25px;}
+.new-invoice .quantity-field, .new-invoice .quantity-type {width:60px; display: inline-block;}
+.new-invoice .quantity-type { width:90px;}
+.new-invoice .price-field {width:150px; display: inline-block;}
+.new-invoice .table-responsive {overflow: visible;}
+.new-invoice .amounts .no-vat-txt {display: none; text-align: right;}
+.new-invoice .column-data {margin-bottom: 15px;}
+.new-invoice .field {height: 35px;}
+.new-invoice .field.area {height: 100px;}
+.new-invoice h1 {margin-bottom: 40px;}
+.new-invoice .invoice-setting {max-width: 400px; float: right;}
+.new-invoice .amount-row {margin-bottom: 15px;}
+.new-invoice .discount-txt {padding-top: 12px;}
 footer { background-color: #f8f8f8;    border-top: 1px solid #e7e7e7;    bottom: 0;    color: #333;    height: 60px;    left: 0;    padding: 20px 0;    position: absolute;    text-align: center;    width: 100%;}
 
 @media screen and (max-width: 767px) {
     .left-col {position:relative; top:0; margin-bottom: 20px;}
-
+    .new-invoice .table-responsive {overflow-x: auto;}
 }
 
