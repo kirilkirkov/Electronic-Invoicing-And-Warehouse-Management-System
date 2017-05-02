@@ -10,7 +10,6 @@ h1, h2, h3, h4 { margin: 0; padding: 0;}
 .navbar-user ul.nav {margin-left: -15px;}
 header { border-bottom: 1px solid #ddd;    border-top: 1px solid #ccc;    padding: 35px 0;}
 header h1 {font-size:26px;}  
-header .stats {float:right;}
 .left-col { border-right: 1px solid #ccc;    bottom: 0;    display: block;    left: 0;    overflow: auto;    padding: 0;    position: absolute;    top: 101px;}
 .left-menu ul {margin: 0; padding: 0; list-style: none; margin-left: -15px;}
 .left-menu ul li a {text-transform: uppercase; background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #f9f9f9, #f2f2f2) repeat scroll 0 0;    border-bottom: 1px solid #ccc;    border-top: 1px solid #fff;    box-shadow: 0 1px 1px #fff inset;    color: #777;    display: block;    font-size: 13px;    padding: 10px 20px;    text-decoration: none;}
@@ -61,7 +60,8 @@ header .stats {float:right;}
 .new-invoice .inner {padding:50px; border: 1px solid #d8d8d8; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15); margin-bottom: 15px;}
 .new-invoice .choose {color:#26b6e8; text-transform: uppercase; font-size: 12px;}
 .new-invoice .choose:hover {text-decoration: none;}
-.new-invoice .choose i {  background: #eee none repeat scroll 0 0;    border: 1px solid #ccc;    border-radius: 30px;    color: #888;    display: inline-block;    height: 28px;    line-height: 25px;    margin-right: 5px;    text-align: center;    width: 28px;}
+.new-invoice .choose i {  background: #eee none repeat scroll 0 0;    border: 1px solid #ccc;    border-radius: 30px;    color: #888;    display: inline-block;    height: 28px;    line-height: 25px;    margin-right: 3px;    text-align: center;    width: 28px;}
+.new-invoice .choose span {font-size:10px;}
 .new-invoice .client .form-control {display: inline; width:auto;}
 .new-invoice .client label {display: block;}
 .new-invoice .maturity-date {display:  none;}
@@ -79,8 +79,7 @@ header .stats {float:right;}
 .new-invoice .quantity-field, .new-invoice .quantity-type {width:60px; display: inline-block;}
 .new-invoice .quantity-type { width:90px;}
 .new-invoice .price-field {width:150px; display: inline-block;}
-.new-invoice .table-responsive {overflow: visible;}
-.new-invoice .amounts .no-vat-txt {display: none; text-align: right;}
+.new-invoice .table-responsive {overflow: visible;} 
 .new-invoice .column-data {margin-bottom: 15px;}
 .new-invoice .field {height: 35px;}
 .new-invoice .field.area {height: 100px;}
@@ -90,7 +89,12 @@ header .stats {float:right;}
 .new-invoice .discount-txt {padding-top: 12px;}
 .new-invoice .total-row {border-top: 1px solid #f3f3f3; padding-top: 15px;}
 .new-invoice .item-total-price {padding-top: 7px;} 
-.new-invoice .table-items .delete-item {display: none;}
+.new-invoice .actions {display: none;}
+.new-invoice .field-item-name {width:auto; display: inline-block;}
+.new-invoice .no-vat-field {display: none;}
+.new-invoice .no-vat-field .form-control { margin-bottom: 5px;}
+.new-invoice .select-currency {margin-bottom: 10px}
+.btn {border-radius: 0;}
 footer { background-color: #f8f8f8;    border-top: 1px solid #e7e7e7;    bottom: 0;    color: #333;    height: 60px;    left: 0;    padding: 20px 0;    position: absolute;    text-align: center;    width: 100%;}
 
 @media screen and (max-width: 767px) {

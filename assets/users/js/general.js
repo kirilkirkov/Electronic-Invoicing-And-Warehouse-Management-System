@@ -35,9 +35,19 @@ $(document).ready(function () {
     if ($('.alert-errors').length) {
         $('.alert-errors').delay(4000).fadeOut(1500);
     }
+    /*
+     * DatePicker
+     */
     $('.datepicker').datepicker({
         format: 'dd.mm.yyyy'
     });
+    /*
+     * Sortable items in Create Invoice page
+     */
+    $('.body-items').sortable({
+        handle: '.move-me'
+    });
+    $('.body-items').disableSelection();
 });
 /*
  * Alerts close
@@ -60,13 +70,11 @@ $('#maturity-date').change(function () {
  */
 $('#no-vat').change(function () {
     if ($(this).is(":checked")) {
-        $('.no-vat-container').hide();
-        $('.the-vat').hide();
-        $('.no-vat-txt').show();
+        $('.no-vat-container, .the-vat').hide();
+        $('.no-vat-field').show();
     } else {
-        $('.no-vat-container').show();
-        $('.the-vat').show();
-        $('.no-vat-txt').hide();
+        $('.no-vat-container, .the-vat').show();
+        $('.no-vat-field').hide();
     }
 });
 /*
@@ -74,9 +82,9 @@ $('#no-vat').change(function () {
  */
 $('.add-new-item').click(function () {
     var obj = $('.body-items tr:first').clone(true).insertAfter('tr:last');
-    obj.find('.field').val(''); 
+    obj.find('.field').val('');
     obj.find('.item-total-price').text('0');
-    $('.body-items .delete-item').css('display', 'inline-block'); 
+    $('.body-items .actions').css('display', 'inline-block');
 });
 /*
  * Remove Item in create invoice page
@@ -84,6 +92,19 @@ $('.add-new-item').click(function () {
 $('.delete-item').on("click", function () {
     $(this).closest('tr').remove();
     if ($('.body-items tr').length < 2) {
-        $('.body-items tr:first .delete-item').hide();
+        $('.body-items .actions').hide();
     }
-}); 
+});
+/*
+ * Select Currency for new invoice
+ * On change we change curreny texts in class currency-text tags
+ */
+$('#selectCurrencyNewInv').change(function () {
+    $('.currency-text').text($(this).val());
+});
+/*
+ * Create Invoice form validation
+ */
+function createInvValidate() {
+    document.getElementById('setInvoiceForm').submit();
+}

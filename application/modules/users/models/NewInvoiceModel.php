@@ -8,4 +8,11 @@ class NewInvoiceModel extends CI_Model
         parent::__construct();
     }
 
+    public function getCurrencies()
+    {
+        $this->db->select('name, value');
+        $result = $this->db->get('currencies');
+        return $result->result_array();
+    }
+
 }

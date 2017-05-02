@@ -91,3 +91,4 @@ $lang['create_inv_vat'] = 'VAT:';
 $lang['create_inv_total'] = 'Total:';
 $lang['create_inv_no_vat_mark'] = 'No Vat';
 $lang['create_inv_reason_no_vat'] = 'Reason for non-charging VAT:';
+$lang['select_curreny'] = 'Selected currency:';
