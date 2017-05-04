@@ -103,8 +103,44 @@ $('#selectCurrencyNewInv').change(function () {
     $('.currency-text').text($(this).val());
 });
 /*
+ * Select default currency for company
+ */
+$('.selectDefaultCurrency').change(function () {
+    var forId = $(this).data('default-for');
+    var newDefault = $(this).val();
+    $.post(urls.changeDefaultCurrency, {forId: forId, newDefault: newDefault}, function (result) {
+        if (result == '1') {
+            $('.selected-new-default').fadeIn(500).delay(1000).fadeOut(500);
+        } else {
+            $('.not-selected-new-default').fadeIn(500).delay(1000).fadeOut(500);
+        }
+    });
+});
+/*
  * Create Invoice form validation
  */
 function createInvValidate() {
     document.getElementById('setInvoiceForm').submit();
+}
+/*
+ * Add new currency validator
+ */
+function addNewCurrency() {
+    var valid = true;
+
+    var name = $('#formAddCurrency .c-name').val();
+    var value = $('#formAddCurrency .c-value').val();
+    name = $.trim(name);
+    value = $.trim(value);
+    if (name.length == 0) {
+        $('#formAddCurrency .c-name').css("border-color", "red");
+        valid = false;
+    }
+    if (value.length == 0) {
+        $('#formAddCurrency .c-value').css("border-color", "red");
+        valid = false;
+    }
+    if (valid == true) {
+        document.getElementById('formAddCurrency').submit();
+    }
 }

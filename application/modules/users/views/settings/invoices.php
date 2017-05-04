@@ -1,0 +1,85 @@
+<div class="selected-page">
+    <div class="inner">
+        <h1>
+            <i class="fa fa-cog" aria-hidden="true"></i>
+            <?= lang('settings_invoices') ?>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="active">Data</li>
+        </ol>
+    </div>
+    <div class="border"></div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <h3><?= lang('default_currency') ?></h3>
+        <p class="selected-new-default"><?= lang('selected_new_def') ?></p>
+        <p class="not-selected-new-default"><?= lang('not_selected_new_def') ?></p>
+        <?php foreach ($myFirms as $myFirm) { ?>
+            <div>
+                <?= $myFirm['name'] ?> - <?= $myFirm['default_currency'] == null ? lang('default_currency_null') : '' ?> 
+                <select class="selectpicker selectDefaultCurrency" title="<?= lang('select_def_currency') ?>" data-default-for="<?= $myFirm['id'] ?>" data-live-search="true">
+                    <?php foreach ($currencies as $currency) { ?>
+                        <option value="<?= $currency['value'] ?>" <?= $currency['value'] == $myFirm['default_currency'] ? 'selected' : '' ?>><?= $currency['name'] ?></option>
+                    <?php } ?>
+                </select> 
+                <?php if ($myFirm['default_currency'] != null) { ?>
+                    <a href="<?= lang_url('user/settings/invoices/delete/default/' . $myFirm['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_del_def_currency') . $myFirm['name'] . '?' ?>">
+                        <?= lang('clear_def_currency') ?>
+                    </a>
+                <?php } ?>
+            </div>
+        <?php } ?>
+        <h4><?= lang('my_currencies') ?></h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th><?= lang('currency_name') ?><sup><?= lang('curr_name_for_int_use') ?></sup></th>
+                    <th colspan="2"><?= lang('currency_value') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (!empty($myCurrencies)) {
+                    foreach ($myCurrencies as $myCurrency) {
+                        ?>
+                        <tr>
+                            <td><?= $myCurrency['name'] ?></td>
+                            <td><?= $myCurrency['value'] ?></td>
+                            <td>
+                                <a href="<?= base_url('user/settings/invoices/delete/currency/' . $myCurrency['id']) ?>" class="confirm" data-my-message="<?= lang('conirm_del_my_currency') ?>">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <tr>
+                        <td colspan="3"><?= lang('no_my_currencies_added') ?></td>
+                    </tr>
+                <?php } ?>
+                <tr>
+                    <td colspan="3">
+                        <form method="POST" action="" class="site-form form-inline" id="formAddCurrency">
+                            <table>
+                                <tr>
+                                    <td><input type="text" name="currencyName" class="form-control field c-name"></td>
+                                    <td><input type="text" name="currencyValue" class="form-control field c-value"></td>
+                                    <td>
+                                        <a href="javascript:void(0);" onclick="addNewCurrency()" class="btn btn-xs btn-default pull-right">
+                                            <?= lang('add_new_currency') ?>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

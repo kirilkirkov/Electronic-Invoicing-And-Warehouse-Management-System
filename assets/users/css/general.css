@@ -64,6 +64,7 @@ header h1 {font-size:26px;}
 .new-invoice .choose span {font-size:10px;}
 .new-invoice .client .form-control {display: inline; width:auto;}
 .new-invoice .client label {display: block;}
+.new-invoice .client .choose {float: right;}
 .new-invoice .maturity-date {display:  none;}
 .new-invoice .table-items {border:1px solid #d8d8d8; margin-bottom: 15px;}
 .new-invoice .table-items tr td {border-top:0;}
@@ -94,11 +95,32 @@ header h1 {font-size:26px;}
 .new-invoice .no-vat-field {display: none;}
 .new-invoice .no-vat-field .form-control { margin-bottom: 5px;}
 .new-invoice .select-currency {margin-bottom: 10px}
+.selected-new-default, .not-selected-new-default {display: none;}
 .btn {border-radius: 0;}
 footer { background-color: #f8f8f8;    border-top: 1px solid #e7e7e7;    bottom: 0;    color: #333;    height: 60px;    left: 0;    padding: 20px 0;    position: absolute;    text-align: center;    width: 100%;}
 
 @media screen and (max-width: 767px) {
     .left-col {position:relative; top:0; margin-bottom: 20px;}
     .new-invoice .table-responsive {overflow-x: auto;}
+    /* Dont zoom fileds! */
+    input[type="color"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="email"],
+    input[type="month"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="text"],
+    input[type="time"],
+    input[type="url"],
+    input[type="week"],
+    select:focus,
+    textarea {
+        font-size: 16px;
+    }
+    /* Dont zoom fileds! */
 }
 

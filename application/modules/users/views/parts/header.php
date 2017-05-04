@@ -106,6 +106,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <?= lang('menu_list_clients') ?> 
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-buysellads" aria-hidden="true"></i>
+                                                <?= lang('menu_list_items') ?> 
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

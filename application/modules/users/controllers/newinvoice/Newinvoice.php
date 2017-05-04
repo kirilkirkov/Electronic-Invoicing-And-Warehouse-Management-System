@@ -23,6 +23,7 @@ class Newinvoice extends USER_Controller
         $head = array();
         $head['title'] = 'Administration - Home';
         $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
+        $data['myDefaultFirmCurrency'] = $this->NewInvoiceModel->getFirmDefaultCurrency();
         $this->render('newinvoice/index', $head, $data);
         $this->saveHistory('Go to new invoice page');
     }

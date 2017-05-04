@@ -21,7 +21,12 @@ if ($this->session->flashdata('resultAction')) {
 <script src="<?= base_url('assets/bootstrap-datepicker-1.6.4-dist/js/bootstrap-datepicker.min.js') ?>"></script>
 <script src="<?= base_url('assets/plugins/placeholders.min.js') ?>"></script>
 <script src="<?= base_url('assets/bootstrap/js/bootstrap.min.js') ?>"></script>  
-<script src="<?= base_url('assets/plugins/bootbox.min.js') ?>"></script> 
+<script src="<?= base_url('assets/plugins/bootbox.min.js') ?>"></script>
+<script>
+    var urls = {
+        changeDefaultCurrency: "<?= base_url('user/defaultcurrency') ?>"
+    };
+</script>
 <script src="<?= base_url('assets/users/js/general.js') ?>"></script> 
 </body>
 </html>

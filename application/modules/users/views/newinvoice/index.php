@@ -109,9 +109,9 @@
             </div>
             <div class="select-currency">
                 <?= lang('select_curreny') ?> 
-                <select class="selectpicker" id="selectCurrencyNewInv" data-live-search="true">
+                <select class="selectpicker" id="selectCurrencyNewInv" title="<?= lang('no_currency_selected') ?>" data-live-search="true">
                     <?php foreach ($currencies as $currency) { ?>
-                        <option value="<?= $currency['value'] ?>"><?= $currency['name'] ?></option>
+                        <option value="<?= $currency['value'] ?>" <?= $myDefaultFirmCurrency == $currency['value'] ? 'selected' : '' ?>><?= $currency['name'] ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -160,7 +160,7 @@
                             </td>
                             <td class="text-right">
                                 <div class="item-total-price">
-                                    0 <span class="currency-text"></span>
+                                    0 <span class="currency-text"><?= $myDefaultFirmCurrency != null  ? $myDefaultFirmCurrency : 'EUR' ?></span>
                                 </div>
                             </td>
                         </tr> 
@@ -180,7 +180,7 @@
                             <?= lang('create_inv_invoice_amount') ?>
                         </div>
                         <div class="col-sm-6">
-                            <div class="amount">0 <span class="currency-text"></span></div> 
+                            <div class="amount">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null  ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
                         </div>
                     </div>
                     <div class="row amount-row">
@@ -195,7 +195,7 @@
                                 <div class="select-discount">
                                     <select class="selectpicker form-control">
                                         <option>%</option>
-                                        <option class="currency-text"></option>
+                                        <option class="currency-text"><?= $myDefaultFirmCurrency != null  ? $myDefaultFirmCurrency : 'EUR' ?></option>
                                     </select>
                                 </div>
                             </div>
@@ -206,7 +206,7 @@
                             <?= lang('create_inv_tax_base') ?>
                         </div>
                         <div class="col-sm-6">
-                            <div class="amount">0 <span class="currency-text"></span></div> 
+                            <div class="amount">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null  ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
                         </div>
                     </div>
                     <div class="row amount-row">
@@ -223,7 +223,7 @@
                             </div> 
                         </div>
                         <div class="col-sm-6"> 
-                            <div class="amount the-vat">0 <span class="currency-text"></span></div> 
+                            <div class="amount the-vat">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null  ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
                             <div class="no-vat-field">
                                 <label><?= lang('create_inv_reason_no_vat') ?></label>
                                 <input type="text" class="form-control field">
@@ -239,7 +239,7 @@
                             <span class="total"><?= lang('create_inv_total') ?></span> 
                         </div>
                         <div class="col-sm-6">
-                            <div class="amount total">0 <span class="currency-text"></span></div> 
+                            <div class="amount total">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null  ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
                         </div>
                     </div>
                 </div>
