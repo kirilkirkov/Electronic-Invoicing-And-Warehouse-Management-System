@@ -84,6 +84,8 @@ $('.add-new-item').click(function () {
     var obj = $('.body-items tr:first').clone(true).insertAfter('tr:last');
     obj.find('.field').val('');
     obj.find('.item-total-price').text('0');
+    var selectedOption = $('#selectCurrencyNewInv').find(":selected").val();
+    obj.find('.item-total-price').append(' <span class="currency-text">' + selectedOption + '</span>');
     $('.body-items .actions').css('display', 'inline-block');
     numItemsDefault = numItemsDefault + 1;
     obj.find('.quantity-type select').attr('data-my-id', numItemsDefault);
