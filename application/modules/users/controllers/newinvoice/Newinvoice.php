@@ -24,8 +24,19 @@ class Newinvoice extends USER_Controller
         $head['title'] = 'Administration - Home';
         $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
         $data['myDefaultFirmCurrency'] = $this->NewInvoiceModel->getFirmDefaultCurrency();
+        $data['quantityTypes'] = $this->NewInvoiceModel->getAllQuantityTypes();
         $this->render('newinvoice/index', $head, $data);
         $this->saveHistory('Go to new invoice page');
+    }
+
+    public function addnewquantitytype()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        }
+        if (isset($_POST['newVal'])) {
+            $this->NewInvoiceModel->setNewCustomQuantityType($_POST['newVal']);
+        }
     }
 
 }

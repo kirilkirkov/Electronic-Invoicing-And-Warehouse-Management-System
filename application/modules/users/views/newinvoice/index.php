@@ -12,6 +12,17 @@
     </div>
     <div class="border"></div>
 </div>
+<div class="">
+    <select class="selectpicker" title="choose language">
+        <option>asd</option>
+    </select>
+    <a href="" class="btn btn-default">
+        add invoice translation
+    </a>
+    <a href="<?= lang_url('user/settings/invoices') ?>" class="btn btn-default pull-right">
+        Invoice settings
+    </a>
+</div>
 <div class="new-invoice">
     <div class="type">
         <label><?= lang('create_inv_type') ?></label> 
@@ -148,10 +159,12 @@
                             <td>
                                 <input type="text" value="" class="form-control field quantity-field">
                                 <div class="quantity-type">
-                                    <select class="form-control">
-                                        <option>Mustard</option>
-                                        <option>Ketchup</option>
-                                        <option>Relish</option>
+                                    <select class="form-control" data-my-id="1">
+                                        <?php foreach ($quantityTypes as $quantityType) { ?>
+                                            <option value="<?= $quantityType['name'] ?>"><?= $quantityType['name'] ?></option>
+                                        <?php } ?>
+                                        <option>--</option>
+                                        <option value="createNewQuantity"><?= lang('create_new_quantity') ?></option>
                                     </select> 
                                 </div>
                             </td>
@@ -160,7 +173,7 @@
                             </td>
                             <td class="text-right">
                                 <div class="item-total-price">
-                                    0 <span class="currency-text"><?= $myDefaultFirmCurrency != null  ? $myDefaultFirmCurrency : 'EUR' ?></span>
+                                    0 <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span>
                                 </div>
                             </td>
                         </tr> 
@@ -180,7 +193,7 @@
                             <?= lang('create_inv_invoice_amount') ?>
                         </div>
                         <div class="col-sm-6">
-                            <div class="amount">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null  ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
+                            <div class="amount">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
                         </div>
                     </div>
                     <div class="row amount-row">
@@ -195,7 +208,7 @@
                                 <div class="select-discount">
                                     <select class="selectpicker form-control">
                                         <option>%</option>
-                                        <option class="currency-text"><?= $myDefaultFirmCurrency != null  ? $myDefaultFirmCurrency : 'EUR' ?></option>
+                                        <option class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></option>
                                     </select>
                                 </div>
                             </div>
@@ -206,7 +219,7 @@
                             <?= lang('create_inv_tax_base') ?>
                         </div>
                         <div class="col-sm-6">
-                            <div class="amount">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null  ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
+                            <div class="amount">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
                         </div>
                     </div>
                     <div class="row amount-row">
@@ -223,7 +236,7 @@
                             </div> 
                         </div>
                         <div class="col-sm-6"> 
-                            <div class="amount the-vat">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null  ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
+                            <div class="amount the-vat">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
                             <div class="no-vat-field">
                                 <label><?= lang('create_inv_reason_no_vat') ?></label>
                                 <input type="text" class="form-control field">
@@ -239,7 +252,7 @@
                             <span class="total"><?= lang('create_inv_total') ?></span> 
                         </div>
                         <div class="col-sm-6">
-                            <div class="amount total">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null  ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
+                            <div class="amount total">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
                         </div>
                     </div>
                 </div>
@@ -258,7 +271,25 @@
             </div>
         </form>
     </div>
-    <a href="javascript:void(0);" onclick="createInvValidate()" class="btn btn-green"><?= lang('create_inv_save') ?></a>
+    <a href="javascript:void(0);" onclick="createNewInvValidate()" class="btn btn-green"><?= lang('create_inv_save') ?></a>
     <?= lang('or') ?>
     <a href="<?= lang_url('user/invoices') ?>"><?= lang('open_invoices') ?></a>
+</div>
+<!-- Modal Add New Quantity Type -->
+<div class="modal fade" id="addQuantityType" tabindex="-1" role="dialog" aria-labelledby="addQuantityType">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><?= lang('add_new_quantity_type') ?></h4>
+            </div>
+            <div class="modal-body site-form">
+                <input type="text" value="" placeholder="<?= lang('type_quantity_type') ?>" class="form-control field new-quantity-value">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default close-change-q-type" data-dismiss="modal"><?= lang('close') ?></button>
+                <button type="button" class="btn btn-primary add-my-new-quantity-type"><?= lang('add_the_quantity') ?></button>
+            </div>
+        </div>
+    </div>
 </div>

@@ -24,7 +24,8 @@ if ($this->session->flashdata('resultAction')) {
 <script src="<?= base_url('assets/plugins/bootbox.min.js') ?>"></script>
 <script>
     var urls = {
-        changeDefaultCurrency: "<?= base_url('user/defaultcurrency') ?>"
+        changeDefaultCurrency: "<?= base_url('user/defaultcurrency') ?>",
+        addNewQuantityType: "<?= base_url('user/addnewquantitytype') ?>"
     };
 </script>
 <script src="<?= base_url('assets/users/js/general.js') ?>"></script> 

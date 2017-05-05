@@ -24,10 +24,14 @@ class Invoices extends USER_Controller
         if (isset($_POST['currencyName'])) {
             $this->addCurrency();
         }
+        if (isset($_POST['quantityTypeName'])) {
+            $this->addQuantityType();
+        }
         $head['title'] = 'Administration - Settings Invoices';
         $data['myFirms'] = $this->SettingsModel->getMyFirmsDefaultCurrency();
         $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
         $data['myCurrencies'] = $this->SettingsModel->getMyCurrencies();
+        $data['myQuantityTypes'] = $this->SettingsModel->getMyQuantityTypes();
         $this->render('settings/invoices', $head, $data);
         $this->saveHistory('Go to settings invoices page');
     }
@@ -36,6 +40,13 @@ class Invoices extends USER_Controller
     {
         $this->SettingsModel->setNewCurrency($_POST);
         $this->saveHistory('Add new currency - ' . $_POST['currencyName'] . ' - ' . $_POST['currencyValue']);
+        redirect(lang_url('user/settings/invoices'));
+    }
+
+    private function addQuantityType()
+    {
+        $this->NewInvoiceModel->setNewCustomQuantityType($_POST['quantityTypeName']);
+        $this->saveHistory('Add new quantity type - ' . $_POST['quantityTypeName']);
         redirect(lang_url('user/settings/invoices'));
     }
 
@@ -76,6 +87,15 @@ class Invoices extends USER_Controller
         $result = $this->SettingsModel->deleteMyCurrency($num);
         if ($result == false) {
             log_message('error', 'Cant delete my currency id - ' . $num);
+        }
+        redirect(lang_url('user/settings/invoices'));
+    }
+
+    public function deleteQuantityType($id)
+    {
+        $result = $this->SettingsModel->deleteCustomQuantityType($id);
+        if ($result == false) {
+            log_message('error', 'Cant delete my quantity type with id - ' . $id);
         }
         redirect(lang_url('user/settings/invoices'));
     }

@@ -55,4 +55,19 @@ class SettingsModel extends CI_Model
         return $result;
     }
 
+    public function getMyQuantityTypes()
+    {
+        $this->db->where('for_user', USER_ID);
+        $result = $this->db->get('users_quantity_types');
+        return $result->result_array();
+    }
+
+    public function deleteCustomQuantityType($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->where('for_user', USER_ID);
+        $result = $this->db->delete('users_quantity_types');
+        return $result;
+    }
+
 }

@@ -47,7 +47,6 @@ $(document).ready(function () {
     $('.body-items').sortable({
         handle: '.move-me'
     });
-    $('.body-items').disableSelection();
 });
 /*
  * Alerts close
@@ -80,11 +79,14 @@ $('#no-vat').change(function () {
 /*
  * Add Item in create invoice page
  */
+var numItemsDefault = 1;
 $('.add-new-item').click(function () {
     var obj = $('.body-items tr:first').clone(true).insertAfter('tr:last');
     obj.find('.field').val('');
     obj.find('.item-total-price').text('0');
     $('.body-items .actions').css('display', 'inline-block');
+    numItemsDefault = numItemsDefault + 1;
+    obj.find('.quantity-type select').attr('data-my-id', numItemsDefault);
 });
 /*
  * Remove Item in create invoice page
@@ -117,9 +119,47 @@ $('.selectDefaultCurrency').change(function () {
     });
 });
 /*
+ * Quantity Type in create invoice page
+ * When click create new show dialog box
+ * Save new added values
+ * Full manage logic is here for invoice page
+ */
+var myNewQuantityType = false;
+var whoIAm = 0;
+$('.quantity-type select').change(function () {
+    var selectedValue = $(this).val();
+    whoIAm = $(this).attr('data-my-id');
+    if (selectedValue == 'createNewQuantity') {
+        $('#addQuantityType').modal('show');
+        $('.new-quantity-value').val('');
+        $('.new-quantity-value').css("border-color", "#e9e9e9");
+        myNewQuantityType = false;
+    }
+    if (selectedValue == '--') {
+        $('[data-my-id="' + whoIAm + '"] option:first').prop("selected", "selected");
+    }
+});
+$('.add-my-new-quantity-type').click(function () {
+    var newVal = $('.new-quantity-value').val();
+    if (newVal != '') {
+        myNewQuantityType = true;
+        $('.quantity-type select').prepend('<option value="' + newVal + '">' + newVal + '</option>');
+        $('[data-my-id="' + whoIAm + '"] option:first').prop("selected", "selected");
+        $('#addQuantityType').modal('hide');
+        $.post(urls.addNewQuantityType, {newVal: newVal}, function (result) {});
+    } else {
+        $('.new-quantity-value').css("border-color", "red");
+    }
+});
+$('#addQuantityType').on('hidden.bs.modal', function () {
+    if (myNewQuantityType == false) {
+        $('[data-my-id="' + whoIAm + '"] option:first').prop("selected", "selected");
+    }
+});
+/*
  * Create Invoice form validation
  */
-function createInvValidate() {
+function createNewInvValidate() {
     document.getElementById('setInvoiceForm').submit();
 }
 /*
@@ -127,7 +167,6 @@ function createInvValidate() {
  */
 function addNewCurrency() {
     var valid = true;
-
     var name = $('#formAddCurrency .c-name').val();
     var value = $('#formAddCurrency .c-value').val();
     name = $.trim(name);
@@ -142,5 +181,20 @@ function addNewCurrency() {
     }
     if (valid == true) {
         document.getElementById('formAddCurrency').submit();
+    }
+}
+/*
+ * Add new quantity type validator
+ */
+function addNewQuantityType() {
+    var valid = true;
+    var name = $('[name="quantityTypeName"]').val();
+    name = $.trim(name);
+    if (name.length == 0) {
+        $('[name="quantityTypeName"]').css("border-color", "red");
+        valid = false;
+    }
+    if (valid == true) {
+        document.getElementById('formAddQuantityType').submit();
     }
 }

@@ -88,6 +88,9 @@ $route['user/settings/invoices'] = "users/settings/invoices";
 $route['user/defaultcurrency'] = 'users/settings/invoices/defaultcurrency';
 $route['user/settings/invoices/delete/default/(:num)'] = 'users/settings/invoices/deletedefaultcurrency/$1';
 $route['user/settings/invoices/delete/currency/(:num)'] = 'users/settings/invoices/deletecurrency/$1';
+$route['user/addnewquantitytype'] = 'users/newinvoice/newinvoice/addnewquantitytype';
+$route['user/settings'] = "users/settings/settings";
+$route['user/settings/invoices/delete/quantitytype/(:num)'] = 'users/settings/invoices/deletequantitytype/$1';
 /* USERS PANEL ROUTES */
 
 $route['^(\w{2})$'] = $route['default_controller'];

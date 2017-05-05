@@ -23,4 +23,15 @@ class NewInvoiceModel extends CI_Model
         return $ar['default_currency'];
     }
 
+    public function getAllQuantityTypes()
+    {
+        $result = $this->db->query('SELECT name FROM quantity_types UNION ALL SELECT name FROM users_quantity_types WHERE users_quantity_types.for_user = ' . $this->db->escape(USER_ID));
+        return $result->result_array();
+    }
+
+    public function setNewCustomQuantityType($newQuantityType)
+    {
+        $this->db->insert('users_quantity_types', array('name' => $newQuantityType, 'for_user' => USER_ID));
+    }
+
 }

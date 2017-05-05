@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <li><a href="<?= lang_url('user/managefirms') ?>" class="text-center"><?= lang('manage_firms') ?></a></li>
                                 </ul>
                             </li>
+                            <li><a href="<?= lang_url('user/settings') ?>"><?= lang('settings') ?></a></li>
                         </ul>
                         <form class="navbar-form navbar-left" role="search">
                             <div class="form-group">
