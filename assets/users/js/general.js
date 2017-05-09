@@ -127,7 +127,7 @@ $('.selectDefaultCurrency').change(function () {
  * Quantity Type in create invoice page
  * When click create new show dialog box
  * Save new added values
- * Full manage logic is here for invoice page
+ * Full manage logic is here
  */
 var myNewQuantityType = false;
 var whoIAm = 0;
@@ -160,6 +160,34 @@ $('#addQuantityType').on('hidden.bs.modal', function () {
     if (myNewQuantityType == false) {
         $('[data-my-id="' + whoIAm + '"] option:first').prop("selected", "selected");
     }
+});
+/*
+ * Payment method - add new method
+ */
+$('select.payment-method').change(function () {
+    var selectedValue = $(this).val();
+    if (selectedValue == 'createNewMethod') {
+        $('#addPaymentMethod').modal('show');
+        $('.my-new-pay-method').val('');
+        $('.my-new-pay-method').css("border-color", "#e9e9e9");
+    }
+    if (selectedValue == '--') {
+        $('option', this).first().prop("selected", "selected");
+    }
+});
+$('.add-my-new-pay-method').click(function () {
+    var newVal = $('.my-new-pay-method').val();
+    if (newVal != '') {
+        $('select.payment-method').prepend('<option value="' + newVal + '">' + newVal + '</option>');
+        $('#addPaymentMethod').modal('hide');
+        $.post(urls.addNewPaymentMethod, {newVal: newVal}, function (result) {});
+    } else {
+        $('.my-new-pay-method').css("border-color", "red");
+    }
+});
+$('#addPaymentMethod').on('hidden.bs.modal', function () {
+    $('select.payment-method option:first').prop("selected", "selected");
+    $('.selectpicker').selectpicker('refresh');
 });
 /*
  * Create Invoice form validation
@@ -201,5 +229,20 @@ function addNewQuantityType() {
     }
     if (valid == true) {
         document.getElementById('formAddQuantityType').submit();
+    }
+}
+/*
+ * Add new payment method validator
+ */
+function addNewQuantityType() {
+    var valid = true;
+    var name = $('[name="paymentMethodName"]').val();
+    name = $.trim(name);
+    if (name.length == 0) {
+        $('[name="paymentMethodName"]').css("border-color", "red");
+        valid = false;
+    }
+    if (valid == true) {
+        document.getElementById('formAddPaymentMethod').submit();
     }
 }

@@ -25,6 +25,7 @@ class Newinvoice extends USER_Controller
         $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
         $data['myDefaultFirmCurrency'] = $this->NewInvoiceModel->getFirmDefaultCurrency();
         $data['quantityTypes'] = $this->NewInvoiceModel->getAllQuantityTypes();
+        $data['paymentMethods'] = $this->NewInvoiceModel->getPaymentMethods();
         $this->render('newinvoice/index', $head, $data);
         $this->saveHistory('Go to new invoice page');
     }
@@ -36,6 +37,16 @@ class Newinvoice extends USER_Controller
         }
         if (isset($_POST['newVal'])) {
             $this->NewInvoiceModel->setNewCustomQuantityType($_POST['newVal']);
+        }
+    }
+
+    public function addnewpaymentmethod()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        }
+        if (isset($_POST['newVal'])) {
+            $this->NewInvoiceModel->setNewCustomPaymentMethod($_POST['newVal']);
         }
     }
 

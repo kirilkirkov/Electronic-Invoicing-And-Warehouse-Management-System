@@ -27,13 +27,24 @@ class Invoices extends USER_Controller
         if (isset($_POST['quantityTypeName'])) {
             $this->addQuantityType();
         }
+        if (isset($_POST['paymentMethodName'])) {
+            $this->addPaymentMethod();
+        }
         $head['title'] = 'Administration - Settings Invoices';
         $data['myFirms'] = $this->SettingsModel->getMyFirmsDefaultCurrency();
         $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
         $data['myCurrencies'] = $this->SettingsModel->getMyCurrencies();
         $data['myQuantityTypes'] = $this->SettingsModel->getMyQuantityTypes();
+        $data['myPaymentMethods'] = $this->SettingsModel->getMyPaymentMethods();
         $this->render('settings/invoices', $head, $data);
         $this->saveHistory('Go to settings invoices page');
+    }
+
+    private function addPaymentMethod()
+    {
+        $this->NewInvoiceModel->setNewCustomPaymentMethod($_POST['paymentMethodName']);
+        $this->saveHistory('Add new payment method - ' . $_POST['paymentMethodName']);
+        redirect(lang_url('user/settings/invoices'));
     }
 
     private function addCurrency()
@@ -96,6 +107,15 @@ class Invoices extends USER_Controller
         $result = $this->SettingsModel->deleteCustomQuantityType($id);
         if ($result == false) {
             log_message('error', 'Cant delete my quantity type with id - ' . $id);
+        }
+        redirect(lang_url('user/settings/invoices'));
+    }
+
+    public function deletePaymentMethod($id)
+    {
+        $result = $this->SettingsModel->deleteCustomPaymentMethod($id);
+        if ($result == false) {
+            log_message('error', 'Cant delete my payment method with id - ' . $id);
         }
         redirect(lang_url('user/settings/invoices'));
     }

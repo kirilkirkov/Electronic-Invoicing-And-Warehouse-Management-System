@@ -130,4 +130,52 @@
             </tbody>
         </table>
     </div>
+    <div class="col-sm-4">
+        <h4><?= lang('my_payment_methods') ?></h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr> 
+                    <th colspan="2"><?= lang('quantity_name') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (!empty($myPaymentMethods)) {
+                    foreach ($myPaymentMethods as $myPaymentMethod) {
+                        ?>
+                        <tr>
+                            <td><?= $myPaymentMethod['name'] ?></td>
+                            <td>
+                                <a href="<?= base_url('user/settings/invoices/delete/paymentmethod/' . $myPaymentMethod['id']) ?>" class="confirm" data-my-message="<?= lang('conirm_del_my_pay_method') ?>">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <tr>
+                        <td colspan="2"><?= lang('no_my_pay_methods') ?></td>
+                    </tr>
+                <?php } ?>
+                <tr>
+                    <td colspan="2">
+                        <form method="POST" action="" class="site-form form-inline" id="formAddPaymentMethod">
+                            <table>
+                                <tr>
+                                    <td><input type="text" name="paymentMethodName" class="form-control field"></td>
+                                    <td>
+                                        <a href="javascript:void(0);" onclick="addNewQuantityType()" class="btn btn-xs btn-default pull-right">
+                                            <?= lang('add_new_q_type') ?>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -34,4 +34,15 @@ class NewInvoiceModel extends CI_Model
         $this->db->insert('users_quantity_types', array('name' => $newQuantityType, 'for_user' => USER_ID));
     }
 
+    public function getPaymentMethods()
+    {
+        $result = $this->db->query('SELECT name FROM payment_methods UNION ALL SELECT name FROM users_payment_methods WHERE users_payment_methods.for_user = ' . $this->db->escape(USER_ID));
+        return $result->result_array();
+    }
+
+    public function setNewCustomPaymentMethod($newPaymentMethod)
+    {
+        $this->db->insert('users_payment_methods', array('name' => $newPaymentMethod, 'for_user' => USER_ID));
+    }
+
 }

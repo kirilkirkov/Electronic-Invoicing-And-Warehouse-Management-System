@@ -39,6 +39,8 @@ header h1 {font-size:26px;}
 .list-firms li a i {background: #ccc none repeat scroll 0 0;    border-radius: 50px;    font-size: 10px;    height: 17px;    line-height: 17px;    text-align: center;    width: 17px;}
 .btn-green {background-color: #32cd32; color:#fff}
 .btn-green:hover {background-color: #29b329; color:#fff;}
+.btn-orange {background-color: #eb8900; color:#fff}
+.btn-orange:hover {background-color: #d98004; color:#fff;}
 .special-radio .control {font-size: 14px;position: relative; padding-left: 23px; margin-left: 5px; cursor: pointer; padding-top: 3px;}
 .special-radio .control input {	position: absolute;	z-index: -1;	opacity: 0;}
 .special-radio .control__indicator {	position: absolute;top: 2px;left: 0;width: 20px;height: 20px;background: #e6e6e6;}

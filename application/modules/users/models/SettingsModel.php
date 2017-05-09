@@ -70,4 +70,19 @@ class SettingsModel extends CI_Model
         return $result;
     }
 
+    public function getMyPaymentMethods()
+    {
+        $this->db->where('for_user', USER_ID);
+        $result = $this->db->get('users_payment_methods');
+        return $result->result_array();
+    }
+
+    public function deleteCustomPaymentMethod($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->where('for_user', USER_ID);
+        $result = $this->db->delete('users_payment_methods');
+        return $result;
+    }
+
 }

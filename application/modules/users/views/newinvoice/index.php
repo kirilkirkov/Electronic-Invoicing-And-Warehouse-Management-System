@@ -163,7 +163,7 @@
                                         <?php foreach ($quantityTypes as $quantityType) { ?>
                                             <option value="<?= $quantityType['name'] ?>"><?= $quantityType['name'] ?></option>
                                         <?php } ?>
-                                        <option>--</option>
+                                        <option value="--">--</option>
                                         <option value="createNewQuantity"><?= lang('create_new_quantity') ?></option>
                                     </select> 
                                 </div>
@@ -263,15 +263,18 @@
             </div>
             <div class="payment-type">
                 <label><?= lang('create_inv_payment_type') ?></label>
-                <select class="selectpicker">
-                    <option>Mustard</option>
-                    <option>Ketchup</option>
-                    <option>Relish</option>
+                <select class="selectpicker payment-method">
+                    <?php foreach ($paymentMethods as $paymentMethod) { ?>
+                        <option value="<?= $paymentMethod['name'] ?>"><?= $paymentMethod['name'] ?></option>
+                    <?php } ?> 
+                    <option value="--">--</option>
+                    <option value="createNewMethod"><?= lang('create_new_pay_method') ?></option>
                 </select> 
             </div>
         </form>
     </div>
     <a href="javascript:void(0);" onclick="createNewInvValidate()" class="btn btn-green"><?= lang('create_inv_save') ?></a>
+    <a href="javascript:void(0);" onclick="createNewInvValidate()" class="btn btn-orange"><?= lang('create_inv_save_draft') ?></a>
     <?= lang('or') ?>
     <a href="<?= lang_url('user/invoices') ?>"><?= lang('open_invoices') ?></a>
 </div>
@@ -287,8 +290,26 @@
                 <input type="text" value="" placeholder="<?= lang('type_quantity_type') ?>" class="form-control field new-quantity-value">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default close-change-q-type" data-dismiss="modal"><?= lang('close') ?></button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close') ?></button>
                 <button type="button" class="btn btn-primary add-my-new-quantity-type"><?= lang('add_the_quantity') ?></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Add Payment Method -->
+<div class="modal fade" id="addPaymentMethod" tabindex="-1" role="dialog" aria-labelledby="addPaymentMethod">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><?= lang('add_new_payment_method') ?></h4>
+            </div>
+            <div class="modal-body site-form">
+                <input type="text" value="" placeholder="<?= lang('type_payment_method') ?>" class="form-control field my-new-pay-method">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close') ?></button>
+                <button type="button" class="btn btn-primary add-my-new-pay-method"><?= lang('add_the_pay_method') ?></button>
             </div>
         </div>
     </div>

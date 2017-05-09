@@ -25,7 +25,8 @@ if ($this->session->flashdata('resultAction')) {
 <script>
     var urls = {
         changeDefaultCurrency: "<?= base_url('user/defaultcurrency') ?>",
-        addNewQuantityType: "<?= base_url('user/addnewquantitytype') ?>"
+        addNewQuantityType: "<?= base_url('user/addnewquantitytype') ?>",
+        addNewPaymentMethod: "<?= base_url('user/addnewpaymentmethod') ?>"
     };
 </script>
 <script src="<?= base_url('assets/users/js/general.js') ?>"></script> 
