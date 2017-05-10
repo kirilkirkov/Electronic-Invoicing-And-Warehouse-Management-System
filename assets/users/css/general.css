@@ -97,6 +97,8 @@ header h1 {font-size:26px;}
 .new-invoice .no-vat-field {display: none;}
 .new-invoice .no-vat-field .form-control { margin-bottom: 5px;}
 .new-invoice .select-currency {margin-bottom: 10px}
+.new-invoice .the-vat {padding-top:10px;}
+.new-invoice .no-vat {padding-top:20px;}
 .selected-new-default, .not-selected-new-default {display: none;}
 .btn {border-radius: 0;}
 footer { background-color: #f8f8f8;    border-top: 1px solid #e7e7e7;    bottom: 0;    color: #333;    height: 60px;    left: 0;    padding: 20px 0;    position: absolute;    text-align: center;    width: 100%;}
