@@ -167,7 +167,55 @@
                                     <td><input type="text" name="paymentMethodName" class="form-control field"></td>
                                     <td>
                                         <a href="javascript:void(0);" onclick="addNewQuantityType()" class="btn btn-xs btn-default pull-right">
-                                            <?= lang('add_new_q_type') ?>
+                                            <?= lang('add_new_p_method') ?>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <h4><?= lang('my_no_vat_reasons') ?></h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr> 
+                    <th colspan="2"><?= lang('vat_reason') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (!empty($myNoVatReasons)) {
+                    foreach ($myNoVatReasons as $myNoVatReason) {
+                        ?>
+                        <tr>
+                            <td><?= $myNoVatReason['reason'] ?></td>
+                            <td>
+                                <a href="<?= base_url('user/settings/invoices/delete/novatreason/' . $myNoVatReason['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_del_no_vat_reason') ?>">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                } else {
+                    ?>
+                    <tr>
+                        <td colspan="2"><?= lang('no_my_no_vat_reasons') ?></td>
+                    </tr>
+                <?php } ?>
+                <tr>
+                    <td colspan="2">
+                        <form method="POST" action="" class="site-form form-inline" id="formAddNoVatReason">
+                            <table>
+                                <tr>
+                                    <td><input type="text" name="noVatReason" class="form-control field"></td>
+                                    <td>
+                                        <a href="javascript:void(0);" onclick="addNewNoVatReason()" class="btn btn-xs btn-default pull-right">
+                                            <?= lang('add_new_vat_reas') ?>
                                         </a>
                                     </td>
                                 </tr>

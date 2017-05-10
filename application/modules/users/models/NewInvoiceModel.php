@@ -45,4 +45,9 @@ class NewInvoiceModel extends CI_Model
         $this->db->insert('users_payment_methods', array('name' => $newPaymentMethod, 'for_user' => USER_ID));
     }
 
+    public function setNewVatReason($newVatReason)
+    {
+        $this->db->insert('user_no_vat_reasons', array('reason' => $newVatReason, 'for_user' => USER_ID));
+    }
+
 }

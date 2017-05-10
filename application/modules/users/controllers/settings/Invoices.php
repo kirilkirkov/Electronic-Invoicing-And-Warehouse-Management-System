@@ -30,14 +30,25 @@ class Invoices extends USER_Controller
         if (isset($_POST['paymentMethodName'])) {
             $this->addPaymentMethod();
         }
+        if (isset($_POST['noVatReason'])) {
+            $this->addNewNoVatReason();
+        }
         $head['title'] = 'Administration - Settings Invoices';
         $data['myFirms'] = $this->SettingsModel->getMyFirmsDefaultCurrency();
         $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
         $data['myCurrencies'] = $this->SettingsModel->getMyCurrencies();
         $data['myQuantityTypes'] = $this->SettingsModel->getMyQuantityTypes();
         $data['myPaymentMethods'] = $this->SettingsModel->getMyPaymentMethods();
+        $data['myNoVatReasons'] = $this->SettingsModel->getMyNoVatReasons();
         $this->render('settings/invoices', $head, $data);
         $this->saveHistory('Go to settings invoices page');
+    }
+
+    private function addNewNoVatReason()
+    {
+        $this->NewInvoiceModel->setNewVatReason($_POST['noVatReason']);
+        $this->saveHistory('Add new vat reason - ' . $_POST['noVatReason']);
+        redirect(lang_url('user/settings/invoices'));
     }
 
     private function addPaymentMethod()
@@ -116,6 +127,15 @@ class Invoices extends USER_Controller
         $result = $this->SettingsModel->deleteCustomPaymentMethod($id);
         if ($result == false) {
             log_message('error', 'Cant delete my payment method with id - ' . $id);
+        }
+        redirect(lang_url('user/settings/invoices'));
+    }
+
+    public function deleteNoVatReason($id)
+    {
+        $result = $this->SettingsModel->deleteMyNoVatReason($id);
+        if ($result == false) {
+            log_message('error', 'Cant delete no vat reason with id - ' . $id);
         }
         redirect(lang_url('user/settings/invoices'));
     }

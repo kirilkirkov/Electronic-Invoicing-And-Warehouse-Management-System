@@ -85,4 +85,19 @@ class SettingsModel extends CI_Model
         return $result;
     }
 
+    public function getMyNoVatReasons()
+    {
+        $this->db->where('for_user', USER_ID);
+        $result = $this->db->get('user_no_vat_reasons');
+        return $result->result_array();
+    }
+
+    public function deleteMyNoVatReason($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->where('for_user', USER_ID);
+        $result = $this->db->delete('user_no_vat_reasons');
+        return $result;
+    }
+
 }

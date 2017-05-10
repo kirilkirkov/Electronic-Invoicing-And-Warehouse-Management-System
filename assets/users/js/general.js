@@ -246,3 +246,18 @@ function addNewQuantityType() {
         document.getElementById('formAddPaymentMethod').submit();
     }
 }
+/*
+ * Add new no vat reason validator
+ */
+function addNewNoVatReason() {
+    var valid = true;
+    var name = $('[name="noVatReason"]').val();
+    name = $.trim(name);
+    if (name.length == 0) {
+        $('[name="noVatReason"]').css("border-color", "red");
+        valid = false;
+    }
+    if (valid == true) {
+        document.getElementById('formAddNoVatReason').submit();
+    }
+}
