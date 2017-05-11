@@ -192,6 +192,13 @@ $('#addPaymentMethod').on('hidden.bs.modal', function () {
     $('.selectpicker').selectpicker('refresh');
 });
 /*
+ * On change some form this html-s :)
+ * Call the calculator
+ */
+$('.quantity-field, .price-field, .text-discount, .vat-field, #no-vat, #discount-value').change(function () {
+    createInvoiceCalculator();
+});
+/*
  * Create Invoice form validation
  */
 function createNewInvValidate() {
@@ -263,13 +270,6 @@ function addNewNoVatReason() {
         document.getElementById('formAddNoVatReason').submit();
     }
 }
-/*
- * On change some form this html-s :)
- * Call the calculator
- */
-$('.quantity-field, .price-field, .text-discount, .vat-field, #no-vat, #discount-value').change(function () {
-    createInvoiceCalculator();
-});
 /*
  * Create Invoice Calculator
  * Sum Items prices
