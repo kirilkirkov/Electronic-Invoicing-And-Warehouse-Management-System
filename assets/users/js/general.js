@@ -110,6 +110,7 @@ $('.delete-item').on("click", function () {
  */
 $('#selectCurrencyNewInv').change(function () {
     $('.currency-text').text($(this).val());
+    $('.selectpicker').selectpicker('refresh');
 });
 /*
  * Select default currency for company
