@@ -57,25 +57,47 @@
                         <a href="" class="choose">
                             <i class="fa fa-bars" aria-hidden="true"></i>
                             <span><?= lang('create_inv_choose') ?></span>
-                        </a>
+                        </a> 
+                        <div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="individual-client" value=""><?= lang('create_inv_individual') ?></label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="column-data client">
+                    <div class="column-data client client-company"> 
                         <label><?= lang('create_inv_bulstat') ?></label> 
                         <input type="text" class="form-control field">
                         <a href="" class="choose">
                             <i class="fa fa-bars" aria-hidden="true"></i>
                             <span><?= lang('create_inv_choose') ?></span>
                         </a>
+                        <div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="client-vat-registered" value=""><?= lang('create_inv_client_vat_registered') ?></label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="column-data">
+                    <div class="column-data client-company client-vat-registered">
+                        <label><?= lang('create_inv_vat_number') ?></label>
+                        <input type="text" class="form-control field">
+                    </div>
+                    <div class="column-data client-company">
                         <label><?= lang('create_inv_mol') ?></label>
+                        <input type="text" class="form-control field">
+                    </div>
+                    <div class="column-data client-individial">
+                        <label><?= lang('create_inv_pin') ?></label>
+                        <input type="text" class="form-control field">
+                    </div>
+                    <div class="column-data client-individial">
+                        <label><?= lang('create_inv_client_indv_addr') ?></label>
                         <input type="text" class="form-control field">
                     </div>
                     <div class="column-data">
                         <label><?= lang('create_inv_city') ?></label>
                         <input type="text" class="form-control field">
                     </div>
-                    <div class="column-data">
+                    <div class="column-data client-company">
                         <label><?= lang('create_inv_address') ?></label>
                         <input type="text" class="form-control field">
                     </div>
@@ -83,7 +105,7 @@
                         <label><?= lang('create_inv_country') ?></label>
                         <input type="text" class="form-control field">
                     </div>
-                    <div class="column-data">
+                    <div class="column-data client-company">
                         <label><?= lang('create_inv_recipient') ?></label> 
                         <input type="text" class="form-control field"> 
                     </div>

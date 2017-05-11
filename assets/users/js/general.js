@@ -65,6 +65,28 @@ $('#maturity-date').change(function () {
     }
 });
 /*
+ * Change company to individaul and back
+ */
+$('#individual-client').change(function () {
+    if ($(this).is(":checked")) {
+        $('.client-company').hide();
+        $('.client-individial').show();
+    } else {
+        $('.client-company').show();
+        $('.client-individial').hide();
+    }
+});
+/*
+ * Show client vat field for vat registration
+ */
+$('#client-vat-registered').change(function () {
+    if ($(this).is(":checked")) {
+        $('.client-vat-registered').show();
+    } else {
+        $('.client-vat-registered').hide();
+    }
+});
+/*
  * Checkbox no vat in craete invoice page
  */
 $('#no-vat').change(function () {
