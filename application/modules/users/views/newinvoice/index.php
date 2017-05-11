@@ -1,3 +1,4 @@
+<script src="<?= base_url('assets/plugins/math.min.js') ?>"></script>
 <div class="selected-page">
     <div class="inner">
         <h1>
@@ -157,7 +158,7 @@
                                 </a>
                             </td>
                             <td>
-                                <input type="text" value="" class="form-control field quantity-field">
+                                <input type="text" value="0.00" class="form-control field quantity-field">
                                 <div class="quantity-type">
                                     <select class="form-control" data-my-id="1">
                                         <?php foreach ($quantityTypes as $quantityType) { ?>
@@ -167,13 +168,16 @@
                                         <option value="createNewQuantity"><?= lang('create_new_quantity') ?></option>
                                     </select> 
                                 </div>
+                                x
                             </td>
                             <td>
-                                <input type="text" value="" class="form-control field price-field">
+                                <input type="text" value="0.00" class="form-control field price-field">
+                                =
                             </td>
                             <td class="text-right">
                                 <div class="item-total-price">
-                                    0 <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span>
+                                    <span class="item-total">0.00</span> 
+                                    <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span>
                                 </div>
                             </td>
                         </tr> 
@@ -193,7 +197,9 @@
                             <?= lang('create_inv_invoice_amount') ?>
                         </div>
                         <div class="col-sm-6">
-                            <div class="amount">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
+                            <div class="amount">
+                                <span id="items-total">0.00</span> 
+                                <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
                         </div>
                     </div>
                     <div class="row amount-row">
@@ -204,11 +210,11 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="discount">
-                                <input type="text" class="form-control field text-discount">
+                                <input type="text" value="0.00" class="form-control field text-discount">
                                 <div class="select-discount">
-                                    <select class="selectpicker form-control">
-                                        <option>%</option>
+                                    <select class="selectpicker form-control" id="discount-value"> 
                                         <option class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></option>
+                                        <option>%</option>
                                     </select>
                                 </div>
                             </div>
@@ -219,14 +225,16 @@
                             <?= lang('create_inv_tax_base') ?>
                         </div>
                         <div class="col-sm-6">
-                            <div class="amount">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
+                            <div class="amount">
+                                <span id="tax-base">0.00</span>
+                                <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
                         </div>
                     </div>
                     <div class="row amount-row">
                         <div class="col-sm-6">
                             <div class="no-vat-container">
                                 <?= lang('create_inv_vat') ?>
-                                <input type="text" class="form-control field vat-field">
+                                <input type="text" class="form-control field vat-field" value="20">
                                 %
                             </div>
                             <div class="no-vat">
@@ -236,7 +244,9 @@
                             </div> 
                         </div>
                         <div class="col-sm-6"> 
-                            <div class="amount the-vat">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
+                            <div class="amount the-vat">
+                                <span id="vat-sum">0.00</span> 
+                                <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
                             <div class="no-vat-field">
                                 <label><?= lang('create_inv_reason_no_vat') ?></label>
                                 <input type="text" class="form-control field">
@@ -252,7 +262,9 @@
                             <span class="total"><?= lang('create_inv_total') ?></span> 
                         </div>
                         <div class="col-sm-6">
-                            <div class="amount total">0 <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
+                            <div class="amount total">
+                                <span id="final-total">0.00</span> 
+                                <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
                         </div>
                     </div>
                 </div>
@@ -273,7 +285,7 @@
             </div>
         </form>
     </div>
-    <a href="javascript:void(0);" onclick="createNewInvValidate()" class="btn btn-green"><?= lang('create_inv_save') ?></a>
+    <a href="javascript:void(0);" onclick="createInvoiceCalculator()" class="btn btn-green"><?= lang('create_inv_save') ?></a>
     <a href="javascript:void(0);" onclick="createNewInvValidate()" class="btn btn-orange"><?= lang('create_inv_save_draft') ?></a>
     <?= lang('or') ?>
     <a href="<?= lang_url('user/invoices') ?>"><?= lang('open_invoices') ?></a>
@@ -314,3 +326,8 @@
         </div>
     </div>
 </div>
+<script>
+    var createInv = {
+        rountTo: <?= $roundTo ?>
+    };
+</script>

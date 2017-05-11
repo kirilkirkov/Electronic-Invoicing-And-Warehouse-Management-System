@@ -83,12 +83,14 @@ var numItemsDefault = 1;
 $('.add-new-item').click(function () {
     var obj = $('.body-items tr:first').clone(true).insertAfter('tr:last');
     obj.find('.field').val('');
-    obj.find('.item-total-price').text('0');
+    obj.find('.quantity-field').val('0.00');
+    obj.find('.price-field').val('0.00');
+    obj.find('.item-total-price').text('');
     var selectedOption = $('#selectCurrencyNewInv').find(":selected").val();
     if (!selectedOption) {
         selectedOption = $('.currency-text').first().text();
     }
-    obj.find('.item-total-price').append(' <span class="currency-text">' + selectedOption + '</span>');
+    obj.find('.item-total-price').append('<span class="item-total">0.00</span> <span class="currency-text">' + selectedOption + '</span>');
     $('.body-items .actions').css('display', 'inline-block');
     numItemsDefault = numItemsDefault + 1;
     obj.find('.quantity-type select').attr('data-my-id', numItemsDefault);
@@ -260,4 +262,75 @@ function addNewNoVatReason() {
     if (valid == true) {
         document.getElementById('formAddNoVatReason').submit();
     }
+}
+/*
+ * On change some form this html-s :)
+ * Call the calculator
+ */
+$('.quantity-field, .price-field, .text-discount, .vat-field, #no-vat, #discount-value').change(function () {
+    createInvoiceCalculator();
+});
+/*
+ * Create Invoice Calculator
+ * Sum Items prices
+ * Sum Vat %/Currency
+ * Sum Discount
+ * We will use math.js library
+ * createInv variable is initialized in create invoice page
+ */
+function createInvoiceCalculator() {
+    var pattern = /^[0-9\-\.\,]+$/;
+    // Sum item by item
+    var items_total = 0.00;
+    $('.body-items tr').each(function () {
+        $('.quantity-field', this).css("border-color", "#e9e9e9");
+        $('.price-field', this).css("border-color", "#e9e9e9");
+
+        var item_quantity = $('.quantity-field', this).val();
+        var item_price = $('.price-field', this).val();
+        var is_valid = true;
+        if (!pattern.test(item_quantity)) {
+            $('.quantity-field', this).css("border-color", "red");
+            is_valid = false;
+        }
+        if (!pattern.test(item_price)) {
+            $('.price-field', this).css("border-color", "red");
+            is_valid = false;
+        }
+        if (is_valid == true) {
+            var item_total = math.multiply(item_quantity, item_price).toFixed(createInv.rountTo);
+            $('.item-total', this).text(item_total);
+            items_total = math.add(items_total, item_total).toFixed(createInv.rountTo);
+        }
+    });
+    $('#items-total').text(items_total);
+    // Tax base after discount
+    var discount_type = $('#discount-value option:selected').val();
+    var discount_value = $('.text-discount').val();
+    if (pattern.test(discount_value)) {
+        $('.text-discount').css("border-color", "#e9e9e9");
+        if (discount_type == '%') {
+            var tax_base = math.subtract(items_total, math.multiply(items_total, math.divide(discount_value, 100))).toFixed(createInv.rountTo);
+        } else {
+            var tax_base = math.subtract(items_total, discount_value).toFixed(createInv.rountTo);
+        }
+        $('#tax-base').text(tax_base);
+    } else {
+        $('.text-discount').css("border-color", "red");
+    }
+    // Get vat 
+    var final_sum = tax_base;
+    if (!$('#no-vat').is(":checked")) {
+        var vat_percent = $('.vat-field').val();
+        if (pattern.test(vat_percent)) {
+            $('.vat-field').css("border-color", "#e9e9e9");
+            var vat_sum = math.multiply(math.divide(tax_base, 100), vat_percent).toFixed(createInv.rountTo);
+            $('#vat-sum').text(vat_sum);
+            final_sum = math.add(tax_base, vat_sum).toFixed(createInv.rountTo);
+        } else {
+            $('.vat-field').css("border-color", "red");
+        }
+    }
+    // Set final sum
+    $('#final-total').text(final_sum);
 }

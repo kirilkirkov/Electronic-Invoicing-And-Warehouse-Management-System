@@ -76,12 +76,13 @@ header h1 {font-size:26px;}
 .new-invoice .items-features, .new-invoice .remarks, .new-invoice .amounts {margin-bottom: 20px;} 
 .new-invoice .amounts .text-discount, .new-invoice .amounts .select-discount {width:80px; display: inline-block;} 
 .new-invoice .amounts .amount {text-align: right;}
-.new-invoice .amounts .vat-field {width:50px; display: inline-block;}
+.new-invoice .amounts .vat-field {width:50px; text-align: right; display: inline-block;}
 .new-invoice .amounts .discount {float: right;}
 .new-invoice .amounts .total {font-size:25px;}
+.new-invoice .quantity-field {text-align: right;}
 .new-invoice .quantity-field, .new-invoice .quantity-type {width:60px; display: inline-block;}
 .new-invoice .quantity-type { width:90px;}
-.new-invoice .price-field {width:150px; display: inline-block;}
+.new-invoice .price-field {width:150px; display: inline-block; text-align: right;}
 .new-invoice .table-responsive {overflow: visible;} 
 .new-invoice .column-data {margin-bottom: 15px;}
 .new-invoice .field {height: 35px;}
