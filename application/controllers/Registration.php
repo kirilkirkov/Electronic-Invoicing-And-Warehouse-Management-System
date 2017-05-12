@@ -35,14 +35,6 @@ class Registration extends MY_Controller
         }
         if (mb_strlen(trim($_POST['password'])) == 0) {
             $errors[] = lang('empty_password');
-        } else {
-            if (mb_strlen(trim($_POST['password2'])) == 0) {
-                $errors[] = lang('empty_password_repeat');
-            } else {
-                if ($_POST['password'] != $_POST['password2']) {
-                    $errors[] = lang('passwords_dont_match');
-                }
-            }
         }
         if (!isset($_POST['rules'])) {
             $errors[] = lang('rules_not_checked');

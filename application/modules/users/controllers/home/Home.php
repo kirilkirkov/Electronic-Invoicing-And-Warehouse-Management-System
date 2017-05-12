@@ -40,7 +40,7 @@ class Home extends USER_Controller
 
     public function useCompany($companyId)
     {
-        $canIUse = $this->HomeModel->checkCompanyIsValidForUser($companyId); 
+        $canIUse = $this->HomeModel->checkCompanyIsValidForUser($companyId);
         if (!empty($canIUse)) {
             $_SESSION['selected_company'] = array(
                 'id' => $canIUse['id'],
@@ -55,13 +55,6 @@ class Home extends USER_Controller
         $_POST['is_default'] = 1;
         $id = $this->HomeModel->setFirm($_POST);
         return $id;
-    }
-
-    public function logout()
-    {
-        unset($_SESSION['user_login']);
-        unset($_SESSION['selected_company']);
-        redirect(base_url());
     }
 
 }

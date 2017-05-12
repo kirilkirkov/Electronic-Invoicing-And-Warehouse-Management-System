@@ -15,4 +15,11 @@ class Home extends MY_Controller
         $this->render('home/index', $head, $data);
     }
 
+    public function logout()
+    {
+        unset($_SESSION['user_login']);
+        unset($_SESSION['selected_company']);
+        redirect(base_url());
+    }
+
 }
