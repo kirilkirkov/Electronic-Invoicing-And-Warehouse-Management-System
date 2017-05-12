@@ -84,3 +84,4 @@ $lang['create_protocols'] = 'Create Protocols';
 $lang['periodic_invoices'] = 'Periodic Invoices';
 $lang['registered_by_user'] = 'This email address is registered by another user.';
 $lang['usr_or_pass_invalid'] = 'Username or password is wrong!';
+$lang['database_error'] = 'We have error now. Please contact us!';

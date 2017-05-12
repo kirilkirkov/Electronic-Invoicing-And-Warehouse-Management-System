@@ -118,17 +118,17 @@ class PublicModel extends CI_Model
 
     public function registerUser($post)
     {
-        $result = $this->db->insert('users', array(
-            'email' => $post['email'],
-            'password' => md5salt($post['password']),
-            'time_registered' => time()
-        ));
+        if (!$this->db->insert('users', array(
+                    'id' => 1,
+                    'email' => $post['email'],
+                    'password' => md5salt($post['password']),
+                    'time_registered' => time()
+                ))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
         $user_id = $this->db->insert_id();
         $this->insertOptionsTables($user_id);
-        if ($result == true) {
-            return $post['email'];
-        }
-        return false;
     }
 
     /*
@@ -137,7 +137,10 @@ class PublicModel extends CI_Model
 
     private function insertOptionsTables($user_id)
     {
-        $this->db->query('INSERT INTO users_invoices_options (for_user, opt_inv_roundTo) VALUES (' . $user_id . ', 2)');
+        if (!$this->db->query('INSERT INTO users_invoices_options (for_user, opt_inv_roundTo) VALUES (' . $user_id . ', 2)')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
     public function getUserInfoFromEmail($email)
