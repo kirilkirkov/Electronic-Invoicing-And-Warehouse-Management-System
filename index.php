@@ -56,7 +56,7 @@
 if($_SERVER['SERVER_NAME'] != 'in.dev') {
     exit;
 }
-	define('ENVIRONMENT', 'development'); // set to production!
+	define('ENVIRONMENT', 'production'); // set to production!
 
 /*
  *---------------------------------------------------------------

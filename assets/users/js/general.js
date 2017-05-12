@@ -222,6 +222,32 @@ $('.quantity-field, .price-field, .text-discount, .vat-field, #no-vat, #discount
     createInvoiceCalculator();
 });
 /*
+ * Invoice type changer
+ */
+$('[name="inv_type"]').change(function () {
+    var inv_type = $(this).val();
+    if (inv_type == 'prof') {
+        $('.inv-type-title').text(lang.proforma);
+        $('.inv-type-num').text(lang.proforma);
+        $('.credit-debit-option').hide();
+    }
+    if (inv_type == 'tax_inv') {
+        $('.inv-type-title').text(lang.invoice);
+        $('.inv-type-num').text(lang.invoice);
+        $('.credit-debit-option').hide();
+    }
+    if (inv_type == 'debit') {
+        $('.inv-type-title').text(lang.debit_note);
+        $('.inv-type-num').text(lang.debit_note);
+        $('.credit-debit-option').show();
+    }
+    if (inv_type == 'credit') {
+        $('.inv-type-title').text(lang.credit_note);
+        $('.inv-type-num').text(lang.credit_note);
+        $('.credit-debit-option').show();
+    }
+});
+/*
  * Create Invoice form validation
  */
 function createNewInvValidate() {

@@ -24,31 +24,43 @@
         Invoice settings
     </a>
 </div>
-<div class="new-invoice">
-    <div class="type">
-        <label><?= lang('create_inv_type') ?></label> 
-        <div class="special-radio">
-            <label class="control control--radio"><?= lang('create_inv_proforma') ?>
-                <input type="radio" name="radio"/>
-                <div class="control__indicator"></div>
-            </label>
-            <label class="control control--radio"><?= lang('create_inv_invoice') ?>
-                <input type="radio" name="radio" checked="checked"/>
-                <div class="control__indicator"></div>
-            </label>
-            <label class="control control--radio"><?= lang('create_inv_debit') ?>
-                <input type="radio" name="radio"/>
-                <div class="control__indicator"></div>
-            </label>
-            <label class="control control--radio"><?= lang('create_inv_credit') ?>
-                <input type="radio" name="radio"/>
-                <div class="control__indicator"></div>
-            </label>
+<form action="" id="setInvoiceForm" class="site-form" method="POST">
+    <div class="new-invoice">
+        <div class="type">
+            <label><?= lang('create_inv_type') ?></label> 
+            <div class="special-radio">
+                <label class="control control--radio"><?= lang('create_inv_proforma') ?>
+                    <input type="radio" value="prof" name="inv_type"/>
+                    <div class="control__indicator"></div>
+                </label>
+                <label class="control control--radio"><?= lang('create_inv_invoice') ?>
+                    <input type="radio" value="tax_inv" name="inv_type" checked="checked"/>
+                    <div class="control__indicator"></div>
+                </label>
+                <label class="control control--radio"><?= lang('create_inv_debit') ?>
+                    <input type="radio" value="debit" name="inv_type"/>
+                    <div class="control__indicator"></div>
+                </label>
+                <label class="control control--radio"><?= lang('create_inv_credit') ?>
+                    <input type="radio" value="credit" name="inv_type"/>
+                    <div class="control__indicator"></div>
+                </label>
+            </div>
         </div>
-    </div>
-    <div class="inner">
-        <form action="" id="setInvoiceForm" class="site-form" method="POST">
-            <h1><?= lang('invoice') ?></h1>
+        <div class="inner"> 
+            <h1 class="inv-type-title"><?= lang('invoice') ?></h1>
+            <div class="row credit-debit-option">
+                <div class="col-sm-5">
+                    <div class="column-data">
+                        <label><?= lang('to_inv_num') ?></label>
+                        <input class="form-control field" type="text">
+                    </div>
+                    <div class="column-data">
+                        <label><?= lang('to_inv_date') ?></label>
+                        <input class="form-control field datepicker" placeholder="dd.mm.yyyy" type="text">
+                    </div>
+                </div> 
+            </div>
             <div class="row head-content">
                 <div class="col-sm-6 col-md-5">
                     <div class="column-data client">
@@ -113,16 +125,16 @@
                 <div class="col-sm-6 col-md-7">
                     <div class="invoice-setting">
                         <div class="column-data">
-                            <label><?= lang('create_inv_inv_num') ?> №:</label>
+                            <span class="inv-type-num"><?= lang('create_inv_inv_num') ?></span> <label>№:</label>
                             <input type="text" class="form-control field">
                         </div>
                         <div class="column-data">
                             <label><?= lang('create_inv_date_create') ?></label>
-                            <input type="text" placeholder="dd.mm.yy" value="<?= date('d.m.Y', time()) ?>" class="form-control field datepicker">
+                            <input type="text" placeholder="dd.mm.yyyy" value="<?= date('d.m.Y', time()) ?>" class="form-control field datepicker">
                         </div>
                         <div class="column-data">
                             <label><?= lang('create_inv_date_tax') ?></label>
-                            <input type="text" placeholder="dd.mm.yy" value="<?= date('d.m.Y', time()) ?>" class="form-control field datepicker">
+                            <input type="text" placeholder="dd.mm.yyyy" value="<?= date('d.m.Y', time()) ?>" class="form-control field datepicker">
                         </div>
                         <div class="column-data">
                             <div class="checkbox">
@@ -130,7 +142,7 @@
                             </div>
                             <div class="maturity-date">
                                 <label><?= lang('create_inv_maturity_date') ?></label>
-                                <input type="text" placeholder="dd.mm.yy" value="<?= date('d.m.Y', time()) ?>" class="form-control field datepicker">
+                                <input type="text" placeholder="dd.mm.yyyy" value="<?= date('d.m.Y', time()) ?>" class="form-control field datepicker">
                             </div>
                         </div>
                         <div class="column-data">
@@ -304,14 +316,14 @@
                     <option value="--">--</option>
                     <option value="createNewMethod"><?= lang('create_new_pay_method') ?></option>
                 </select> 
-            </div>
-        </form>
+            </div> 
+        </div>
+        <a href="javascript:void(0);" onclick="createInvoiceCalculator()" class="btn btn-green"><?= lang('create_inv_save') ?></a>
+        <a href="javascript:void(0);" onclick="createNewInvValidate()" class="btn btn-orange"><?= lang('create_inv_save_draft') ?></a>
+        <?= lang('or') ?>
+        <a href="<?= lang_url('user/invoices') ?>"><?= lang('open_invoices') ?></a>
     </div>
-    <a href="javascript:void(0);" onclick="createInvoiceCalculator()" class="btn btn-green"><?= lang('create_inv_save') ?></a>
-    <a href="javascript:void(0);" onclick="createNewInvValidate()" class="btn btn-orange"><?= lang('create_inv_save_draft') ?></a>
-    <?= lang('or') ?>
-    <a href="<?= lang_url('user/invoices') ?>"><?= lang('open_invoices') ?></a>
-</div>
+</form>
 <!-- Modal Add New Quantity Type -->
 <div class="modal fade" id="addQuantityType" tabindex="-1" role="dialog" aria-labelledby="addQuantityType">
     <div class="modal-dialog" role="document">
