@@ -100,14 +100,9 @@ class Invoices extends USER_Controller
             exit('No direct script access allowed');
         }
         if ((isset($_POST['forId']) && is_numeric($_POST['forId'])) && isset($_POST['newDefault'])) {
-            $result = $this->SettingsModel->setNewDefaultCurrency($_POST);
-            if ($result == true) {
-                echo '1';
-                $this->saveHistory('Changed default currency to - ' . $_POST['newDefault'] . ' for firm id - ' . $_POST['forId']);
-            } else {
-                echo '0';
-                log_message('error', 'Cant change default currency to - ' . $_POST['newDefault'] . ' for firm id - ' . $_POST['forId']);
-            }
+            $this->SettingsModel->setNewDefaultCurrency($_POST);
+            echo '1';
+            $this->saveHistory('Changed default currency to - ' . $_POST['newDefault'] . ' for firm id - ' . $_POST['forId']);
         } else {
             echo '0';
         }
@@ -115,46 +110,31 @@ class Invoices extends USER_Controller
 
     public function deleteDefaultCurrency($num)
     {
-        $result = $this->SettingsModel->deleteDefaultCurrency($num);
-        if ($result == false) {
-            log_message('error', 'Cant change default currency to null for id - ' . $num);
-        }
+        $this->SettingsModel->deleteDefaultCurrency($num);
         redirect(lang_url('user/settings/invoices'));
     }
 
     public function deleteCurrency($num)
     {
-        $result = $this->SettingsModel->deleteMyCurrency($num);
-        if ($result == false) {
-            log_message('error', 'Cant delete my currency id - ' . $num);
-        }
+        $this->SettingsModel->deleteMyCurrency($num);
         redirect(lang_url('user/settings/invoices'));
     }
 
     public function deleteQuantityType($id)
     {
-        $result = $this->SettingsModel->deleteCustomQuantityType($id);
-        if ($result == false) {
-            log_message('error', 'Cant delete my quantity type with id - ' . $id);
-        }
+        $this->SettingsModel->deleteCustomQuantityType($id);
         redirect(lang_url('user/settings/invoices'));
     }
 
     public function deletePaymentMethod($id)
     {
-        $result = $this->SettingsModel->deleteCustomPaymentMethod($id);
-        if ($result == false) {
-            log_message('error', 'Cant delete my payment method with id - ' . $id);
-        }
+        $this->SettingsModel->deleteCustomPaymentMethod($id);
         redirect(lang_url('user/settings/invoices'));
     }
 
     public function deleteNoVatReason($id)
     {
-        $result = $this->SettingsModel->deleteMyNoVatReason($id);
-        if ($result == false) {
-            log_message('error', 'Cant delete no vat reason with id - ' . $id);
-        }
+        $this->SettingsModel->deleteMyNoVatReason($id);
         redirect(lang_url('user/settings/invoices'));
     }
 

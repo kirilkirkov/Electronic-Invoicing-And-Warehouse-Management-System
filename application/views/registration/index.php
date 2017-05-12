@@ -15,11 +15,7 @@
                 <div class="form-group">
                     <label for="user_password"><?= lang('reg_pass') ?></label>
                     <input type="password" id="user_password" value="<?= trim($this->session->flashdata('password')) ?>" name="password" placeholder="<?= lang('reg_p_secret') ?>" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="user_password2"><?= lang('reg_pass_repeat') ?></label>
-                    <input type="password" id="user_password2" value="<?= trim($this->session->flashdata('password2')) ?>" name="password2" placeholder="<?= lang('reg_p_secret2') ?>" class="form-control">
-                </div>
+                </div> 
                 <a href=""><?= lang('read_rules') ?></a>
                 <div class="checkbox">
                     <label><input type="checkbox" id="user_rules" <?= $this->session->flashdata('rules') !== null ? 'checked' : '' ?> name="rules" value=""><?= lang('confirm_rules') ?></label>

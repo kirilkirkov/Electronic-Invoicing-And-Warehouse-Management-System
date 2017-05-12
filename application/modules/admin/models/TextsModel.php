@@ -22,11 +22,14 @@ class TextsModel extends CI_Model
     {
         $i = 0;
         foreach ($post['abbr'] as $abbr) {
-            $this->db->insert('texts_translates', array(
-                'text' => $post['text'][$i],
-                'abbr' => $abbr,
-                'for_id' => $insert_id
-            ));
+            if (!$this->db->insert('texts_translates', array(
+                        'text' => $post['text'][$i],
+                        'abbr' => $abbr,
+                        'for_id' => $insert_id
+                    ))) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
             $i++;
         }
     }
@@ -51,11 +54,12 @@ class TextsModel extends CI_Model
     {
         $i = 0;
         foreach ($post['abbr'] as $abbr) {
-            $this->db->where('for_id', $post['edit_id']);
-            $this->db->where('abbr', $abbr);
-            $this->db->update('texts_translates', array(
-                'text' => $post['text_e'][$i]
-            ));
+            if (!$this->db->where('abbr', $abbr)->where('for_id', $post['edit_id'])->update('texts_translates', array(
+                        'text' => $post['text_e'][$i]
+                    ))) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
             $i++;
         }
     }
@@ -75,15 +79,20 @@ class TextsModel extends CI_Model
     public function addQuestion($post)
     {
         if ($post['edit'] > 0) {
-            $this->db->where('id', $post['edit']);
-            $this->db->update('questions', array(
-                'position' => $post['position']
-            ));
+            if (!$this->db->where('id', $post['edit'])->update('questions', array(
+                        'position' => $post['position']
+                    ))) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
             $insert_id = $post['edit'];
         } else {
-            $this->db->insert('questions', array(
-                'position' => $post['position']
-            ));
+            if (!$this->db->insert('questions', array(
+                        'position' => $post['position']
+                    ))) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
             $insert_id = $this->db->insert_id();
         }
         $this->setQuestionTranslations($post, $insert_id);
@@ -94,19 +103,23 @@ class TextsModel extends CI_Model
         $i = 0;
         foreach ($post['abbr'] as $abbr) {
             if ($post['edit'] > 0) {
-                $this->db->where('for_id', $insert_id);
-                $this->db->where('abbr', $abbr);
-                $this->db->update('questions_translates', array(
-                    'question' => $post['question'][$i],
-                    'answer' => $post['answer'][$i]
-                ));
+                if (!$this->db->where('abbr', $abbr)->where('for_id', $insert_id)->update('questions_translates', array(
+                            'question' => $post['question'][$i],
+                            'answer' => $post['answer'][$i]
+                        ))) {
+                    log_message('error', print_r($this->db->error(), true));
+                    show_error(lang('database_error'));
+                }
             } else {
-                $this->db->insert('questions_translates', array(
-                    'question' => $post['question'][$i],
-                    'answer' => $post['answer'][$i],
-                    'abbr' => $abbr,
-                    'for_id' => $insert_id
-                ));
+                if (!$this->db->insert('questions_translates', array(
+                            'question' => $post['question'][$i],
+                            'answer' => $post['answer'][$i],
+                            'abbr' => $abbr,
+                            'for_id' => $insert_id
+                        ))) {
+                    log_message('error', print_r($this->db->error(), true));
+                    show_error(lang('database_error'));
+                }
             }
             $i++;
         }
@@ -132,10 +145,14 @@ class TextsModel extends CI_Model
 
     public function deleteQuestion($id)
     {
-        $this->db->where('id', $id);
-        $this->db->delete('questions');
-        $this->db->where('for_id', $id);
-        $this->db->delete('questions_translates');
+        if (!$this->db->where('id', $id)->delete('questions')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+        if (!$this->db->where('for_id', $id)->delete('questions_translates')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
 }

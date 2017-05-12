@@ -11,15 +11,20 @@ class FeaturesModel extends CI_Model
     public function addFeature($post)
     {
         if ($post['edit'] > 0) {
-            $this->db->where('id', $post['edit']);
-            $this->db->update('features', array(
-                'image' => $post['image']
-            ));
+            if (!$this->db->where('id', $post['edit'])->update('features', array(
+                        'image' => $post['image']
+                    ))) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
             $insert_id = $post['edit'];
         } else {
-            $this->db->insert('features', array(
-                'image' => $post['image']
-            ));
+            if (!$this->db->insert('features', array(
+                        'image' => $post['image']
+                    ))) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
             $insert_id = $this->db->insert_id();
         }
         $this->setFeatureTranslations($post, $insert_id);
@@ -30,19 +35,23 @@ class FeaturesModel extends CI_Model
         $i = 0;
         foreach ($post['abbr'] as $abbr) {
             if ($post['edit'] > 0) {
-                $this->db->where('for_id', $insert_id);
-                $this->db->where('abbr', $abbr);
-                $this->db->update('features_translates', array(
-                    'title' => $post['title'][$i],
-                    'description' => $post['description'][$i]
-                ));
+                if (!$this->db->where('abbr', $abbr)->where('for_id', $insert_id)->update('features_translates', array(
+                            'title' => $post['title'][$i],
+                            'description' => $post['description'][$i]
+                        ))) {
+                    log_message('error', print_r($this->db->error(), true));
+                    show_error(lang('database_error'));
+                }
             } else {
-                $this->db->insert('features_translates', array(
-                    'title' => $post['title'][$i],
-                    'description' => $post['description'][$i],
-                    'abbr' => $abbr,
-                    'for_id' => $insert_id
-                ));
+                if (!$this->db->insert('features_translates', array(
+                            'title' => $post['title'][$i],
+                            'description' => $post['description'][$i],
+                            'abbr' => $abbr,
+                            'for_id' => $insert_id
+                        ))) {
+                    log_message('error', print_r($this->db->error(), true));
+                    show_error(lang('database_error'));
+                }
             }
             $i++;
         }
@@ -83,10 +92,14 @@ class FeaturesModel extends CI_Model
 
     public function deleteFeature($id)
     {
-        $this->db->where('id', $id);
-        $this->db->delete('features');
-        $this->db->where('for_id', $id);
-        $this->db->delete('features_translates');
+        if (!$this->db->where('id', $id)->delete('features')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+        if (!$this->db->where('for_id', $id)->delete('features_translates')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
 }

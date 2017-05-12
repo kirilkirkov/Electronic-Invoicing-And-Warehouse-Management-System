@@ -41,8 +41,14 @@ class BlogModel extends CI_Model
 
     public function deletePost($id)
     {
-        $this->db->where('id', $id)->delete('blog');
-        $this->db->where('for_id', $id)->delete('blog_translates');
+        if (!$this->db->where('id', $id)->delete('blog')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+        if (!$this->db->where('for_id', $id)->delete('blog_translates')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
     public function getOnePost($id)
@@ -66,18 +72,23 @@ class BlogModel extends CI_Model
     public function setPost($post)
     {
         if ($post['edit'] > 0) {
-            $this->db->where('id', $post['edit']);
-            $this->db->update('blog', array(
-                'image' => $post['image'],
-                'tags' => $post['tags']
-            ));
+            if (!$this->db->where('id', $post['edit'])->update('blog', array(
+                        'image' => $post['image'],
+                        'tags' => $post['tags']
+                    ))) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
             $insert_id = $post['edit'];
         } else {
-            $this->db->insert('blog', array(
-                'time' => time(),
-                'tags' => $post['tags'],
-                'image' => $post['image']
-            ));
+            if (!$this->db->insert('blog', array(
+                        'time' => time(),
+                        'tags' => $post['tags'],
+                        'image' => $post['image']
+                    ))) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
             $insert_id = $this->db->insert_id();
             $this->db->where('id', $insert_id);
             $this->db->update('blog', array('url' => str_replace(' ', '-', except_letters($post['title'][0])) . '_' . $insert_id));
@@ -90,19 +101,23 @@ class BlogModel extends CI_Model
         $i = 0;
         foreach ($post['abbr'] as $abbr) {
             if ($post['edit'] > 0) {
-                $this->db->where('for_id', $insert_id);
-                $this->db->where('abbr', $abbr);
-                $this->db->update('blog_translates', array(
-                    'title' => $post['title'][$i],
-                    'description' => $post['description'][$i]
-                ));
+                if (!$this->db->where('for_id', $insert_id)->where('abbr', $abbr)->update('blog_translates', array(
+                            'title' => $post['title'][$i],
+                            'description' => $post['description'][$i]
+                        ))) {
+                    log_message('error', print_r($this->db->error(), true));
+                    show_error(lang('database_error'));
+                }
             } else {
-                $this->db->insert('blog_translates', array(
-                    'title' => $post['title'][$i],
-                    'description' => $post['description'][$i],
-                    'abbr' => $abbr,
-                    'for_id' => $insert_id
-                ));
+                if (!$this->db->insert('blog_translates', array(
+                            'title' => $post['title'][$i],
+                            'description' => $post['description'][$i],
+                            'abbr' => $abbr,
+                            'for_id' => $insert_id
+                        ))) {
+                    log_message('error', print_r($this->db->error(), true));
+                    show_error(lang('database_error'));
+                }
             }
             $i++;
         }

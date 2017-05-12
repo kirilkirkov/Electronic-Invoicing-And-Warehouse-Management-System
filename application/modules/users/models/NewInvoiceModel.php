@@ -31,7 +31,10 @@ class NewInvoiceModel extends CI_Model
 
     public function setNewCustomQuantityType($newQuantityType)
     {
-        $this->db->insert('users_quantity_types', array('name' => $newQuantityType, 'for_user' => USER_ID));
+        if (!$this->db->insert('users_quantity_types', array('name' => $newQuantityType, 'for_user' => USER_ID))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
     public function getPaymentMethods()
@@ -42,19 +45,28 @@ class NewInvoiceModel extends CI_Model
 
     public function setNewCustomPaymentMethod($newPaymentMethod)
     {
-        $this->db->insert('users_payment_methods', array('name' => $newPaymentMethod, 'for_user' => USER_ID));
+        if (!$this->db->insert('users_payment_methods', array('name' => $newPaymentMethod, 'for_user' => USER_ID))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
     public function setNewVatReason($newVatReason)
     {
-        $this->db->insert('user_no_vat_reasons', array('reason' => $newVatReason, 'for_user' => USER_ID));
+        if (!$this->db->insert('user_no_vat_reasons', array('reason' => $newVatReason, 'for_user' => USER_ID))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
     public function updateInvoicesRoundTo($roundTo)
     {
         $this->db->limit(1);
         $this->db->where('for_user', USER_ID);
-        $this->db->update('users_invoices_options', array('opt_inv_roundTo' => $roundTo));
+        if (!$this->db->update('users_invoices_options', array('opt_inv_roundTo' => $roundTo))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
 }

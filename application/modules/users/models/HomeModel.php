@@ -34,26 +34,25 @@ class HomeModel extends CI_Model
 
     public function setFirm($post)
     {
-        $result = $this->db->insert('firms_users', array(
-            'for_user' => USER_ID,
-            'bulstat' => $post['firm_bulstat'],
-            'is_default' => $post['is_default']
-        ));
-        if ($result === false) {
-            log_message('error', 'Cant insert to firms_users: ' . print_r($post, true));
-        } else {
-            $lastId = $this->db->insert_id();
-            $result = $this->db->insert('firms_translations', array(
-                'for_firm' => $lastId,
-                'name' => $post['firm_name'],
-                'address' => $post['firm_reg_address'],
-                'city' => $post['firm_city'],
-                'mol' => $post['firm_mol'],
-                'is_default' => 1
-            ));
-            if ($result === false) {
-                log_message('error', 'Cant insert to firms_translations: ' . print_r($post, true));
-            }
+        if (!$this->db->insert('firms_users', array(
+                    'for_user' => USER_ID,
+                    'bulstat' => $post['firm_bulstat'],
+                    'is_default' => $post['is_default']
+                ))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+        $lastId = $this->db->insert_id();
+        if (!$this->db->insert('firms_translations', array(
+                    'for_firm' => $lastId,
+                    'name' => $post['firm_name'],
+                    'address' => $post['firm_reg_address'],
+                    'city' => $post['firm_city'],
+                    'mol' => $post['firm_mol'],
+                    'is_default' => 1
+                ))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
         }
         return $lastId;
     }

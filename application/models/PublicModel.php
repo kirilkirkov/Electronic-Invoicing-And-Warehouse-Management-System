@@ -119,7 +119,6 @@ class PublicModel extends CI_Model
     public function registerUser($post)
     {
         if (!$this->db->insert('users', array(
-                    'id' => 1,
                     'email' => $post['email'],
                     'password' => md5salt($post['password']),
                     'time_registered' => time()

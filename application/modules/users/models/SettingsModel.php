@@ -23,21 +23,28 @@ class SettingsModel extends CI_Model
     {
         $this->db->where('id', $post['forId']);
         $this->db->where('for_user', USER_ID);
-        $result = $this->db->update('firms_users', array('default_currency' => $post['newDefault']));
-        return $result;
+        if (!$this->db->update('firms_users', array('default_currency' => $post['newDefault']))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
     public function deleteDefaultCurrency($id)
     {
         $this->db->where('id', $id);
         $this->db->where('for_user', USER_ID);
-        $result = $this->db->update('firms_users', array('default_currency' => ''));
-        return $result;
+        if (!$this->db->update('firms_users', array('default_currency' => ''))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
     public function setNewCurrency($post)
     {
-        $this->db->insert('users_currencies', array('for_user' => USER_ID, 'name' => $post['currencyName'], 'value' => $post['currencyValue']));
+        if (!$this->db->insert('users_currencies', array('for_user' => USER_ID, 'name' => $post['currencyName'], 'value' => $post['currencyValue']))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
     public function getMyCurrencies()
@@ -51,8 +58,10 @@ class SettingsModel extends CI_Model
     {
         $this->db->where('id', $id);
         $this->db->where('for_user', USER_ID);
-        $result = $this->db->delete('users_currencies');
-        return $result;
+        if (!$this->db->delete('users_currencies')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
     public function getMyQuantityTypes()
@@ -66,8 +75,10 @@ class SettingsModel extends CI_Model
     {
         $this->db->where('id', $id);
         $this->db->where('for_user', USER_ID);
-        $result = $this->db->delete('users_quantity_types');
-        return $result;
+        if (!$this->db->delete('users_quantity_types')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
     public function getMyPaymentMethods()
@@ -81,8 +92,10 @@ class SettingsModel extends CI_Model
     {
         $this->db->where('id', $id);
         $this->db->where('for_user', USER_ID);
-        $result = $this->db->delete('users_payment_methods');
-        return $result;
+        if (!$this->db->delete('users_payment_methods')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
     public function getMyNoVatReasons()
@@ -96,8 +109,10 @@ class SettingsModel extends CI_Model
     {
         $this->db->where('id', $id);
         $this->db->where('for_user', USER_ID);
-        $result = $this->db->delete('user_no_vat_reasons');
-        return $result;
+        if (!$this->db->delete('user_no_vat_reasons')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        } 
     }
 
 }

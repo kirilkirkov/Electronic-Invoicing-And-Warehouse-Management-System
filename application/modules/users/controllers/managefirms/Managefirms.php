@@ -42,10 +42,7 @@ class Managefirms extends USER_Controller
 
     public function deleteCompany($companyId)
     {
-        $result = $this->ManagefirmsModel->deleteCompany($companyId);
-        if ($result === false) {
-            show_error(lang('error_delete_company'));
-        }
+        $this->ManagefirmsModel->deleteCompany($companyId);
         if ($companyId == SELECTED_COMPANY_ID) {
             $lastAddedCompanyId = $this->ManagefirmsModel->getLastAddedCompanyId();
             if ($lastAddedCompanyId != null) {
@@ -92,13 +89,9 @@ class Managefirms extends USER_Controller
          * Save Translation texts
          */
         if (isset($_POST['saveTranslate'])) {
-            $result = $this->updateTranslation($companyId);
-            if ($result === true) {
-                $this->saveHistory('Update translation for company Id - ' . $companyId);
-                $this->session->set_flashdata('resultAction', lang('translation_updated'));
-            } else {
-                $this->session->set_flashdata('resultAction', $result);
-            }
+            $this->updateTranslation($companyId);
+            $this->saveHistory('Update translation for company Id - ' . $companyId);
+            $this->session->set_flashdata('resultAction', lang('translation_updated'));
             redirect(lang_url('user/managefirms/edit/' . $companyId . '/' . $translateId));
         }
         /*
@@ -122,10 +115,7 @@ class Managefirms extends USER_Controller
 
     public function deleteTranslation($companyId, $translationid)
     {
-        $result = $this->ManagefirmsModel->deleteTranslation($companyId, $translationid);
-        if ($result === false) {
-            show_error(lang('error_delete_translation'));
-        }
+        $this->ManagefirmsModel->deleteTranslation($companyId, $translationid);
         $this->session->set_flashdata('resultAction', lang('translation_deleted'));
         $this->saveHistory('Delete tanslation id - ' . $translationid);
         redirect(lang_url('user/managefirms/edit/' . $companyId));
