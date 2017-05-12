@@ -139,3 +139,5 @@ $lang['create_inv_client_indv_addr'] = 'Individual client address';
 $lang['create_inv_client_vat_registered'] = 'Have VAT registration';
 $lang['create_inv_vat_number'] = 'VAT Number:';
 $lang['error_load_options'] = 'Error with your account! Please contact support!';
+$lang['how_do_you_round_values'] = 'How do you want to round out the totals on your invoices';
+$lang['update_round_totals'] = 'Update';

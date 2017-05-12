@@ -21,6 +21,20 @@ class Invoices extends USER_Controller
     {
         $data = array();
         $head = array();
+        $this->postChecker();
+        $head['title'] = 'Administration - Settings Invoices';
+        $data['myFirms'] = $this->SettingsModel->getMyFirmsDefaultCurrency();
+        $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
+        $data['myCurrencies'] = $this->SettingsModel->getMyCurrencies();
+        $data['myQuantityTypes'] = $this->SettingsModel->getMyQuantityTypes();
+        $data['myPaymentMethods'] = $this->SettingsModel->getMyPaymentMethods();
+        $data['myNoVatReasons'] = $this->SettingsModel->getMyNoVatReasons();
+        $this->render('settings/invoices', $head, $data);
+        $this->saveHistory('Go to settings invoices page');
+    }
+
+    private function postChecker()
+    {
         if (isset($_POST['currencyName'])) {
             $this->addCurrency();
         }
@@ -33,15 +47,19 @@ class Invoices extends USER_Controller
         if (isset($_POST['noVatReason'])) {
             $this->addNewNoVatReason();
         }
-        $head['title'] = 'Administration - Settings Invoices';
-        $data['myFirms'] = $this->SettingsModel->getMyFirmsDefaultCurrency();
-        $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
-        $data['myCurrencies'] = $this->SettingsModel->getMyCurrencies();
-        $data['myQuantityTypes'] = $this->SettingsModel->getMyQuantityTypes();
-        $data['myPaymentMethods'] = $this->SettingsModel->getMyPaymentMethods();
-        $data['myNoVatReasons'] = $this->SettingsModel->getMyNoVatReasons();
-        $this->render('settings/invoices', $head, $data);
-        $this->saveHistory('Go to settings invoices page');
+        if (isset($_POST['noVatReason'])) {
+            $this->addNewNoVatReason();
+        }
+        if (isset($_POST['opt_inv_roundTo'])) {
+            $this->updateInvoicesRoundTo();
+        }
+    }
+
+    private function updateInvoicesRoundTo()
+    {
+        $this->NewInvoiceModel->updateInvoicesRoundTo($_POST['opt_inv_roundTo']);
+        $this->saveHistory('Update round invoices total to - ' . $_POST['opt_inv_roundTo']);
+        redirect(lang_url('user/settings/invoices'));
     }
 
     private function addNewNoVatReason()

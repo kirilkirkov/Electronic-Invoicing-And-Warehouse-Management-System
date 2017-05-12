@@ -357,3 +357,16 @@ function createInvoiceCalculator() {
     // Set final sum
     $('#final-total').text(final_sum);
 }
+function updateRoundTotals() {
+    var pattern = /^[0-9]+$/;
+    var valid = true;
+    var name = $('[name="opt_inv_roundTo"]').val();
+    name = $.trim(name);
+    if (name.length == 0 || !pattern.test(name)) {
+        $('[name="opt_inv_roundTo"]').css("border-color", "red");
+        valid = false;
+    }
+    if (valid == true) {
+        document.getElementById('formRoundTotals').submit();
+    }
+}

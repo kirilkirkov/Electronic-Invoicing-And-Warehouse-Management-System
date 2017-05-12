@@ -50,4 +50,11 @@ class NewInvoiceModel extends CI_Model
         $this->db->insert('user_no_vat_reasons', array('reason' => $newVatReason, 'for_user' => USER_ID));
     }
 
+    public function updateInvoicesRoundTo($roundTo)
+    {
+        $this->db->limit(1);
+        $this->db->where('for_user', USER_ID);
+        $this->db->update('users_invoices_options', array('opt_inv_roundTo' => $roundTo));
+    }
+
 }

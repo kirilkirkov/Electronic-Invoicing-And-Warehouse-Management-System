@@ -64,7 +64,7 @@
                 <?php } ?>
                 <tr>
                     <td colspan="3">
-                        <form method="POST" action="" class="site-form form-inline" id="formAddCurrency">
+                        <form method="POST" action="" class="site-form" id="formAddCurrency">
                             <table>
                                 <tr>
                                     <td><input type="text" name="currencyName" class="form-control field c-name"></td>
@@ -113,7 +113,7 @@
                 <?php } ?>
                 <tr>
                     <td colspan="2">
-                        <form method="POST" action="" class="site-form form-inline" id="formAddQuantityType">
+                        <form method="POST" action="" class="site-form" id="formAddQuantityType">
                             <table>
                                 <tr>
                                     <td><input type="text" name="quantityTypeName" class="form-control field"></td>
@@ -161,7 +161,7 @@
                 <?php } ?>
                 <tr>
                     <td colspan="2">
-                        <form method="POST" action="" class="site-form form-inline" id="formAddPaymentMethod">
+                        <form method="POST" action="" class="site-form" id="formAddPaymentMethod">
                             <table>
                                 <tr>
                                     <td><input type="text" name="paymentMethodName" class="form-control field"></td>
@@ -209,7 +209,7 @@
                 <?php } ?>
                 <tr>
                     <td colspan="2">
-                        <form method="POST" action="" class="site-form form-inline" id="formAddNoVatReason">
+                        <form method="POST" action="" class="site-form" id="formAddNoVatReason">
                             <table>
                                 <tr>
                                     <td><input type="text" name="noVatReason" class="form-control field"></td>
@@ -225,5 +225,20 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="col-sm-4">
+        <h4><?= lang('how_do_you_round_values') ?></h4>
+        <form method="POST" action="" class="site-form" id="formRoundTotals">
+            <table>
+                <tr>
+                    <td><input type="text" value="<?= $opt_inv_roundTo ?>" name="opt_inv_roundTo" class="form-control field"></td>
+                    <td>
+                        <a href="javascript:void(0);" onclick="updateRoundTotals()" class="btn btn-xs btn-default pull-right">
+                            <?= lang('update_round_totals') ?>
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
 </div>
