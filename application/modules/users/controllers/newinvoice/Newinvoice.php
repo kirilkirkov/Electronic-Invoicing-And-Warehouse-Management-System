@@ -26,7 +26,6 @@ class Newinvoice extends USER_Controller
         $data['myDefaultFirmCurrency'] = $this->NewInvoiceModel->getFirmDefaultCurrency();
         $data['quantityTypes'] = $this->NewInvoiceModel->getAllQuantityTypes();
         $data['paymentMethods'] = $this->NewInvoiceModel->getPaymentMethods();
-        $data['roundTo'] = 2;
         $this->render('newinvoice/index', $head, $data);
         $this->saveHistory('Go to new invoice page');
     }

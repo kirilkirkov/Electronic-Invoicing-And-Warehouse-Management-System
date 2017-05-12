@@ -350,6 +350,6 @@
 </div>
 <script>
     var createInv = {
-        rountTo: <?= $roundTo ?>
+        rountTo: <?= $opt_inv_roundTo ?>
     };
 </script>

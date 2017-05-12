@@ -149,4 +149,13 @@ class PublicModel extends CI_Model
         return false;
     }
 
+    public function getUserInvoicesOptions()
+    {
+        $this->db->select('opt_inv_roundTo');
+        $this->db->limit(1);
+        $this->db->where('for_user', USER_ID);
+        $result = $this->db->get('users_invoices_options');
+        return $result->row_array();
+    }
+
 }

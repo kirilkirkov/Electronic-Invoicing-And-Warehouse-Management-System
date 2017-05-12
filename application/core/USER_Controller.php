@@ -10,16 +10,15 @@ class USER_Controller extends HEAD_Controller
         parent::__construct();
         $this->loginCheck();
         $this->hasFirmCkeck();
-
         $this->load->helper('uploader');
     }
 
     public function render($view, $head, $data = null)
     {
         $vars = array();
+        $vars = $this->loadUserInvoicesOptions();
         $vars['myFirms'] = $this->firms;
         $this->load->vars($vars);
-
         $this->load->view('parts/header', $head);
         $this->load->view($view, $data);
         $this->load->view('parts/footer');
@@ -118,6 +117,15 @@ class USER_Controller extends HEAD_Controller
     {
         $result = $this->HomeModel->checkBulstatIsFree($_POST['firm_bulstat']);
         return $result;
+    }
+
+    private function loadUserInvoicesOptions()
+    {
+        $result_array = $this->PublicModel->getUserInvoicesOptions();
+        if (empty($result_array)) {
+            show_error(lang('error_load_options'));
+        }
+        return $result_array;
     }
 
 }

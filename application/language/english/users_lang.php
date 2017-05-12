@@ -138,3 +138,4 @@ $lang['create_inv_pin'] = 'PIN';
 $lang['create_inv_client_indv_addr'] = 'Individual client address';
 $lang['create_inv_client_vat_registered'] = 'Have VAT registration';
 $lang['create_inv_vat_number'] = 'VAT Number:';
+$lang['error_load_options'] = 'Error with your account! Please contact support!';
