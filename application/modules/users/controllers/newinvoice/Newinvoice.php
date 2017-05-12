@@ -18,7 +18,7 @@ class Newinvoice extends USER_Controller
     }
 
     public function index()
-    {
+    {  
         $data = array();
         $head = array();
         $head['title'] = 'Administration - Home';
@@ -27,7 +27,7 @@ class Newinvoice extends USER_Controller
         $data['quantityTypes'] = $this->NewInvoiceModel->getAllQuantityTypes();
         $data['paymentMethods'] = $this->NewInvoiceModel->getPaymentMethods();
         $this->render('newinvoice/index', $head, $data);
-        $this->saveHistory('Go to new invoice page');
+        $this->saveHistory('Go to new invoice page'); 
     }
 
     public function addnewquantitytype()

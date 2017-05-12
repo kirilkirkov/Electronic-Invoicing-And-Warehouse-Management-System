@@ -7,6 +7,8 @@ class HEAD_Controller extends MX_Controller
     {
         parent::__construct();
         $this->loadTexts();
+        $this->output->enable_profiler(ENVIRONMENT == 'development');
+        //$this->db->error()
     }
 
     /*

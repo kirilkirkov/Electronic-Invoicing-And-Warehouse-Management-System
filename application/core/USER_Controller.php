@@ -126,6 +126,6 @@ class USER_Controller extends HEAD_Controller
             show_error(lang('error_load_options'));
         }
         return $result_array;
-    }
+    } 
 
 }
