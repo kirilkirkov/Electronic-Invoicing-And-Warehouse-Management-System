@@ -123,10 +123,21 @@ class PublicModel extends CI_Model
             'password' => md5salt($post['password']),
             'time_registered' => time()
         ));
+        $user_id = $this->db->insert_id();
+        $this->insertOptionsTables($user_id);
         if ($result == true) {
             return $post['email'];
         }
         return false;
+    }
+
+    /*
+     * Default system options tables for every user
+     */
+
+    private function insertOptionsTables($user_id)
+    {
+        $this->db->query('INSERT INTO users_invoices_options (for_user, opt_inv_roundTo) VALUES (' . $user_id . ', 2)');
     }
 
     public function getUserInfoFromEmail($email)
