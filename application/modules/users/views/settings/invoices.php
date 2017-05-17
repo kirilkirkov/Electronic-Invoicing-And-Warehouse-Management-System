@@ -166,7 +166,7 @@
                                 <tr>
                                     <td><input type="text" name="paymentMethodName" class="form-control field"></td>
                                     <td>
-                                        <a href="javascript:void(0);" onclick="addNewQuantityType()" class="btn btn-xs btn-default pull-right">
+                                        <a href="javascript:void(0);" onclick="addNewPaymentMethod()" class="btn btn-xs btn-default pull-right">
                                             <?= lang('add_new_p_method') ?>
                                         </a>
                                     </td>

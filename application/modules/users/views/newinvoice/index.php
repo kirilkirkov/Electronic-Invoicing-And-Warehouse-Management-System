@@ -13,18 +13,30 @@
     </div>
     <div class="border"></div>
 </div>
-<div class="">
-    <select class="selectpicker" title="choose language">
-        <option>asd</option>
-    </select>
-    <a href="" class="btn btn-default">
-        add invoice translation
-    </a>
-    <a href="<?= lang_url('user/settings/invoices') ?>" class="btn btn-default pull-right">
-        Invoice settings
-    </a>
-</div>
 <form action="" id="setInvoiceForm" class="site-form" method="POST">
+    <div>
+        <select class="selectpicker" title="<?= lang('choose_translation') ?>">
+            <option value="0"><?= lang('default_inv_lang') ?></option>
+            <?php
+            if (!empty($invoiceLanguages)) {
+                foreach ($invoiceLanguages as $invLanguage) {
+                    ?>
+                    <option value="<?= $invLanguage['id'] ?>"><?= $invLanguage['language_name'] ?></option>
+                    <?php
+                }
+            }
+            ?> 
+        </select>
+        <a href="javascript:void(0);" data-toggle="modal" data-target="#modalAddNewTranslation" class="btn btn-default">
+            <?= lang('add_new_inv_translation') ?>
+        </a>
+        <a href="<?= lang_url('user/settings/invoices') ?>" class="btn btn-default pull-right">
+            <?= lang('invoice_settings') ?>
+        </a>
+        <a href="javascript:void(0);" data-toggle="modal" data-target="#modalExplainTranslation">
+            <i class="fa fa-question-circle" aria-hidden="true"></i>
+        </a>
+    </div> 
     <div class="new-invoice">
         <div class="type">
             <label><?= lang('create_inv_type') ?></label> 
@@ -356,6 +368,151 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close') ?></button>
                 <button type="button" class="btn btn-primary add-my-new-pay-method"><?= lang('add_the_pay_method') ?></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Explain Add Translations -->
+<div class="modal fade" id="modalExplainTranslation" tabindex="-1" role="dialog" aria-labelledby="modalExplainTranslation">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><?= lang('what_mean_new_translate') ?></h4>
+            </div>
+            <div class="modal-body">
+                <?= lang('what_mean_new_translate_explain') ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close') ?></button> 
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Create New Translation -->
+<div class="modal fade" id="modalAddNewTranslation" tabindex="-1" role="dialog" aria-labelledby="modalAddNewTranslation">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><?= lang('add_new_translation') ?></h4>
+            </div>
+            <div class="modal-body site-form">
+                <form method="POST" action="" id="formAddNewTranslate">
+                    <input type="hidden" name="addNewInvoiceLanguage" value="1">
+                    <div class="form-group">
+                        <label><?= lang('trans_language_name') ?></label>
+                        <input type="text" name="language_name" placeholder="<?= lang('lang_name_internal_use') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_recipient') ?></label>
+                        <input type="text" name="recipient" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_bulstat') ?></label>
+                        <input type="text" name="bulstat" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_mol') ?></label>
+                        <input type="text" name="mol" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_sender') ?></label>
+                        <input type="text" name="sender" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_original') ?></label>
+                        <input type="text" name="original" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_number') ?></label>
+                        <input type="text" name="number" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_date_of_issue') ?></label>
+                        <input type="text" name="date_of_issue" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_to_an_invoice') ?></label>
+                        <input type="text" name="a_date_of_a_tax_event" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_invoice') ?></label>
+                        <input type="text" name="invoice" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_debit_note') ?></label>
+                        <input type="text" name="debit_note" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_credit_note') ?></label>
+                        <input type="text" name="credit_note" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_remarks') ?></label>
+                        <input type="text" name="remarks" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_pro_forma') ?></label>
+                        <input type="text" name="pro_forma" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_products_name') ?></label>
+                        <input type="text" name="products_name" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_quantity') ?></label>
+                        <input type="text" name="quantity" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_single_price') ?></label>
+                        <input type="text" name="single_price" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_value') ?></label>
+                        <input type="text" name="value" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_amount') ?></label>
+                        <input type="text" name="amount" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_tax_base') ?></label>
+                        <input type="text" name="tax_base" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_percentage_vat') ?></label>
+                        <input type="text" name="percentage_vat" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="from-group">
+                        <label><?= lang('trans_vat_charget') ?></label>
+                        <input type="text" name="vat_charget" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_everything') ?></label>
+                        <input type="text" name="everything" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_reason_non_var') ?></label>
+                        <input type="text" name="reason_for_non_vat" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_compiled') ?></label>
+                        <input type="text" name="compiled" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_signature') ?></label>
+                        <input type="text" name="signature" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                    <div class="form-group">
+                        <label><?= lang('trans_schiffer') ?></label>
+                        <input type="text" name="schiffer" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0);" class="btn btn-default" onclick="saveNewTranslation()"><?= lang('save_new_translate') ?></a>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close') ?></button> 
             </div>
         </div>
     </div>

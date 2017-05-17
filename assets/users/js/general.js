@@ -2,7 +2,7 @@
  * okay we lets ready :)
  * @description Users JavaScript
  */
-$(document).ready(function () {
+$(document).ready(function () { 
     /*
      * Confirm dialog
      */
@@ -292,7 +292,7 @@ function addNewQuantityType() {
 /*
  * Add new payment method validator
  */
-function addNewQuantityType() {
+function addNewPaymentMethod() {
     var valid = true;
     var name = $('[name="paymentMethodName"]').val();
     name = $.trim(name);
@@ -383,6 +383,9 @@ function createInvoiceCalculator() {
     // Set final sum
     $('#final-total').text(final_sum);
 }
+/*
+ * Verify that filed for round totals is not empty
+ */
 function updateRoundTotals() {
     var pattern = /^[0-9]+$/;
     var valid = true;
@@ -394,5 +397,24 @@ function updateRoundTotals() {
     }
     if (valid == true) {
         document.getElementById('formRoundTotals').submit();
+    }
+}
+/*
+ * Verifi that translation no have empty fields
+ * Submit form and add to db
+ */
+function saveNewTranslation() {
+    $('.field-new-translate').css("border-color", "#e9e9e9");
+    var valid = true;
+    $('.field-new-translate').each(function (index) {
+        var translate = $(this).val();
+        translate = $.trim(translate);
+        if (translate.length == 0) {
+            $(this).css("border-color", "red");
+            valid = false;
+        }
+    });
+    if (valid == true) {
+        document.getElementById('formAddNewTranslate').submit();
     }
 }
