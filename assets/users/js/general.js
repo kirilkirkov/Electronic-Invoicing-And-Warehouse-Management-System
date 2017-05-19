@@ -2,7 +2,10 @@
  * okay we lets ready :)
  * @description Users JavaScript
  */
-$(document).ready(function () { 
+var pattern_sums = /^[0-9\-\.\,]+$/;
+var border_color_fields = '#e9e9e9';
+var border_color_wrong = 'red';
+$(document).ready(function () {
     /*
      * Confirm dialog
      */
@@ -104,15 +107,15 @@ $('#no-vat').change(function () {
 var numItemsDefault = 1;
 $('.add-new-item').click(function () {
     var obj = $('.body-items tr:first').clone(true).insertAfter('tr:last');
-    obj.find('.field').val('');
-    obj.find('.quantity-field').val('0.00');
-    obj.find('.price-field').val('0.00');
+    obj.find('.field').val('').css("border-color", border_color_fields);
+    obj.find('.quantity-field').val('0.00').css("border-color", border_color_fields);
+    obj.find('.price-field').val('0.00').css("border-color", border_color_fields);
     obj.find('.item-total-price').text('');
     var selectedOption = $('#selectCurrencyNewInv').find(":selected").val();
     if (!selectedOption) {
         selectedOption = $('.currency-text').first().text();
     }
-    obj.find('.item-total-price').append('<span class="item-total">0.00</span> <span class="currency-text">' + selectedOption + '</span>');
+    obj.find('.item-total-price').append('<span class="item-total">0.00</span> <span class="currency-text">' + selectedOption + '</span><input type="hidden" class="item-total" value="0.00" name="items_totals[]">');
     $('.body-items .actions').css('display', 'inline-block');
     numItemsDefault = numItemsDefault + 1;
     obj.find('.quantity-type select').attr('data-my-id', numItemsDefault);
@@ -162,7 +165,7 @@ $('.quantity-type select').change(function () {
     if (selectedValue == 'createNewQuantity') {
         $('#addQuantityType').modal('show');
         $('.new-quantity-value').val('');
-        $('.new-quantity-value').css("border-color", "#e9e9e9");
+        $('.new-quantity-value').css("border-color", border_color_fields);
         myNewQuantityType = false;
     }
     if (selectedValue == '--') {
@@ -178,7 +181,7 @@ $('.add-my-new-quantity-type').click(function () {
         $('#addQuantityType').modal('hide');
         $.post(urls.addNewQuantityType, {newVal: newVal}, function (result) {});
     } else {
-        $('.new-quantity-value').css("border-color", "red");
+        $('.new-quantity-value').css("border-color", border_color_wrong);
     }
 });
 $('#addQuantityType').on('hidden.bs.modal', function () {
@@ -194,7 +197,7 @@ $('select.payment-method').change(function () {
     if (selectedValue == 'createNewMethod') {
         $('#addPaymentMethod').modal('show');
         $('.my-new-pay-method').val('');
-        $('.my-new-pay-method').css("border-color", "#e9e9e9");
+        $('.my-new-pay-method').css("border-color", border_color_fields);
     }
     if (selectedValue == '--') {
         $('option', this).first().prop("selected", "selected");
@@ -207,7 +210,7 @@ $('.add-my-new-pay-method').click(function () {
         $('#addPaymentMethod').modal('hide');
         $.post(urls.addNewPaymentMethod, {newVal: newVal}, function (result) {});
     } else {
-        $('.my-new-pay-method').css("border-color", "red");
+        $('.my-new-pay-method').css("border-color", border_color_wrong);
     }
 });
 $('#addPaymentMethod').on('hidden.bs.modal', function () {
@@ -248,10 +251,85 @@ $('[name="inv_type"]').change(function () {
     }
 });
 /*
+ * Create draft invoice
+ */
+function createDraft() {
+    $('[name="is_draft"]').val(1);
+    createNewInvValidate();
+}
+/*
  * Create Invoice form validation
  */
 function createNewInvValidate() {
-    document.getElementById('setInvoiceForm').submit();
+    var valid = true;
+    $('[name="client_name"]').css("border-color", border_color_fields);
+    $('[name="client_address"]').css("border-color", border_color_fields);
+    $('[name="inv_number"]').css("border-color", border_color_fields);
+    $('[name="date_create"]').css("border-color", border_color_fields);
+    $('[name="date_tax_event"]').css("border-color", border_color_fields);
+    var client_name = $('[name="client_name"]').val();
+    var client_address = $('[name="client_address"]').val();
+    var date_create = $('[name="date_create"]').val();
+    var date_tax_event = $('[name="date_tax_event"]').val();
+    var inv_number = $('[name="inv_number"]').val();
+    if ($('[name="inv_type"]:checked').val() == 'debit' || $('[name="inv_type"]:checked').val() == 'credit') {
+        $('[name="to_inv_number"]').css("border-color", border_color_fields);
+        $('[name="to_inv_date"]').css("border-color", border_color_fields);
+        var to_inv_number = $('[name="to_inv_number"]').val();
+        var to_inv_date = $('[name="to_inv_date"]').val();
+        if ($.trim(to_inv_number).length == 0) {
+            $('[name="to_inv_number"]').css("border-color", border_color_wrong);
+            valid = false;
+        }
+        if ($.trim(to_inv_date).length == 0) {
+            $('[name="to_inv_date"]').css("border-color", border_color_wrong);
+            valid = false;
+        }
+    }
+    if ($.trim(client_name).length == 0) {
+        $('[name="client_name"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if ($.trim(client_address).length == 0) {
+        $('[name="client_address"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if ($.trim(date_create).length == 0) {
+        $('[name="date_create"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if ($.trim(date_tax_event).length == 0) {
+        $('[name="date_tax_event"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if ($.trim(inv_number).length == 0) {
+        $('[name="inv_number"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    $('.body-items tr').each(function () {
+        $('.quantity-field', this).css("border-color", border_color_fields);
+        $('.field-item-name', this).css("border-color", border_color_fields);
+        var item_quantity = $('.quantity-field', this).val();
+        var item_name = $('.field-item-name', this).val();
+        if (!pattern_sums.test(item_quantity) || item_quantity.length == 0 || item_quantity <= 0) {
+            $('.quantity-field', this).css("border-color", border_color_wrong);
+            valid = false;
+        }
+        if ($.trim(item_name).length == 0) {
+            $('.field-item-name', this).css("border-color", border_color_wrong);
+            valid = false;
+        }
+
+    });
+    if (valid == true) {
+        document.getElementById('setInvoiceForm').submit();
+    } else {
+        /*
+         * Return to some default values
+         * who is changed from submit buttons
+         */
+        $('[name="is_draft"]').val(0);
+    }
 }
 /*
  * Add new currency validator
@@ -263,11 +341,11 @@ function addNewCurrency() {
     name = $.trim(name);
     value = $.trim(value);
     if (name.length == 0) {
-        $('#formAddCurrency .c-name').css("border-color", "red");
+        $('#formAddCurrency .c-name').css("border-color", border_color_wrong);
         valid = false;
     }
     if (value.length == 0) {
-        $('#formAddCurrency .c-value').css("border-color", "red");
+        $('#formAddCurrency .c-value').css("border-color", border_color_wrong);
         valid = false;
     }
     if (valid == true) {
@@ -282,7 +360,7 @@ function addNewQuantityType() {
     var name = $('[name="quantityTypeName"]').val();
     name = $.trim(name);
     if (name.length == 0) {
-        $('[name="quantityTypeName"]').css("border-color", "red");
+        $('[name="quantityTypeName"]').css("border-color", border_color_wrong);
         valid = false;
     }
     if (valid == true) {
@@ -297,7 +375,7 @@ function addNewPaymentMethod() {
     var name = $('[name="paymentMethodName"]').val();
     name = $.trim(name);
     if (name.length == 0) {
-        $('[name="paymentMethodName"]').css("border-color", "red");
+        $('[name="paymentMethodName"]').css("border-color", border_color_wrong);
         valid = false;
     }
     if (valid == true) {
@@ -312,7 +390,7 @@ function addNewNoVatReason() {
     var name = $('[name="noVatReason"]').val();
     name = $.trim(name);
     if (name.length == 0) {
-        $('[name="noVatReason"]').css("border-color", "red");
+        $('[name="noVatReason"]').css("border-color", border_color_wrong);
         valid = false;
     }
     if (valid == true) {
@@ -328,60 +406,63 @@ function addNewNoVatReason() {
  * createInv variable is initialized in create invoice page
  */
 function createInvoiceCalculator() {
-    var pattern = /^[0-9\-\.\,]+$/;
     // Sum item by item
     var items_total = 0.00;
     $('.body-items tr').each(function () {
-        $('.quantity-field', this).css("border-color", "#e9e9e9");
-        $('.price-field', this).css("border-color", "#e9e9e9");
-
+        $('.quantity-field', this).css("border-color", border_color_fields);
+        $('.price-field', this).css("border-color", border_color_fields);
         var item_quantity = $('.quantity-field', this).val();
         var item_price = $('.price-field', this).val();
         var is_valid = true;
-        if (!pattern.test(item_quantity)) {
-            $('.quantity-field', this).css("border-color", "red");
+        if (!pattern_sums.test(item_quantity)) {
+            $('.quantity-field', this).css("border-color", border_color_wrong);
             is_valid = false;
         }
-        if (!pattern.test(item_price)) {
-            $('.price-field', this).css("border-color", "red");
+        if (!pattern_sums.test(item_price)) {
+            $('.price-field', this).css("border-color", border_color_wrong);
             is_valid = false;
         }
         if (is_valid == true) {
             var item_total = math.multiply(item_quantity, item_price).toFixed(createInv.rountTo);
             $('.item-total', this).text(item_total);
+            $('.item-total', this).val(item_total);
             items_total = math.add(items_total, item_total).toFixed(createInv.rountTo);
         }
     });
     $('#items-total').text(items_total);
+    $('.items-total', this).val(items_total);
     // Tax base after discount
     var discount_type = $('#discount-value option:selected').val();
     var discount_value = $('.text-discount').val();
-    if (pattern.test(discount_value)) {
-        $('.text-discount').css("border-color", "#e9e9e9");
+    if (pattern_sums.test(discount_value)) {
+        $('.text-discount').css("border-color", border_color_fields);
         if (discount_type == '%') {
             var tax_base = math.subtract(items_total, math.multiply(items_total, math.divide(discount_value, 100))).toFixed(createInv.rountTo);
         } else {
             var tax_base = math.subtract(items_total, discount_value).toFixed(createInv.rountTo);
         }
         $('#tax-base').text(tax_base);
+        $('.tax-base').val(tax_base);
     } else {
-        $('.text-discount').css("border-color", "red");
+        $('.text-discount').css("border-color", border_color_wrong);
     }
     // Get vat 
     var final_sum = tax_base;
     if (!$('#no-vat').is(":checked")) {
         var vat_percent = $('.vat-field').val();
-        if (pattern.test(vat_percent)) {
-            $('.vat-field').css("border-color", "#e9e9e9");
+        if (pattern_sums.test(vat_percent)) {
+            $('.vat-field').css("border-color", border_color_fields);
             var vat_sum = math.multiply(math.divide(tax_base, 100), vat_percent).toFixed(createInv.rountTo);
             $('#vat-sum').text(vat_sum);
+            $('.vat-sum').val(vat_sum);
             final_sum = math.add(tax_base, vat_sum).toFixed(createInv.rountTo);
         } else {
-            $('.vat-field').css("border-color", "red");
+            $('.vat-field').css("border-color", border_color_wrong);
         }
     }
     // Set final sum
     $('#final-total').text(final_sum);
+    $('.final-total').val(final_sum);
 }
 /*
  * Verify that filed for round totals is not empty
@@ -392,7 +473,7 @@ function updateRoundTotals() {
     var name = $('[name="opt_inv_roundTo"]').val();
     name = $.trim(name);
     if (name.length == 0 || !pattern.test(name)) {
-        $('[name="opt_inv_roundTo"]').css("border-color", "red");
+        $('[name="opt_inv_roundTo"]').css("border-color", border_color_wrong);
         valid = false;
     }
     if (valid == true) {
@@ -404,13 +485,13 @@ function updateRoundTotals() {
  * Submit form and add to db
  */
 function saveNewTranslation() {
-    $('.field-new-translate').css("border-color", "#e9e9e9");
+    $('.field-new-translate').css("border-color", border_color_fields);
     var valid = true;
     $('.field-new-translate').each(function (index) {
         var translate = $(this).val();
         translate = $.trim(translate);
         if (translate.length == 0) {
-            $(this).css("border-color", "red");
+            $(this).css("border-color", border_color_wrong);
             valid = false;
         }
     });

@@ -15,8 +15,8 @@
 </div>
 <form action="" id="setInvoiceForm" class="site-form" method="POST">
     <div>
-        <select class="selectpicker" title="<?= lang('choose_translation') ?>">
-            <option value="0"><?= lang('default_inv_lang') ?></option>
+        <select class="selectpicker" name="invoice_translation" title="<?= lang('choose_translation') ?>">
+            <option value="0" selected=""><?= lang('default_inv_lang') ?></option>
             <?php
             if (!empty($invoiceLanguages)) {
                 foreach ($invoiceLanguages as $invLanguage) {
@@ -65,11 +65,11 @@
                 <div class="col-sm-5">
                     <div class="column-data">
                         <label><?= lang('to_inv_num') ?></label>
-                        <input class="form-control field" type="text">
+                        <input class="form-control field" name="to_inv_number" type="text">
                     </div>
                     <div class="column-data">
                         <label><?= lang('to_inv_date') ?></label>
-                        <input class="form-control field datepicker" placeholder="dd.mm.yyyy" type="text">
+                        <input class="form-control field datepicker" name="to_inv_date" placeholder="dd.mm.yyyy" type="text">
                     </div>
                 </div> 
             </div>
@@ -77,27 +77,27 @@
                 <div class="col-sm-6 col-md-5">
                     <div class="column-data client">
                         <label><?= lang('create_inv_client') ?></label> 
-                        <input type="text" class="form-control field">
+                        <input type="text" name="client_name" class="form-control field">
                         <a href="" class="choose">
                             <i class="fa fa-bars" aria-hidden="true"></i>
                             <span><?= lang('create_inv_choose') ?></span>
                         </a> 
                         <div>
                             <div class="checkbox">
-                                <label><input type="checkbox" id="individual-client" value=""><?= lang('create_inv_individual') ?></label>
+                                <label><input type="checkbox" name="is_to_person" id="individual-client" value=""><?= lang('create_inv_individual') ?></label>
                             </div>
                         </div>
                     </div>
                     <div class="column-data client client-company"> 
                         <label><?= lang('create_inv_bulstat') ?></label> 
-                        <input type="text" class="form-control field">
+                        <input type="text" name="client_bulstat" class="form-control field">
                         <a href="" class="choose">
                             <i class="fa fa-bars" aria-hidden="true"></i>
                             <span><?= lang('create_inv_choose') ?></span>
                         </a>
                         <div>
                             <div class="checkbox">
-                                <label><input type="checkbox" id="client-vat-registered" value=""><?= lang('create_inv_client_vat_registered') ?></label>
+                                <label><input type="checkbox" name="client_vat_registered" id="client-vat-registered" value=""><?= lang('create_inv_client_vat_registered') ?></label>
                             </div>
                         </div>
                     </div>
@@ -110,56 +110,52 @@
                         <input type="text" class="form-control field">
                     </div>
                     <div class="column-data client-individial">
-                        <label><?= lang('create_inv_pin') ?></label>
-                        <input type="text" class="form-control field">
-                    </div>
-                    <div class="column-data client-individial">
-                        <label><?= lang('create_inv_client_indv_addr') ?></label>
-                        <input type="text" class="form-control field">
+                        <label><?= lang('create_inv_ident_num') ?></label>
+                        <input type="text" name="client_ident_num" class="form-control field">
                     </div>
                     <div class="column-data">
                         <label><?= lang('create_inv_city') ?></label>
-                        <input type="text" class="form-control field">
+                        <input type="text" name="client_city" class="form-control field">
                     </div>
-                    <div class="column-data client-company">
+                    <div class="column-data">
                         <label><?= lang('create_inv_address') ?></label>
-                        <input type="text" class="form-control field">
+                        <input type="text" name="client_address" class="form-control field">
                     </div>
                     <div class="column-data">
                         <label><?= lang('create_inv_country') ?></label>
-                        <input type="text" class="form-control field">
+                        <input type="text" name="client_country" class="form-control field">
                     </div>
                     <div class="column-data client-company">
                         <label><?= lang('create_inv_recipient') ?></label> 
-                        <input type="text" class="form-control field"> 
+                        <input type="text" name="recipient_name" class="form-control field"> 
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-7">
                     <div class="invoice-setting">
                         <div class="column-data">
                             <span class="inv-type-num"><?= lang('create_inv_inv_num') ?></span> <label>№:</label>
-                            <input type="text" class="form-control field">
+                            <input type="text" name="inv_number" value="<?= $nextInvNumber ?>" class="form-control field">
                         </div>
                         <div class="column-data">
                             <label><?= lang('create_inv_date_create') ?></label>
-                            <input type="text" placeholder="dd.mm.yyyy" value="<?= date('d.m.Y', time()) ?>" class="form-control field datepicker">
+                            <input type="text" name="date_create" placeholder="dd.mm.yyyy" value="<?= date('d.m.Y', time()) ?>" class="form-control field datepicker">
                         </div>
                         <div class="column-data">
                             <label><?= lang('create_inv_date_tax') ?></label>
-                            <input type="text" placeholder="dd.mm.yyyy" value="<?= date('d.m.Y', time()) ?>" class="form-control field datepicker">
+                            <input type="text" name="date_tax_event" placeholder="dd.mm.yyyy" value="<?= date('d.m.Y', time()) ?>" class="form-control field datepicker">
                         </div>
                         <div class="column-data">
                             <div class="checkbox">
-                                <label><input type="checkbox" id="maturity-date" value=""><?= lang('create_inv_i_maturity_date') ?></label>
+                                <label><input type="checkbox" name="have_maturity_date" id="maturity-date" value=""><?= lang('create_inv_i_maturity_date') ?></label>
                             </div>
                             <div class="maturity-date">
                                 <label><?= lang('create_inv_maturity_date') ?></label>
-                                <input type="text" placeholder="dd.mm.yyyy" value="<?= date('d.m.Y', time()) ?>" class="form-control field datepicker">
+                                <input type="text" placeholder="dd.mm.yyyy" value="<?= date('d.m.Y', time()) ?>" name="maturity_date" class="form-control field datepicker">
                             </div>
                         </div>
                         <div class="column-data">
                             <div class="checkbox">
-                                <label><input type="checkbox" value=""><?= lang('create_inv_cash_acc') ?></label>
+                                <label><input type="checkbox" name="cash_accounting" value=""><?= lang('create_inv_cash_acc') ?></label>
                             </div>
                         </div>
                     </div>
@@ -167,9 +163,18 @@
             </div>
             <div class="select-currency">
                 <?= lang('select_curreny') ?> 
-                <select class="selectpicker" id="selectCurrencyNewInv" title="<?= lang('no_currency_selected') ?>" data-live-search="true">
-                    <?php foreach ($currencies as $currency) { ?>
-                        <option value="<?= $currency['value'] ?>" <?= $myDefaultFirmCurrency == $currency['value'] ? 'selected' : '' ?>><?= $currency['name'] ?></option>
+                <select class="selectpicker" id="selectCurrencyNewInv" name="inv_currency" title="<?= lang('no_currency_selected') ?>" data-live-search="true">
+                    <?php
+                    foreach ($currencies as $currency) {
+                        if ($myDefaultFirmCurrency == $currency['value']) {
+                            $selectedCurrency = 'selected';
+                        } else {
+                            $selectedCurrency = '';
+                        }
+                        ?>
+                        <option value="<?= $currency['value'] ?>" <?= $selectedCurrency ?>><?= $currency['name'] ?></option>
+                    <?php } if ($selectedCurrency == '') { ?>
+                        <option value="EUR" selected="">EUR</option>
                     <?php } ?>
                 </select>
             </div>
@@ -197,16 +202,16 @@
                                 </div>
                             </td>
                             <td>
-                                <input type="text" value="" name="item[]" class="form-control field field-item-name">
+                                <input type="text" value="" name="items_names[]" class="form-control field field-item-name">
                                 <a href="" class="choose">
                                     <i class="fa fa-bars" aria-hidden="true"></i>
                                     <span><?= lang('create_inv_choose') ?></span>
                                 </a>
                             </td>
                             <td>
-                                <input type="text" value="0.00" class="form-control field quantity-field">
+                                <input type="text" value="0.00" name="items_quantities[]" class="form-control field quantity-field">
                                 <div class="quantity-type">
-                                    <select class="form-control" data-my-id="1">
+                                    <select class="form-control" name="items_quantity_types[]" data-my-id="1">
                                         <?php foreach ($quantityTypes as $quantityType) { ?>
                                             <option value="<?= $quantityType['name'] ?>"><?= $quantityType['name'] ?></option>
                                         <?php } ?>
@@ -217,13 +222,16 @@
                                 x
                             </td>
                             <td>
-                                <input type="text" value="0.00" class="form-control field price-field">
+                                <input type="text" value="0.00" name="items_prices[]" class="form-control field price-field">
                                 =
                             </td>
                             <td class="text-right">
                                 <div class="item-total-price">
                                     <span class="item-total">0.00</span> 
-                                    <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span>
+                                    <span class="currency-text">
+                                        <?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?>
+                                    </span>
+                                    <input type="hidden" class="item-total" value="0.00" name="items_totals[]">
                                 </div>
                             </td>
                         </tr> 
@@ -245,7 +253,11 @@
                         <div class="col-sm-6">
                             <div class="amount">
                                 <span id="items-total">0.00</span> 
-                                <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
+                                <input type="hidden" value="0.00" name="invoice_amount" class="items-total">
+                                <span class="currency-text">
+                                    <?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?>
+                                </span>
+                            </div> 
                         </div>
                     </div>
                     <div class="row amount-row">
@@ -256,9 +268,9 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="discount">
-                                <input type="text" value="0.00" class="form-control field text-discount">
+                                <input type="text" value="0.00" name="discount" class="form-control field text-discount">
                                 <div class="select-discount">
-                                    <select class="selectpicker form-control" id="discount-value"> 
+                                    <select class="selectpicker form-control" name="discount_type" id="discount-value"> 
                                         <option class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></option>
                                         <option>%</option>
                                     </select>
@@ -273,29 +285,37 @@
                         <div class="col-sm-6">
                             <div class="amount">
                                 <span id="tax-base">0.00</span>
-                                <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
+                                <input type="hidden" value="" name="tax_base" class="tax-base">
+                                <span class="currency-text">
+                                    <?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?>
+                                </span>
+                            </div> 
                         </div>
                     </div>
                     <div class="row amount-row">
                         <div class="col-sm-6">
                             <div class="no-vat-container">
                                 <?= lang('create_inv_vat') ?>
-                                <input type="text" class="form-control field vat-field" value="20">
+                                <input type="text" class="form-control field vat-field" name="vat_percent" value="20">
                                 %
                             </div>
                             <div class="no-vat">
                                 <div class="checkbox">
-                                    <label><input type="checkbox" id="no-vat" value=""><?= lang('create_inv_no_vat_mark') ?></label>
+                                    <label><input type="checkbox" name="no_vat" id="no-vat" value=""><?= lang('create_inv_no_vat_mark') ?></label>
                                 </div>
                             </div> 
                         </div>
                         <div class="col-sm-6"> 
                             <div class="amount the-vat">
                                 <span id="vat-sum">0.00</span> 
-                                <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
+                                <input type="hidden" name="vat_sum" value="0.00" class="vat-sum">
+                                <span class="currency-text">
+                                    <?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?>
+                                </span>
+                            </div> 
                             <div class="no-vat-field">
                                 <label><?= lang('create_inv_reason_no_vat') ?></label>
-                                <input type="text" class="form-control field">
+                                <input type="text" name="no_vat_reason" class="form-control field">
                                 <a href="" class="choose">
                                     <i class="fa fa-bars" aria-hidden="true"></i>
                                     <span><?= lang('create_inv_choose') ?></span>
@@ -309,19 +329,23 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="amount total">
-                                <span id="final-total">0.00</span> 
-                                <span class="currency-text"><?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?></span></div> 
+                                <span id="final-total">0.00</span>
+                                <input type="hidden" name="final_total" class="final-total" value="0.00">
+                                <span class="currency-text">
+                                    <?= $myDefaultFirmCurrency != null ? $myDefaultFirmCurrency : 'EUR' ?>
+                                </span>
+                            </div> 
                         </div>
                     </div>
                 </div>
             </div>
             <div class="remarks">
                 <label><?= lang('create_inv_remarks') ?><sup><?= lang('visibile_for_client') ?></sup></label>
-                <textarea class="form-control field area"></textarea>
+                <textarea class="form-control field area" name="remarks"></textarea>
             </div>
             <div class="payment-type">
                 <label><?= lang('create_inv_payment_type') ?></label>
-                <select class="selectpicker payment-method">
+                <select class="selectpicker payment-method" name="payment_method">
                     <?php foreach ($paymentMethods as $paymentMethod) { ?>
                         <option value="<?= $paymentMethod['name'] ?>"><?= $paymentMethod['name'] ?></option>
                     <?php } ?> 
@@ -330,8 +354,9 @@
                 </select> 
             </div> 
         </div>
-        <a href="javascript:void(0);" onclick="createInvoiceCalculator()" class="btn btn-green"><?= lang('create_inv_save') ?></a>
-        <a href="javascript:void(0);" onclick="createNewInvValidate()" class="btn btn-orange"><?= lang('create_inv_save_draft') ?></a>
+        <input type="hidden" value="0" name="is_draft">
+        <a href="javascript:void(0);" onclick="createNewInvValidate()" class="btn btn-green"><?= lang('create_inv_save') ?></a>
+        <a href="javascript:void(0);" onclick="createDraft()" class="btn btn-orange"><?= lang('create_inv_save_draft') ?></a>
         <?= lang('or') ?>
         <a href="<?= lang_url('user/invoices') ?>"><?= lang('open_invoices') ?></a>
     </div>
