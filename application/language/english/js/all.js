@@ -7,5 +7,6 @@ var lang = {
     proforma: 'Pro-forma',
     invoice: 'Invoice',
     debit_note: 'Debit note',
-    credit_note: 'Credit note'
+    credit_note: 'Credit note',
+    errorCreateInvoice: 'We have found following blank fields'
 };

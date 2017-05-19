@@ -5,6 +5,8 @@
 var pattern_sums = /^[0-9\-\.\,]+$/;
 var border_color_fields = '#e9e9e9';
 var border_color_wrong = 'red';
+var alertBoxHtml = '<div class="alert-errors">%output%<a href="javascript:void(0);" class="close-alert" onclic="cs"><i class="fa fa-times" aria-hidden="true"></i></a></div>';
+
 
 $(document).ready(function () {
     /*
@@ -55,7 +57,7 @@ $(document).ready(function () {
 /*
  * Alerts close
  */
-$('.close-alert').click(function () {
+$(document).on("click", ".close-alert", function () {
     $('.alert-errors').hide();
 });
 /*
@@ -333,7 +335,15 @@ function createNewInvValidate() {
         $('html, body').animate({
             scrollTop: $("#setInvoiceForm").offset().top
         }, 1000);
+        showError();
     }
+}
+/*
+ * Show alert box
+ */
+function showError() {
+    $(document.body).append(alertBoxHtml.replace('%output%', lang.errorCreateInvoice));
+    $('.alert-errors').css('position', 'fixed');
 }
 /*
  * Add new currency validator
