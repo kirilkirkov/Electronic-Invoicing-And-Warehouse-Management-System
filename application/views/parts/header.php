@@ -24,7 +24,7 @@
             <div id="content">
                 <header>
                     <div class="container">
-                        <div class="collapse" id="collapseLogin">
+                        <div id="collapseLogin">
                             <form method="POST" action="<?= lang_url('login') ?>">
                                 <div class="form-group">
                                     <span><?= lang('login_email') ?></span>
@@ -42,12 +42,11 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="clearfix"></div>
-                        <a class="login" data-toggle="collapse" href="#collapseLogin" aria-expanded="false" aria-controls="collapseExample"><?= lang('btn_login') ?> <i class="fa fa-sign-in" aria-hidden="true"></i></a>
                         <span class="support-top">
                             <i class="fa fa-envelope-o" aria-hidden="true"></i>
                             <a href="mailto:support@domain.com">support@domain.com</a>
                         </span>
+                        <div class="clearfix"></div>  
                         <div id="site-top">
                             <h1 class="pull-right"><?= lang('header_text') ?></h1>
                             <div class="clearfix"></div>

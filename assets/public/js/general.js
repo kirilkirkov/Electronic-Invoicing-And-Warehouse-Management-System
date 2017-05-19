@@ -4,12 +4,6 @@ $(document).ready(function () {
         pause: 'hover',
         interval: 5000,
     });
-    $('#collapseLogin').on("show.bs.collapse", function () {
-        $('.support-top').hide();
-    });
-    $('#collapseLogin').on("hidden.bs.collapse", function () {
-        $('.support-top').show();
-    });
     $('.close-alert').click(function () {
         $('.alert-errors').hide();
     });

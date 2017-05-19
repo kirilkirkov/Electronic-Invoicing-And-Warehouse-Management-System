@@ -7,7 +7,7 @@ body {font-family: "Open Sans",Arial,sans-serif;}
 header {background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #f6f6f6 0%, #ffffff 100%) repeat scroll 0 0;}
 header .container {position:relative}
 header .login {float:right; background-color: #eb8900; padding: 5px 15px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; color: #fff; font-size:14px;}
-header .support-top {float: right; margin-right: 10px; background-color: #eb8900; padding: 5px 15px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; font-size:14px; color: #fff;}
+header .support-top {float: left; background-color: #eb8900; padding: 5px 15px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; font-size:14px; color: #fff;}
 header .support-top a {color: #fff;}
 
 #site-top {margin-top:40px; margin-bottom: 15px;}
@@ -251,6 +251,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
     .icons-features {width: auto;}
     #support .contact-form input, #support .contact-form textarea {padding: 12px 12px 12px 54px; height: auto;} 
     #registration h1 {font-size:20px;}
+    header .support-top {float: right; }
 
     /* Dont zoom fileds! */
     input[type="color"],
