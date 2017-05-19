@@ -5,6 +5,7 @@
 var pattern_sums = /^[0-9\-\.\,]+$/;
 var border_color_fields = '#e9e9e9';
 var border_color_wrong = 'red';
+
 $(document).ready(function () {
     /*
      * Confirm dialog
@@ -329,6 +330,9 @@ function createNewInvValidate() {
          * who is changed from submit buttons
          */
         $('[name="is_draft"]').val(0);
+        $('html, body').animate({
+            scrollTop: $("#setInvoiceForm").offset().top
+        }, 1000);
     }
 }
 /*
