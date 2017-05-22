@@ -180,6 +180,48 @@ class NewInvoiceModel extends CI_Model
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         }
+        /*
+         * If client is not selected from list
+         * add it 
+         */
+        if ($post['client_from_list'] == 0) {
+            $this->setClient($post);
+        }
+    }
+
+    private function setInvoiceItems($invoiceId, $post)
+    {
+        $numItems = count($post['items_names']) - 1;
+        $i = 0;
+        $position = 1;
+        while ($i <= $numItems) {
+            $arrItem = array(
+                'for_invoice' => $invoiceId,
+                'for_user' => USER_ID,
+                'for_company' => SELECTED_COMPANY_ID,
+                'name' => $post['items_names'][$i],
+                'quantity' => $post['items_quantities'][$i],
+                'quantity_type' => $post['items_quantity_types'][$i],
+                'single_price' => $post['items_prices'][$i],
+                'total_price' => $post['items_totals'][$i],
+                'position' => $position
+            );
+            if (!$this->db->insert('invoices_items', $arrItem)) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
+            /*
+             * If item is not selected from list
+             * add it 
+             */
+            if ($post['item_from_list'][$i] == 0) {
+                unset($arrItem['position'], $arrItem['total_price'], $arrItem['for_invoice'], $arrItem['quantity']);
+                $arrItem['currency'] = $post['inv_currency'];
+                $this->setItemFromInvoice($arrItem);
+            }
+            $i++;
+            $position++;
+        }
     }
 
     private function setInvoiceTranslation($invoiceId, $translateId)
@@ -201,28 +243,33 @@ class NewInvoiceModel extends CI_Model
         }
     }
 
-    private function setInvoiceItems($invoiceId, $post)
+    public function setClient($post)
     {
-        $numItems = count($post['items_names']) - 1;
-        $i = 0;
-        $position = 1;
-        while ($i <= $numItems) {
-            if (!$this->db->insert('invoices_items', array(
-                        'for_invoice' => $invoiceId,
-                        'for_user' => USER_ID,
-                        'for_company' => SELECTED_COMPANY_ID,
-                        'name' => $post['items_names'][$i],
-                        'quantity' => $post['items_quantities'][$i],
-                        'quantity_type' => $post['items_quantity_types'][$i],
-                        'single_price' => $post['items_prices'][$i],
-                        'total_price' => $post['items_totals'][$i],
-                        'position' => $position
-                    ))) {
-                log_message('error', print_r($this->db->error(), true));
-                show_error(lang('database_error'));
-            }
-            $i++;
-            $position++;
+        $is_to_person = isset($post['is_to_person']) ? 1 : 0;
+        $insertArray = array(
+            'for_user' => USER_ID,
+            'for_company' => SELECTED_COMPANY_ID,
+            'client_name' => $post['client_name'],
+            'client_bulstat' => $post['client_bulstat'],
+            'is_to_person' => $is_to_person,
+            'client_ident_num' => $post['client_ident_num'],
+            'client_address' => $post['client_address'],
+            'client_city' => $post['client_city'],
+            'client_country' => $post['client_country'],
+            'recipient_name' => $post['recipient_name'],
+        );
+        if (!$this->db->insert('clients', $insertArray)) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+        return $this->db->insert_id();
+    }
+
+    public function setItemFromInvoice($arrItem)
+    {
+        if (!$this->db->insert('items', $arrItem)) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
         }
     }
 

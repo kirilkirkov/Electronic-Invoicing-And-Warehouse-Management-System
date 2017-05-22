@@ -14,6 +14,7 @@
     <div class="border"></div>
 </div>
 <form action="" id="setInvoiceForm" class="site-form" method="POST">
+    <input type="hidden" name="client_from_list" value="0"> 
     <div>
         <select class="selectpicker" name="invoice_translation" title="<?= lang('choose_translation') ?>">
             <option value="0" selected=""><?= lang('default_inv_lang') ?></option>
@@ -74,7 +75,7 @@
                 </div> 
             </div>
             <div class="row head-content">
-                <div class="col-sm-6 col-md-5">
+                <div class="col-sm-6 col-md-5"> 
                     <div class="column-data client">
                         <label><?= lang('create_inv_client') ?></label> 
                         <input type="text" name="client_name" class="form-control field">
@@ -192,6 +193,7 @@
                     <tbody class="body-items">
                         <tr>
                             <td>
+                                <input type="hidden" name="item_from_list[]" value="0">
                                 <div class="actions">
                                     <a href="javascript:void(0);" class="btn btn-default delete-item" data-my-message="<?= lang('sure_want_to_del_item') ?>">
                                         <i class="fa fa-times" aria-hidden="true"></i>
