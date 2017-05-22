@@ -369,7 +369,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?= lang('add_new_quantity_type') ?></h4>
+                <h4 class="modal-title"><?= lang('add_new_quantity_type') ?></h4>
             </div>
             <div class="modal-body site-form">
                 <input type="text" value="" placeholder="<?= lang('type_quantity_type') ?>" class="form-control field new-quantity-value">
@@ -387,7 +387,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?= lang('add_new_payment_method') ?></h4>
+                <h4 class="modal-title"><?= lang('add_new_payment_method') ?></h4>
             </div>
             <div class="modal-body site-form">
                 <input type="text" value="" placeholder="<?= lang('type_payment_method') ?>" class="form-control field my-new-pay-method">
@@ -405,7 +405,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?= lang('what_mean_new_translate') ?></h4>
+                <h4 class="modal-title"><?= lang('what_mean_new_translate') ?></h4>
             </div>
             <div class="modal-body">
                 <?= lang('what_mean_new_translate_explain') ?>
@@ -422,7 +422,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><?= lang('add_new_translation') ?></h4>
+                <h4 class="modal-title"><?= lang('add_new_translation') ?></h4>
             </div>
             <div class="modal-body site-form">
                 <form method="POST" action="" id="formAddNewTranslate">
@@ -539,6 +539,23 @@
             </div>
             <div class="modal-footer">
                 <a href="javascript:void(0);" class="btn btn-default" onclick="saveNewTranslation()"><?= lang('save_new_translate') ?></a>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close') ?></button> 
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Selector -->
+<div class="modal fade" id="modalSelector" tabindex="-1" role="dialog" aria-labelledby="modalSelector">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close') ?></button> 
             </div>
         </div>
