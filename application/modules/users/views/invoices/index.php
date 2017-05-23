@@ -35,9 +35,9 @@
                         <td><?= $invoice['inv_number'] ?></td>
                         <td><?= date('d.m.Y', $invoice['date_create']) ?></td>
                         <td><?= $invoice['client_name'] ?></td>
-                        <td><?= $invoice['inv_type'] ?></td>
+                        <td><?= lang('type_' . $invoice['inv_type']) ?></td>
                         <td><?= $invoice['final_total'] . $invoice['inv_currency'] ?></td>
-                        <td><?= $invoice['status'] ?></td> 
+                        <td><?= lang('status_' . $invoice['status']) ?></td> 
                         <td><i class="fa fa-pencil" aria-hidden="true"></i> Edit</td>
                     </tr>
                 <?php } ?>

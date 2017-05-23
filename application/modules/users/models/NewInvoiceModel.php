@@ -127,6 +127,7 @@ class NewInvoiceModel extends CI_Model
             'for_user' => USER_ID,
             'for_company' => SELECTED_COMPANY_ID,
             'inv_type' => $post['inv_type'],
+            'status' => 'new',
             'inv_number' => $post['inv_number'],
             'inv_currency' => $post['inv_currency'],
             'date_create' => strtotime($post['date_create']),
