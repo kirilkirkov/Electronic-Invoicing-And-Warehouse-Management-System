@@ -96,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="<?= lang_url('user/invoices') ?>">
                                                 <i class="fa fa-list-alt" aria-hidden="true"></i>
                                                 <?= lang('menu_list_invoices') ?> 
                                             </a>
