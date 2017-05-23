@@ -79,7 +79,7 @@
                     <div class="column-data client">
                         <label><?= lang('create_inv_client') ?></label> 
                         <input type="text" name="client_name" class="form-control field">
-                        <a href="" class="choose">
+                        <a href="javascript:void(0);" data-choose-title="<?= lang('choose_client') ?>" data-selector-type="client" class="choose">
                             <i class="fa fa-bars" aria-hidden="true"></i>
                             <span><?= lang('create_inv_choose') ?></span>
                         </a> 
@@ -92,7 +92,7 @@
                     <div class="column-data client client-company"> 
                         <label><?= lang('create_inv_bulstat') ?></label> 
                         <input type="text" name="client_bulstat" class="form-control field">
-                        <a href="" class="choose">
+                        <a href="javascript:void(0);" data-choose-title="<?= lang('choose_client') ?>" data-selector-type="client" class="choose">
                             <i class="fa fa-bars" aria-hidden="true"></i>
                             <span><?= lang('create_inv_choose') ?></span>
                         </a>
@@ -104,11 +104,11 @@
                     </div>
                     <div class="column-data client-company client-vat-registered">
                         <label><?= lang('create_inv_vat_number') ?></label>
-                        <input type="text" class="form-control field">
+                        <input type="text" name="vat_number" class="form-control field">
                     </div>
                     <div class="column-data client-company">
                         <label><?= lang('create_inv_mol') ?></label>
-                        <input type="text" class="form-control field">
+                        <input type="text" name="accountable_person" class="form-control field">
                     </div>
                     <div class="column-data client-individial">
                         <label><?= lang('create_inv_ident_num') ?></label>
@@ -205,7 +205,7 @@
                             </td>
                             <td>
                                 <input type="text" value="" name="items_names[]" class="form-control field field-item-name">
-                                <a href="" class="choose">
+                                <a href="javascript:void(0);" data-choose-title="<?= lang('choose_item') ?>" data-selector-type="item" class="choose">
                                     <i class="fa fa-bars" aria-hidden="true"></i>
                                     <span><?= lang('create_inv_choose') ?></span>
                                 </a>

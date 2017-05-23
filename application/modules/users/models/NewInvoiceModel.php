@@ -121,7 +121,6 @@ class NewInvoiceModel extends CI_Model
     {
         $cashAccounting = isset($post['cash_accounting']) ? 1 : 0;
         $cash_accounting = isset($post['cash_accounting']) ? 1 : 0;
-        $client_vat_registered = isset($post['client_vat_registered']) ? 1 : 0;
         $have_maturity_date = isset($post['have_maturity_date']) ? 1 : 0;
         $no_vat = isset($post['no_vat']) ? 1 : 0;
         $insertArray = array(
@@ -139,7 +138,6 @@ class NewInvoiceModel extends CI_Model
             'payment_method' => $post['payment_method'],
             'to_inv_number' => $post['to_inv_number'],
             'to_inv_date' => $post['to_inv_date'],
-            'client_vat_registered' => $client_vat_registered,
             'invoice_amount' => $post['invoice_amount'],
             'discount' => $post['discount'],
             'discount_type' => $post['discount_type'],
@@ -163,6 +161,7 @@ class NewInvoiceModel extends CI_Model
     private function setInvoiceClient($invoiceId, $post)
     {
         $is_to_person = isset($post['is_to_person']) ? 1 : 0;
+        $client_vat_registered = isset($post['client_vat_registered']) ? 1 : 0;
         $insertArray = array(
             'for_invoice' => $invoiceId,
             'for_user' => USER_ID,
@@ -170,10 +169,13 @@ class NewInvoiceModel extends CI_Model
             'client_name' => $post['client_name'],
             'client_bulstat' => $post['client_bulstat'],
             'is_to_person' => $is_to_person,
+            'client_vat_registered' => $client_vat_registered,
+            'vat_number' => $post['vat_number'],
             'client_ident_num' => $post['client_ident_num'],
             'client_address' => $post['client_address'],
             'client_city' => $post['client_city'],
             'client_country' => $post['client_country'],
+            'accountable_person' => $post['accountable_person'],
             'recipient_name' => $post['recipient_name'],
         );
         if (!$this->db->insert('invoices_clients', $insertArray)) {
@@ -246,16 +248,20 @@ class NewInvoiceModel extends CI_Model
     public function setClient($post)
     {
         $is_to_person = isset($post['is_to_person']) ? 1 : 0;
+        $client_vat_registered = isset($post['client_vat_registered']) ? 1 : 0;
         $insertArray = array(
             'for_user' => USER_ID,
             'for_company' => SELECTED_COMPANY_ID,
             'client_name' => $post['client_name'],
             'client_bulstat' => $post['client_bulstat'],
             'is_to_person' => $is_to_person,
+            'client_vat_registered' => $client_vat_registered,
+            'vat_number' => $post['vat_number'],
             'client_ident_num' => $post['client_ident_num'],
             'client_address' => $post['client_address'],
             'client_city' => $post['client_city'],
             'client_country' => $post['client_country'],
+            'accountable_person' => $post['accountable_person'],
             'recipient_name' => $post['recipient_name'],
         );
         if (!$this->db->insert('clients', $insertArray)) {
@@ -271,6 +277,21 @@ class NewInvoiceModel extends CI_Model
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         }
+    }
+
+    public function getListForSelector($type)
+    {
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('for_company', SELECTED_COMPANY_ID);
+        if ($type == 'client') {
+            $this->db->select('client_name, client_bulstat, is_to_person, vat_number, client_vat_registered, client_ident_num, client_address, client_city, client_country, accountable_person, recipient_name');
+            $result = $this->db->get('clients');
+        }
+        if ($type == 'item') {
+            $this->db->select('name, quantity_type, single_price, currency');
+            $result = $this->db->get('items');
+        }
+        return $result->result_array();
     }
 
 }

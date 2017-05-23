@@ -94,6 +94,7 @@ $route['user/settings/invoices/delete/quantitytype/(:num)'] = 'users/settings/in
 $route['user/addnewpaymentmethod'] = 'users/newinvoice/newinvoice/addnewpaymentmethod';
 $route['user/settings/invoices/delete/paymentmethod/(:num)'] = 'users/settings/invoices/deletepaymentmethod/$1';
 $route['user/settings/invoices/delete/novatreason/(:num)'] = 'users/settings/invoices/deletenovatreason/$1';
+$route['user/modalselector'] = 'users/newinvoice/newinvoice/modalselector';
 /* USERS PANEL ROUTES */
 
 $route['^(\w{2})$'] = $route['default_controller'];

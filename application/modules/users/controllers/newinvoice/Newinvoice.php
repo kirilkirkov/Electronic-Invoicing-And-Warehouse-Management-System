@@ -130,4 +130,19 @@ class Newinvoice extends USER_Controller
         }
     }
 
+    public function modalselector()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        }
+        if (isset($_POST['selectType'])) {
+            $result = $this->NewInvoiceModel->getListForSelector($_POST['selectType']);
+            if (!empty($result)) {
+                include 'application/modules/users/views/newinvoice/listSelectorHtml.php';
+            } else {
+                echo '<div class="no-data">' . $_POST['selectType'] == 'clients' ? lang('no_clients_selector') : lang('no_items_selector') . '</div>';
+            }
+        }
+    }
+
 }

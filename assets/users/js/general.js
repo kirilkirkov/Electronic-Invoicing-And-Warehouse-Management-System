@@ -6,7 +6,7 @@ var pattern_sums = /^[0-9\-\.\,]+$/;
 var border_color_fields = '#e9e9e9';
 var border_color_wrong = 'red';
 var alertBoxHtml = '<div class="alert-errors">%output%<a href="javascript:void(0);" class="close-alert" onclic="cs"><i class="fa fa-times" aria-hidden="true"></i></a></div>';
-
+var chooseItemIndex;
 
 $(document).ready(function () {
     /*
@@ -254,6 +254,46 @@ $('[name="inv_type"]').change(function () {
     }
 });
 /*
+ * Modal Selector
+ */
+$('.choose').click(function () {
+    var modalTitle = $(this).data('choose-title');
+    $('#modalSelector .modal-title').text(modalTitle);
+    var selectorType = $(this).data('selector-type');
+
+    /*
+     * If we click choose in table of items
+     * save this index because we will need after to
+     * add item_from_list[] value to 1
+     */
+    if ($(this).closest('td').parent()[0]) {
+        chooseItemIndex = $(this).closest('td').parent()[0].sectionRowIndex;
+    }
+
+    $.post(urls.modalSelector, {selectType: selectorType},
+            function (htmlList) {
+                $('#modalSelector .modal-body').empty().append(htmlList);
+            });
+    $('#modalSelector').modal('show');
+});
+/*
+ * Search in modal selector
+ */
+$(document).on("keyup", '[name="SearchDualList"]', function (e) {
+    var current_query = $('[name="SearchDualList"]').val();
+    if (current_query !== "") {
+        $("#modalSelector .list-group li").hide();
+        $("#modalSelector .list-group li").each(function () {
+            var current_keyword = $(this).text();
+            if (current_keyword.search(current_query) >= 0) {
+                $(this).show();
+            }
+        });
+    } else {
+        $(".list-group li").show();
+    }
+});
+/*
  * Create draft invoice
  */
 function createDraft() {
@@ -335,14 +375,14 @@ function createNewInvValidate() {
         $('html, body').animate({
             scrollTop: $("#setInvoiceForm").offset().top
         }, 1000);
-        showError();
+        showError(lang.errorCreateInvoice);
     }
 }
 /*
  * Show alert box
  */
-function showError() {
-    $(document.body).append(alertBoxHtml.replace('%output%', lang.errorCreateInvoice));
+function showError(text) {
+    $(document.body).append(alertBoxHtml.replace('%output%', text));
     $('.alert-errors').css('position', 'fixed');
 }
 /*
@@ -512,4 +552,53 @@ function saveNewTranslation() {
     if (valid == true) {
         document.getElementById('formAddNewTranslate').submit();
     }
+}
+/*
+ * When click client from list
+ * parse object and fill fields
+ */
+function getClient(id) {
+    $('[name="client_from_list"]').val(1);
+    $('[name="client_name"]').val(clients[id].client_name);
+    $('[name="client_bulstat"]').val(clients[id].client_bulstat);
+    if (clients[id].is_to_person == '1') {
+        $('[name="is_to_person"]').prop("checked", true);
+        $('.client-company').hide();
+        $('.client-individial').show();
+    } else {
+        $('.client-company').show();
+        $('.client-individial').hide();
+    }
+    if (clients[id].client_vat_registered == '1') {
+        $('[name="client_vat_registered"]').prop("checked", true);
+        $('.client-vat-registered').show();
+    } else {
+        $('.client-vat-registered').hide();
+    }
+    $('[name="client_city"]').val(clients[id].client_city);
+    $('[name="client_country"]').val(clients[id].client_country);
+    $('[name="accountable_person"]').val(clients[id].accountable_person);
+    $('[name="client_address"]').val(clients[id].client_address);
+    $('[name="recipient_name"]').val(clients[id].recipient_name);
+    $('[name="client_ident_num"]').val(clients[id].client_ident_num);
+    $('[name="vat_number"]').val(clients[id].vat_number);
+    $('#modalSelector').modal('hide');
+}
+/*
+ * When click item from list
+ * parse object and fill fields
+ */
+function getItem(id) {
+    $('[name="item_from_list[]"]:eq(' + chooseItemIndex + ')').val(1);
+    $('[name="items_names[]"]:eq(' + chooseItemIndex + ')').val(items[id].name);
+    $('[name="items_prices[]"]:eq(' + chooseItemIndex + ')').val(items[id].single_price);
+    if ($('[name="items_quantity_types[]"]:eq(' + chooseItemIndex + ') option[value="' + items[id].quantity_type + '"]').length <= 0) {
+        $('[name="items_quantity_types[]"]:eq(' + chooseItemIndex + ')').prepend('<option value="' + items[id].quantity_type + '">' + items[id].quantity_type + '</option>');
+    }
+    $('[name="items_quantity_types[]"]:eq(' + chooseItemIndex + ')').val(items[id].quantity_type);
+    var selectedCurrency = $('#selectCurrencyNewInv').val();
+    if (selectedCurrency != items[id].currency) {
+        showError(lang.currencyItemNotSame + ' - ' + items[id].currency);
+    }
+    $('#modalSelector').modal('hide');
 }

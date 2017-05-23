@@ -8,5 +8,6 @@ var lang = {
     invoice: 'Invoice',
     debit_note: 'Debit note',
     credit_note: 'Credit note',
-    errorCreateInvoice: 'We have found following blank fields'
+    errorCreateInvoice: 'We have found following blank fields',
+    currencyItemNotSame: 'The price entered for this item is in a different currency'
 };
