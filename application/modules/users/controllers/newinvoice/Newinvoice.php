@@ -16,7 +16,7 @@ class Newinvoice extends USER_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('NewInvoiceModel');
+        $this->load->model(array('NewInvoiceModel', 'SettingsModel'));
     }
 
     public function index($editId = 0)
@@ -31,6 +31,7 @@ class Newinvoice extends USER_Controller
         $data['quantityTypes'] = $this->NewInvoiceModel->getAllQuantityTypes();
         $data['paymentMethods'] = $this->NewInvoiceModel->getPaymentMethods();
         $data['invoiceLanguages'] = $this->NewInvoiceModel->getMyInvoiceLanguages();
+        $data['myNoVatReasons'] = $this->SettingsModel->getMyNoVatReasons();
         $nextInvNumber = $this->NewInvoiceModel->getNextFreeInvoiceNumber();
         if ($editId > 0) {
             $result = $this->NewInvoiceModel->getInvoiceById($editId);

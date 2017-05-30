@@ -289,12 +289,15 @@
                                 </span>
                             </div> 
                             <div class="no-vat-field" <?= isset($_POST['no_vat']) && $_POST['no_vat'] == 1 ? 'style="display:block;"' : '' ?>>
-                                <label><?= lang('create_inv_reason_no_vat') ?></label>
-                                <input type="text" value="<?= isset($_POST['no_vat_reason']) ? $_POST['no_vat_reason'] : '' ?>" name="no_vat_reason" class="form-control field">
-                                <a href="javascript:void(0);" class="choose">
-                                    <i class="fa fa-bars" aria-hidden="true"></i>
-                                    <span><?= lang('create_inv_choose') ?></span>
-                                </a>
+                                <label><?= lang('create_inv_reason_no_vat') ?></label> 
+                                <input type="text" class="form-control field" name="no_vat_reason" value="<?= isset($_POST['no_vat_reason']) ? $_POST['no_vat_reason'] : '' ?>">
+                                <select class="selectpicker" id="select-vat-from-list" title="<?= lang('no_vat_reason_selected') ?>" data-live-search="true">
+                                    <?php
+                                    foreach ($myNoVatReasons as $vatReason) {
+                                        ?>
+                                        <option value="<?= $vatReason['reason'] ?>"><?= $vatReason['reason'] ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                     </div>

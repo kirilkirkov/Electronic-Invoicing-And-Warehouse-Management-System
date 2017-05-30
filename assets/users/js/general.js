@@ -292,6 +292,12 @@ $('.choose').click(function () {
     $('#modalSelector').modal('show');
 });
 /*
+ * Select vat reason from list
+ */
+$('#select-vat-from-list').change(function () {
+    $('[name="no_vat_reason"]').val($(this).val());
+});
+/*
  * Search in modal selector
  */
 $(document).on("keyup", '[name="SearchDualList"]', function (e) {
