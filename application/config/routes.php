@@ -97,6 +97,7 @@ $route['user/settings/invoices/delete/novatreason/(:num)'] = 'users/settings/inv
 $route['user/modalselector'] = 'users/newinvoice/newinvoice/modalselector';
 $route['user/invoices'] = "users/invoices/invoices";
 $route['user/invoices/(:num)'] = "users/invoices/invoices/index/$1";
+$route['user/edit/invoice/(:num)'] = "users/newinvoice/newinvoice/index/$1";
 /* USERS PANEL ROUTES */
 
 $route['^(\w{2})$'] = $route['default_controller'];

@@ -87,8 +87,16 @@ class NewInvoiceModel extends CI_Model
         return $result->result_array();
     }
 
-    public function checkIsFreeInvoiceNumber($number)
+    public function checkIsFreeInvoiceNumber($number, $invType, $without = 0)
     {
+        /*
+         * If we edit an invoice, 
+         * we put the ID to not be verified
+         */
+        if ($without > 0) {
+            $this->db->where('id !=', $without);
+        }
+        $this->db->where('inv_type', $invType);
         $this->db->where('inv_number', $number);
         $this->db->where('for_user', USER_ID);
         $this->db->where('for_company', SELECTED_COMPANY_ID);
@@ -119,7 +127,6 @@ class NewInvoiceModel extends CI_Model
 
     public function setInvoice($post)
     {
-        $cashAccounting = isset($post['cash_accounting']) ? 1 : 0;
         $cash_accounting = isset($post['cash_accounting']) ? 1 : 0;
         $have_maturity_date = isset($post['have_maturity_date']) ? 1 : 0;
         $no_vat = isset($post['no_vat']) ? 1 : 0;
@@ -147,7 +154,9 @@ class NewInvoiceModel extends CI_Model
             'vat_sum' => $post['vat_sum'],
             'no_vat' => $no_vat,
             'no_vat_reason' => $post['no_vat_reason'],
-            'final_total' => $post['final_total']
+            'final_total' => $post['final_total'],
+            'is_draft' => $post['is_draft'],
+            'created' => time()
         );
         if (!$this->db->insert('invoices', $insertArray)) {
             log_message('error', print_r($this->db->error(), true));
@@ -157,6 +166,134 @@ class NewInvoiceModel extends CI_Model
         $this->setInvoiceTranslation($insertId, $post['invoice_translation']);
         $this->setInvoiceItems($insertId, $post);
         $this->setInvoiceClient($insertId, $post);
+    }
+
+    public function updateInvoice($post)
+    {
+        $cash_accounting = isset($post['cash_accounting']) ? 1 : 0;
+        $have_maturity_date = isset($post['have_maturity_date']) ? 1 : 0;
+        $no_vat = isset($post['no_vat']) ? 1 : 0;
+        $updateArray = array(
+            'inv_type' => $post['inv_type'],
+            'inv_number' => $post['inv_number'],
+            'inv_currency' => $post['inv_currency'],
+            'date_create' => strtotime($post['date_create']),
+            'date_tax_event' => strtotime($post['date_tax_event']),
+            'cash_accounting' => $cash_accounting,
+            'have_maturity_date' => $have_maturity_date,
+            'maturity_date' => strtotime($post['maturity_date']),
+            'remarks' => $post['remarks'],
+            'payment_method' => $post['payment_method'],
+            'to_inv_number' => $post['to_inv_number'],
+            'to_inv_date' => $post['to_inv_date'],
+            'invoice_amount' => $post['invoice_amount'],
+            'discount' => $post['discount'],
+            'discount_type' => $post['discount_type'],
+            'tax_base' => $post['tax_base'],
+            'vat_percent' => $post['vat_percent'],
+            'vat_sum' => $post['vat_sum'],
+            'no_vat' => $no_vat,
+            'no_vat_reason' => $post['no_vat_reason'],
+            'final_total' => $post['final_total']
+        );
+        if (!$this->db->where('id', $post['editId'])->update('invoices', $updateArray)) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+        if (isset($post['show_translations'])) {
+            $this->updateInvoiceTranslation($post['editId'], $post['invoice_translation']);
+        }
+        $this->updateInvoiceClient($post['editId'], $post);
+        $this->updateInvoiceItems($post['editId'], $post);
+    }
+
+    private function updateInvoiceTranslation($invoiceId, $translateId)
+    {
+        if ($translateId == '0') {
+            $this->db->where('id', 1);
+        } else {
+            $this->db->where('for_user', USER_ID);
+            $this->db->where('id', $translateId);
+        }
+        $result = $this->db->get('invoices_languages');
+        $translate = $result->row_array();
+        unset($translate['id']);
+        $translate['for_invoice'] = $invoiceId;
+        $translate['for_user'] = USER_ID;
+        $this->db->where('for_invoice', $invoiceId);
+        $this->db->where('for_user', USER_ID);
+        if (!$this->db->update('invoices_translations', $translate)) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+    }
+
+    private function updateInvoiceClient($invoiceId, $post)
+    {
+        $is_to_person = isset($post['is_to_person']) ? 1 : 0;
+        $client_vat_registered = isset($post['client_vat_registered']) ? 1 : 0;
+        $updateArray = array(
+            'client_name' => $post['client_name'],
+            'client_bulstat' => $post['client_bulstat'],
+            'is_to_person' => $is_to_person,
+            'client_vat_registered' => $client_vat_registered,
+            'vat_number' => $post['vat_number'],
+            'client_ident_num' => $post['client_ident_num'],
+            'client_address' => $post['client_address'],
+            'client_city' => $post['client_city'],
+            'client_country' => $post['client_country'],
+            'accountable_person' => $post['accountable_person'],
+            'recipient_name' => $post['recipient_name'],
+        );
+        if (!$this->db->where('for_invoice', $invoiceId)->update('invoices_clients', $updateArray)) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+    }
+
+    private function updateInvoiceItems($invoiceId, $post)
+    {
+        $numItems = count($post['items_names']) - 1;
+        $i = 0;
+        $position = 1;
+        while ($i <= $numItems) {
+            /*
+             * If is update, update the item
+             * else insert the new
+             */
+            if ($post['is_item_update'][$i] > 0) {
+                $arrItem = array(
+                    'name' => $post['items_names'][$i],
+                    'quantity' => $post['items_quantities'][$i],
+                    'quantity_type' => $post['items_quantity_types'][$i],
+                    'single_price' => $post['items_prices'][$i],
+                    'total_price' => $post['items_totals'][$i],
+                    'position' => $position
+                );
+                if (!$this->db->where('for_invoice', $invoiceId)->where('id', $post['is_item_update'][$i])->update('invoices_items', $arrItem)) {
+                    log_message('error', print_r($this->db->error(), true));
+                    show_error(lang('database_error'));
+                }
+            } else {
+                $arrItem = array(
+                    'for_invoice' => $invoiceId,
+                    'for_user' => USER_ID,
+                    'for_company' => SELECTED_COMPANY_ID,
+                    'name' => $post['items_names'][$i],
+                    'quantity' => $post['items_quantities'][$i],
+                    'quantity_type' => $post['items_quantity_types'][$i],
+                    'single_price' => $post['items_prices'][$i],
+                    'total_price' => $post['items_totals'][$i],
+                    'position' => $position
+                );
+                if (!$this->db->insert('invoices_items', $arrItem)) {
+                    log_message('error', print_r($this->db->error(), true));
+                    show_error(lang('database_error'));
+                }
+            }
+            $i++;
+            $position++;
+        }
     }
 
     private function setInvoiceClient($invoiceId, $post)
@@ -293,6 +430,27 @@ class NewInvoiceModel extends CI_Model
             $result = $this->db->get('items');
         }
         return $result->result_array();
+    }
+
+    public function getInvoiceById($invId)
+    {
+        $this->db->select('invoices.*, invoices.tax_base as inv_tax_base, invoices.remarks as inv_remakrs, invoices_clients.*, invoices_translations.*');
+        $this->db->where('invoices.id', $invId);
+        $this->db->where('invoices.for_user', USER_ID);
+        $this->db->where('invoices.for_company', SELECTED_COMPANY_ID);
+        $this->db->join('invoices_clients', 'invoices_clients.for_invoice = invoices.id');
+        $this->db->join('invoices_translations', 'invoices_translations.for_invoice = invoices.id');
+        $this->db->limit(1);
+        $result = $this->db->get('invoices');
+        $arr = $result->row_array();
+// if dont find this invoice.. dont search items
+        if (empty($arr)) {
+            return $arr;
+        }
+        $result = $this->db->where('for_invoice', $invId)->order_by('position', 'asc')->get('invoices_items');
+        $items = $result->result_array();
+        $arr['items'] = $items;
+        return $arr;
     }
 
 }

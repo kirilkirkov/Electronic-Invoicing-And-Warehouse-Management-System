@@ -11,16 +11,19 @@ if (!defined('BASEPATH')) {
 class Newinvoice extends USER_Controller
 {
 
+    private $editId;
+
     public function __construct()
     {
         parent::__construct();
         $this->load->model('NewInvoiceModel');
     }
 
-    public function index()
+    public function index($editId = 0)
     {
         $data = array();
         $head = array();
+        $this->editId = $editId;
         $this->postChecker();
         $head['title'] = 'Administration - Home';
         $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
@@ -29,7 +32,23 @@ class Newinvoice extends USER_Controller
         $data['paymentMethods'] = $this->NewInvoiceModel->getPaymentMethods();
         $data['invoiceLanguages'] = $this->NewInvoiceModel->getMyInvoiceLanguages();
         $nextInvNumber = $this->NewInvoiceModel->getNextFreeInvoiceNumber();
+        if ($editId > 0) {
+            $result = $this->NewInvoiceModel->getInvoiceById($editId);
+            if (empty($result)) {
+                show_404();
+            }
+            $_POST = $result;
+        }
         $data['nextInvNumber'] = $nextInvNumber;
+        $data['editId'] = $editId;
+        if (isset($_POST['inv_currency'])) {
+            $theCurrency = $_POST['inv_currency'];
+        } elseif ($data['myDefaultFirmCurrency'] != null) {
+            $theCurrency = $data['myDefaultFirmCurrency'];
+        } else {
+            $theCurrency = 'EUR';
+        }
+        $data['theCurrency'] = $theCurrency;
         $this->render('newinvoice/index', $head, $data);
         $this->saveHistory('Go to new invoice page');
     }
@@ -39,7 +58,11 @@ class Newinvoice extends USER_Controller
         if (isset($_POST['addNewInvoiceLanguage'])) {
             $this->addNewInvoiceLanguage();
         }
+        /*
+         * Add new invoice
+         */
         if (isset($_POST['inv_type'])) {
+            $_POST['editId'] = $this->editId; // Check is update or new invoice
             $this->createInvoice();
         }
     }
@@ -48,11 +71,19 @@ class Newinvoice extends USER_Controller
     {
         $isValid = $this->validateInvoice();
         if ($isValid === true) {
-            $this->NewInvoiceModel->setInvoice($_POST);
+            if ($this->editId > 0) {
+                $this->NewInvoiceModel->updateInvoice($_POST);
+            } else {
+                $this->NewInvoiceModel->setInvoice($_POST);
+            }
             redirect(lang_url('user/new/invoice'));
         } else {
             $this->session->set_flashdata('resultAction', $isValid);
-            redirect(lang_url('user/new/invoice'));
+            if ($this->editId > 0) {
+                redirect(lang_url('user/edit/invoice/' . $this->editId));
+            } else {
+                redirect(lang_url('user/new/invoice'));
+            }
         }
     }
 
@@ -76,7 +107,7 @@ class Newinvoice extends USER_Controller
         if (mb_strlen(trim($_POST['inv_number'])) == 0) {
             $errors[] = lang('err_create_inv_num');
         } else {
-            $isFreeInvNum = $this->NewInvoiceModel->checkIsFreeInvoiceNumber($_POST['inv_number']);
+            $isFreeInvNum = $this->NewInvoiceModel->checkIsFreeInvoiceNumber($_POST['inv_number'], $_POST['inv_type'], $this->editId);
             if ($isFreeInvNum === false) {
                 $errors[] = lang('err_create_inv_num_is_taken');
             }

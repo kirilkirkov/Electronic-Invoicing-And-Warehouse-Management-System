@@ -38,7 +38,9 @@
                         <td><?= lang('type_' . $invoice['inv_type']) ?></td>
                         <td><?= $invoice['final_total'] . $invoice['inv_currency'] ?></td>
                         <td><?= lang('status_' . $invoice['status']) ?></td> 
-                        <td><i class="fa fa-pencil" aria-hidden="true"></i> Edit</td>
+                        <td>
+                            <a href="<?= lang_url('user/edit/invoice/' . $invoice['id']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>

@@ -71,6 +71,19 @@ $('#maturity-date').change(function () {
     }
 });
 /*
+ * Show Translations
+ * When edit invoice we hide translations
+ * if user want to show him.. when save the invoice edit
+ * we will get choosed translation :)
+ */
+$('#show-translations').change(function () {
+    if ($(this).is(":checked")) {
+        $('.choose-translation').show();
+    } else {
+        $('.choose-translation').hide();
+    }
+});
+/*
  * Change company to individaul and back
  */
 $('#individual-client').change(function () {
@@ -114,6 +127,8 @@ $('.add-new-item').click(function () {
     obj.find('.quantity-field').val('0.00').css("border-color", border_color_fields);
     obj.find('.price-field').val('0.00').css("border-color", border_color_fields);
     obj.find('.item-total-price').text('');
+    obj.find('[name="item_from_list[]"]').val('0'); // clear some indicators
+    obj.find('[name="is_item_update[]"]').val('0'); // clear some indicators
     var selectedOption = $('#selectCurrencyNewInv').find(":selected").val();
     if (!selectedOption) {
         selectedOption = $('.currency-text').first().text();
@@ -484,7 +499,7 @@ function createInvoiceCalculator() {
         }
     });
     $('#items-total').text(items_total);
-    $('.items-total', this).val(items_total);
+    $('.items-total').val(items_total);
     // Tax base after discount
     var discount_type = $('#discount-value option:selected').val();
     var discount_value = $('.text-discount').val();

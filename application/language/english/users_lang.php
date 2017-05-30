@@ -207,3 +207,6 @@ $lang['type_tax_inv'] = 'Invoice';
 $lang['type_prof'] = 'Pro-forma';
 $lang['type_credit'] = 'Credit note';
 $lang['status_new'] = 'New';
+$lang['update_inv_save'] = 'Update';
+$lang['show_translation_on_edit'] = 'Show translations';
+$lang['show_translation_now_use'] = '(now use %transname% translation)';
