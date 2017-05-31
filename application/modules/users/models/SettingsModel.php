@@ -112,7 +112,41 @@ class SettingsModel extends CI_Model
         if (!$this->db->delete('user_no_vat_reasons')) {
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
-        } 
+        }
+    }
+
+    public function setValueStore($key, $value)
+    {
+        $this->db->where('_key', $key);
+        $query = $this->db->get('value_store');
+        if ($query->num_rows() > 0) {
+            $this->db->where('_key', $key);
+            $this->db->where('for_user', USER_ID);
+            $this->db->update('value_store', array('value' => $value));
+        } else {
+            $this->db->insert('value_store', array('for_user' => USER_ID, 'value' => $value, '_key' => $key));
+        }
+    }
+
+    public function getValueStores($key)
+    {
+        $query = $this->db->query("SELECT value FROM value_store WHERE _key = '$key' AND user_id=" . USER_ID . "");
+        $result = $query->row_array();
+        if (empty($result)) {
+            return null;
+        }
+        return $result['value'];
+    }
+
+    public function updateCalculatorUsage($status)
+    {
+        $this->db->limit(1);
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('_key', 'opt_invCalculator');
+        if (!$this->db->update('value_store', array('value' => $status))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
 }

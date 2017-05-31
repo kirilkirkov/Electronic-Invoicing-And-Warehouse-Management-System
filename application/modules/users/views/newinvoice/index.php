@@ -544,7 +544,10 @@
     </div>
 </div>
 <?php
-// if edit invoice and have more from one items, show action buttons
+/*
+ * if edit invoice and have more from one items
+ * show action buttons
+ */
 if (isset($_POST['items']) && count($_POST['items']) > 1) {
     ?>
     <style>
@@ -554,6 +557,7 @@ if (isset($_POST['items']) && count($_POST['items']) > 1) {
 ?>
 <script>
     var createInv = {
-        rountTo: <?= $opt_inv_roundTo ?>
+        rountTo: <?= $opt_invRoundTo ?>,
+        calculatorStatus: <?= $opt_invCalculator ?>
     };
 </script>

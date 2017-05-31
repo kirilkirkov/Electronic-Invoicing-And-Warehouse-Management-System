@@ -211,3 +211,4 @@ $lang['update_inv_save'] = 'Update';
 $lang['show_translation_on_edit'] = 'Show translations';
 $lang['show_translation_now_use'] = '(now use %transname% translation)';
 $lang['no_vat_reason_selected'] = 'Select from list';
+$lang['stop_inv_calculator'] = 'Stop invoice calculator';

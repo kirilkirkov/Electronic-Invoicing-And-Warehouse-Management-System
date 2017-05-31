@@ -131,12 +131,25 @@ class PublicModel extends CI_Model
     }
 
     /*
-     * Default system options tables for every user
+     * Default system options for every user
+     * they are named - value stores
      */
 
     private function insertOptionsTables($user_id)
     {
-        if (!$this->db->query('INSERT INTO users_invoices_options (for_user, opt_inv_roundTo) VALUES (' . $user_id . ', 2)')) {
+        $data = array(
+            array(
+                'for_user' => $user_id,
+                '_key' => 'opt_invRoundTo',
+                'value' => '2'
+            ),
+            array(
+                'for_user' => $user_id,
+                '_key' => 'opt_invCalculator',
+                'value' => '1'
+            )
+        );
+        if (!$this->db->insert_batch('value_store', $data)) {
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         }
@@ -162,13 +175,18 @@ class PublicModel extends CI_Model
         return false;
     }
 
-    public function getUserInvoicesOptions()
+    public function getValueStores()
     {
-        $this->db->select('opt_inv_roundTo');
-        $this->db->limit(1);
-        $this->db->where('for_user', USER_ID);
-        $result = $this->db->get('users_invoices_options');
-        return $result->row_array();
+        $query = $this->db->query("SELECT _key, value FROM value_store WHERE for_user=" . USER_ID . "");
+        $result = $query->result_array();
+        if (empty($result)) {
+            return null;
+        }
+        $arr = array();
+        foreach ($result as $res) {
+            $arr[$res['_key']] = $res['value'];
+        }
+        return $arr;
     }
 
 }

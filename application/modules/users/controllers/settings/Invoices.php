@@ -50,15 +50,25 @@ class Invoices extends USER_Controller
         if (isset($_POST['noVatReason'])) {
             $this->addNewNoVatReason();
         }
-        if (isset($_POST['opt_inv_roundTo'])) {
+        if (isset($_POST['opt_invRoundTo'])) {
             $this->updateInvoicesRoundTo();
         }
+        if (isset($_POST['opt_invCalculator'])) {
+            $this->updateInvCaluculatorUsage();
+        }
+    }
+
+    private function updateInvCaluculatorUsage()
+    {
+        $this->SettingsModel->updateCalculatorUsage($_POST['opt_invCalculator']);
+        $this->saveHistory('Set calculator usage to - ' . $_POST['opt_invCalculator'] == 0 ? 'off' : 'on');
+        redirect(lang_url('user/settings/invoices'));
     }
 
     private function updateInvoicesRoundTo()
     {
-        $this->NewInvoiceModel->updateInvoicesRoundTo($_POST['opt_inv_roundTo']);
-        $this->saveHistory('Update round invoices total to - ' . $_POST['opt_inv_roundTo']);
+        $this->NewInvoiceModel->updateInvoicesRoundTo($_POST['opt_invRoundTo']);
+        $this->saveHistory('Update round invoices total to - ' . $_POST['opt_invRoundTo']);
         redirect(lang_url('user/settings/invoices'));
     }
 

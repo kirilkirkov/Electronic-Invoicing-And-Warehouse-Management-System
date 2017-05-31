@@ -16,7 +16,7 @@ class USER_Controller extends HEAD_Controller
     public function render($view, $head, $data = null)
     {
         $vars = array();
-        $vars = $this->loadUserInvoicesOptions();
+        $vars = $this->loadValueStores();
         $vars['myFirms'] = $this->firms;
         $this->load->vars($vars);
         $this->load->view('parts/header', $head);
@@ -119,13 +119,13 @@ class USER_Controller extends HEAD_Controller
         return $result;
     }
 
-    private function loadUserInvoicesOptions()
+    private function loadValueStores()
     {
-        $result_array = $this->PublicModel->getUserInvoicesOptions();
-        if (empty($result_array)) {
+        $result = $this->PublicModel->getValueStores();
+        if (empty($result)) {
             show_error(lang('error_load_options'));
         }
-        return $result_array;
-    } 
+        return $result;
+    }
 
 }

@@ -481,63 +481,66 @@ function addNewNoVatReason() {
  * createInv variable is initialized in create invoice page
  */
 function createInvoiceCalculator() {
-    // Sum item by item
-    var items_total = 0.00;
-    $('.body-items tr').each(function () {
-        $('.quantity-field', this).css("border-color", border_color_fields);
-        $('.price-field', this).css("border-color", border_color_fields);
-        var item_quantity = $('.quantity-field', this).val();
-        var item_price = $('.price-field', this).val();
-        var is_valid = true;
-        if (!pattern_sums.test(item_quantity)) {
-            $('.quantity-field', this).css("border-color", border_color_wrong);
-            is_valid = false;
-        }
-        if (!pattern_sums.test(item_price)) {
-            $('.price-field', this).css("border-color", border_color_wrong);
-            is_valid = false;
-        }
-        if (is_valid == true) {
-            var item_total = math.multiply(item_quantity, item_price).toFixed(createInv.rountTo);
-            $('.item-total', this).text(item_total);
-            $('.item-total', this).val(item_total);
-            items_total = math.add(items_total, item_total).toFixed(createInv.rountTo);
-        }
-    });
-    $('#items-total').text(items_total);
-    $('.items-total').val(items_total);
-    // Tax base after discount
-    var discount_type = $('#discount-value option:selected').val();
-    var discount_value = $('.text-discount').val();
-    if (pattern_sums.test(discount_value)) {
-        $('.text-discount').css("border-color", border_color_fields);
-        if (discount_type == '%') {
-            var tax_base = math.subtract(items_total, math.multiply(items_total, math.divide(discount_value, 100))).toFixed(createInv.rountTo);
+    // if is enabled calculator
+    if (createInv.calculatorStatus == 1) {
+        // Sum item by item
+        var items_total = 0.00;
+        $('.body-items tr').each(function () {
+            $('.quantity-field', this).css("border-color", border_color_fields);
+            $('.price-field', this).css("border-color", border_color_fields);
+            var item_quantity = $('.quantity-field', this).val();
+            var item_price = $('.price-field', this).val();
+            var is_valid = true;
+            if (!pattern_sums.test(item_quantity)) {
+                $('.quantity-field', this).css("border-color", border_color_wrong);
+                is_valid = false;
+            }
+            if (!pattern_sums.test(item_price)) {
+                $('.price-field', this).css("border-color", border_color_wrong);
+                is_valid = false;
+            }
+            if (is_valid == true) {
+                var item_total = math.multiply(item_quantity, item_price).toFixed(createInv.rountTo);
+                $('.item-total', this).text(item_total);
+                $('.item-total', this).val(item_total);
+                items_total = math.add(items_total, item_total).toFixed(createInv.rountTo);
+            }
+        });
+        $('#items-total').text(items_total);
+        $('.items-total').val(items_total);
+        // Tax base after discount
+        var discount_type = $('#discount-value option:selected').val();
+        var discount_value = $('.text-discount').val();
+        if (pattern_sums.test(discount_value)) {
+            $('.text-discount').css("border-color", border_color_fields);
+            if (discount_type == '%') {
+                var tax_base = math.subtract(items_total, math.multiply(items_total, math.divide(discount_value, 100))).toFixed(createInv.rountTo);
+            } else {
+                var tax_base = math.subtract(items_total, discount_value).toFixed(createInv.rountTo);
+            }
+            $('#tax-base').text(tax_base);
+            $('.tax-base').val(tax_base);
         } else {
-            var tax_base = math.subtract(items_total, discount_value).toFixed(createInv.rountTo);
+            $('.text-discount').css("border-color", border_color_wrong);
         }
-        $('#tax-base').text(tax_base);
-        $('.tax-base').val(tax_base);
-    } else {
-        $('.text-discount').css("border-color", border_color_wrong);
-    }
-    // Get vat 
-    var final_sum = tax_base;
-    if (!$('#no-vat').is(":checked")) {
-        var vat_percent = $('.vat-field').val();
-        if (pattern_sums.test(vat_percent)) {
-            $('.vat-field').css("border-color", border_color_fields);
-            var vat_sum = math.multiply(math.divide(tax_base, 100), vat_percent).toFixed(createInv.rountTo);
-            $('#vat-sum').text(vat_sum);
-            $('.vat-sum').val(vat_sum);
-            final_sum = math.add(tax_base, vat_sum).toFixed(createInv.rountTo);
-        } else {
-            $('.vat-field').css("border-color", border_color_wrong);
+        // Get vat 
+        var final_sum = tax_base;
+        if (!$('#no-vat').is(":checked")) {
+            var vat_percent = $('.vat-field').val();
+            if (pattern_sums.test(vat_percent)) {
+                $('.vat-field').css("border-color", border_color_fields);
+                var vat_sum = math.multiply(math.divide(tax_base, 100), vat_percent).toFixed(createInv.rountTo);
+                $('#vat-sum').text(vat_sum);
+                $('.vat-sum').val(vat_sum);
+                final_sum = math.add(tax_base, vat_sum).toFixed(createInv.rountTo);
+            } else {
+                $('.vat-field').css("border-color", border_color_wrong);
+            }
         }
+        // Set final sum
+        $('#final-total').text(final_sum);
+        $('.final-total').val(final_sum);
     }
-    // Set final sum
-    $('#final-total').text(final_sum);
-    $('.final-total').val(final_sum);
 }
 /*
  * Verify that filed for round totals is not empty
@@ -545,10 +548,10 @@ function createInvoiceCalculator() {
 function updateRoundTotals() {
     var pattern = /^[0-9]+$/;
     var valid = true;
-    var name = $('[name="opt_inv_roundTo"]').val();
+    var name = $('[name="opt_invRoundTo"]').val();
     name = $.trim(name);
     if (name.length == 0 || !pattern.test(name)) {
-        $('[name="opt_inv_roundTo"]').css("border-color", border_color_wrong);
+        $('[name="opt_invRoundTo"]').css("border-color", border_color_wrong);
         valid = false;
     }
     if (valid == true) {
