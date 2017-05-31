@@ -62,7 +62,6 @@ class Clients extends USER_Controller
     {
         $isValid = $this->validateClient();
         if ($isValid === true) {
-             $_POST['editId'] = $this->editId;
             $this->NewInvoiceModel->setClient($_POST);
             $this->saveHistory('Add client - ' . $_POST['client_name']);
             redirect(lang_url('user/clients'));

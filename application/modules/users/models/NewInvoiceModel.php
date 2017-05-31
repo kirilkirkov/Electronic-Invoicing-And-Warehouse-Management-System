@@ -403,9 +403,16 @@ class NewInvoiceModel extends CI_Model
             'accountable_person' => $post['accountable_person'],
             'recipient_name' => $post['recipient_name'],
         );
-        if (!$this->db->insert('clients', $insertArray)) {
-            log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
+        if ($post['editId'] > 0) {
+            if (!$this->db->where('id', $post['editId'])->update('clients', $insertArray)) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
+        } else {
+            if (!$this->db->insert('clients', $insertArray)) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
         }
         return $this->db->insert_id();
     }
