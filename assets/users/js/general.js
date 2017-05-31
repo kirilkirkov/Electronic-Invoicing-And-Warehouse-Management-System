@@ -93,17 +93,14 @@ $('#individual-client').change(function () {
     } else {
         $('.client-company').show();
         $('.client-individial').hide();
+        vatRegisteredFieldVisibility();
     }
 });
 /*
  * Show client vat field for vat registration
  */
 $('#client-vat-registered').change(function () {
-    if ($(this).is(":checked")) {
-        $('.client-vat-registered').show();
-    } else {
-        $('.client-vat-registered').hide();
-    }
+    vatRegisteredFieldVisibility();
 });
 /*
  * Checkbox no vat in craete invoice page
@@ -625,4 +622,46 @@ function getItem(id) {
         showError(lang.currencyItemNotSame + ' - ' + items[id].currency);
     }
     $('#modalSelector').modal('hide');
+}
+/*
+ * Vat field visibility check
+ */
+function vatRegisteredFieldVisibility() {
+    if ($('#client-vat-registered').is(":checked")) {
+        $('.client-vat-registered').show();
+    } else {
+        $('.client-vat-registered').hide();
+    }
+}
+/*
+ * When create/update client
+ * Validate him
+ */
+function newClientValidate() {
+    var valid = true;
+    $('[name="client_name"]').css("border-color", border_color_fields);
+    $('[name="client_address"]').css("border-color", border_color_fields);
+    var client_name = $('[name="client_name"]').val();
+    var client_address = $('[name="client_address"]').val();
+    if ($.trim(client_name).length == 0) {
+        $('[name="client_name"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if ($.trim(client_address).length == 0) {
+        $('[name="client_address"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if (valid == true) {
+        document.getElementById('setNewClient').submit();
+    } else {
+        /*
+         * Return to some default values
+         * who is changed from submit buttons
+         */
+        $('[name="is_draft"]').val(0);
+        $('html, body').animate({
+            scrollTop: $("#setNewClient").offset().top
+        }, 1000);
+        showError(lang.errorCreateClient);
+    }
 }

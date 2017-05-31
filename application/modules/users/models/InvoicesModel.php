@@ -10,8 +10,8 @@ class InvoicesModel extends CI_Model
 
     public function countInvoices()
     {
-        $this->db->where('invoices.for_user', USER_ID);
-        $this->db->where('invoices.for_company', SELECTED_COMPANY_ID);
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('for_company', SELECTED_COMPANY_ID);
         return $this->db->count_all_results('invoices');
     }
 
