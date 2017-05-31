@@ -32,4 +32,15 @@ class ClientsModel extends CI_Model
         return $result->row_array();
     }
 
+    public function deleteClient($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('for_company', SELECTED_COMPANY_ID);
+        if (!$this->db->delete('clients')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+    }
+
 }

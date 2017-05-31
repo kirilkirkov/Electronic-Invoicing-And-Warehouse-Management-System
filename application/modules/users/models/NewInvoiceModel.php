@@ -413,8 +413,8 @@ class NewInvoiceModel extends CI_Model
                 log_message('error', print_r($this->db->error(), true));
                 show_error(lang('database_error'));
             }
+            return $this->db->insert_id();
         }
-        return $this->db->insert_id();
     }
 
     public function setItemFromInvoice($arrItem)

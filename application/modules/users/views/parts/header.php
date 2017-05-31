@@ -108,7 +108,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="<?= lang_url('user/items') ?>">
                                                 <i class="fa fa-buysellads" aria-hidden="true"></i>
                                                 <?= lang('menu_list_items') ?> 
                                             </a>

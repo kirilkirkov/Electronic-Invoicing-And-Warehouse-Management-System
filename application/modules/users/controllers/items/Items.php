@@ -8,7 +8,7 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Clients extends USER_Controller
+class Items extends USER_Controller
 {
 
     private $num_rows = 2;
@@ -18,7 +18,7 @@ class Clients extends USER_Controller
     {
         parent::__construct();
         $this->load->helper(array('pagination'));
-        $this->load->model(array('ClientsModel', 'NewInvoiceModel'));
+        $this->load->model(array('ItemsModel', 'NewInvoiceModel'));
     }
 
     public function index($page = 0)
@@ -26,14 +26,14 @@ class Clients extends USER_Controller
         $data = array();
         $head = array();
         $head['title'] = 'Administration - Home';
-        $rowscount = $this->ClientsModel->countClients($_GET);
-        $data['clients'] = $this->ClientsModel->getClients($this->num_rows, $page);
-        $data['linksPagination'] = pagination('user/clients', $rowscount, $this->num_rows, 3);
-        $this->render('clients/index', $head, $data);
-        $this->saveHistory('Go to clients page');
+        $rowscount = $this->ItemsModel->countItems($_GET);
+        $data['items'] = $this->ItemsModel->getItems($this->num_rows, $page);
+        $data['linksPagination'] = pagination('user/items', $rowscount, $this->num_rows, 3);
+        $this->render('items/index', $head, $data);
+        $this->saveHistory('Go to items page');
     }
 
-    public function addClient($id = 0)
+    public function addItem($id = 0)
     {
         $data = array();
         $head = array();
@@ -41,53 +41,59 @@ class Clients extends USER_Controller
         $this->editId = $id;
         $this->postChecker();
         if ($id > 0) {
-            $result = $this->ClientsModel->getClientInfo($id);
+            $result = $this->ItemsModel->getItemInfo($id);
             if (empty($result)) {
                 show_404();
             }
             $_POST = $result;
         }
-        $this->render('clients/addclient', $head, $data);
-        $this->saveHistory('Go to add client page');
+        $data['quantityTypes'] = $this->NewInvoiceModel->getAllQuantityTypes();
+        $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
+        $this->render('items/additem', $head, $data);
+        $this->saveHistory('Go to add item page');
     }
 
     private function postChecker()
     {
-        if (isset($_POST['client_name'])) {
-            $this->setClient();
+        if (isset($_POST['name'])) {
+            $this->setItem();
         }
     }
 
-    private function setClient()
+    private function setItem()
     {
-        $isValid = $this->validateClient();
+        $isValid = $this->validateItem();
         if ($isValid === true) {
-            $this->NewInvoiceModel->setClient($_POST);
-            $this->saveHistory('Add client - ' . $_POST['client_name']);
-            redirect(lang_url('user/clients'));
+            $_POST['editId'] = $this->editId;
+            $this->ItemsModel->setItem($_POST);
+            $this->saveHistory('Add item - ' . $_POST['name']);
+            redirect(lang_url('user/items'));
         } else {
             $this->session->set_flashdata('resultAction', $isValid);
             if ($this->editId > 0) {
-                redirect(lang_url('user/edit/client/' . $this->editId));
+                redirect(lang_url('user/edit/item/' . $this->editId));
             } else {
-                redirect(lang_url('user/add/client'));
+                redirect(lang_url('user/add/item'));
             }
         }
     }
 
-    private function validateClient()
+    private function validateItem()
     {
         $errors = array();
-        if (mb_strlen(trim($_POST['client_name'])) == 0) {
-            $errors[] = lang('err_create_client_name');
-        }
-        if (mb_strlen(trim($_POST['client_address'])) == 0) {
-            $errors[] = lang('err_create_client_addr');
+        if (mb_strlen(trim($_POST['name'])) == 0) {
+            $errors[] = lang('err_create_item_name');
         }
         if (empty($errors)) {
             return true;
         }
         return $errors;
+    }
+
+    public function deleteItem($id)
+    {
+        $this->ItemsModel->deleteItem($id);
+        redirect(lang_url('user/items'));
     }
 
 }

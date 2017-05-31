@@ -654,14 +654,32 @@ function newClientValidate() {
     if (valid == true) {
         document.getElementById('setNewClient').submit();
     } else {
-        /*
-         * Return to some default values
-         * who is changed from submit buttons
-         */
         $('[name="is_draft"]').val(0);
         $('html, body').animate({
             scrollTop: $("#setNewClient").offset().top
         }, 1000);
         showError(lang.errorCreateClient);
+    }
+}
+/*
+ * When create/update item
+ * Validate him
+ */
+function newItemValidate() {
+    var valid = true;
+    $('[name="name"]').css("border-color", border_color_fields);
+    var item_name = $('[name="name"]').val();
+    if ($.trim(item_name).length == 0) {
+        $('[name="name"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if (valid == true) {
+        document.getElementById('setNewItem').submit();
+    } else {
+        $('[name="is_draft"]').val(0);
+        $('html, body').animate({
+            scrollTop: $("#setNewItem").offset().top
+        }, 1000);
+        showError(lang.errorCreateItem);
     }
 }

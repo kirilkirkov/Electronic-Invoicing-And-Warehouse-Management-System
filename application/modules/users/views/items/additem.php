@@ -1,0 +1,52 @@
+<div class="selected-page">
+    <div class="inner">
+        <h1>
+            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+            <?= lang('add_item') ?>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="active">Data</li>
+        </ol>
+    </div>
+    <div class="border"></div>
+</div>
+<form action="" class="site-form" method="POST" id="setNewItem">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="form-group">
+                <label><?= lang('add_item_name') ?></label> 
+                <input type="text" name="name" value="<?= isset($_POST['name']) ? $_POST['name'] : '' ?>" class="form-control field">
+            </div>
+            <div class="form-group">
+                <label><?= lang('add_item_qua_type') ?></label> 
+                <select class="selectpicker" name="quantity_type">
+                    <?php foreach ($quantityTypes as $quantityType) { ?>
+                        <option value="<?= $quantityType['name'] ?>"><?= $quantityType['name'] ?></option>
+                    <?php } if (isset($_POST['quantity_type'])) { ?>
+                        <option selected="" value="<?= $_POST['quantity_type'] ?>"><?= $_POST['quantity_type'] ?></option>
+                    <?php } ?>
+                </select> 
+            </div>
+            <div class="form-group">
+                <label><?= lang('add_item_price') ?></label> 
+                <input type="text" name="single_price" value="<?= isset($_POST['single_price']) ? $_POST['single_price'] : '' ?>" class="form-control field">
+            </div>
+            <div class="form-group">
+                <label><?= lang('add_item_currency') ?></label> 
+                <select class="selectpicker" name="currency" title="<?= lang('no_currency_selected_item') ?>" data-live-search="true">
+                    <?php
+                    foreach ($currencies as $currency) {
+                        ?>
+                        <option value="<?= $currency['value'] ?>"><?= $currency['name'] ?></option>
+                    <?php } if (isset($_POST['currency'])) { ?>
+                        <option selected="" value="<?= $_POST['currency'] ?>"><?= $_POST['currency'] ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <a href="javascript:void(0);" onclick="newItemValidate()" class="btn btn-default"><?= lang('save_item') ?></a>
+            <a href="<?= lang_url('user/items') ?>" class="btn btn-default"><?= lang('cancel_save_item') ?></a>
+        </div>
+    </div>
+</form>

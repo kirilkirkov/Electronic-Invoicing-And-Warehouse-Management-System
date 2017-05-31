@@ -100,8 +100,14 @@ $route['user/invoices/(:num)'] = "users/invoices/invoices/index/$1";
 $route['user/edit/invoice/(:num)'] = "users/newinvoice/newinvoice/index/$1";
 $route['user/clients'] = "users/clients/clients";
 $route['user/clients/(:num)'] = "users/clients/clients/index/$1";
+$route['user/delete/client/(:num)'] = "users/clients/clients/deleteclient/$1";
 $route['user/edit/client/(:num)'] = "users/clients/clients/addclient/$1";
 $route['user/add/client'] = "users/clients/clients/addclient";
+$route['user/items'] = "users/items/items";
+$route['user/items/(:num)'] = "users/items/items/index/$1";
+$route['user/delete/item/(:num)'] = "users/items/items/deleteitem/$1";
+$route['user/edit/item/(:num)'] = "users/items/items/additem/$1";
+$route['user/add/item'] = "users/items/items/additem";
 /* USERS PANEL ROUTES */
 
 $route['^(\w{2})$'] = $route['default_controller'];
