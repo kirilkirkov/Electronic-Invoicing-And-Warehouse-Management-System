@@ -11,5 +11,6 @@ var lang = {
     errorCreateInvoice: 'We have found following blank fields',
     currencyItemNotSame: 'The price entered for this item is in a different currency',
     errorCreateClient: 'Some client required fields are blank!',
-    errorCreateItem: 'Some item required fields are blank!'
+    errorCreateItem: 'Some item required fields are blank!',
+    errorCreateEmployee: 'You have invalid fields!'
 };

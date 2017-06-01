@@ -3,6 +3,7 @@
  * @description Users JavaScript
  */
 var pattern_sums = /^[0-9\-\.\,]+$/;
+var pattern_email = /\S+@\S+\.\S+/;
 var border_color_fields = '#e9e9e9';
 var border_color_wrong = 'red';
 var alertBoxHtml = '<div class="alert-errors">%output%<a href="javascript:void(0);" class="close-alert" onclic="cs"><i class="fa fa-times" aria-hidden="true"></i></a></div>';
@@ -401,7 +402,7 @@ function createNewInvValidate() {
  */
 function showError(text) {
     $(document.body).append(alertBoxHtml.replace('%output%', text));
-    $('.alert-errors').css('position', 'fixed');
+    $('.alert-errors').css('position', 'fixed').delay(4000).fadeOut(1500);
 }
 /*
  * Add new currency validator
@@ -676,10 +677,37 @@ function newItemValidate() {
     if (valid == true) {
         document.getElementById('setNewItem').submit();
     } else {
-        $('[name="is_draft"]').val(0);
-        $('html, body').animate({
-            scrollTop: $("#setNewItem").offset().top
-        }, 1000);
         showError(lang.errorCreateItem);
+    }
+}
+/*
+ * When create/update employee
+ * Validate him
+ */
+function newEmployeeValidate() {
+    var valid = true;
+    $('[name="email"]').css("border-color", border_color_fields);
+    $('[name="password"]').css("border-color", border_color_fields);
+    var emp_email = $('[name="email"]').val();
+    if ($.trim(emp_email).length == 0) {
+        $('[name="email"]').css("border-color", border_color_wrong);
+        valid = false;
+    } else {
+        if (!pattern_email.test(emp_email)) {
+            $('[name="email"]').css("border-color", border_color_wrong);
+            valid = false;
+        }
+    }
+    if (opt.passReq == 1) {
+        var emp_pass = $('[name="password"]').val();
+        if ($.trim(emp_pass).length == 0) {
+            $('[name="password"]').css("border-color", border_color_wrong);
+            valid = false;
+        }
+    }
+    if (valid == true) {
+        document.getElementById('setNewEmployee').submit();
+    } else {
+        showError(lang.errorCreateEmployee);
     }
 }

@@ -12,4 +12,4 @@
     </div>
     <div class="border"></div>
 </div>
-asd
+<a href="<?= lang_url('user/settings/employees') ?>">employees</a>

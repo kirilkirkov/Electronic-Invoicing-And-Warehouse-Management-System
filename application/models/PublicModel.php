@@ -155,22 +155,60 @@ class PublicModel extends CI_Model
         }
     }
 
-    public function getUserInfoFromEmail($email)
+    public function getUserInfoFromEmail($email, $type)
     {
-        $this->db->where('enabled', 1);
-        $this->db->where('email', $email);
-        $result = $this->db->get('users');
-        return $result->row_array();
+        $array = array();
+        /*
+         * if is logged employee
+         * return data for user and for employee
+         * else return data only for user
+         */
+        if ($type == 2) {
+            $this->db->where('enabled', 1);
+            $this->db->where('email', $email);
+            $result = $this->db->get('employees');
+            $array['employee'] = $result->row_array();
+            
+            $this->db->where('enabled', 1);
+            $this->db->where('id', $array['employee']['for_user']);
+            $result = $this->db->get('users');
+            $array['user'] = $result->row_array();
+        } else {
+            $this->db->where('enabled', 1);
+            $this->db->where('email', $email);
+            $result = $this->db->get('users');
+            $array['user'] = $result->row_array();
+        }
+        return $array;
     }
+
+    /*
+     * RETURN TYPES EXPLAIN
+     * 1 is user
+     * 2 is employee
+     * 3 is both 
+     */
 
     public function loginCheck($post)
     {
         $this->db->where('enabled', 1);
         $this->db->where('email', $post['email']);
         $this->db->where('password', md5salt($post['password']));
-        $num = $this->db->count_all_results('users');
-        if ($num > 0) {
-            return true;
+        $numUsers = $this->db->count_all_results('users');
+
+        $this->db->where('enabled', 1);
+        $this->db->where('email', $post['email']);
+        $this->db->where('password', md5salt($post['password']));
+        $numEmployees = $this->db->count_all_results('employees');
+
+        if ($numUsers > 0 && $numEmployees > 0) {
+            return 3;
+        }
+        if ($numEmployees > 0 && $numUsers == 0) {
+            return 2;
+        }
+        if ($numUsers > 0 && $numEmployees == 0) {
+            return 1;
         }
         return false;
     }

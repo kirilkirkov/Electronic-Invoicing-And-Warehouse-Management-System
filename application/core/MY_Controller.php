@@ -15,11 +15,19 @@ class MY_Controller extends HEAD_Controller
         $this->load->view('parts/footer');
     }
 
-    public function setUserLogin($email)
+    public function setUserLogin($email, $type)
     {
-        $userInfo = $this->PublicModel->getUserInfoFromEmail($email);
+        $userInfo = $this->PublicModel->getUserInfoFromEmail($email, $type);
         if (!empty($userInfo)) {
-            $_SESSION['user_login'] = $userInfo['email'];
+            if ($type == 2) {
+                $email = $userInfo['employee']['email'];
+            } else {
+                $email = $userInfo['user']['email'];
+            }
+            $_SESSION['user_login'] = array(
+                'email' => $email,
+                'type' => $type
+            );
             redirect(lang_url('user'));
         } else {
             log_message('error', ':Error: - Cant set user login for email: ' . $email);

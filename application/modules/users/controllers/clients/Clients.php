@@ -16,8 +16,7 @@ class Clients extends USER_Controller
 
     public function __construct()
     {
-        parent::__construct();
-        $this->load->helper(array('pagination'));
+        parent::__construct(); 
         $this->load->model(array('ClientsModel', 'NewInvoiceModel'));
     }
 

@@ -73,8 +73,12 @@ class Registration extends MY_Controller
     private function loginCheck()
     {
         $result = $this->PublicModel->loginCheck($_POST);
-        if ($result === true) {
-            $this->setUserLogin($_POST['email']);
+        if ($result !== false) {
+            if ($result == 3) {
+                exit;
+            } else {
+                $this->setUserLogin($_POST['email'], $result);
+            }
         } else {
             $this->session->set_flashdata('email', $_POST['email']);
             $this->session->set_flashdata('loginErrors', lang('usr_or_pass_invalid'));

@@ -10,7 +10,7 @@ class USER_Controller extends HEAD_Controller
         parent::__construct();
         $this->loginCheck();
         $this->hasFirmCkeck();
-        $this->load->helper('uploader');
+        $this->load->helper(array('uploader', 'pagination'));
     }
 
     public function render($view, $head, $data = null)
@@ -24,35 +24,51 @@ class USER_Controller extends HEAD_Controller
         $this->load->view('parts/footer');
     }
 
+    /*
+     * If session type == 2 is employee
+     * and return info for him
+     */
+
     private function loginCheck()
     {
         if (!isset($_SESSION['user_login'])) {
             redirect(base_url());
         } else {
-            $userInfo = $this->PublicModel->getUserInfoFromEmail($_SESSION['user_login']);
-            if (!empty($userInfo)) {
+            $userInfo = $this->PublicModel->getUserInfoFromEmail($_SESSION['user_login']['email'], $_SESSION['user_login']['type']);
+            if (!empty($userInfo)) { 
                 /*
                  * Get default company if user is not select manually
                  */
                 if (!isset($_SESSION['selected_company'])) {
                     $this->load->model('HomeModel');
-                    $useCompany = $this->HomeModel->getDefaultCompany($userInfo['id']);
+                    $useCompany = $this->HomeModel->getDefaultCompany($userInfo['user']['id']);
                 } else {
                     $useCompany = $_SESSION['selected_company'];
                 }
                 /*
-                 *  DEFINE USER CONSTANTS
+                 *  DEFINE USER AND EMPLOYEE CONSTANTS
                  */
-                define('USER_EMAIL', $userInfo['email']);
-                define('USER_REGISTERED', $userInfo['time_registered']);
-                define('USER_ID', $userInfo['id']);
+                define('USER_ID', $userInfo['user']['id']);
                 define('SELECTED_COMPANY_ID', $useCompany['id']);
-                define('SELECTED_COMPANY_NAME', $useCompany['name']);
+                if (isset($userInfo['employee'])) {
+                    define('EMPLOYEE_ID', $userInfo['employee']['id']);
+                }
+                $this->loadPermissions();
             } else {
                 log_message('error', ':Error: - User try to login, he have session but cant get user info from email: ' . $_SESSION['user_login']);
                 redirect(base_url());
             }
         }
+    }
+
+    private function loadPermissions()
+    {
+        $permissions = null;
+        if (defined('EMPLOYEE_ID')) {
+            $this->load->model('SettingsModel');
+            $permissions = $this->SettingsModel->getPermissions();
+        }
+        $this->load->library('permissions', $permissions);
     }
 
     private function hasFirmCkeck()

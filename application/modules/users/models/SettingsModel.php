@@ -149,4 +149,103 @@ class SettingsModel extends CI_Model
         }
     }
 
+    public function countEmployees()
+    {
+        $this->db->where('for_user', USER_ID);
+        return $this->db->count_all_results('employees');
+    }
+
+    public function getEmployees($limit, $page)
+    {
+        $this->db->where('for_user', USER_ID);
+        $result = $this->db->get('employees', $limit, $page);
+        return $result->result_array();
+    }
+
+    public function setEmployee($post)
+    {
+        $insertArray = array(
+            'for_user' => USER_ID,
+            'name' => $post['name'],
+            'email' => $post['email'],
+            'phone' => $post['phone'],
+            'password' => md5salt($post['password']),
+            'time_added' => time()
+        );
+        if ($post['editId'] > 0) {
+            if (mb_strlen(trim($post['password'])) == 0) {
+                unset($insertArray['password']);
+            }
+            if (!$this->db->where('id', $post['editId'])->update('employees', $insertArray)) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
+        } else {
+            if (!$this->db->insert('employees', $insertArray)) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
+            return $this->db->insert_id();
+        }
+    }
+
+    public function getEmployeeInfo($id)
+    {
+        $this->db->where('id', $id);
+        $result = $this->db->get('employees');
+        return $result->row_array();
+    }
+
+    public function checkEmployeeFreeEmail($email, $editId)
+    {
+        if ($editId > 0) {
+            $this->db->where('id !=', $editId);
+        }
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('email', $email);
+        $num = $this->db->count_all_results('employees');
+        if ($num > 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public function deleteEmployee($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->where('for_user', USER_ID);
+        if (!$this->db->delete('employees')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+        $this->db->where('for_employee', $id);
+        if (!$this->db->delete('employees_permissions')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+    }
+
+    public function setNewEmployeePermissions($employeeId, $defaultPermissions)
+    {
+        $insertArray = array();
+        foreach ($defaultPermissions as $key => $value) {
+            $insertArray[] = array(
+                'for_employee' => $employeeId,
+                'perm' => $key,
+                'role' => $value
+            );
+        }
+        if (!$this->db->insert_batch('employees_permissions', $insertArray)) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+    }
+
+    public function getPermissions()
+    {
+        $this->db->where('for_employee', EMPLOYEE_ID);
+        $result = $this->db->get('employees_permissions');
+        return $result->result_array();
+    }
+
 }

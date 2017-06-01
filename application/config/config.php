@@ -542,3 +542,19 @@ $config['rewrite_short_tags'] = FALSE;
   | Array:		array('10.0.1.200', '192.168.5.0/24')
  */
 $config['proxy_ips'] = '';
+
+/*
+ * Array with available permissions
+ */
+$config['permissions'] = array(
+    'perm_add_invoice' => 1,
+    'perm_edit_invoice' => 1,
+    'perm_delete_invoice' => 1,
+    'perm_change_inv_status' => 1,
+    'perm_add_clients' => 1,
+    'perm_edit_clients' => 1,
+    'perm_delete_clients' => 1,
+    'perm_add_items' => 1,
+    'perm_edit_items' => 1,
+    'perm_delete_items' => 1
+);
