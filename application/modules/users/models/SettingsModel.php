@@ -199,11 +199,16 @@ class SettingsModel extends CI_Model
     public function checkEmployeeFreeEmail($email, $editId)
     {
         if ($editId > 0) {
-            $this->db->where('id !=', $editId);
+            $this->db->where('employees.id !=', $editId);
         }
         $this->db->where('for_user', USER_ID);
         $this->db->where('email', $email);
-        $num = $this->db->count_all_results('employees');
+        $num1 = $this->db->count_all_results('employees');
+
+        $this->db->where('id', USER_ID);
+        $this->db->where('email', $email);
+        $num2 = $this->db->count_all_results('users');
+        $num = $num1 + $num2;
         if ($num > 0) {
             return false;
         }
