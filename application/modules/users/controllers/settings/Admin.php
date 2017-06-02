@@ -19,6 +19,9 @@ class Admin extends USER_Controller
 
     public function index()
     {
+        if (defined('EMPLOYEE_ID')) {
+            show_404();
+        }
         $data = array();
         $head = array();
         $head['title'] = 'Administration - Settings';
