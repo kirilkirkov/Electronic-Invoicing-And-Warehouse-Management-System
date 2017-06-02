@@ -267,3 +267,5 @@ $lang['perm_edit_items'] = 'Edit items';
 $lang['perm_delete_items'] = 'Delete items';
 $lang['perm_can_manage_rights'] = 'Manage rights of other employees';
 $lang['success_save_new_perms'] = 'New permissions are saved!';
+$lang['perm_delete_employees'] = 'Can delete employees';
+$lang['perm_edit_employees'] = 'Can edit employees';

@@ -557,5 +557,7 @@ $config['permissions'] = array(
     'perm_add_items' => 1,
     'perm_edit_items' => 1,
     'perm_delete_items' => 1,
-    'perm_can_manage_rights' => 1
+    'perm_can_manage_rights' => 1,
+    'perm_delete_employees' => 1,
+    'perm_edit_employees' => 1
 );
