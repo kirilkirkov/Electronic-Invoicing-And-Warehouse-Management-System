@@ -280,4 +280,42 @@ class SettingsModel extends CI_Model
         }
     }
 
+    public function getAdminInfo()
+    {
+        $this->db->where('id', USER_ID);
+        $result = $this->db->get('users');
+        return $result->row_array();
+    }
+
+    public function checkRegisteredUserFreeEmail($email)
+    {
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('email', $email);
+        $num1 = $this->db->count_all_results('employees');
+
+        $this->db->where('email', $email);
+        $this->db->where('id !=', USER_ID);
+        $num2 = $this->db->count_all_results('users');
+        $num = $num1 + $num2;
+        if ($num > 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public function updateUserAdminInfo($post)
+    {
+        unset($post['id']);
+        if (mb_strlen(trim($post['password'])) == 0) {
+            unset($post['password']);
+        }
+        $this->db->where('id', USER_ID);
+        if (!$this->db->update('users', $post)) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        } else {
+            $_SESSION['user_login']['email'] = $post['email'];
+        }
+    }
+
 }

@@ -59,6 +59,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </form>
                         <ul class="nav navbar-nav navbar-right">
+                            <?php if (!defined('EMPLOYEE_ID')) { ?>
+                                <li><a href="<?= lang_url('user/admin') ?>"><?= lang('usr_admin_menu') ?></a></li>
+                            <?php } ?>
                             <li><a href="<?= base_url('user/logout') ?>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                         </ul>
                     </div>
@@ -68,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="container-fluid"> 
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <h1><?= SELECTED_COMPANY_NAME ?></h1>
+                                    <h1> f</h1>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="stats">

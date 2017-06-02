@@ -711,3 +711,9 @@ function newEmployeeValidate() {
         showError(lang.errorCreateEmployee);
     }
 }
+/*
+ * Edit Admin User Validator
+ */
+function editAdminUser()
+{
+}
