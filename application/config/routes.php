@@ -126,3 +126,4 @@ $route['rules'] = "help/rules";
 
 $route['login'] = "registration/login";
 $route['password-forgotten'] = "registration/forgotten";
+$route['choose-type-of-login'] = 'registration/choosetype';

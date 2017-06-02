@@ -75,7 +75,8 @@ class Registration extends MY_Controller
         $result = $this->PublicModel->loginCheck($_POST);
         if ($result !== false) {
             if ($result == 3) {
-                exit;
+                $_SESSION['savedPost'] = $_POST;
+                redirect(lang_url('choose-type-of-login'));
             } else {
                 $this->setUserLogin($_POST['email'], $result);
             }
@@ -91,6 +92,32 @@ class Registration extends MY_Controller
         $data = array();
         $head = array();
         $this->render('registration/forgotten', $head, $data);
+    }
+
+    /*
+     * Choose type of login if have user and employee
+     * with this email and password
+     */
+
+    public function chooseType()
+    {
+        $data = array();
+        $head = array();
+        if (!$_SESSION['savedPost']) {
+            redirect(lang_url());
+        }
+        if (isset($_GET['type'])) {
+            if ($_GET['type'] != 1 && $_GET['type'] != 2) {
+                show_404();
+            }
+            $validUser = $this->PublicModel->loginCheck($_SESSION['savedPost']);
+            if ($validUser != false) {
+                $this->setUserLogin($_SESSION['savedPost']['email'], $_GET['type']);
+            } else {
+                show_404();
+            }
+        }
+        $this->render('registration/choosetype', $head, $data);
     }
 
 }
