@@ -248,4 +248,31 @@ class SettingsModel extends CI_Model
         return $result->result_array();
     }
 
+    public function getEmployeePermissions($id)
+    {
+        $array = array();
+        $this->db->select('perm, role');
+        $this->db->where('for_employee', $id);
+        $this->db->where('for_user', USER_ID);
+        $this->db->join('employees', 'employees.id = employees_permissions.for_employee');
+        $result = $this->db->get('employees_permissions');
+        $arr = $result->result_array();
+        foreach ($arr as $ar) {
+            $array[$ar['perm']] = $ar['role'];
+        }
+        return $array;
+    }
+
+    public function updateEmployeePermissions($newPermissions, $employeeId)
+    {
+        foreach ($newPermissions as $key => $val) {
+            $this->db->where('for_employee', $employeeId);
+            $this->db->where('perm', $key);
+            if (!$this->db->update('employees_permissions', array('role' => $val))) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
+        }
+    }
+
 }

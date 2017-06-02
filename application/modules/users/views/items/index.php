@@ -34,14 +34,16 @@
                         <td><?= $item['single_price'] . ' ' . $item['currency'] ?></td>
                         <td>
                             <a href="<?= lang_url('user/edit/item/' . $item['id']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                            <a href="<?= lang_url('user/delete/item/' . $item['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_item') ?>"><i class="fa fa-remove" aria-hidden="true"></i> Delete</a>
+                            <?php if ($this->permissions->hasPerm('perm_delete_items')) { ?>
+                                <a href="<?= lang_url('user/delete/item/' . $item['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_item') ?>"><i class="fa fa-remove" aria-hidden="true"></i> Delete</a>
+                            <?php } ?>
                         </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div> 
+    <?= $linksPagination ?>
 <?php } else { ?>
     <h1 class="no-invoices"><?= lang('no_items_yet') ?></h1>
 <?php } ?>
-<?= $linksPagination ?>

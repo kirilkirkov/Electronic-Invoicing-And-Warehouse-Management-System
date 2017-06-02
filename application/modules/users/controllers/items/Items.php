@@ -16,7 +16,7 @@ class Items extends USER_Controller
 
     public function __construct()
     {
-        parent::__construct(); 
+        parent::__construct();
         $this->load->model(array('ItemsModel', 'NewInvoiceModel'));
     }
 
@@ -48,6 +48,7 @@ class Items extends USER_Controller
         }
         $data['quantityTypes'] = $this->NewInvoiceModel->getAllQuantityTypes();
         $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
+        $data['editId'] = $id;
         $this->render('items/additem', $head, $data);
         $this->saveHistory('Go to add item page');
     }

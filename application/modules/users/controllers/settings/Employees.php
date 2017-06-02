@@ -13,6 +13,7 @@ class Employees extends USER_Controller
 
     private $num_rows = 1;
     private $editId;
+    private $editEmployee;
 
     public function __construct()
     {
@@ -56,6 +57,36 @@ class Employees extends USER_Controller
         $data['editId'] = $this->editId;
         $this->render('settings/addEmployee', $head, $data);
         $this->saveHistory('Go to settings employees add page');
+    }
+
+    public function manageRights($id = 0)
+    {
+        $data = array();
+        $head = array();
+        $this->editEmployee = $id;
+        $head['title'] = 'Administration - Settings';
+        if (isset($_POST['savePermissions'])) {
+            $this->savePermissions();
+        }
+        $data['permissions'] = $this->config->item('permissions');
+        $data['userPermissions'] = $this->SettingsModel->getEmployeePermissions($id);
+        if (empty($data['userPermissions'])) {
+            show_404();
+        }
+        $this->render('settings/employeeRights', $head, $data);
+        $this->saveHistory('Go to rights employees page');
+    }
+
+    private function savePermissions()
+    {
+        $defaultPermissions = $this->config->item('permissions');
+        $toDb = array();
+        foreach ($defaultPermissions as $key => $val) {
+            $toDb[$key] = isset($_POST[$key]) ? 1 : 0;
+        }
+        $this->SettingsModel->updateEmployeePermissions($toDb, $this->editEmployee);
+        $this->session->set_flashdata('resultAction', lang('success_save_new_perms'));
+        redirect(lang_url('user/settings/employees/rights/' . $this->editEmployee));
     }
 
     private function addEmployee()

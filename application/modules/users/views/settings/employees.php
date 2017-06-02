@@ -33,7 +33,9 @@
                         <td><?= $employee['email'] ?></td>
                         <td><?= $employee['phone'] ?></td>
                         <td>
-                            <a href="<?= lang_url('user/settings/employees/rights/' . $employee['id']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Rights</a>
+                            <?php if ($this->permissions->hasPerm('perm_can_manage_rights')) { ?>
+                                <a href="<?= lang_url('user/settings/employees/rights/' . $employee['id']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Rights</a>
+                            <?php } ?>
                             <a href="<?= lang_url('user/settings/employees/add/' . $employee['id']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                             <a href="<?= lang_url('user/settings/employees/delete/' . $employee['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_employee') ?>"><i class="fa fa-remove" aria-hidden="true"></i> Delete</a>
                         </td>

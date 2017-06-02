@@ -16,7 +16,7 @@ class Clients extends USER_Controller
 
     public function __construct()
     {
-        parent::__construct(); 
+        parent::__construct();
         $this->load->model(array('ClientsModel', 'NewInvoiceModel'));
     }
 
@@ -46,6 +46,7 @@ class Clients extends USER_Controller
             }
             $_POST = $result;
         }
+        $data['editId'] = $id;
         $this->render('clients/addclient', $head, $data);
         $this->saveHistory('Go to add client page');
     }

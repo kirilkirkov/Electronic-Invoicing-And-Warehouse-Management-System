@@ -32,14 +32,16 @@
                         <td><?= $client['client_bulstat'] ?></td>
                         <td>
                             <a href="<?= lang_url('user/edit/client/' . $client['id']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                            <a href="<?= lang_url('user/delete/client/' . $client['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_client') ?>"><i class="fa fa-remove" aria-hidden="true"></i> Delete</a>
+                            <?php if ($this->permissions->hasPerm('perm_delete_clients')) { ?>
+                                <a href="<?= lang_url('user/delete/client/' . $client['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_client') ?>"><i class="fa fa-remove" aria-hidden="true"></i> Delete</a>
+                            <?php } ?>
                         </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div> 
+    <?= $linksPagination ?>
 <?php } else { ?>
     <h1 class="no-invoices"><?= lang('no_clients_yet') ?></h1>
-<?php } ?>
-<?= $linksPagination ?>
+<?php } ?> 

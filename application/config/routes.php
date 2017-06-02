@@ -113,6 +113,7 @@ $route['user/settings/employees/(:num)'] = "users/settings/employees/index/$1";
 $route['user/settings/employees/add'] = "users/settings/employees/addnew";
 $route['user/settings/employees/add/(:num)'] = "users/settings/employees/addnew/$1";
 $route['user/settings/employees/delete/(:num)'] = "users/settings/employees/deleteemployee/$1";
+$route['user/settings/employees/rights/(:num)'] = "users/settings/employees/managerights/$1";
 /* USERS PANEL ROUTES */
 
 $route['^(\w{2})$'] = $route['default_controller'];
