@@ -22,24 +22,30 @@
                 <div>
                     <div class="body">
                         <ul class="list-firms">
-                            <?php foreach ($firms as $firm) { ?>
-                                <li>
-                                    <?= $firm['name'] ?>
-                                    <a href="<?= lang_url('user/managefirms/delete-company/' . $firm['id']) ?>" class="confirm" data-my-message="<?= lang('delete_firm_confirm') ?>">
-                                        <i class="fa fa-remove" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="<?= lang_url('user/managefirms/edit/' . $firm['id']) ?>">
-                                        <i class="fa fa-wrench" aria-hidden="true"></i>
-                                    </a>
-                                    <?php if ($firm['is_default'] == 1) { ?>
-                                        <span class="label label-success"><?= lang('firm_default') ?></span>
-                                    <?php } else { ?>
-                                        <a href="<?= lang_url('user/managefirms/make-default/' . $firm['id']) ?>" class="confirm" data-my-message="<?= lang('default_firm_confirm') ?>">
-                                            <span class="label label-danger"><?= lang('make_firm_default') ?></span>
+                            <?php
+                            foreach ($firms as $firm) {
+                                if (in_array($firm['id'], $canUseFirms)) {
+                                    ?>
+                                    <li>
+                                        <?= $firm['name'] ?>
+                                        <a href="<?= lang_url('user/managefirms/delete-company/' . $firm['id']) ?>" class="confirm" data-my-message="<?= lang('delete_firm_confirm') ?>">
+                                            <i class="fa fa-remove" aria-hidden="true"></i>
                                         </a>
-                                    <?php } ?>
-                                </li> 
-                            <?php } ?>
+                                        <a href="<?= lang_url('user/managefirms/edit/' . $firm['id']) ?>">
+                                            <i class="fa fa-wrench" aria-hidden="true"></i>
+                                        </a>
+                                        <?php if ($firm['is_default'] == 1) { ?>
+                                            <span class="label label-success"><?= lang('firm_default') ?></span>
+                                        <?php } else { ?>
+                                            <a href="<?= lang_url('user/managefirms/make-default/' . $firm['id']) ?>" class="confirm" data-my-message="<?= lang('default_firm_confirm') ?>">
+                                                <span class="label label-danger"><?= lang('make_firm_default') ?></span>
+                                            </a>
+                                        <?php } ?>
+                                    </li> 
+                                    <?php
+                                }
+                            }
+                            ?>
                             <li> 
                                 <a href="javascript:void(0);" class="btn btn-xs btn-default" data-toggle="modal" data-target="#modalAddCompany"> 
                                     <?= lang('add_new_company') ?>

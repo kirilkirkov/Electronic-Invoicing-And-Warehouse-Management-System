@@ -42,6 +42,9 @@ class Managefirms extends USER_Controller
 
     public function deleteCompany($companyId)
     {
+        if (!in_array($companyId, $this->canUseFirms)) {
+            show_404();
+        }
         $this->ManagefirmsModel->deleteCompany($companyId);
         if ($companyId == SELECTED_COMPANY_ID) {
             $lastAddedCompanyId = $this->ManagefirmsModel->getLastAddedCompanyId();
@@ -59,6 +62,9 @@ class Managefirms extends USER_Controller
         $data = array();
         $head = array();
         $head['title'] = ' ';
+        if (!in_array($companyId, $this->canUseFirms)) {
+            show_404();
+        }
         $result = $this->getCompanyInfo($companyId);
         if (empty($result['company']) || !is_numeric($companyId)) {
             show_404();

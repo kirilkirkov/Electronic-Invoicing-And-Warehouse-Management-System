@@ -18,6 +18,7 @@ class USER_Controller extends HEAD_Controller
         $vars = array();
         $vars = $this->loadValueStores();
         $vars['myFirms'] = $this->firms;
+        $vars['canUseFirms'] = $this->canUseFirms;
         $this->load->vars($vars);
         $this->load->view('parts/header', $head);
         $this->load->view($view, $data);
@@ -70,7 +71,7 @@ class USER_Controller extends HEAD_Controller
     {
         $this->load->model('HomeModel');
         $defaultFirmForUser = $this->HomeModel->getDefaultCompany();
-        $firmsForUser = $this->HomeModel->getFirms(USER_ID);
+        $firmsForUser = $this->HomeModel->getFirms();
         if (isset($_SESSION['selected_company'])) {
             $isValidFirmForUser = $this->HomeModel->checkCompanyIsValidForUser($_SESSION['selected_company']['id']);
             if (!empty($isValidFirmForUser)) {
@@ -84,8 +85,12 @@ class USER_Controller extends HEAD_Controller
         }
         if (!defined('EMPLOYEE_ID')) {
             $firmId = $selectedFirm;
+            $canUseFirms = array();
+            foreach ($firmsForUser as $frm) {
+                array_push($canUseFirms, $frm['id']);
+            }
         } else {
-            $employeeFirms = $this->HomeModel->getEmployeeAvailableFirms();
+            $employeeFirms = $canUseFirms = $this->HomeModel->getEmployeeAvailableFirms();
             if (!empty($employeeFirms)) {
                 if (in_array($selectedFirm, $employeeFirms)) {
                     $firmId = $selectedFirm;
@@ -98,6 +103,7 @@ class USER_Controller extends HEAD_Controller
         }
         define('SELECTED_COMPANY_ID', $firmId);
         $this->firms = $firmsForUser;
+        $this->canUseFirms = $canUseFirms;
         if (empty($firmsForUser) && uri_string() != 'user') {
             redirect(lang_url('user'));
         }
