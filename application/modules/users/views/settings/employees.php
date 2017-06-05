@@ -12,8 +12,9 @@
     </div>
     <div class="border"></div>
 </div>
-<a href="<?= lang_url('user/settings/employees/add') ?>" class="btn btn-default"><?= lang('add_new_employee') ?></a>
-<?php if (!empty($employees)) { ?>
+<?php if ($this->permissions->hasPerm('perm_add_employees')) { ?>
+    <a href="<?= lang_url('user/settings/employees/add') ?>" class="btn btn-default"><?= lang('add_new_employee') ?></a>
+<?php }if (!empty($employees)) { ?>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>

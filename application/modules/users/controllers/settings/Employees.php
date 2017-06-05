@@ -37,7 +37,7 @@ class Employees extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Settings';
+        $head['title'] = 'Administration - Settings'; 
         $this->editId = $id;
         if (isset($_POST['name'])) {
             $_POST['editId'] = $id;
