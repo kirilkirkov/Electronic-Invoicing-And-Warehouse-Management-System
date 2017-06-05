@@ -9,7 +9,7 @@ class USER_Controller extends HEAD_Controller
     {
         parent::__construct();
         $this->loginCheck();
-        $this->hasFirmCkeck();
+        $this->firmCkecker();
         $this->load->helper(array('uploader', 'pagination'));
     }
 
@@ -35,21 +35,11 @@ class USER_Controller extends HEAD_Controller
             redirect(base_url());
         } else {
             $userInfo = $this->PublicModel->getUserInfoFromEmail($_SESSION['user_login']['email'], $_SESSION['user_login']['type']);
-            if (!empty($userInfo)) { 
-                /*
-                 * Get default company if user is not select manually
-                 */
-                if (!isset($_SESSION['selected_company'])) {
-                    $this->load->model('HomeModel');
-                    $useCompany = $this->HomeModel->getDefaultCompany($userInfo['user']['id']);
-                } else {
-                    $useCompany = $_SESSION['selected_company'];
-                }
+            if (!empty($userInfo)) {
                 /*
                  *  DEFINE USER AND EMPLOYEE CONSTANTS
                  */
                 define('USER_ID', $userInfo['user']['id']);
-                define('SELECTED_COMPANY_ID', $useCompany['id']);
                 if (isset($userInfo['employee'])) {
                     define('EMPLOYEE_ID', $userInfo['employee']['id']);
                 }
@@ -71,12 +61,44 @@ class USER_Controller extends HEAD_Controller
         $this->load->library('permissions', $permissions);
     }
 
-    private function hasFirmCkeck()
+    /*
+     * Check user or employee selected firm
+     * Check rights to access selected firm
+     */
+
+    private function firmCkecker()
     {
         $this->load->model('HomeModel');
-        $firms = $this->HomeModel->getFirms(USER_ID);
-        $this->firms = $firms;
-        if (empty($firms) && uri_string() != 'user') {
+        $defaultFirmForUser = $this->HomeModel->getDefaultCompany();
+        $firmsForUser = $this->HomeModel->getFirms(USER_ID);
+        if (isset($_SESSION['selected_company'])) {
+            $isValidFirmForUser = $this->HomeModel->checkCompanyIsValidForUser($_SESSION['selected_company']['id']);
+            if (!empty($isValidFirmForUser)) {
+                $selectedFirm = $_SESSION['selected_company']['id'];
+            } else {
+                $selectedFirm = $defaultFirmForUser;
+                unset($_SESSION['selected_company']);
+            }
+        } else {
+            $selectedFirm = $defaultFirmForUser;
+        }
+        if (!defined('EMPLOYEE_ID')) {
+            $firmId = $selectedFirm;
+        } else {
+            $employeeFirms = $this->HomeModel->getEmployeeAvailableFirms();
+            if (!empty($employeeFirms)) {
+                if (in_array($selectedFirm, $employeeFirms)) {
+                    $firmId = $selectedFirm;
+                } else {
+                    $firmId = $employeeFirms[0];
+                }
+            } else {
+                show_error(lang('you_cant_view_any_firms'));
+            }
+        }
+        define('SELECTED_COMPANY_ID', $firmId);
+        $this->firms = $firmsForUser;
+        if (empty($firmsForUser) && uri_string() != 'user') {
             redirect(lang_url('user'));
         }
     }

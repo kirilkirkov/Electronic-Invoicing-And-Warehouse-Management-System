@@ -18,7 +18,7 @@ class Employees extends USER_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('SettingsModel');
+        $this->load->model(array('SettingsModel', 'HomeModel'));
     }
 
     public function index($page = 0)
@@ -54,6 +54,7 @@ class Employees extends USER_Controller
         if ($this->session->flashdata('saveData') != null) {
             $_POST = $this->session->flashdata('saveData');
         }
+        $data['myAccessFirms'] = $this->HomeModel->getEmployeeAvailableFirms();
         $data['editId'] = $this->editId;
         $this->render('settings/addEmployee', $head, $data);
         $this->saveHistory('Go to settings employees add page');
@@ -98,6 +99,7 @@ class Employees extends USER_Controller
                 $this->setNewEmployeePermissions($insertId);
             }
             $this->saveHistory('Add employee - ' . $_POST['email']);
+            $this->session->set_flashdata('resultAction', lang('employee_add_success'));
             redirect(lang_url('user/settings/employees'));
         } else {
             $this->session->set_flashdata('resultAction', $isValid);

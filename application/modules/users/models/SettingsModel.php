@@ -6,6 +6,7 @@ class SettingsModel extends CI_Model
     public function __construct()
     {
         parent::__construct();
+        $this->getFirmsIdsForUser();
     }
 
     public function getMyFirmsDefaultCurrency()
@@ -170,12 +171,14 @@ class SettingsModel extends CI_Model
             'email' => $post['email'],
             'phone' => $post['phone'],
             'password' => md5salt($post['password']),
+            'firms_access' => serialize($post['firms']),
             'time_added' => time()
         );
         if ($post['editId'] > 0) {
             if (mb_strlen(trim($post['password'])) == 0) {
                 unset($insertArray['password']);
             }
+            unset($insertArray['time_added']);
             if (!$this->db->where('id', $post['editId'])->update('employees', $insertArray)) {
                 log_message('error', print_r($this->db->error(), true));
                 show_error(lang('database_error'));
@@ -187,6 +190,18 @@ class SettingsModel extends CI_Model
             }
             return $this->db->insert_id();
         }
+    }
+
+    public function getFirmsIdsForUser()
+    {
+        $this->db->select('id');
+        $this->db->where('for_user', USER_ID);
+        $result = $this->db->get('firms_users');
+        $str = '';
+        foreach ($result->result_array() as $fr) {
+            $str .= ',' . $fr['id'];
+        }
+        return explode(',', ltrim($str, ','));
     }
 
     public function getEmployeeInfo($id)

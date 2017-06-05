@@ -276,3 +276,6 @@ $lang['if_dont_change_usr_pass'] = 'If dont want to change user password, leave 
 $lang['this_email_is_used'] = 'This email is allready used!';
 $lang['success_update_user_adm'] = 'User is update successful!';
 $lang['problem_update_user_adm_em'] = 'This email address is taken from your employee or another account!';
+$lang['can_access_firms'] = 'Can access firms:';
+$lang['you_cant_view_any_firms'] = 'Sorry but you dont have access to any firms!';
+$lang['employee_add_success'] = 'Employee successful added!';
