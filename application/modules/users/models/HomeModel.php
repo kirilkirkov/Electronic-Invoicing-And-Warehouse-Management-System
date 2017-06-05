@@ -81,12 +81,12 @@ class HomeModel extends CI_Model
         return $result->row_array();
     }
 
-    public function getEmployeeAvailableFirms()
+    public function getEmployeeAvailableFirms($id = 0)
     {
         $this->db->select('firms_access');
         $this->db->limit(1);
         $this->db->where('for_user', USER_ID);
-        $this->db->where('id', EMPLOYEE_ID);
+        $this->db->where('id', $id > 0 ? $id : EMPLOYEE_ID);
         $result = $this->db->get('employees');
         $arr = $result->row_array();
         return unserialize($arr['firms_access']);

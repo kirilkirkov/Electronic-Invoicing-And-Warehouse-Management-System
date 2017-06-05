@@ -54,7 +54,7 @@ class Employees extends USER_Controller
         if ($this->session->flashdata('saveData') != null) {
             $_POST = $this->session->flashdata('saveData');
         }
-        $data['myAccessFirms'] = $this->HomeModel->getEmployeeAvailableFirms();
+        $data['myAccessFirms'] = $this->HomeModel->getEmployeeAvailableFirms($id);
         $data['editId'] = $this->editId;
         $this->render('settings/addEmployee', $head, $data);
         $this->saveHistory('Go to settings employees add page');

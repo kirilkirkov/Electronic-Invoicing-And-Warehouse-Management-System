@@ -31,12 +31,16 @@
                 <label><?= lang('add_employee_pass') ?></label> 
                 <input type="text" name="password" value="" <?= $editId > 0 ? 'placeholder="' . lang('if_dont_change_emp_pass') . '"' : '' ?> class="form-control field">
             </div>
-            <div><?= lang('can_access_firms') ?></div>
-            <?php foreach ($myFirms as $firm) { ?>
-                <div class="checkbox">
-                    <label><input type="checkbox" name="firms[]" value="<?= $firm['id'] ?>" <?= in_array($firm['id'], $myAccessFirms) ? 'checked="checked"' : '' ?>><?= $firm['name'] ?></label>
-                </div>
-            <?php } ?>
+            <?php if (!defined('EMPLOYEE_ID')) { ?>
+                <div><?= lang('can_access_firms') ?></div>
+                <?php foreach ($myFirms as $firm) { ?>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="firms[]" value="<?= $firm['id'] ?>" <?= in_array($firm['id'], $myAccessFirms) ? 'checked="checked"' : '' ?>><?= $firm['name'] ?></label>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
             <a href="javascript:void(0);" onclick="newEmployeeValidate()" class="btn btn-default"><?= lang('save_employee') ?></a>
             <a href="<?= lang_url('user/settings/employees') ?>" class="btn btn-default"><?= lang('cancel_save_employee') ?></a>
         </div>
