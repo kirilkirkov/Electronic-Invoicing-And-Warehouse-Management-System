@@ -16,7 +16,7 @@ class Newinvoice extends USER_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('NewInvoiceModel', 'SettingsModel'));
+        $this->load->model(array('NewInvoiceModel', 'SettingsModel', 'ManagefirmsModel'));
     }
 
     public function index($editId = 0)
@@ -34,7 +34,7 @@ class Newinvoice extends USER_Controller
         $data['myNoVatReasons'] = $this->SettingsModel->getMyNoVatReasons();
         $nextInvNumber = $this->NewInvoiceModel->getNextFreeInvoiceNumber();
         if ($editId > 0) {
-            $result = $this->NewInvoiceModel->getInvoiceById($editId);
+            $result = $this->NewInvoiceModel->getInvoiceByNumber($editId);
             if (empty($result)) {
                 show_404();
             }
@@ -50,7 +50,8 @@ class Newinvoice extends USER_Controller
             $theCurrency = 'EUR';
         }
         $data['theCurrency'] = $theCurrency;
-        $this->render('newinvoice/index', $head, $data);
+        $data['allForFirm'] = $this->ManagefirmsModel->getCompanyInfo(SELECTED_COMPANY_ID);
+        $this->render('invoices/newinvoice', $head, $data);
         $this->saveHistory('Go to new invoice page');
     }
 
@@ -75,6 +76,7 @@ class Newinvoice extends USER_Controller
             if ($this->editId > 0) {
                 $this->NewInvoiceModel->updateInvoice($_POST);
             } else {
+                $_POST['userInfo'] = $this->userInfo; // get info for logged user
                 $this->NewInvoiceModel->setInvoice($_POST);
             }
             redirect(lang_url('user/new/invoice'));
@@ -170,7 +172,7 @@ class Newinvoice extends USER_Controller
         if (isset($_POST['selectType'])) {
             $result = $this->NewInvoiceModel->getListForSelector($_POST['selectType']);
             if (!empty($result)) {
-                include 'application/modules/users/views/newinvoice/listSelectorHtml.php';
+                include 'application/modules/users/views/invoices/listSelectorHtml.php';
             } else {
                 echo '<div class="no-data">' . $_POST['selectType'] == 'clients' ? lang('no_clients_selector') : lang('no_items_selector') . '</div>';
             }

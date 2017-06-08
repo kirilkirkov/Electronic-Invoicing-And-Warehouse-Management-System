@@ -563,3 +563,6 @@ $config['permissions'] = array(
     'perm_add_employees' => 1,
     'perm_can_manage_firms' => 1
 );
+$config['templates'] = array(
+    'creative'
+);

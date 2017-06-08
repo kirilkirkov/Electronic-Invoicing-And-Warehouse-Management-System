@@ -37,9 +37,23 @@
                     <i class="fa fa-question-circle" aria-hidden="true"></i>
                 </a>
             </div>
+            <div class="choose-firm-translation" <?= $editId > 0 ? 'style="display:none;"' : '' ?>>
+                <select class="selectpicker" name="invoice_firm_translation"> 
+                    <?php
+                    foreach ($allForFirm['translations'] as $theFirm) {
+                        ?>
+                        <option value="<?= $theFirm['id'] ?>" <?= $theFirm['is_default'] == 1 ? 'selected="selected"' : '' ?>><?= $theFirm['trans_name'] ?></option>
+                        <?php
+                    }
+                    ?> 
+                </select>
+            </div>
             <?php if ($editId > 0) { ?>
                 <div class="pull-left checkbox">
-                    <label><input type="checkbox" id="show-translations" name="show_translations" value=""><?= lang('show_translation_on_edit') . str_replace('%transname%', $_POST['language_name'], lang('show_translation_now_use')) ?></label>
+                    <label><input type="checkbox" id="show-translations" name="show_translations" value=""><?= lang('show_translation_on_edit') . str_replace('%transname%', $_POST['translation']['language_name'], lang('show_translation_now_use')) ?></label>
+                </div>
+                <div class="pull-left checkbox">
+                    <label><input type="checkbox" id="show-translations-firms" name="show_translations_firms" value=""><?= lang('show_translation_on_edit') . str_replace('%transname%', $_POST['firm']['name'], lang('show_translation_firm_now_use')) ?></label>
                 </div>
             <?php } ?>
             <a href="<?= lang_url('user/settings/invoices') ?>" class="btn btn-default pull-right">
@@ -87,57 +101,57 @@
                     <div class="col-sm-6 col-md-5"> 
                         <div class="column-data client">
                             <label><?= lang('create_inv_client') ?></label> 
-                            <input type="text" name="client_name" value="<?= isset($_POST['client_name']) ? $_POST['client_name'] : '' ?>" class="form-control field">
+                            <input type="text" name="client_name" value="<?= isset($_POST['client']['client_name']) ? $_POST['client']['client_name'] : '' ?>" class="form-control field">
                             <a href="javascript:void(0);" data-choose-title="<?= lang('choose_client') ?>" data-selector-type="client" class="choose">
                                 <i class="fa fa-bars" aria-hidden="true"></i>
                                 <span><?= lang('create_inv_choose') ?></span>
                             </a> 
                             <div>
                                 <div class="checkbox">
-                                    <label><input type="checkbox" name="is_to_person" <?= isset($_POST['is_to_person']) && $_POST['is_to_person'] == 1 ? 'checked="checked"' : '' ?> id="individual-client" value=""><?= lang('create_inv_individual') ?></label>
+                                    <label><input type="checkbox" name="is_to_person" <?= isset($_POST['client']['is_to_person']) && $_POST['client']['is_to_person'] == 1 ? 'checked="checked"' : '' ?> id="individual-client" value=""><?= lang('create_inv_individual') ?></label>
                                 </div>
                             </div>
                         </div>
-                        <div class="column-data client client-company"  <?= isset($_POST['is_to_person']) && $_POST['is_to_person'] == 1 ? 'style="display:none;"' : '' ?>> 
+                        <div class="column-data client client-company"  <?= isset($_POST['client']['is_to_person']) && $_POST['client']['is_to_person'] == 1 ? 'style="display:none;"' : '' ?>> 
                             <label><?= lang('create_inv_bulstat') ?></label> 
-                            <input type="text" name="client_bulstat" value="<?= isset($_POST['client_bulstat']) ? $_POST['client_bulstat'] : '' ?>" class="form-control field">
+                            <input type="text" name="client_bulstat" value="<?= isset($_POST['client']['client_bulstat']) ? $_POST['client']['client_bulstat'] : '' ?>" class="form-control field">
                             <a href="javascript:void(0);" data-choose-title="<?= lang('choose_client') ?>" data-selector-type="client" class="choose">
                                 <i class="fa fa-bars" aria-hidden="true"></i>
                                 <span><?= lang('create_inv_choose') ?></span>
                             </a>
                             <div>
                                 <div class="checkbox">
-                                    <label><input type="checkbox" <?= isset($_POST['client_vat_registered']) && $_POST['client_vat_registered'] == 1 ? 'checked="checked"' : '' ?> name="client_vat_registered" id="client-vat-registered" value=""><?= lang('create_inv_client_vat_registered') ?></label>
+                                    <label><input type="checkbox" <?= isset($_POST['client']['client_vat_registered']) && $_POST['client']['client_vat_registered'] == 1 ? 'checked="checked"' : '' ?> name="client_vat_registered" id="client-vat-registered" value=""><?= lang('create_inv_client_vat_registered') ?></label>
                                 </div>
                             </div>
                         </div>
-                        <div class="column-data client-company client-vat-registered" <?= isset($_POST['is_to_person']) && $_POST['is_to_person'] == 1 ? 'style="display:none;"' : '' ?> <?= isset($_POST['client_vat_registered']) && $_POST['client_vat_registered'] == 1 ? 'style="display:block;"' : '' ?>>
+                        <div class="column-data client-company client-vat-registered" <?= isset($_POST['client']['is_to_person']) && $_POST['client']['is_to_person'] == 1 ? 'style="display:none;"' : '' ?> <?= isset($_POST['client_vat_registered']) && $_POST['client_vat_registered'] == 1 ? 'style="display:block;"' : '' ?>>
                             <label><?= lang('create_inv_vat_number') ?></label>
-                            <input type="text" value="<?= isset($_POST['vat_number']) ? $_POST['vat_number'] : '' ?>" name="vat_number" class="form-control field">
+                            <input type="text" value="<?= isset($_POST['client']['vat_number']) ? $_POST['client']['vat_number'] : '' ?>" name="vat_number" class="form-control field">
                         </div>
-                        <div class="column-data client-company" <?= isset($_POST['is_to_person']) && $_POST['is_to_person'] == 1 ? 'style="display:none;"' : '' ?>>
+                        <div class="column-data client-company" <?= isset($_POST['client']['is_to_person']) && $_POST['client']['is_to_person'] == 1 ? 'style="display:none;"' : '' ?>>
                             <label><?= lang('create_inv_mol') ?></label>
-                            <input type="text" value="<?= isset($_POST['accountable_person']) ? $_POST['accountable_person'] : '' ?>" name="accountable_person" class="form-control field">
+                            <input type="text" value="<?= isset($_POST['client']['accountable_person']) ? $_POST['client']['accountable_person'] : '' ?>" name="accountable_person" class="form-control field">
                         </div>
-                        <div class="column-data client-individial" <?= isset($_POST['is_to_person']) && $_POST['is_to_person'] == 1 ? 'style="display:block;"' : '' ?>>
+                        <div class="column-data client-individial" <?= isset($_POST['client']['is_to_person']) && $_POST['client']['is_to_person'] == 1 ? 'style="display:block;"' : '' ?>>
                             <label><?= lang('create_inv_ident_num') ?></label>
-                            <input type="text" value="<?= isset($_POST['client_ident_num']) ? $_POST['client_ident_num'] : '' ?>" name="client_ident_num" class="form-control field">
+                            <input type="text" value="<?= isset($_POST['client']['client_ident_num']) ? $_POST['client']['client_ident_num'] : '' ?>" name="client_ident_num" class="form-control field">
                         </div>
                         <div class="column-data">
                             <label><?= lang('create_inv_city') ?></label>
-                            <input type="text" value="<?= isset($_POST['client_city']) ? $_POST['client_city'] : '' ?>" name="client_city" class="form-control field">
+                            <input type="text" value="<?= isset($_POST['client']['client_city']) ? $_POST['client']['client_city'] : '' ?>" name="client_city" class="form-control field">
                         </div>
                         <div class="column-data">
                             <label><?= lang('create_inv_address') ?></label>
-                            <input type="text" value="<?= isset($_POST['client_address']) ? $_POST['client_address'] : '' ?>" name="client_address" class="form-control field">
+                            <input type="text" value="<?= isset($_POST['client']['client_address']) ? $_POST['client']['client_address'] : '' ?>" name="client_address" class="form-control field">
                         </div>
                         <div class="column-data">
                             <label><?= lang('create_inv_country') ?></label>
-                            <input type="text" value="<?= isset($_POST['client_country']) ? $_POST['client_country'] : '' ?>" name="client_country" class="form-control field">
+                            <input type="text" value="<?= isset($_POST['client']['client_country']) ? $_POST['client']['client_country'] : '' ?>" name="client_country" class="form-control field">
                         </div>
-                        <div class="column-data client-company" <?= isset($_POST['is_to_person']) && $_POST['is_to_person'] == 1 ? 'style="display:none;"' : '' ?>>
+                        <div class="column-data client-company" <?= isset($_POST['is_to_person']) && $_POST['client']['is_to_person'] == 1 ? 'style="display:none;"' : '' ?>>
                             <label><?= lang('create_inv_recipient') ?></label> 
-                            <input type="text" value="<?= isset($_POST['recipient_name']) ? $_POST['recipient_name'] : '' ?>" name="recipient_name" class="form-control field"> 
+                            <input type="text" value="<?= isset($_POST['client']['recipient_name']) ? $_POST['client']['recipient_name'] : '' ?>" name="recipient_name" class="form-control field"> 
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-7">
@@ -168,6 +182,16 @@
                                     <label><input type="checkbox" name="cash_accounting" <?= isset($_POST['cash_accounting']) && $_POST['cash_accounting'] == 1 ? 'checked="checked"' : '' ?> value=""><?= lang('create_inv_cash_acc') ?></label>
                                 </div>
                             </div>
+                            <?php if ($editId > 0) { ?>
+                                <div class="column-data">
+                                    <label><?= lang('composed_from') ?></label>
+                                    <input type="text" name="composed" value="<?= $_POST['composed'] ?>" class="form-control field">
+                                </div> 
+                                <div class="column-data">
+                                    <label><?= lang('schiffer_replace') ?></label>
+                                    <input type="text" name="schiffer" value="<?= $_POST['schiffer'] ?>" class="form-control field">
+                                </div> 
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -203,12 +227,13 @@
                         </thead>
                         <tbody class="body-items">
                             <?php
+                            $thisDir = ltrim(str_replace(getcwd(), '', dirname(__FILE__)), '/');
                             if (isset($_POST['items'])) {
                                 foreach ($_POST['items'] as $itemPost) {
-                                    include 'application/modules/users/views/newinvoice/itemTableTr.php';
+                                    include $thisDir . '/itemTableTr.php';
                                 }
                             } else {
-                                include 'application/modules/users/views/newinvoice/itemTableTr.php';
+                                include $thisDir . '/itemTableTr.php';
                             }
                             ?>
                         </tbody>
@@ -260,8 +285,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="amount">
-                                    <span id="tax-base"><?= isset($_POST['inv_tax_base']) ? $_POST['inv_tax_base'] : '0.00' ?></span>
-                                    <input type="hidden" value="<?= isset($_POST['inv_tax_base']) ? $_POST['inv_tax_base'] : '0.00' ?>" name="tax_base" class="tax-base">
+                                    <span id="tax-base"><?= isset($_POST['tax_base']) ? $_POST['tax_base'] : '0.00' ?></span>
+                                    <input type="hidden" value="<?= isset($_POST['tax_base']) ? $_POST['tax_base'] : '0.00' ?>" name="tax_base" class="tax-base">
                                     <span class="currency-text">
                                         <?= $theCurrency ?>
                                     </span>
@@ -322,7 +347,7 @@
                 </div>
                 <div class="remarks">
                     <label><?= lang('create_inv_remarks') ?><sup><?= lang('visibile_for_client') ?></sup></label>
-                    <textarea class="form-control field area" name="remarks"><?= isset($_POST['inv_remakrs']) ? $_POST['inv_remakrs'] : '' ?></textarea>
+                    <textarea class="form-control field area" name="remarks"><?= isset($_POST['remakrs']) ? $_POST['remakrs'] : '' ?></textarea>
                 </div>
                 <div class="payment-type">
                     <label><?= lang('create_inv_payment_type') ?></label>
@@ -517,6 +542,14 @@
                         <div class="form-group">
                             <label><?= lang('trans_schiffer') ?></label>
                             <input type="text" name="schiffer" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                        </div>
+                        <div class="form-group">
+                            <label><?= lang('trans_discount') ?></label>
+                            <input type="text" name="discount" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                        </div>
+                        <div class="form-group">
+                            <label><?= lang('trans_payment_type') ?></label>
+                            <input type="text" name="payment_type" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
                         </div>
                     </form>
                 </div>

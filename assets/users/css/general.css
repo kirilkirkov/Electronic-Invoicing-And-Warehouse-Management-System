@@ -1,6 +1,6 @@
 html, body {height: 100%;}
 #wrapper {min-height: 100%;    position: relative;}
-#content { padding-bottom: 100px;}
+#content { padding-bottom: 60px;}
 body {padding-top: 50px; color:#777; }
 h1, h2, h3, h4 { margin: 0; padding: 0;}
 .navbar-user {box-shadow: 0 1px 1px #fff inset; border-bottom: 1px solid #ddd; background: #f8f8f8;background: -moz-linear-gradient(top,  #f8f8f8 0%, #f2f2f2 100%);background: -webkit-linear-gradient(top,  #f8f8f8 0%,#f2f2f2 100%);background: linear-gradient(to bottom,  #f8f8f8 0%,#f2f2f2 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f8f8', endColorstr='#f2f2f2',GradientType=0 );}
@@ -107,6 +107,7 @@ header h1 {font-size:26px;}
 .client-vat-registered {display: none;}
 .selected-new-default, .not-selected-new-default {display: none;}
 .btn {border-radius: 0;}
+.view-container {width: 100%; height: 100%;  padding: 40px; }
 footer { background-color: #f8f8f8;    border-top: 1px solid #e7e7e7;    bottom: 0;    color: #333;    height: 60px;    left: 0;    padding: 20px 0;    position: absolute;    text-align: center;    width: 100%;}
 
 @media screen and (max-width: 767px) {

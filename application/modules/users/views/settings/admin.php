@@ -28,6 +28,10 @@
                 <input type="text" name="phone" value="<?= $_POST['phone'] ?>" class="form-control field">
             </div>
             <div class="form-group">
+                <label><?= lang('schiffer_replace') ?></label> 
+                <input type="text" name="schiffer" value="<?= $_POST['schiffer'] ?>" class="form-control field">
+            </div>
+            <div class="form-group">
                 <label><?= lang('add_employee_pass') ?></label> 
                 <input type="text" name="password" value="" placeholder="<?= lang('if_dont_change_usr_pass') ?>" class="form-control field">
             </div>

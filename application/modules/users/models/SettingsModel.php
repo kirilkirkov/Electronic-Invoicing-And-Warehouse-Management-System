@@ -170,6 +170,7 @@ class SettingsModel extends CI_Model
             'name' => $post['name'],
             'email' => $post['email'],
             'phone' => $post['phone'],
+            'schiffer' => $post['schiffer'],
             'password' => md5salt($post['password']),
             'firms_access' => serialize($post['firms']),
             'time_added' => time()

@@ -85,6 +85,19 @@ $('#show-translations').change(function () {
     }
 });
 /*
+ * Show Translations
+ * When edit invoice we hide translations
+ * if user want to show him.. when save the invoice edit
+ * we will get choosed translation :)
+ */
+$('#show-translations-firms').change(function () {
+    if ($(this).is(":checked")) {
+        $('.choose-firm-translation').show();
+    } else {
+        $('.choose-firm-translation').hide();
+    }
+});
+/*
  * Change company to individaul and back
  */
 $('#individual-client').change(function () {
@@ -588,6 +601,7 @@ function getClient(id) {
         $('.client-company').hide();
         $('.client-individial').show();
     } else {
+        $('[name="is_to_person"]').prop("checked", false);
         $('.client-company').show();
         $('.client-individial').hide();
     }

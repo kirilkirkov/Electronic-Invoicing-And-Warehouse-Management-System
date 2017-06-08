@@ -131,6 +131,8 @@ class NewInvoiceModel extends CI_Model
         $cash_accounting = isset($post['cash_accounting']) ? 1 : 0;
         $have_maturity_date = isset($post['have_maturity_date']) ? 1 : 0;
         $no_vat = isset($post['no_vat']) ? 1 : 0;
+        $composedFrom = isset($post['userInfo']['employee']) ? $post['userInfo']['employee']['name'] : $post['userInfo']['user']['name'];
+        $schiffer = isset($post['userInfo']['employee']) ? $post['userInfo']['employee']['schiffer'] : $post['userInfo']['user']['schiffer'];
         $insertArray = array(
             'for_user' => USER_ID,
             'for_company' => SELECTED_COMPANY_ID,
@@ -156,6 +158,8 @@ class NewInvoiceModel extends CI_Model
             'no_vat' => $no_vat,
             'no_vat_reason' => $post['no_vat_reason'],
             'final_total' => $post['final_total'],
+            'composed' => $composedFrom,
+            'schiffer' => $schiffer,
             'is_draft' => $post['is_draft'],
             'created' => time()
         );
@@ -167,6 +171,7 @@ class NewInvoiceModel extends CI_Model
         $this->setInvoiceTranslation($insertId, $post['invoice_translation']);
         $this->setInvoiceItems($insertId, $post);
         $this->setInvoiceClient($insertId, $post);
+        $this->setInvoiceFirm($insertId, $post);
     }
 
     public function updateInvoice($post)
@@ -195,6 +200,8 @@ class NewInvoiceModel extends CI_Model
             'vat_sum' => $post['vat_sum'],
             'no_vat' => $no_vat,
             'no_vat_reason' => $post['no_vat_reason'],
+            'composed' => $post['composed'],
+            'schiffer' => $post['schiffer'],
             'final_total' => $post['final_total']
         );
         if (!$this->db->where('id', $post['editId'])->update('invoices', $updateArray)) {
@@ -206,6 +213,57 @@ class NewInvoiceModel extends CI_Model
         }
         $this->updateInvoiceClient($post['editId'], $post);
         $this->updateInvoiceItems($post['editId'], $post);
+        if (isset($post['show_translations_firms'])) {
+            $this->updateInvoiceFirm($post['editId'], $post);
+        }
+    }
+
+    private function setInvoiceFirm($invoiceId, $post)
+    {
+        $this->db->where('firms_translations.id', $post['invoice_firm_translation']);
+        $this->db->where('firms_users.for_user', USER_ID);
+        $this->db->where('firms_users.id', SELECTED_COMPANY_ID);
+        $this->db->join('firms_translations', 'firms_translations.for_firm = firms_users.id');
+        $result = $this->db->get('firms_users');
+        $firm = $result->row_array();
+
+        $insertArray = array(
+            'for_invoice' => $invoiceId,
+            'for_user' => USER_ID,
+            'bulstat' => $firm['bulstat'],
+            'name' => $firm['name'],
+            'address' => $firm['address'],
+            'city' => $firm['city'],
+            'accountable_person' => $firm['mol'],
+            'image' => $firm['image']
+        );
+        if (!$this->db->insert('invoices_firms', $insertArray)) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+    }
+
+    private function updateInvoiceFirm($invoiceId, $post)
+    {
+        $this->db->where('firms_translations.id', $post['invoice_firm_translation']);
+        $this->db->where('firms_users.for_user', USER_ID);
+        $this->db->where('firms_users.id', SELECTED_COMPANY_ID);
+        $this->db->join('firms_translations', 'firms_translations.for_firm = firms_users.id');
+        $result = $this->db->get('firms_users');
+        $firm = $result->row_array();
+
+        $updateArray = array(
+            'bulstat' => $firm['bulstat'],
+            'name' => $firm['name'],
+            'address' => $firm['address'],
+            'city' => $firm['city'],
+            'accountable_person' => $firm['mol'],
+            'image' => $firm['image']
+        );
+        if (!$this->db->where('for_invoice', $invoiceId)->update('invoices_firms', $updateArray)) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
     }
 
     private function updateInvoiceTranslation($invoiceId, $translateId)
@@ -440,14 +498,11 @@ class NewInvoiceModel extends CI_Model
         return $result->result_array();
     }
 
-    public function getInvoiceById($invId)
+    public function getInvoiceByNumber($invId)
     {
-        $this->db->select('invoices.*, invoices.tax_base as inv_tax_base, invoices.remarks as inv_remakrs, invoices_clients.*, invoices_translations.*');
-        $this->db->where('invoices.id', $invId);
+        $this->db->where('invoices.inv_number', (int) $invId);
         $this->db->where('invoices.for_user', USER_ID);
         $this->db->where('invoices.for_company', SELECTED_COMPANY_ID);
-        $this->db->join('invoices_clients', 'invoices_clients.for_invoice = invoices.id');
-        $this->db->join('invoices_translations', 'invoices_translations.for_invoice = invoices.id');
         $this->db->limit(1);
         $result = $this->db->get('invoices');
         $arr = $result->row_array();
@@ -455,9 +510,21 @@ class NewInvoiceModel extends CI_Model
         if (empty($arr)) {
             return $arr;
         }
-        $result = $this->db->where('for_invoice', $invId)->order_by('position', 'asc')->get('invoices_items');
+        $result = $this->db->where('for_invoice', $arr['id'])->order_by('position', 'asc')->get('invoices_items');
         $items = $result->result_array();
         $arr['items'] = $items;
+
+        $result = $this->db->where('for_invoice', $arr['id'])->get('invoices_clients');
+        $client = $result->row_array();
+        $arr['client'] = $client;
+
+        $result = $this->db->where('for_invoice', $arr['id'])->get('invoices_firms');
+        $firm = $result->row_array();
+        $arr['firm'] = $firm;
+
+        $result = $this->db->where('for_invoice', $arr['id'])->get('invoices_translations');
+        $translation = $result->row_array();
+        $arr['translation'] = $translation;
         return $arr;
     }
 

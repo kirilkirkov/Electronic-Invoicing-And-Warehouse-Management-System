@@ -59,7 +59,7 @@ class HomeModel extends CI_Model
 
     public function getDefaultCompany()
     {
-        $this->db->select('firms_users.id, firms_translations.name');
+        $this->db->select('firms_translations.*, firms_translations.id as translation_id, firms_users.*, firms_users.id as id');
         $this->db->limit(1);
         $this->db->where('for_user', USER_ID);
         $this->db->where('firms_translations.is_default', 1);
@@ -71,7 +71,6 @@ class HomeModel extends CI_Model
 
     public function checkCompanyIsValidForUser($companyId)
     {
-        $this->db->select('firms_users.id, firms_translations.name');
         $this->db->limit(1);
         $this->db->where('for_user', USER_ID);
         $this->db->where('firms_users.id', $companyId);

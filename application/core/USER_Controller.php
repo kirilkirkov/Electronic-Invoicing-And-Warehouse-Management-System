@@ -4,6 +4,8 @@ class USER_Controller extends HEAD_Controller
 {
 
     private $firms;
+    private $firmInfo;
+    public $userInfo;
 
     public function __construct()
     {
@@ -19,6 +21,7 @@ class USER_Controller extends HEAD_Controller
         $vars = $this->loadValueStores();
         $vars['myFirms'] = $this->firms;
         $vars['canUseFirms'] = $this->canUseFirms;
+        $vars['firmInfo'] = $this->firmInfo;
         $this->load->vars($vars);
         $this->load->view('parts/header', $head);
         $this->load->view($view, $data);
@@ -37,6 +40,7 @@ class USER_Controller extends HEAD_Controller
         } else {
             $userInfo = $this->PublicModel->getUserInfoFromEmail($_SESSION['user_login']['email'], $_SESSION['user_login']['type']);
             if (!empty($userInfo)) {
+                $this->userInfo = $userInfo;
                 /*
                  *  DEFINE USER AND EMPLOYEE CONSTANTS
                  */
@@ -75,16 +79,19 @@ class USER_Controller extends HEAD_Controller
         if (isset($_SESSION['selected_company'])) {
             $isValidFirmForUser = $this->HomeModel->checkCompanyIsValidForUser($_SESSION['selected_company']['id']);
             if (!empty($isValidFirmForUser)) {
-                $selectedFirm = $_SESSION['selected_company']['id'];
+                $selectedFirmId = $_SESSION['selected_company']['id'];
+                $this->firmInfo = $isValidFirmForUser;
             } else {
-                $selectedFirm = $defaultFirmForUser;
+                $selectedFirmId = $defaultFirmForUser['id'];
+                $this->firmInfo = $defaultFirmForUser;
                 unset($_SESSION['selected_company']);
             }
         } else {
-            $selectedFirm = $defaultFirmForUser;
+            $selectedFirmId = $defaultFirmForUser['id'];
+            $this->firmInfo = $defaultFirmForUser;
         }
         if (!defined('EMPLOYEE_ID')) {
-            $firmId = $selectedFirm;
+            $firmId = $selectedFirmId;
             $canUseFirms = array();
             foreach ($firmsForUser as $frm) {
                 array_push($canUseFirms, $frm['id']);
@@ -92,8 +99,8 @@ class USER_Controller extends HEAD_Controller
         } else {
             $employeeFirms = $canUseFirms = $this->HomeModel->getEmployeeAvailableFirms();
             if (!empty($employeeFirms)) {
-                if (in_array($selectedFirm, $employeeFirms)) {
-                    $firmId = $selectedFirm;
+                if (in_array($selectedFirmId, $employeeFirms)) {
+                    $firmId = $selectedFirmId;
                 } else {
                     $firmId = $employeeFirms[0];
                 }
