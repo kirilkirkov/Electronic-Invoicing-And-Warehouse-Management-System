@@ -19,7 +19,8 @@
 .invoice-creative .items-table  {color:#2c2c2c;}
 .invoice-creative .items-table .item-name {color:#3193c4;}
 .invoice-creative .invoice-totals {float: right; width:300px; text-align: right; font-size:16px; color:#2c2c2c; }
-.invoice-creative .invoice-totals .info {text-align: left; padding-right: 120px;}
+.invoice-creative .invoice-totals table {width:100%;}
+.invoice-creative .invoice-totals .info {text-align: left;}
 .invoice-creative .invoice-totals .final-total td {padding-top: 20px; font-size: 18px;}
 .invoice-creative .invoice-totals .final-total .total-price {color:#3193c4;}
 .invoice-creative .invoice-payment {float:left; color:#2c2c2c;}
