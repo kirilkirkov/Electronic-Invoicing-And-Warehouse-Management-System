@@ -116,6 +116,7 @@ $route['user/settings/employees/delete/(:num)'] = "users/settings/employees/dele
 $route['user/settings/employees/rights/(:num)'] = "users/settings/employees/managerights/$1";
 $route['user/admin'] = "users/settings/admin";
 $route['user/invoice/view/(:num)'] = "users/invoices/invoiceview/index/$1";
+$route['user/invoice/print/(:num)'] = "users/invoices/invoiceview/viewInvoiceAsPdf/$1";
 /* USERS PANEL ROUTES */
 
 $route['^(\w{2})$'] = $route['default_controller'];

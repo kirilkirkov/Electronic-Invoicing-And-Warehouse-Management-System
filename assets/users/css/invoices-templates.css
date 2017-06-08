@@ -3,7 +3,7 @@
  */
 .col-right {background-color: #ccc;}
 .invoice-box {width:793px; height: 1122px; margin: 0 auto; -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.70);-moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.70);box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.70);}
-.invoice-creative {font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; width:793px; height: 1122px; margin: 0 auto; background-color: #fff; padding:40px; font-size:14px;}
+.invoice-creative {font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; width:793px; height: 1122px; background-color: #fff; padding:40px; font-size:14px;}
 .invoice-creative .row-my-firm {color:#9f9f9f; margin-bottom: 30px;}
 .invoice-creative .firm-logo {width:200px;float: left; margin-right: 50px;}
 .invoice-creative .firm-logo img {width: 100%;}
@@ -13,7 +13,7 @@
 .invoice-creative .invoice-type {font-size:16px; color:#3193c4; display: inline-block; margin-bottom: 5px;}
 .invoice-creative .row-invoice-info .info {color:#2d2d2d; border-top:2px solid #c6c6c6; border-bottom:2px solid #c6c6c6; padding-top: 7px; padding-bottom: 7px;}
 .invoice-creative .head-td {padding-right: 20px;}
-.invoice-creative .row-invoice-info table {float: left; margin-right: 40px;}
+.invoice-creative .row-invoice-info table {float: left; width: 210px; margin-right: 40px;}
 .invoice-creative .row-invoice-info .client-info {float: left;}
 .invoice-creative .row-invoice-info { margin-bottom: 30px;}
 .invoice-creative .items-table  {color:#2c2c2c;}
