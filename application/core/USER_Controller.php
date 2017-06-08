@@ -39,7 +39,7 @@ class USER_Controller extends HEAD_Controller
             redirect(base_url());
         } else {
             $userInfo = $this->PublicModel->getUserInfoFromEmail($_SESSION['user_login']['email'], $_SESSION['user_login']['type']);
-            if (!empty($userInfo)) {
+            if (!empty($userInfo) && $userInfo['user'] != null) {
                 $this->userInfo = $userInfo;
                 /*
                  *  DEFINE USER AND EMPLOYEE CONSTANTS

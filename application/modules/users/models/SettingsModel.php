@@ -172,9 +172,11 @@ class SettingsModel extends CI_Model
             'phone' => $post['phone'],
             'schiffer' => $post['schiffer'],
             'password' => md5salt($post['password']),
-            'firms_access' => serialize($post['firms']),
             'time_added' => time()
         );
+        if (isset($post['firms'])) {
+            $insertArray['firms_access'] = serialize($post['firms']);
+        }
         if ($post['editId'] > 0) {
             if (mb_strlen(trim($post['password'])) == 0) {
                 unset($insertArray['password']);
@@ -185,6 +187,11 @@ class SettingsModel extends CI_Model
                 show_error(lang('database_error'));
             }
         } else {
+            // if employee, add new employee he cant add access firms 
+            // and we add this firm only to new employee
+            if (!isset($insertArray['firms_access']) && defined('EMPLOYEE_ID')) {
+                $insertArray['firms_access'] = serialize(array(SELECTED_COMPANY_ID));
+            }
             if (!$this->db->insert('employees', $insertArray)) {
                 log_message('error', print_r($this->db->error(), true));
                 show_error(lang('database_error'));
