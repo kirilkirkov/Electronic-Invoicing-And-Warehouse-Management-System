@@ -32,14 +32,14 @@
                 <?php foreach ($invoices as $invoice) { ?>
                     <tr>
                         <td><input type="checkbox"></td>
-                        <td><a href="<?= lang_url('user/invoice/view/' . $invoice['inv_number']) ?>"><?= $invoice['inv_number'] ?></a></td>
+                        <td><a href="<?= lang_url('user/' . $inv_readable_types[$invoice['inv_type']] . '/view/' . $invoice['inv_number']) ?>"><?= $invoice['inv_number'] ?></a></td>
                         <td><?= date('d.m.Y', $invoice['date_create']) ?></td>
                         <td><?= $invoice['client_name'] ?></td>
                         <td><?= lang('type_' . $invoice['inv_type']) ?></td>
                         <td><?= $invoice['final_total'] . $invoice['inv_currency'] ?></td>
                         <td><?= lang('status_' . $invoice['status']) ?></td> 
                         <td>
-                            <a href="<?= lang_url('user/edit/invoice/' . $invoice['inv_number']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                            <a href="<?= lang_url('user/' . $inv_readable_types[$invoice['inv_type']] . '/edit/' . $invoice['inv_number']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                         </td>
                     </tr>
                 <?php } ?>

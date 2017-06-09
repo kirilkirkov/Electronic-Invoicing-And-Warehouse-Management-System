@@ -566,3 +566,12 @@ $config['permissions'] = array(
 $config['templates'] = array(
     'creative'
 );
+/*
+ * used for links (routes)
+ */
+$config['inv_readable_types'] = array(
+    'tax_inv' => 'invoice',
+    'prof' => 'pro-forma',
+    'debit' => 'debit-note',
+    'credit' => 'credit-note'
+);

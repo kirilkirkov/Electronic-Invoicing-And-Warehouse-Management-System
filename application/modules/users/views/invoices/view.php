@@ -13,7 +13,7 @@
     </div>
     <div class="border"></div>
 </div>
-<a href="<?= base_url('user/invoice/print/' . $invNum) ?>" class="btn btn-default"><?= lang('download_print') ?></a>
+<a href="<?= base_url('user/' . $invType . '/print/' . $invNum) ?>" class="btn btn-default"><?= lang('download_print') ?></a>
 <div class="view-container">
     <div class="invoice-box">
         <?php include $templateFile; ?>

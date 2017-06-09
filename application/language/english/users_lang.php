@@ -158,6 +158,7 @@ $lang['trans_number'] = 'Number';
 $lang['trans_date_of_issue'] = 'Date of issue';
 $lang['trans_date_tax_event'] = 'Date of tax event';
 $lang['trans_to_an_invoice'] = 'To an invoice';
+$lang['trans_from_date'] = 'From date';
 $lang['trans_invoice'] = 'Invoice';
 $lang['trans_debit_note'] = 'Debit Note';
 $lang['trans_credit_note'] = 'Credit Note';

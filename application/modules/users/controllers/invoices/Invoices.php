@@ -15,7 +15,7 @@ class Invoices extends USER_Controller
 
     public function __construct()
     {
-        parent::__construct(); 
+        parent::__construct();
         $this->load->model('InvoicesModel');
     }
 
@@ -26,6 +26,7 @@ class Invoices extends USER_Controller
         $head['title'] = 'Administration - Home';
         $rowscount = $this->InvoicesModel->countInvoices($_GET);
         $data['invoices'] = $this->InvoicesModel->getInvoices($this->num_rows, $page);
+        $data['inv_readable_types'] = $this->config->item('inv_readable_types');
         $data['linksPagination'] = pagination('user/invoices', $rowscount, $this->num_rows, 3);
         $this->render('invoices/index', $head, $data);
         $this->saveHistory('Go to invoices page');

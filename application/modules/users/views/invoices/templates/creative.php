@@ -11,9 +11,10 @@
             <p><?= $invoice['firm']['city'] ?></p>
         </div>
         <div class="clearfix"></div>
-    </div>
+    </div> 
     <div class="row-invoice-info">
         <?php
+        $to_inv = false;
         if ($invoice['inv_type'] == 'tax_inv') {
             $inv_type = $invoice['translation']['invoice'];
         }
@@ -21,15 +22,36 @@
             $inv_type = $invoice['translation']['pro_forma'];
         }
         if ($invoice['inv_type'] == 'debit') {
+            $to_inv = true;
             $inv_type = $invoice['translation']['debit_note'];
         }
         if ($invoice['inv_type'] == 'credit') {
+            $to_inv = true;
             $inv_type = $invoice['translation']['credit_note'];
         }
         ?>
         <span class="invoice-type"><?= $inv_type ?></span>
         <div class="info">
             <table>
+                <?php if ($to_inv === true) { ?>
+                    <tr>
+                        <td class="head-td">
+                            <?= $invoice['translation']['to_an_invoice'] ?>
+                        </td>
+                        <td>
+                            <b><?= $invoice['to_inv_number'] ?></b>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td class="head-td">
+                            <?= $invoice['translation']['from_date'] ?>
+                        </td>
+                        <td>
+                            <b><?= date('d.m.Y', $invoice['to_inv_date']) ?></b>
+                        </td>
+                    </tr>
+
+                <?php } ?>
                 <tr>
                     <td class="head-td">
                         <?= $invoice['translation']['number'] ?>

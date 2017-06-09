@@ -468,8 +468,16 @@
                             <input type="text" name="date_of_issue" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
                         </div>
                         <div class="form-group">
-                            <label><?= lang('trans_to_an_invoice') ?></label>
+                            <label><?= lang('trans_date_tax_event') ?></label>
                             <input type="text" name="a_date_of_a_tax_event" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                        </div>
+                        <div class="form-group">
+                            <label><?= lang('trans_to_an_invoice') ?></label>
+                            <input type="text" name="to_an_invoice" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                        </div>
+                        <div class="form-group">
+                            <label><?= lang('trans_from_date') ?></label>
+                            <input type="text" name="from_date" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
                         </div>
                         <div class="form-group">
                             <label><?= lang('trans_invoice') ?></label>

@@ -11,7 +11,8 @@ if (!defined('BASEPATH')) {
 class Newinvoice extends USER_Controller
 {
 
-    private $editId;
+    private $editId = 0;
+    private $invNum = 0;
 
     public function __construct()
     {
@@ -19,12 +20,10 @@ class Newinvoice extends USER_Controller
         $this->load->model(array('NewInvoiceModel', 'SettingsModel', 'ManagefirmsModel'));
     }
 
-    public function index($editId = 0)
+    public function index($invType = null, $invNum = 0)
     {
         $data = array();
         $head = array();
-        $this->editId = $editId;
-        $this->postChecker();
         $head['title'] = 'Administration - Home';
         $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
         $data['myDefaultFirmCurrency'] = $this->NewInvoiceModel->getFirmDefaultCurrency();
@@ -33,15 +32,22 @@ class Newinvoice extends USER_Controller
         $data['invoiceLanguages'] = $this->NewInvoiceModel->getMyInvoiceLanguages();
         $data['myNoVatReasons'] = $this->SettingsModel->getMyNoVatReasons();
         $nextInvNumber = $this->NewInvoiceModel->getNextFreeInvoiceNumber();
-        if ($editId > 0) {
-            $result = $this->NewInvoiceModel->getInvoiceByNumber($editId);
+        if ($invNum > 0) {
+            $this->invNum = $invNum;
+            $inv_readable_types = array_flip($this->config->item('inv_readable_types'));
+            $result = $this->NewInvoiceModel->getInvoiceByNumber($inv_readable_types[$invType], $invNum);
             if (empty($result)) {
                 show_404();
             }
+            $this->postChecker();
             $_POST = $result;
+            $this->editId = $result['id'];
+        } else {
+            $this->postChecker();
         }
+
         $data['nextInvNumber'] = $nextInvNumber;
-        $data['editId'] = $editId;
+        $data['editId'] = $this->editId;
         if (isset($_POST['inv_currency'])) {
             $theCurrency = $_POST['inv_currency'];
         } elseif ($data['myDefaultFirmCurrency'] != null) {
@@ -72,6 +78,7 @@ class Newinvoice extends USER_Controller
     private function createInvoice()
     {
         $isValid = $this->validateInvoice();
+        $inv_readable_types = $this->config->item('inv_readable_types');
         if ($isValid === true) {
             if ($this->editId > 0) {
                 $this->NewInvoiceModel->updateInvoice($_POST);
@@ -79,11 +86,11 @@ class Newinvoice extends USER_Controller
                 $_POST['userInfo'] = $this->userInfo; // get info for logged user
                 $this->NewInvoiceModel->setInvoice($_POST);
             }
-            redirect(lang_url('user/new/invoice'));
+            redirect(lang_url('user/' . $inv_readable_types[$_POST['inv_type']] . '/view/' . $_POST['inv_number']));
         } else {
             $this->session->set_flashdata('resultAction', $isValid);
             if ($this->editId > 0) {
-                redirect(lang_url('user/edit/invoice/' . $this->editId));
+                redirect(lang_url('user/' . $inv_readable_types[$_POST['inv_type']] . '/edit/' . $this->invNum));
             } else {
                 redirect(lang_url('user/new/invoice'));
             }

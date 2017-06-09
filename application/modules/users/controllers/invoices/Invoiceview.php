@@ -17,12 +17,13 @@ class Invoiceview extends USER_Controller
         $this->load->model('NewInvoiceModel');
     }
 
-    public function index($invNum)
+    public function index($invType, $invNum)
     {
         $data = array();
         $head = array();
         $head['title'] = 'Administration - Home';
-        $invoice = $this->NewInvoiceModel->getInvoiceByNumber($invNum);
+        $inv_readable_types_flip = array_flip($this->config->item('inv_readable_types'));
+        $invoice = $this->NewInvoiceModel->getInvoiceByNumber($inv_readable_types_flip[$invType], $invNum);
         if ($invoice == null) {
             show_404();
         }
@@ -33,15 +34,17 @@ class Invoiceview extends USER_Controller
             show_error(lang('no_template_file'));
         }
         $data['invoice'] = $invoice;
-        $data['templateFile'] = $templateFile;
+        $data['templateFile'] = $templateFile; 
+        $data['invType'] = $invType;
         $data['invNum'] = $invNum;
         $this->render('invoices/view', $head, $data);
         $this->saveHistory('Go to preview invoice with number ' . $invNum . ' and firm id' . SELECTED_COMPANY_ID);
     }
 
-    public function viewInvoiceAsPdf($invNum)
+    public function viewInvoiceAsPdf($invType, $invNum)
     {
-        $invoice = $this->NewInvoiceModel->getInvoiceByNumber($invNum);
+        $inv_readable_types = array_flip($this->config->item('inv_readable_types'));
+        $invoice = $this->NewInvoiceModel->getInvoiceByNumber($inv_readable_types[$invType], $invNum);
         if ($invoice == null) {
             show_404();
         }

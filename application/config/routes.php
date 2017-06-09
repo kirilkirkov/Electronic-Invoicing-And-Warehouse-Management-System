@@ -97,7 +97,7 @@ $route['user/settings/invoices/delete/novatreason/(:num)'] = 'users/settings/inv
 $route['user/modalselector'] = 'users/invoices/newinvoice/modalselector';
 $route['user/invoices'] = "users/invoices/invoices";
 $route['user/invoices/(:num)'] = "users/invoices/invoices/index/$1";
-$route['user/edit/invoice/(:num)'] = "users/invoices/newinvoice/index/$1";
+$route['user/(:any)/edit/(:num)'] = "users/invoices/newinvoice/index/$1/$2";
 $route['user/clients'] = "users/clients/clients";
 $route['user/clients/(:num)'] = "users/clients/clients/index/$1";
 $route['user/delete/client/(:num)'] = "users/clients/clients/deleteclient/$1";
@@ -115,8 +115,8 @@ $route['user/settings/employees/add/(:num)'] = "users/settings/employees/addnew/
 $route['user/settings/employees/delete/(:num)'] = "users/settings/employees/deleteemployee/$1";
 $route['user/settings/employees/rights/(:num)'] = "users/settings/employees/managerights/$1";
 $route['user/admin'] = "users/settings/admin";
-$route['user/invoice/view/(:num)'] = "users/invoices/invoiceview/index/$1";
-$route['user/invoice/print/(:num)'] = "users/invoices/invoiceview/viewInvoiceAsPdf/$1";
+$route['user/(:any)/view/(:num)'] = "users/invoices/invoiceview/index/$1/$2";
+$route['user/(:any)/print/(:num)'] = "users/invoices/invoiceview/viewInvoiceAsPdf/$1/$2";
 /* USERS PANEL ROUTES */
 
 $route['^(\w{2})$'] = $route['default_controller'];

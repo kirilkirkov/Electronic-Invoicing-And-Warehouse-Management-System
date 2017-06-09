@@ -148,7 +148,7 @@ class NewInvoiceModel extends CI_Model
             'remarks' => $post['remarks'],
             'payment_method' => $post['payment_method'],
             'to_inv_number' => $post['to_inv_number'],
-            'to_inv_date' => $post['to_inv_date'],
+            'to_inv_date' => strtotime($post['to_inv_date']),
             'invoice_amount' => $post['invoice_amount'],
             'discount' => $post['discount'],
             'discount_type' => $post['discount_type'],
@@ -191,7 +191,7 @@ class NewInvoiceModel extends CI_Model
             'remarks' => $post['remarks'],
             'payment_method' => $post['payment_method'],
             'to_inv_number' => $post['to_inv_number'],
-            'to_inv_date' => $post['to_inv_date'],
+            'to_inv_date' => strtotime($post['to_inv_date']),
             'invoice_amount' => $post['invoice_amount'],
             'discount' => $post['discount'],
             'discount_type' => $post['discount_type'],
@@ -498,8 +498,9 @@ class NewInvoiceModel extends CI_Model
         return $result->result_array();
     }
 
-    public function getInvoiceByNumber($invId)
+    public function getInvoiceByNumber($invType, $invId)
     {
+        $this->db->where('inv_type', $invType);
         $this->db->where('invoices.inv_number', (int) $invId);
         $this->db->where('invoices.for_user', USER_ID);
         $this->db->where('invoices.for_company', SELECTED_COMPANY_ID);
