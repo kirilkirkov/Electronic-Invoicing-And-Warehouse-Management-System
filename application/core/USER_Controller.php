@@ -76,7 +76,8 @@ class USER_Controller extends HEAD_Controller
         $this->load->model('HomeModel');
         $defaultFirmForUser = $this->HomeModel->getDefaultCompany();
         $firmsForUser = $this->HomeModel->getFirms();
-        if (isset($_SESSION['selected_company'])) {
+        if (isset($_SESSION['selected_company'])) { 
+            echo $_SESSION['selected_company']['id'];
             $isValidFirmForUser = $this->HomeModel->checkCompanyIsValidForUser($_SESSION['selected_company']['id']);
             if (!empty($isValidFirmForUser)) {
                 $selectedFirmId = $_SESSION['selected_company']['id'];

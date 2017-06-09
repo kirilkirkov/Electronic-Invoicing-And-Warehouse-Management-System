@@ -41,9 +41,9 @@ class Home extends USER_Controller
     public function useCompany($companyId)
     {
         $canIUse = $this->HomeModel->checkCompanyIsValidForUser($companyId);
-        if (!empty($canIUse)) {
+        if (!empty($canIUse)) { 
             $_SESSION['selected_company'] = array(
-                'id' => $canIUse['id'],
+                'id' => $canIUse['firm_id'],
                 'name' => $canIUse['name']
             );
         }
