@@ -31,7 +31,7 @@ class HtmlToPdf
         $tmpfile = tempnam($sys_tmp_dir, 'pdf_html');
 
         if ($tmpfile === false) {
-            echo "Was not able to generate a temporary file";
+            log_message('error', 'Was not able to generate a temporary file for invoice preview in system /tmp for user - ' . print_r($_SESSION['user_login'], true));
         }
 
         $tmphtml = $tmpfile . '.html';
@@ -42,12 +42,12 @@ class HtmlToPdf
         }
 
         if (false === file_put_contents($tmphtml, $html)) {
-            echo "Was not able to create HTML file " . $tmphtml;
+            log_message('error', 'Was not able to put html to a temporary file for invoice preview in system /tmp for user - ' . print_r($_SESSION['user_login'], true));
         }
         $tmpfname = tempnam($sys_tmp_dir, 'html_pdf');
 
         if ($tmpfname === false) {
-            echo "Was not able to generate a temporary file";
+            log_message('error', 'Was not able to generate a temporary file 2 for invoice preview in system /tmp for user - ' . print_r($_SESSION['user_login'], true));
         }
 
         $cmd = 'xvfb-run wkhtmltopdf --load-error-handling ignore' .
@@ -80,7 +80,7 @@ class HtmlToPdf
             if (is_file($tmpfile)) {
                 unlink($tmpfile);
             }
-            echo "Generating PDF failed. See logs for more information.";
+            log_message('error', 'Generating PDF failed. See logs for more information. Problem for user - ' . print_r($_SESSION['user_login'], true));
         }
 
         $pdfcontents = file_get_contents($tmpfname);
@@ -94,7 +94,7 @@ class HtmlToPdf
         }
 
         if ($pdfcontents === false) {
-            echo "Couldn't read the PDF file.";
+            log_message('error', 'Couldn\'t read the PDF file for user - ' . print_r($_SESSION['user_login'], true));
         }
 
         return $pdfcontents;
