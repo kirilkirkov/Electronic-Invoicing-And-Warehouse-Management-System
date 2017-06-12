@@ -53,6 +53,7 @@ class Home extends USER_Controller
     private function setFirm()
     {
         $_POST['is_default'] = 1;
+        $_POST['trans_name'] = 'default';
         $id = $this->HomeModel->setFirm($_POST);
         return $id;
     }
