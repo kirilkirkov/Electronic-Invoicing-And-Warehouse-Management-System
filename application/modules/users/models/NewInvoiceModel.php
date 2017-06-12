@@ -235,7 +235,7 @@ class NewInvoiceModel extends CI_Model
             'address' => $firm['address'],
             'city' => $firm['city'],
             'accountable_person' => $firm['mol'],
-            'image' => $firm['image']
+            'image' => $firm['image'] == null ? '' : $firm['image']
         );
         if (!$this->db->insert('invoices_firms', $insertArray)) {
             log_message('error', print_r($this->db->error(), true));
