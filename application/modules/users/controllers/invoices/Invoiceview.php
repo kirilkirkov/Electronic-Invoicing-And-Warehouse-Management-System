@@ -34,7 +34,7 @@ class Invoiceview extends USER_Controller
             show_error(lang('no_template_file'));
         }
         $data['invoice'] = $invoice;
-        $data['templateFile'] = $templateFile; 
+        $data['templateFile'] = $templateFile;
         $data['invType'] = $invType;
         $data['invNum'] = $invNum;
         $this->render('invoices/view', $head, $data);
@@ -43,6 +43,7 @@ class Invoiceview extends USER_Controller
 
     public function viewInvoiceAsPdf($invType, $invNum)
     {
+        echo $invNum;
         $inv_readable_types = array_flip($this->config->item('inv_readable_types'));
         $invoice = $this->NewInvoiceModel->getInvoiceByNumber($inv_readable_types[$invType], $invNum);
         if ($invoice == null) {
@@ -79,9 +80,10 @@ class Invoiceview extends USER_Controller
         echo '</body></html>';
         $html = ob_get_clean();
         $pdf = $this->htmltopdf->generatePdf($html);
+        $filename = $invType . ' - ' . $invNum . '.pdf';
 
         header('Content-Type: application/pdf');
-        header('Content-Disposition: inline; filename="platejno.pdf"');
+        header('Content-Disposition: inline; filename="' . $filename . '"');
         header('Expires: 0');
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
         header('Pragma: public');

@@ -39,9 +39,9 @@ class Newinvoice extends USER_Controller
             if (empty($result)) {
                 show_404();
             }
+            $this->editId = $result['id'];
             $this->postChecker();
             $_POST = $result;
-            $this->editId = $result['id'];
         } else {
             $this->postChecker();
         }
