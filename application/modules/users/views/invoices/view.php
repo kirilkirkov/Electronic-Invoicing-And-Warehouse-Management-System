@@ -13,7 +13,10 @@
     </div>
     <div class="border"></div>
 </div>
-<a href="<?= base_url('user/' . $invType . '/print/' . $invNum) ?>" class="btn btn-default"><?= lang('download_print') ?></a>
+<a href="<?= base_url('user/' . $invType . '/print/' . $invNum) ?>" class="btn btn-default" style="position: relative;">
+        <?= lang('download_print') ?>&nbsp;&nbsp;&nbsp;
+    <img src="<?= base_url('assets/users/imgs/pdf-icon-100.png') ?>" style="position: absolute; width:20px; top:0; right:2px;" alt="pdf">
+</a>
 <div class="view-container">
     <div class="invoice-box">
         <?php include $templateFile; ?>
