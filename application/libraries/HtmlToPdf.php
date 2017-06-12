@@ -50,7 +50,7 @@ class HtmlToPdf
             log_message('error', 'Was not able to generate a temporary file 2 for invoice preview in system /tmp for user - ' . print_r($_SESSION['user_login'], true));
         }
 
-        $cmd = 'xvfb-run wkhtmltopdf --load-error-handling ignore' .
+        $cmd = '/home/kiro/wkhtmltox/bin/wkhtmltopdf --load-error-handling ignore' .
                 ' --no-stop-slow-scripts' .
                 ' -q ' . $extra_params .
                 ' -d ' . $dpi .
@@ -65,6 +65,8 @@ class HtmlToPdf
 
         exec($cmd, $output, $exit_status);
         /*
+         * It must run without call xvfb! Download source for os from - https://wkhtmltopdf.org/downloads.html
+         * Extract to some folder and call the app
          * If when call var_dump(file_get_contents($tmpfname)); returns null
          * its possible to have error with xvfb
          * https://unix.stackexchange.com/questions/192642/wkhtmltopdf-qxcbconnection-could-not-connect-to-display
