@@ -22,4 +22,20 @@ class Home extends MY_Controller
         redirect(base_url());
     }
 
+    /*
+     * Called from HtmlToPdf library to load footer for invoices
+     * wkhtmltopdf cant call files for footer/header :(
+     */
+
+    public function getInvoiceFooter()
+    {
+        if (!isset($_GET['invNum'])) {
+            log_message('error', 'Call footer for wkhtmltopdf without GET[invNum] variable - ' . print_r($_SESSION['user_login'], true));
+            exit;
+        }
+        $data = array();
+        $data['invNum'] = $_GET['invNum'];
+        $this->load->view('invoices_parts/footer.php', $data);
+    }
+
 }

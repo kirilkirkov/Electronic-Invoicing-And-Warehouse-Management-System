@@ -50,7 +50,8 @@ class HtmlToPdf
             log_message('error', 'Was not able to generate a temporary file 2 for invoice preview in system /tmp for user - ' . print_r($_SESSION['user_login'], true));
         }
 
-        $cmd = '/home/kiro/wkhtmltox/bin/wkhtmltopdf --load-error-handling ignore' .
+        $footerUrl = base_url('pdffooter?invNum=' . $_SESSION['invNum']);
+        $cmd = '/home/kiro/wkhtmltox/bin/wkhtmltopdf --footer-html "' . $footerUrl . '" --load-error-handling ignore --enable-local-file-access' .
                 ' --no-stop-slow-scripts' .
                 ' -q ' . $extra_params .
                 ' -d ' . $dpi .

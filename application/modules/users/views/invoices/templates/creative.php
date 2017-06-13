@@ -151,12 +151,31 @@
                         <?= $invoice['tax_base'] . ' ' . $invoice['inv_currency'] ?>
                     </td>
                 </tr>
+                <?php if ($invoice['no_vat'] == 1) { ?>
+                    <tr>
+                        <td class="info">
+                            <?= $invoice['translation']['vat_charget'] ?> 
+                        </td>
+                        <td>
+                            <?= $invoice['no_vat_reason'] ?>
+                        </td>
+                    </tr>
+                <?php } else { ?>
+                    <tr>
+                        <td class="info">
+                            <?= $invoice['translation']['percentage_vat'] ?>  -  <?= $invoice['vat_percent'] ?>%
+                        </td>
+                        <td>
+                            <?= $invoice['vat_sum'] . ' ' . $invoice['inv_currency'] ?>
+                        </td>
+                    </tr>
+                <?php } ?>
                 <tr class="final-total">
                     <td class="info">
                         <?= $invoice['translation']['everything'] ?>  
                     </td>
                     <td class="total-price">
-                        <?= $invoice['tax_base'] . ' ' . $invoice['inv_currency'] ?>
+                        <?= $invoice['final_total'] . ' ' . $invoice['inv_currency'] ?>
                     </td>
                 </tr>
             </table>

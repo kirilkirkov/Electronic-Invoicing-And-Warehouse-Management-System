@@ -43,12 +43,12 @@ class Invoiceview extends USER_Controller
 
     public function viewInvoiceAsPdf($invType, $invNum)
     {
-        echo $invNum;
         $inv_readable_types = array_flip($this->config->item('inv_readable_types'));
         $invoice = $this->NewInvoiceModel->getInvoiceByNumber($inv_readable_types[$invType], $invNum);
         if ($invoice == null) {
             show_404();
         }
+        $_SESSION['invNum'] = $invNum; // set session to give the invoice number to footer
         $choosedTemplate = 'creative';
         $templatesDir = 'application/modules/users/views/invoices/templates/';
         $templateFile = $templatesDir . $choosedTemplate . '.php';
