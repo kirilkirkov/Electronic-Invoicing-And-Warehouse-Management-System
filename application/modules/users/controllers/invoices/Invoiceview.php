@@ -48,7 +48,6 @@ class Invoiceview extends USER_Controller
         if ($invoice == null) {
             show_404();
         }
-        $_SESSION['invNum'] = $invNum; // set session to give the invoice number to footer
         $choosedTemplate = 'creative';
         $templatesDir = 'application/modules/users/views/invoices/templates/';
         $templateFile = $templatesDir . $choosedTemplate . '.php';
@@ -79,6 +78,8 @@ class Invoiceview extends USER_Controller
         include $templateFile;
         echo '</body></html>';
         $html = ob_get_clean();
+        $this->htmltopdf->setInvNum($invNum); // set invoice number to give it to footer
+        $this->htmltopdf->setInvType($invType); // set invoice type to give it to footer
         $pdf = $this->htmltopdf->generatePdf($html);
         $filename = $invType . ' - ' . $invNum . '.pdf';
 

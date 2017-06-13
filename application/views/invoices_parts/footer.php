@@ -30,6 +30,6 @@
         </script>
     </head>
     <body onload="substitutePdfVariables()">
-        <p style="text-align:right;  ">Invoice № <?= $invNum ?> | Page <span class="page"></span> / <span class="topage"></span></p>
+        <p style="text-align:right;"><span style="text-transform: capitalize;"><?= $invType ?></span> № <?= $invNum ?> | Page <span class="page"></span> / <span class="topage"></span></p>
     </body>
 </html>
