@@ -291,3 +291,4 @@ $lang['no_template_file'] = 'No template file finded! Please contact support!';
 $lang['composed_from'] = 'Composed from:';
 $lang['schiffer_replace'] = 'Schiffer (replaces signature)';
 $lang['download_print'] = 'Download/Print';
+$lang['confirm_delete_invoice'] = 'Are you sure want to delete this invoice? This will be permanently!';

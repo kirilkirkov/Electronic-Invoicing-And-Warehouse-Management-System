@@ -32,4 +32,10 @@ class Invoices extends USER_Controller
         $this->saveHistory('Go to invoices page');
     }
 
+    public function deleteInvoice($id)
+    {
+        $this->InvoicesModel->deletePermanentlyInvoice($id);
+        redirect(lang_url('user/invoices'));
+    }
+
 }

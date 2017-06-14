@@ -25,4 +25,45 @@ class InvoicesModel extends CI_Model
         return $result->result_array();
     }
 
+    public function deletePermanentlyInvoice($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('for_company', SELECTED_COMPANY_ID);
+        if (!$this->db->delete('invoices')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+
+        $this->db->where('for_invoice', $id);
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('for_company', SELECTED_COMPANY_ID);
+        if (!$this->db->delete('invoices_clients')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+
+        $this->db->where('for_invoice', $id);
+        $this->db->where('for_user', USER_ID);
+        if (!$this->db->delete('invoices_firms')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+
+        $this->db->where('for_invoice', $id);
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('for_company', SELECTED_COMPANY_ID);
+        if (!$this->db->delete('invoices_items')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+
+        $this->db->where('for_invoice', $id);
+        $this->db->where('for_user', USER_ID);
+        if (!$this->db->delete('invoices_translations')) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+    }
+
 }

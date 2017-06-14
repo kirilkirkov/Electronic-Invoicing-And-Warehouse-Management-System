@@ -40,6 +40,7 @@
                         <td><?= lang('status_' . $invoice['status']) ?></td> 
                         <td>
                             <a href="<?= lang_url('user/' . $inv_readable_types[$invoice['inv_type']] . '/edit/' . $invoice['inv_number']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                            <a href="<?= lang_url('user/invoice/delete/' . $invoice['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_invoice') ?>"><i class="fa fa-remove" aria-hidden="true"></i> Remove</a>
                         </td>
                     </tr>
                 <?php } ?>
