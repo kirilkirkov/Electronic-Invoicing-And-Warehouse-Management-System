@@ -55,7 +55,6 @@ class Invoiceview extends USER_Controller
             show_error(lang('no_template_file'));
         }
         $this->load->library('HtmlToPdf');
-
         ob_start();
         echo '
         <!DOCTYPE html>
@@ -80,6 +79,7 @@ class Invoiceview extends USER_Controller
         $html = ob_get_clean();
         $this->htmltopdf->setInvNum($invNum); // set invoice number to give it to footer
         $this->htmltopdf->setInvType($invType); // set invoice type to give it to footer
+        $this->htmltopdf->setInvPageTranslate($invoice['translation']['page']); // set invoice translation of 'page' word
         $pdf = $this->htmltopdf->generatePdf($html);
         $filename = $invType . ' - ' . $invNum . '.pdf';
 

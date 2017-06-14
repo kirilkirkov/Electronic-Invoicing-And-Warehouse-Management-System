@@ -36,6 +36,7 @@ class Home extends MY_Controller
         $data = array();
         $data['invNum'] = $_GET['invNum'];
         $data['invType'] = $_GET['invType'];
+        $data['pageTranslate'] = urldecode($_GET['pageTranslate']);
         $this->load->view('invoices_parts/footer.php', $data);
     }
 

@@ -179,6 +179,7 @@ $lang['trans_reason_non_var'] = 'Reason for non charging vat';
 $lang['trans_compiled'] = 'Compiled';
 $lang['trans_signature'] = 'Signature';
 $lang['trans_schiffer'] = 'Schiffer';
+$lang['trans_page'] = 'Page';
 $lang['save_new_translate'] = 'Save new translation';
 $lang['default_inv_lang'] = 'English';
 $lang['err_create_to_inv_num'] = 'Please enter to invoice number field!';

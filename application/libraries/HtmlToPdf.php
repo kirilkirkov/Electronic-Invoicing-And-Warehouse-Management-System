@@ -53,7 +53,7 @@ class HtmlToPdf
             log_message('error', 'Was not able to generate a temporary file 2 for invoice preview in system /tmp for user - ' . print_r($_SESSION['user_login'], true));
         }
 
-        $footerUrl = base_url('pdffooter?invNum=' . $this->invNum . '&invType=' . $this->invType);
+        $footerUrl = base_url('pdffooter?invNum=' . $this->invNum . '&invType=' . $this->invType . '&pageTranslate=' . $this->pageTranslation);
         $cmd = '/home/kiro/wkhtmltox/bin/wkhtmltopdf --footer-html "' . $footerUrl . '" --load-error-handling ignore --enable-local-file-access' .
                 ' --no-stop-slow-scripts' .
                 ' -q ' . $extra_params .
@@ -114,6 +114,11 @@ class HtmlToPdf
     public function setInvType($invType)
     {
         $this->invType = $invType;
+    }
+
+    public function setInvPageTranslate($translation)
+    {
+        $this->pageTranslation = urlencode($translation);
     }
 
 }

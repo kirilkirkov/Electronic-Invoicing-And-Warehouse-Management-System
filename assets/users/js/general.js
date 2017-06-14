@@ -8,6 +8,7 @@ var border_color_fields = '#e9e9e9';
 var border_color_wrong = 'red';
 var alertBoxHtml = '<div class="alert-errors">%output%<a href="javascript:void(0);" class="close-alert" onclic="cs"><i class="fa fa-times" aria-hidden="true"></i></a></div>';
 var chooseItemIndex;
+var pixelsPdfDelivery = 1300; // pixels that wkhtmltopdf deliver segments of pdf
 
 $(document).ready(function () {
     /*
@@ -724,4 +725,20 @@ function newEmployeeValidate() {
     } else {
         showError(lang.errorCreateEmployee);
     }
-} 
+}
+/*
+ * If we are on invoice preview page
+ * Add pages segments
+ */
+if ($('.invoice-box').length) {
+    var invoice_box = $('.invoice-box');
+    var num_parts = parseInt(invoice_box.height() / pixelsPdfDelivery);
+    var i = 1;
+    var position = 0;
+    while (i <= num_parts) {
+        var newDelivery = $('.pageDelivery').last().clone().insertAfter('.pageDelivery:last');
+        var position = position + pixelsPdfDelivery; 
+        newDelivery.css('top', position).removeClass('hidden').addClass('clone-delivery');
+        i++;
+    }
+}

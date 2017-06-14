@@ -559,6 +559,10 @@
                             <label><?= lang('trans_payment_type') ?></label>
                             <input type="text" name="payment_type" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
                         </div>
+                        <div class="form-group">
+                            <label><?= lang('trans_page') ?></label>
+                            <input type="text" name="page" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
