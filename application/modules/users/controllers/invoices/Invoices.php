@@ -24,12 +24,28 @@ class Invoices extends USER_Controller
         $data = array();
         $head = array();
         $head['title'] = 'Administration - Home';
+        $this->postChecker();
         $rowscount = $this->InvoicesModel->countInvoices($_GET);
         $data['invoices'] = $this->InvoicesModel->getInvoices($this->num_rows, $page);
         $data['inv_readable_types'] = $this->config->item('inv_readable_types');
         $data['linksPagination'] = pagination('user/invoices', $rowscount, $this->num_rows, 3);
         $this->render('invoices/index', $head, $data);
         $this->saveHistory('Go to invoices page');
+    }
+
+    private function postChecker()
+    {
+        if (isset($_POST['action'])) {
+            if ($_POST['action'] == 'delete') {
+                $this->deleteSelectedInvoices($_POST['ids']);
+            }
+        }
+    }
+
+    private function deleteSelectedInvoices($ids)
+    {
+        $this->InvoicesModel->multipleDeleteInvoices($ids);
+        redirect(lang_url('user/invoices'));
     }
 
     public function deleteInvoice($id)

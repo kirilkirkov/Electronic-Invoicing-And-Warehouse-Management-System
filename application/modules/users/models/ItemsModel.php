@@ -66,4 +66,17 @@ class ItemsModel extends CI_Model
         }
     }
 
+    public function multipleDeleteItems($ids)
+    {
+        if ($ids != null && is_array($ids)) {
+            $this->db->where_in('id', $ids);
+            $this->db->where('for_user', USER_ID);
+            $this->db->where('for_company', SELECTED_COMPANY_ID);
+            if (!$this->db->delete('items')) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
+        }
+    }
+
 }

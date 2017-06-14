@@ -25,6 +25,7 @@ class Items extends USER_Controller
         $data = array();
         $head = array();
         $head['title'] = 'Administration - Home';
+        $this->postChecker();
         $rowscount = $this->ItemsModel->countItems($_GET);
         $data['items'] = $this->ItemsModel->getItems($this->num_rows, $page);
         $data['linksPagination'] = pagination('user/items', $rowscount, $this->num_rows, 3);
@@ -58,6 +59,17 @@ class Items extends USER_Controller
         if (isset($_POST['name'])) {
             $this->setItem();
         }
+        if (isset($_POST['action'])) {
+            if ($_POST['action'] == 'delete') {
+                $this->deleteSelectedItems($_POST['ids']);
+            }
+        }
+    }
+
+    private function deleteSelectedItems($ids)
+    {
+        $this->ItemsModel->multipleDeleteItems($ids);
+        redirect(lang_url('user/items'));
     }
 
     private function setItem()

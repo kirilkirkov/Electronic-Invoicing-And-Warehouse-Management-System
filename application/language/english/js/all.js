@@ -12,5 +12,7 @@ var lang = {
     currencyItemNotSame: 'The price entered for this item is in a different currency',
     errorCreateClient: 'Some client required fields are blank!',
     errorCreateItem: 'Some item required fields are blank!',
-    errorCreateEmployee: 'You have invalid fields!'
+    errorCreateEmployee: 'You have invalid fields!',
+    noCheckedCheckboxes: 'There is nothing selected!',
+    confirmDelete: 'Are you sure want to delete?'
 };

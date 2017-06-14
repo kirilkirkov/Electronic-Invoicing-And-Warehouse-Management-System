@@ -25,6 +25,7 @@ class Clients extends USER_Controller
         $data = array();
         $head = array();
         $head['title'] = 'Administration - Home';
+        $this->postChecker();
         $rowscount = $this->ClientsModel->countClients($_GET);
         $data['clients'] = $this->ClientsModel->getClients($this->num_rows, $page);
         $data['linksPagination'] = pagination('user/clients', $rowscount, $this->num_rows, 3);
@@ -56,6 +57,17 @@ class Clients extends USER_Controller
         if (isset($_POST['client_name'])) {
             $this->setClient();
         }
+        if (isset($_POST['action'])) {
+            if ($_POST['action'] == 'delete') {
+                $this->deleteSelectedClients($_POST['ids']);
+            }
+        }
+    }
+
+    private function deleteSelectedClients($ids)
+    {
+        $this->ClientsModel->multipleDeleteClients($ids);
+        redirect(lang_url('user/clients'));
     }
 
     private function setClient()

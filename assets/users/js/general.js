@@ -327,6 +327,68 @@ $(document).on("keyup", '[name="SearchDualList"]', function (e) {
     }
 });
 /*
+ * If we are on invoice preview page
+ * Add pages segments
+ */
+if ($('.invoice-box').length) {
+    var invoice_box = $('.invoice-box');
+    var num_parts = parseInt(invoice_box.height() / pixelsPdfDelivery);
+    var i = 1;
+    var position = 0;
+    while (i <= num_parts) {
+        var newDelivery = $('.pageDelivery').last().clone().insertAfter('.pageDelivery:last');
+        var position = position + pixelsPdfDelivery;
+        newDelivery.css('top', position).removeClass('hidden').addClass('clone-delivery');
+        i++;
+    }
+}
+/*
+ * if check checkbox {check-all-boxes}
+ * lets check all boxes with class check-me-now :)
+ */
+$(".check-all-boxes").change(function () {
+    if (this.checked) {
+        $('.check-me-now').prop("checked", true);
+    } else {
+        $('.check-me-now').prop("checked", false);
+    }
+});
+/*
+ * .list-action buttons call action like delete, send
+ * for all selected elements in list
+ */
+$('.list-action').click(function () {
+    var action = $(this).data('action-type');
+    $('[name="action"]').val(action);
+    var num_checked = $(".check-me-now:checked").length;
+    if (num_checked == 0) {
+        showError(lang.noCheckedCheckboxes);
+        return;
+    }
+    if (action == 'delete') {
+        bootbox.confirm({
+            message: lang.confirmDelete,
+            buttons: {
+                confirm: {
+                    label: 'Yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'No',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    document.getElementById('action-form').submit();
+                }
+            }
+        });
+    } else {
+        document.getElementById('action-form').submit();
+    }
+});
+/*
  * Create draft invoice
  */
 function createDraft() {
@@ -724,21 +786,5 @@ function newEmployeeValidate() {
         document.getElementById('setNewEmployee').submit();
     } else {
         showError(lang.errorCreateEmployee);
-    }
-}
-/*
- * If we are on invoice preview page
- * Add pages segments
- */
-if ($('.invoice-box').length) {
-    var invoice_box = $('.invoice-box');
-    var num_parts = parseInt(invoice_box.height() / pixelsPdfDelivery);
-    var i = 1;
-    var position = 0;
-    while (i <= num_parts) {
-        var newDelivery = $('.pageDelivery').last().clone().insertAfter('.pageDelivery:last');
-        var position = position + pixelsPdfDelivery; 
-        newDelivery.css('top', position).removeClass('hidden').addClass('clone-delivery');
-        i++;
     }
 }
