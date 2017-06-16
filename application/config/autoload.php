@@ -101,7 +101,8 @@ $autoload['helper'] = array(
     'text',
     'geterror',
     'md5salt',
-    'full_inv_number'
+    'full_inv_number',
+    'thisyeardates'
 );
 
 /*

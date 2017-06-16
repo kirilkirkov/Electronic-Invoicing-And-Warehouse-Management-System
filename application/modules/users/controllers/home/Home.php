@@ -14,11 +14,12 @@ class Home extends USER_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('HomeModel');
+        $this->load->model(array('HomeModel', 'ReportsModel'));
     }
 
     public function index()
     {
+
         $data = array();
         $head = array();
         $head['title'] = 'Administration - Home';
@@ -34,6 +35,9 @@ class Home extends USER_Controller
                 redirect(lang_url('user'));
             }
         }
+        $data['inv_readable_types'] = $this->config->item('inv_readable_types');
+        $data['issuedInvoices'] = $this->ReportsModel->getIssuedInvoices();
+        $data['betweenDates'] = lang('all_the_time');
         $this->render('home/index', $head, $data);
         $this->saveHistory('Go to home page');
     }
@@ -41,7 +45,7 @@ class Home extends USER_Controller
     public function useCompany($companyId)
     {
         $canIUse = $this->HomeModel->checkCompanyIsValidForUser($companyId);
-        if (!empty($canIUse)) { 
+        if (!empty($canIUse)) {
             $_SESSION['selected_company'] = array(
                 'id' => $canIUse['firm_id'],
                 'name' => $canIUse['name']

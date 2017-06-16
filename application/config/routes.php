@@ -118,6 +118,7 @@ $route['user/admin'] = "users/settings/admin";
 $route['user/(:any)/view/(:num)'] = "users/invoices/invoiceview/index/$1/$2";
 $route['user/(:any)/print/(:num)'] = "users/invoices/invoiceview/viewInvoiceAsPdf/$1/$2";
 $route['user/invoice/delete/(:num)'] = "users/invoices/invoices/deleteInvoice/$1";
+$route['user/reports'] = "users/reports/reports";
 
 $route['pdffooter'] = 'home/getinvoicefooter';
 /* USERS PANEL ROUTES */
