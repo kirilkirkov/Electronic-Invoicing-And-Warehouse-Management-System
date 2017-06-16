@@ -14,7 +14,7 @@ class Reports extends USER_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('ReportsModel'));
+        $this->load->model(array('ReportsModel', 'NewInvoiceModel'));
     }
 
     public function index()
@@ -31,6 +31,7 @@ class Reports extends USER_Controller
         $data['issuedInvoices'] = $this->ReportsModel->getIssuedInvoices(strtotime($_GET['from_date']), strtotime($_GET['to_date']));
         $data['issuedInvoicesByMonth'] = $this->ReportsModel->getIssuedInvoicesByMonth($_GET['from_date'], $_GET['to_date']);
         $data['betweenDates'] = lang('from_date') . $_GET['from_date'] . ' - ' . lang('to_date') . $_GET['to_date'];
+        $data['firmCurrency'] = $this->NewInvoiceModel->getFirmDefaultCurrency();
         $this->render('reports/index', $head, $data);
         $this->saveHistory('Go to items page');
     }

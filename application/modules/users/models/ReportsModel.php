@@ -38,7 +38,7 @@ class ReportsModel extends CI_Model
 
         // get all months.years between selected dates
         foreach ($period as $dt) {
-            $months[$dt->format("M Y")] = 0;
+            $months[$dt->format("M Y")] = array('num' => 0, 'sum' => 0);
         }
 
         // give to all types of invoices all selected months.years and set issued to 0
@@ -51,14 +51,17 @@ class ReportsModel extends CI_Model
         $from = strtotime($from);
         $to = strtotime($to);
         $between = ' AND created >= ' . $from . ' AND created <= ' . $to;
-        $query = $this->db->query('SELECT COUNT(id) AS num_created, inv_type, DATE_FORMAT(FROM_UNIXTIME(created), "%b %Y") AS date_created FROM invoices WHERE for_user = ' . USER_ID . ' AND for_company = ' . SELECTED_COMPANY_ID . $between . ' GROUP BY date_created, inv_type');
+        $query = $this->db->query('SELECT COUNT(id) AS num_created, inv_type, SUM(final_total) as final_total, DATE_FORMAT(FROM_UNIXTIME(created), "%b %Y") AS date_created FROM invoices WHERE for_user = ' . USER_ID . ' AND for_company = ' . SELECTED_COMPANY_ID . $between . ' GROUP BY date_created, inv_type');
         $result = $query->result_array();
 
         // add to months of each type of invoice - num issued
         foreach ($result as $invoices) {
             if (array_key_exists($invReadableTypes[$invoices['inv_type']], $invMonths)) {
                 if (array_key_exists($invoices['date_created'], $invMonths[$invReadableTypes[$invoices['inv_type']]])) {
-                    $invMonths[$invReadableTypes[$invoices['inv_type']]][$invoices['date_created']] = (int) $invoices['num_created'];
+                    $invMonths[$invReadableTypes[$invoices['inv_type']]][$invoices['date_created']] = array(
+                        'num' => (int) $invoices['num_created'],
+                        'sum' => $invoices['final_total']
+                    );
                 }
             }
         }

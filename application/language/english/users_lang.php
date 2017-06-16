@@ -305,3 +305,4 @@ $lang['issued'] = 'Issued';
 $lang['num_invoices_by_month_stat'] = 'Number of issued invoices by month';
 $lang['no_reports_yet'] = 'There are no issued invoices for selected time';
 $lang['no_reports_yet_all_time'] = 'There are no issued invoices to the moment';
+$lang['amount_invoices_by_month_stat'] = 'Amount %sum% of issued invoices by month';

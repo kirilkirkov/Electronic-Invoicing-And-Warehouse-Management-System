@@ -36,42 +36,89 @@
     <div id="num-invoices-by-month"></div>
     <script>
         Highcharts.chart('num-invoices-by-month', {
-            chart: {
-                type: 'line'
-            },
-            title: {
+        chart: {
+        type: 'line'
+        },
+                title: {
                 text: '<?= lang('num_invoices_by_month_stat') ?>'
-            },
-            subtitle: {
+                },
+                subtitle: {
                 text: '<?= $betweenDates ?>'
-            },
-            xAxis: {
+                },
+                xAxis: {
                 categories: [<?php
     foreach ($issuedInvoicesByMonth['invoice'] as $issuedByMonthKey => $issuedByMonthVal) {
         echo "'" . $issuedByMonthKey . "',";
     }
     ?>]
-            },
-            yAxis: {
+                },
+                yAxis: {
                 title: {
-                    text: ''
+                text: ''
                 }
-            },
-            plotOptions: {
+                },
+                plotOptions: {
                 line: {
-                    dataLabels: {
-                        enabled: true
-                    },
-                    enableMouseTracking: true
+                dataLabels: {
+                enabled: true
+                },
+                        enableMouseTracking: true
                 }
-            },
-            series: [
+                },
+                series: [
     <?php foreach ($issuedInvoicesByMonth as $issuedByMonthKey => $issuedByMonthVal) { ?>
                     {
-                        name: '<?= $issuedByMonthKey ?>',
-                        data: [<?php
+                    name: '<?= $issuedByMonthKey ?>',
+                            data: [<?php
         foreach ($issuedByMonthVal as $issuedByMonthNum) {
-            echo $issuedByMonthNum . ',';
+            echo $issuedByMonthNum['num'] . ',';
+        }
+        ?>]
+                    },
+    <?php }
+    ?>]
+        });
+    </script>
+
+    <div id="amount-of-invoices-by-month"></div>
+    <script>
+        Highcharts.chart('amount-of-invoices-by-month', {
+        chart: {
+        type: 'line'
+        },
+                title: {
+                text: '<?= str_replace('%sum%', $firmCurrency, lang('amount_invoices_by_month_stat')) ?>'
+                },
+                subtitle: {
+                text: '<?= $betweenDates ?>'
+                },
+                xAxis: {
+                categories: [<?php
+    foreach ($issuedInvoicesByMonth['invoice'] as $issuedByMonthKey => $issuedByMonthVal) {
+        echo "'" . $issuedByMonthKey . "',";
+    }
+    ?>]
+                },
+                yAxis: {
+                title: {
+                text: ''
+                }
+                },
+                plotOptions: {
+                line: {
+                dataLabels: {
+                enabled: true
+                },
+                        enableMouseTracking: true
+                }
+                },
+                series: [
+    <?php foreach ($issuedInvoicesByMonth as $issuedByMonthKey => $issuedByMonthVal) { ?>
+                    {
+                    name: '<?= $issuedByMonthKey ?>',
+                            data: [<?php
+        foreach ($issuedByMonthVal as $issuedByMonthNum) {
+            echo $issuedByMonthNum['sum'] . ',';
         }
         ?>]
                     },
