@@ -29,52 +29,56 @@
         </form> 
     </div>
 </div>
-<div id="report-num-invoices"></div>
-<?php include 'application/modules/users/views/reports/reportNumInvoices.php'; ?>
+<?php if (!empty($issuedInvoices)) { ?>
+    <div id="report-num-invoices"></div>
+    <?php include 'application/modules/users/views/reports/reportNumInvoices.php'; ?>
 
-<div id="num-invoices-by-month"></div>
-<script>
-    Highcharts.chart('num-invoices-by-month', {
-        chart: {
-            type: 'line'
-        },
-        title: {
-            text: '<?= lang('num_invoices_by_month_stat') ?>'
-        },
-        subtitle: {
-            text: '<?= $betweenDates ?>'
-        },
-        xAxis: {
-            categories: [<?php
-foreach ($issuedInvoicesByMonth['invoice'] as $issuedByMonthKey => $issuedByMonthVal) {
-    echo "'" . $issuedByMonthKey . "',";
-}
-?>]
-        },
-        yAxis: {
+    <div id="num-invoices-by-month"></div>
+    <script>
+        Highcharts.chart('num-invoices-by-month', {
+            chart: {
+                type: 'line'
+            },
             title: {
-                text: ''
-            }
-        },
-        plotOptions: {
-            line: {
-                dataLabels: {
-                    enabled: true
-                },
-                enableMouseTracking: true
-            }
-        },
-        series: [
-<?php foreach ($issuedInvoicesByMonth as $issuedByMonthKey => $issuedByMonthVal) { ?>
-                {
-                    name: '<?= $issuedByMonthKey ?>',
-                    data: [<?php
-    foreach ($issuedByMonthVal as $issuedByMonthNum) {
-        echo $issuedByMonthNum . ',';
+                text: '<?= lang('num_invoices_by_month_stat') ?>'
+            },
+            subtitle: {
+                text: '<?= $betweenDates ?>'
+            },
+            xAxis: {
+                categories: [<?php
+    foreach ($issuedInvoicesByMonth['invoice'] as $issuedByMonthKey => $issuedByMonthVal) {
+        echo "'" . $issuedByMonthKey . "',";
     }
     ?>]
-                },
-<?php }
-?>]
-    });
-</script>
+            },
+            yAxis: {
+                title: {
+                    text: ''
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: true
+                }
+            },
+            series: [
+    <?php foreach ($issuedInvoicesByMonth as $issuedByMonthKey => $issuedByMonthVal) { ?>
+                    {
+                        name: '<?= $issuedByMonthKey ?>',
+                        data: [<?php
+        foreach ($issuedByMonthVal as $issuedByMonthNum) {
+            echo $issuedByMonthNum . ',';
+        }
+        ?>]
+                    },
+    <?php }
+    ?>]
+        });
+    </script>
+<?php } else { ?>
+    <h1 class="no-invoices"><?= lang('no_reports_yet') ?></h1>
+<?php } ?>
