@@ -17,6 +17,8 @@
     <form method="POST" action="" id="action-form">
         <input type="hidden" name="action" value="">
         <a href="javascript:void(0);" class="btn btn-default list-action" data-action-type="delete"><?= lang('delete') ?></a>
+        <a href="javascript:void(0);" class="btn btn-default list-action" data-action-type="stat_canceled"><?= lang('to_canceled_stat') ?></a>
+        <a href="javascript:void(0);" class="btn btn-default list-action" data-action-type="remove_canceled"><?= lang('remove_canceled_stat') ?></a>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>

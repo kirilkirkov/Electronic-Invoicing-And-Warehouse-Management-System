@@ -313,3 +313,6 @@ $lang['payment_status_paid'] = 'Paid';
 $lang['payment_status_unpaid'] = 'Unpaid';
 $lang['top_search_no_results'] = 'No results found!';
 $lang['show_drafts_report'] = 'Show drafts';
+$lang['to_canceled_stat'] = 'Canceled';
+$lang['status_canceled'] = 'Canceled';
+$lang['remove_canceled_stat'] = 'Remove Canceled';

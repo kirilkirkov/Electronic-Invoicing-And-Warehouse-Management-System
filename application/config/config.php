@@ -580,5 +580,7 @@ $config['inv_readable_types'] = array(
  */
 $config['inv_statuses'] = array(
     'issued',
-    'draft'
+    'draft',
+    'sended',
+    'canceled'
 );

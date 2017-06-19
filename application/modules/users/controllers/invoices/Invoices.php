@@ -41,12 +41,24 @@ class Invoices extends USER_Controller
             if ($_POST['action'] == 'delete') {
                 $this->deleteSelectedInvoices($_POST['ids']);
             }
+            if ($_POST['action'] == 'stat_canceled') {
+                $this->changeStatusToCanceled($_POST['ids'], true);
+            }
+            if ($_POST['action'] == 'remove_canceled') {
+                $this->changeStatusCanceled($_POST['ids'], false);
+            }
         }
     }
 
     private function deleteSelectedInvoices($ids)
     {
         $this->InvoicesModel->multipleDeleteInvoices($ids);
+        redirect(lang_url('user/invoices'));
+    }
+
+    private function changeStatusCanceled($ids, $doCanceled)
+    {
+        $this->InvoicesModel->multipleStatusCanceledInvoices($ids, $doCanceled);
         redirect(lang_url('user/invoices'));
     }
 

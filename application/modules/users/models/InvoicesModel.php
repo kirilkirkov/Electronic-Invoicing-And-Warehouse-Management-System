@@ -69,7 +69,7 @@ class InvoicesModel extends CI_Model
     public function multipleDeleteInvoices($ids)
     {
         if ($ids != null && is_array($ids)) {
-            $this->db->where_in('id', $id);
+            $this->db->where_in('id', $ids);
             $this->db->where('for_user', USER_ID);
             $this->db->where('for_company', SELECTED_COMPANY_ID);
             if (!$this->db->delete('invoices')) {
@@ -77,7 +77,7 @@ class InvoicesModel extends CI_Model
                 show_error(lang('database_error'));
             }
 
-            $this->db->where_in('for_invoice', $id);
+            $this->db->where_in('for_invoice', $ids);
             $this->db->where('for_user', USER_ID);
             $this->db->where('for_company', SELECTED_COMPANY_ID);
             if (!$this->db->delete('invoices_clients')) {
@@ -85,14 +85,14 @@ class InvoicesModel extends CI_Model
                 show_error(lang('database_error'));
             }
 
-            $this->db->where_in('for_invoice', $id);
+            $this->db->where_in('for_invoice', $ids);
             $this->db->where('for_user', USER_ID);
             if (!$this->db->delete('invoices_firms')) {
                 log_message('error', print_r($this->db->error(), true));
                 show_error(lang('database_error'));
             }
 
-            $this->db->where_in('for_invoice', $id);
+            $this->db->where_in('for_invoice', $ids);
             $this->db->where('for_user', USER_ID);
             $this->db->where('for_company', SELECTED_COMPANY_ID);
             if (!$this->db->delete('invoices_items')) {
@@ -100,9 +100,27 @@ class InvoicesModel extends CI_Model
                 show_error(lang('database_error'));
             }
 
-            $this->db->where_in('for_invoice', $id);
+            $this->db->where_in('for_invoice', $ids);
             $this->db->where('for_user', USER_ID);
             if (!$this->db->delete('invoices_translations')) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
+        }
+    }
+
+    public function multipleStatusCanceledInvoices($ids, $doCanceled)
+    {
+        if ($ids != null && is_array($ids)) {
+            $this->db->where_in('id', $ids);
+            $this->db->where('for_user', USER_ID);
+            $this->db->where('for_company', SELECTED_COMPANY_ID);
+            if ($doCanceled == true) {
+                $status = 'canceled';
+            } else {
+                $status = 'issued';
+            }
+            if (!$this->db->update('invoices', array('status' => $status))) {
                 log_message('error', print_r($this->db->error(), true));
                 show_error(lang('database_error'));
             }
