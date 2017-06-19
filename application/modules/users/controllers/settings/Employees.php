@@ -11,7 +11,7 @@ if (!defined('BASEPATH')) {
 class Employees extends USER_Controller
 {
 
-    private $num_rows = 1;
+    private $num_rows = 20;
     private $editId;
     private $editEmployee;
 
@@ -19,6 +19,8 @@ class Employees extends USER_Controller
     {
         parent::__construct();
         $this->load->model(array('SettingsModel', 'HomeModel'));
+        $paginationNumRows = $this->SettingsModel->getValueStores('opt_pagination');
+        $this->num_rows = $paginationNumRows;
     }
 
     public function index($page = 0)
@@ -37,7 +39,7 @@ class Employees extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Settings'; 
+        $head['title'] = 'Administration - Settings';
         $this->editId = $id;
         if (isset($_POST['name'])) {
             $_POST['editId'] = $id;

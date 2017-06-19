@@ -147,6 +147,11 @@ class PublicModel extends CI_Model
                 'for_user' => $user_id,
                 '_key' => 'opt_invCalculator',
                 'value' => '1'
+            ),
+            array(
+                'for_user' => $user_id,
+                '_key' => 'opt_pagination',
+                'value' => '20'
             )
         );
         if (!$this->db->insert_batch('value_store', $data)) {
@@ -168,7 +173,7 @@ class PublicModel extends CI_Model
             $this->db->where('email', $email);
             $result = $this->db->get('employees');
             $array['employee'] = $result->row_array();
-            
+
             $this->db->where('enabled', 1);
             $this->db->where('id', $array['employee']['for_user']);
             $result = $this->db->get('users');

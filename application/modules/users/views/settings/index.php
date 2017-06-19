@@ -13,3 +13,5 @@
     <div class="border"></div>
 </div>
 <a href="<?= lang_url('user/settings/employees') ?>">employees</a>
+<a href="<?= lang_url('user/settings/invoices') ?>">invoices</a>
+<a href="<?= lang_url('user/settings/global') ?>">global</a>

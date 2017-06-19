@@ -11,12 +11,14 @@ if (!defined('BASEPATH')) {
 class Invoices extends USER_Controller
 {
 
-    private $num_rows = 2;
+    private $num_rows = 20;
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('InvoicesModel');
+        $this->load->model(array('InvoicesModel', 'SettingsModel'));
+        $paginationNumRows = $this->SettingsModel->getValueStores('opt_pagination');
+        $this->num_rows = $paginationNumRows;
     }
 
     public function index($page = 0)
