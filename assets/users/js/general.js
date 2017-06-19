@@ -203,7 +203,7 @@ $('.quantity-type select').change(function () {
     }
 });
 $('.add-my-new-quantity-type').click(function () {
-    var newVal = $('.new-quantity-value').val();
+    var newVal = jQuery.trim($('.new-quantity-value').val());
     if (newVal != '') {
         myNewQuantityType = true;
         $('.quantity-type select').prepend('<option value="' + newVal + '">' + newVal + '</option>');
@@ -234,7 +234,7 @@ $('select.payment-method').change(function () {
     }
 });
 $('.add-my-new-pay-method').click(function () {
-    var newVal = $('.my-new-pay-method').val();
+    var newVal = jQuery.trim($('.my-new-pay-method').val());
     if (newVal != '') {
         $('select.payment-method').prepend('<option value="' + newVal + '">' + newVal + '</option>');
         $('#addPaymentMethod').modal('hide');
