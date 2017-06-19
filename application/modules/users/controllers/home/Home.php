@@ -62,4 +62,18 @@ class Home extends USER_Controller
         return $id;
     }
 
+    public function findResults()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        }
+        $result = $this->HomeModel->findResultsFromSearch($_POST['search']);
+        if (!empty($result)) {
+            $inv_readable_types = $this->config->item('inv_readable_types');
+            include 'application/modules/users/views/home/searchResultsHtml.php';
+        } else {
+            include 'application/modules/users/views/home/noSearchResultsHtml.php';
+        }
+    }
+
 }

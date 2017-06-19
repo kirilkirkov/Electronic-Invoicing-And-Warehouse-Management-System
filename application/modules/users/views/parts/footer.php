@@ -28,7 +28,8 @@ if ($this->session->flashdata('resultAction')) {
         addNewQuantityType: "<?= base_url('user/addnewquantitytype') ?>",
         addNewPaymentMethod: "<?= base_url('user/addnewpaymentmethod') ?>",
         modalSelector: "<?= base_url('user/modalselector') ?>",
-        changeInvoiceStatus: "<?= base_url('user/changeinvoicestatus') ?>"
+        changeInvoiceStatus: "<?= base_url('user/changeinvoicestatus') ?>",
+        topNavSearch: "<?= base_url('user/findresults') ?>"
     };
 </script>
 <script src="<?= base_url('assets/users/js/general.js') ?>"></script> 

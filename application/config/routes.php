@@ -121,6 +121,7 @@ $route['user/invoice/delete/(:num)'] = "users/invoices/invoices/deleteInvoice/$1
 $route['user/reports'] = "users/reports/reports";
 $route['user/settings/global'] = "users/settings/GlobalSettings";
 $route['user/changeinvoicestatus'] = 'users/invoices/invoices/changeinvoicestatus';
+$route['user/findresults'] = 'users/home/home/findresults';
 $route['pdffooter'] = 'home/getinvoicefooter';
 /* USERS PANEL ROUTES */
 

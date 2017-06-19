@@ -113,6 +113,12 @@ header h1 {font-size:26px;}
 .btn {border-radius: 0;}
 .view-container {width: 100%; height: 100%;  padding: 40px; position: relative; }
 .reports-page .dates {margin-bottom: 20px;}
+.top-search-form {position: relative; }
+.top-search-form .fa-spinner { position: absolute; right:15px; top:2px; display: none;}
+#topSearchResults {position: absolute; display: none;}
+.invoice-search-result a {display: block;}
+.client-search-result a {display: block;}
+.item-search-result a {display: block;}
 footer { background-color: #f8f8f8;    border-top: 1px solid #e7e7e7;    bottom: 0;    color: #333;    height: 60px;    left: 0;    padding: 20px 0;    position: absolute;    text-align: center;    width: 100%;}
 
 @media screen and (max-width: 767px) {

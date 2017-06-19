@@ -409,6 +409,22 @@ $('.change-pay-status').click(function () { // ajax change status
     });
 });
 /*
+ * Top search form
+ */
+$('.top-search-form .field').keyup(function () {
+    var search_phrase = jQuery.trim($(this).val());
+    if (search_phrase != '') {
+        $('.top-search-form .fa-spinner').show();
+        $.post(urls.topNavSearch, {search: search_phrase}, function (result) {
+            $('#topSearchResults').empty().hide();
+            $('.top-search-form .fa-spinner').hide();
+            $('#topSearchResults').append(result).show();
+        });
+    } else {
+        $('#topSearchResults').empty().hide();
+    }
+});
+/*
  * Create draft invoice
  */
 function createDraft() {

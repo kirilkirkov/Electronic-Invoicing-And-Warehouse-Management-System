@@ -311,3 +311,4 @@ $lang['amount_invoices_by_month_stat'] = 'Amount %sum% of issued invoices by mon
 $lang['pages_pagination_num'] = 'Num rows in pagination pages';
 $lang['payment_status_paid'] = 'Paid';
 $lang['payment_status_unpaid'] = 'Unpaid';
+$lang['top_search_no_results'] = 'No results found!';

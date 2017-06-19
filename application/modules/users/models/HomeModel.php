@@ -92,4 +92,48 @@ class HomeModel extends CI_Model
         return unserialize($arr['firms_access']);
     }
 
+    public function findResultsFromSearch($phrase)
+    {
+        $array = array();
+
+        $this->db->select('inv_number, inv_type');
+        $this->db->where('invoices.for_user', USER_ID);
+        $this->db->where('invoices.for_company', SELECTED_COMPANY_ID);
+        $this->db->like('inv_number', $phrase);
+        $this->db->or_like('client_name', $phrase);
+        $this->db->or_like('invoices_items.name', $phrase);
+        $this->db->limit(5);
+        $this->db->join('invoices_items', 'invoices_items.for_invoice = invoices.id');
+        $this->db->join('invoices_clients', 'invoices_clients.for_invoice = invoices.id');
+        $result = $this->db->get('invoices');
+        $rowsInvoices = $result->result_array();
+        if (!empty($rowsInvoices)) {
+            $array['invoices'] = $rowsInvoices;
+        }
+
+        $this->db->select('name, id');
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('for_company', SELECTED_COMPANY_ID);
+        $this->db->like('name', $phrase);
+        $this->db->limit(5);
+        $result = $this->db->get('items');
+        $rowsItems = $result->result_array();
+        if (!empty($rowsItems)) {
+            $array['items'] = $rowsItems;
+        }
+
+        $this->db->select('client_name, id');
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('for_company', SELECTED_COMPANY_ID);
+        $this->db->like('client_name', $phrase);
+        $this->db->limit(5);
+        $result = $this->db->get('clients');
+        $rowsClients = $result->result_array();
+        if (!empty($rowsClients)) {
+            $array['clients'] = $rowsClients;
+        }
+
+        return $array;
+    }
+
 }

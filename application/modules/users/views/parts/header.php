@@ -55,9 +55,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </li>
                             <li><a href="<?= lang_url('user/settings') ?>"><?= lang('settings') ?></a></li>
                         </ul>
-                        <form class="navbar-form navbar-left" role="search">
+                        <form class="navbar-form navbar-left top-search-form" role="search">
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="<?= lang('search_header_u') ?>">
+                                <input class="form-control field" type="text" placeholder="<?= lang('search_header_u') ?>">
+                                <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+                                <div id="topSearchResults">
+asd
+                                </div>
                             </div>
                         </form>
                         <ul class="nav navbar-nav navbar-right">
