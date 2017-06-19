@@ -103,6 +103,10 @@ header h1 {font-size:26px;}
 .new-invoice .inv-type-num {font-weight:bold;} 
 .new-invoice .credit-debit-option {display: none;}
 .new-invoice .choose-translation {display: inline;}
+.show-pay-statuses {cursor: pointer;}
+.status-changer { position: relative;}
+#payment-statuses {position: absolute; bottom: -30px; left: 0; display: none; background-color: #fff; padding:5px 15px; z-index: 1100;}
+#payment-statuses a {display: block;}
 .client-individial {display: none;}
 .client-vat-registered {display: none;}
 .selected-new-default, .not-selected-new-default {display: none;}

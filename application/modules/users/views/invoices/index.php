@@ -26,8 +26,9 @@
                         <th><?= lang('list_inv_date') ?></th>
                         <th><?= lang('list_inv_client') ?></th>
                         <th><?= lang('list_inv_type') ?></th>
-                        <th><?= lang('list_inv_sum') ?></th> 
+                        <th><?= lang('list_inv_payment_status') ?></th>
                         <th><?= lang('list_inv_status') ?></th>
+                        <th><?= lang('list_inv_sum') ?></th>  
                         <th><?= lang('list_inv_manage') ?></th> 
                     </tr>
                 </thead>
@@ -39,8 +40,14 @@
                             <td><?= date('d.m.Y', $invoice['date_create']) ?></td>
                             <td><?= $invoice['client_name'] ?></td>
                             <td><?= lang('type_' . $invoice['inv_type']) ?></td>
-                            <td><?= $invoice['final_total'] . $invoice['inv_currency'] ?></td>
+                            <td class="status-changer">
+                                <span class="show-pay-statuses" data-inv-id="<?= $invoice['id'] ?>">
+                                    <span class="new_pay_status_text"><?= lang('payment_status_' . $invoice['payment_status']) ?></span>
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </span>
+                            </td>
                             <td><?= lang('status_' . $invoice['status']) ?></td> 
+                            <td><?= $invoice['final_total'] . $invoice['inv_currency'] ?></td> 
                             <td>
                                 <a href="<?= lang_url('user/' . $inv_readable_types[$invoice['inv_type']] . '/edit/' . $invoice['inv_number']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                                 <a href="<?= lang_url('user/invoice/delete/' . $invoice['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_invoice') ?>"><i class="fa fa-remove" aria-hidden="true"></i> Remove</a>
@@ -49,7 +56,11 @@
                     <?php } ?>
                 </tbody>
             </table>
-        </div> 
+        </div>
+        <div id="payment-statuses">
+            <a href="javascript:void(0);" data-new-pay-status="paid" class="change-pay-status"><?= lang('payment_status_paid') ?></a>
+            <a href="javascript:void(0);" data-new-pay-status="unpaid" class="change-pay-status"><?= lang('payment_status_unpaid') ?></a>
+        </div>
     </form>
     <?= $linksPagination ?>
 <?php } else { ?>

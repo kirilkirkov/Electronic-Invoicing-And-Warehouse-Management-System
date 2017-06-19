@@ -14,5 +14,6 @@ var lang = {
     errorCreateItem: 'Some item required fields are blank!',
     errorCreateEmployee: 'You have invalid fields!',
     noCheckedCheckboxes: 'There is nothing selected!',
-    confirmDelete: 'Are you sure want to delete?'
+    confirmDelete: 'Are you sure want to delete?',
+    errorChangeInvStatusAjax: 'Invoice status change error. Try again please!'
 };

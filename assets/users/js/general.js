@@ -389,6 +389,26 @@ $('.list-action').click(function () {
     }
 });
 /*
+ * Change invoices payment status
+ */
+var parent_div_statuses;
+$('.show-pay-statuses').click(function () { // show statuses
+    parent_div_statuses = $(this);
+    $('#payment-statuses').show().appendTo($(this).parents('.status-changer'));
+});
+$('.change-pay-status').click(function () { // ajax change status
+    var new_pay_status = $(this).data('new-pay-status');
+    var new_pay_status_text = $(this).text();
+    var to_inv_id = parent_div_statuses.data('inv-id');
+    parent_div_statuses.find('.new_pay_status_text').text(new_pay_status_text);
+    $('#payment-statuses').hide();
+    $.post(urls.changeInvoiceStatus, {invId: to_inv_id, newStatus: new_pay_status}, function (result) {
+        if (result != '1') {
+            showError(lang.errorChangeInvStatusAjax);
+        }
+    });
+});
+/*
  * Create draft invoice
  */
 function createDraft() {

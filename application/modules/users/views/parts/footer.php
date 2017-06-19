@@ -27,7 +27,8 @@ if ($this->session->flashdata('resultAction')) {
         changeDefaultCurrency: "<?= base_url('user/defaultcurrency') ?>",
         addNewQuantityType: "<?= base_url('user/addnewquantitytype') ?>",
         addNewPaymentMethod: "<?= base_url('user/addnewpaymentmethod') ?>",
-        modalSelector: "<?= base_url('user/modalselector') ?>"
+        modalSelector: "<?= base_url('user/modalselector') ?>",
+        changeInvoiceStatus: "<?= base_url('user/changeinvoicestatus') ?>"
     };
 </script>
 <script src="<?= base_url('assets/users/js/general.js') ?>"></script> 

@@ -148,6 +148,7 @@ class NewInvoiceModel extends CI_Model
             'maturity_date' => strtotime($post['maturity_date']),
             'remarks' => $post['remarks'],
             'payment_method' => $post['payment_method'],
+            'payment_status' => 'unpaid',
             'to_inv_number' => $post['to_inv_number'],
             'to_inv_date' => strtotime($post['to_inv_date']),
             'invoice_amount' => $post['invoice_amount'],

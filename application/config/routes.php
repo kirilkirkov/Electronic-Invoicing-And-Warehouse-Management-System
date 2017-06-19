@@ -120,7 +120,7 @@ $route['user/(:any)/print/(:num)'] = "users/invoices/invoiceview/viewInvoiceAsPd
 $route['user/invoice/delete/(:num)'] = "users/invoices/invoices/deleteInvoice/$1";
 $route['user/reports'] = "users/reports/reports";
 $route['user/settings/global'] = "users/settings/GlobalSettings";
-
+$route['user/changeinvoicestatus'] = 'users/invoices/invoices/changeinvoicestatus';
 $route['pdffooter'] = 'home/getinvoicefooter';
 /* USERS PANEL ROUTES */
 
