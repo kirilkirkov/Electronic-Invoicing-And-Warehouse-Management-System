@@ -60,14 +60,14 @@ class Invoices extends USER_Controller
 
     private function updateInvCaluculatorUsage()
     {
-        $this->SettingsModel->updateCalculatorUsage($_POST['opt_invCalculator']);
+        $this->SettingsModel->setValueStore('opt_invCalculator', $_POST['opt_invCalculator']);
         $this->saveHistory('Set calculator usage to - ' . $_POST['opt_invCalculator'] == 0 ? 'off' : 'on');
         redirect(lang_url('user/settings/invoices'));
     }
 
     private function updateInvoicesRoundTo()
     {
-        $this->NewInvoiceModel->updateInvoicesRoundTo($_POST['opt_invRoundTo']);
+        $this->SettingsModel->setValueStore('opt_invRoundTo', $_POST['opt_invRoundTo']);
         $this->saveHistory('Update round invoices total to - ' . $_POST['opt_invRoundTo']);
         redirect(lang_url('user/settings/invoices'));
     }

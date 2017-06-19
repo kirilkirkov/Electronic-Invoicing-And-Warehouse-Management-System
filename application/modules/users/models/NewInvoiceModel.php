@@ -57,18 +57,7 @@ class NewInvoiceModel extends CI_Model
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         }
-    }
-
-    public function updateInvoicesRoundTo($roundTo)
-    {
-        $this->db->limit(1);
-        $this->db->where('for_user', USER_ID);
-        $this->db->where('_key', 'opt_invRoundTo');
-        if (!$this->db->update('value_store', array('value' => $roundTo))) {
-            log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
-        }
-    }
+    } 
 
     public function setNewInvoiceLanguage($post)
     {

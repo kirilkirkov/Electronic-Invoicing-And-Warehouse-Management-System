@@ -121,7 +121,7 @@ class SettingsModel extends CI_Model
         $this->db->where('_key', $key);
         $query = $this->db->get('value_store');
         if ($query->num_rows() > 0) {
-            
+
             $this->db->where('_key', $key);
             $this->db->where('for_user', USER_ID);
             $this->db->update('value_store', array('value' => $value));
@@ -138,17 +138,6 @@ class SettingsModel extends CI_Model
             return null;
         }
         return $result['value'];
-    }
-
-    public function updateCalculatorUsage($status)
-    {
-        $this->db->limit(1);
-        $this->db->where('for_user', USER_ID);
-        $this->db->where('_key', 'opt_invCalculator');
-        if (!$this->db->update('value_store', array('value' => $status))) {
-            log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
-        }
     }
 
     public function countEmployees()
