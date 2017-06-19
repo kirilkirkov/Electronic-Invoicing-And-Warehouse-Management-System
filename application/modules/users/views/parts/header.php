@@ -59,9 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div class="form-group">
                                 <input class="form-control field" type="text" placeholder="<?= lang('search_header_u') ?>">
                                 <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-                                <div id="topSearchResults">
-asd
-                                </div>
+                                <div id="topSearchResults"></div>
                             </div>
                         </form>
                         <ul class="nav navbar-nav navbar-right">
@@ -80,8 +78,8 @@ asd
                                     <h1> f</h1>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="stats">
-                                        asd
+                                    <div class="stats"> 
+asd
                                     </div>
                                 </div>
                             </div>

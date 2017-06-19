@@ -25,6 +25,9 @@
                 <label for="to_date"><?= lang('to_date') ?></label>
                 <input class="form-control field datepicker" value="<?= isset($_GET['to_date']) ? $_GET['to_date'] : '' ?>" id="to_date" name="to_date" placeholder="dd.mm.yyyy" type="text">
             </div> 
+            <div class="checkbox">
+                <label><input type="checkbox" <?= isset($_GET['show_drafts']) && $_GET['show_drafts'] == 'true' ? 'checked="checked"' : '' ?> name="show_drafts" value="true"><?= lang('show_drafts_report') ?></label>
+            </div>
             <button type="submit" class="btn btn-default"><?= lang('show_statistic') ?></button>
         </form> 
     </div>
@@ -77,8 +80,7 @@
                     },
     <?php }
     ?>]
-        });
-    </script>
+        });</script>
 
     <div id="amount-of-invoices-by-month"></div>
     <script>

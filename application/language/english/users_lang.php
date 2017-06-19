@@ -312,3 +312,4 @@ $lang['pages_pagination_num'] = 'Num rows in pagination pages';
 $lang['payment_status_paid'] = 'Paid';
 $lang['payment_status_unpaid'] = 'Unpaid';
 $lang['top_search_no_results'] = 'No results found!';
+$lang['show_drafts_report'] = 'Show drafts';

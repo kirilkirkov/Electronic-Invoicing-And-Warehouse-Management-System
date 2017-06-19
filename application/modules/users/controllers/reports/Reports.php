@@ -27,9 +27,10 @@ class Reports extends USER_Controller
             $_GET['from_date'] = $thisYear['from'];
             $_GET['to_date'] = $thisYear['to'];
         }
+        $showDraft = isset($_GET['show_drafts']) && $_GET['show_drafts'] == 'true' ? true : false;
         $data['inv_readable_types'] = $this->config->item('inv_readable_types');
-        $data['issuedInvoices'] = $this->ReportsModel->getIssuedInvoices(strtotime($_GET['from_date']), strtotime($_GET['to_date']));
-        $data['issuedInvoicesByMonth'] = $this->ReportsModel->getIssuedInvoicesByMonth($_GET['from_date'], $_GET['to_date']);
+        $data['issuedInvoices'] = $this->ReportsModel->getIssuedInvoices(strtotime($_GET['from_date']), strtotime($_GET['to_date']), $showDraft);
+        $data['issuedInvoicesByMonth'] = $this->ReportsModel->getIssuedInvoicesByMonth($_GET['from_date'], $_GET['to_date'], $showDraft);
         $data['betweenDates'] = lang('from_date') . $_GET['from_date'] . ' - ' . lang('to_date') . $_GET['to_date'];
         $data['firmCurrency'] = $this->NewInvoiceModel->getFirmDefaultCurrency();
         $this->render('reports/index', $head, $data);

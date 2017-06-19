@@ -8,13 +8,17 @@ class ReportsModel extends CI_Model
         parent::__construct();
     }
 
-    public function getIssuedInvoices($from = null, $to = null)
+    public function getIssuedInvoices($from = null, $to = null, $doShowDraft = false)
     {
         $between = '';
         if ($from != null && $to != null) {
             $between = ' AND created >= ' . $from . ' AND created <= ' . $to;
         }
-        $query = $this->db->query('SELECT SUM(IF(inv_type="tax_inv",1,0)) as tax_inv, SUM(IF(inv_type="prof",1,0)) as prof, SUM(IF(inv_type="debit",1,0)) as debit, SUM(IF(inv_type="credit",1,0)) as credit FROM invoices WHERE for_user = ' . USER_ID . ' AND for_company = ' . SELECTED_COMPANY_ID . $between);
+        $showDraft = ' AND status != "draft"';
+        if ($doShowDraft == true) {
+            $showDraft = '';
+        }
+        $query = $this->db->query('SELECT SUM(IF(inv_type="tax_inv",1,0)) as tax_inv, SUM(IF(inv_type="prof",1,0)) as prof, SUM(IF(inv_type="debit",1,0)) as debit, SUM(IF(inv_type="credit",1,0)) as credit FROM invoices WHERE for_user = ' . USER_ID . ' AND for_company = ' . SELECTED_COMPANY_ID . $showDraft . $between);
         $result = $query->row_array();
         if ($result['tax_inv'] === null && $result['prof'] === null && $result['debit'] === null && $result['credit'] === null) {
             return array();
@@ -22,7 +26,7 @@ class ReportsModel extends CI_Model
         return $result;
     }
 
-    public function getIssuedInvoicesByMonth($from, $to)
+    public function getIssuedInvoicesByMonth($from, $to, $doShowDraft = false)
     {
         $months = array();
         $invMonths = array();
@@ -51,7 +55,11 @@ class ReportsModel extends CI_Model
         $from = strtotime($from);
         $to = strtotime($to);
         $between = ' AND created >= ' . $from . ' AND created <= ' . $to;
-        $query = $this->db->query('SELECT COUNT(id) AS num_created, inv_type, SUM(final_total) as final_total, DATE_FORMAT(FROM_UNIXTIME(created), "%b %Y") AS date_created FROM invoices WHERE for_user = ' . USER_ID . ' AND for_company = ' . SELECTED_COMPANY_ID . $between . ' GROUP BY date_created, inv_type');
+        $showDraft = ' AND status != "draft"';
+        if ($doShowDraft == true) {
+            $showDraft = '';
+        }
+        $query = $this->db->query('SELECT COUNT(id) AS num_created, inv_type, SUM(final_total) as final_total, DATE_FORMAT(FROM_UNIXTIME(created), "%b %Y") AS date_created FROM invoices WHERE for_user = ' . USER_ID . ' AND for_company = ' . SELECTED_COMPANY_ID . $showDraft . $between . ' GROUP BY date_created, inv_type');
         $result = $query->result_array();
 
         // add to months of each type of invoice - num issued
