@@ -392,7 +392,7 @@ $('.list-action').click(function () {
  * Create draft invoice
  */
 function createDraft() {
-    $('[name="is_draft"]').val(1);
+    $('[name="status"]').val('draft');
     createNewInvValidate();
 }
 /*
@@ -466,7 +466,7 @@ function createNewInvValidate() {
          * Return to some default values
          * who is changed from submit buttons
          */
-        $('[name="is_draft"]').val(0);
+        $('[name="status"]').val('issued');
         $('html, body').animate({
             scrollTop: $("#setInvoiceForm").offset().top
         }, 1000);
@@ -732,7 +732,6 @@ function newClientValidate() {
     if (valid == true) {
         document.getElementById('setNewClient').submit();
     } else {
-        $('[name="is_draft"]').val(0);
         $('html, body').animate({
             scrollTop: $("#setNewClient").offset().top
         }, 1000);

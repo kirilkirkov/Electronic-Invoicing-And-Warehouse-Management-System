@@ -128,6 +128,7 @@ class NewInvoiceModel extends CI_Model
 
     public function setInvoice($post)
     {
+        $inv_statuses = $this->config->item('inv_statuses');
         $cash_accounting = isset($post['cash_accounting']) ? 1 : 0;
         $have_maturity_date = isset($post['have_maturity_date']) ? 1 : 0;
         $no_vat = isset($post['no_vat']) ? 1 : 0;
@@ -137,7 +138,7 @@ class NewInvoiceModel extends CI_Model
             'for_user' => USER_ID,
             'for_company' => SELECTED_COMPANY_ID,
             'inv_type' => $post['inv_type'],
-            'status' => 'new',
+            'status' => !in_array($post['status'], $inv_statuses) ? 'issued' : $post['status'],
             'inv_number' => $post['inv_number'],
             'inv_currency' => $post['inv_currency'],
             'date_create' => strtotime($post['date_create']),
@@ -160,7 +161,6 @@ class NewInvoiceModel extends CI_Model
             'final_total' => $post['final_total'],
             'composed' => $composedFrom,
             'schiffer' => $schiffer,
-            'is_draft' => $post['is_draft'],
             'created' => time()
         );
         if (!$this->db->insert('invoices', $insertArray)) {

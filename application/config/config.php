@@ -575,3 +575,10 @@ $config['inv_readable_types'] = array(
     'debit' => 'debit-note',
     'credit' => 'credit-note'
 );
+/*
+ * invoices statuses
+ */
+$config['inv_statuses'] = array(
+    'issued',
+    'draft'
+);

@@ -16,6 +16,7 @@
 <?php if ($this->permissions->hasPerm('perm_add_invoice') && $editId == 0 || $this->permissions->hasPerm('perm_edit_invoice') && $editId > 0) { ?>
     <form action="" id="setInvoiceForm" class="site-form" method="POST">
         <input type="hidden" name="client_from_list" value="0"> 
+        <input type="hidden" name="status" value="issued"> 
         <div> 
             <div class="choose-translation" <?= $editId > 0 ? 'style="display:none;"' : '' ?>>
                 <select class="selectpicker" name="invoice_translation" title="<?= lang('choose_translation') ?>">
@@ -361,8 +362,7 @@
                         <option value="createNewMethod"><?= lang('create_new_pay_method') ?></option>
                     </select> 
                 </div> 
-            </div>
-            <input type="hidden" value="0" name="is_draft">
+            </div> 
             <a href="javascript:void(0);" onclick="createNewInvValidate()" class="btn btn-green"><?= $editId == 0 ? lang('create_inv_save') : lang('update_inv_save') ?></a>
             <?php if ($editId == 0) { ?>
                 <a href="javascript:void(0);" onclick="createDraft()" class="btn btn-orange"><?= lang('create_inv_save_draft') ?></a>
