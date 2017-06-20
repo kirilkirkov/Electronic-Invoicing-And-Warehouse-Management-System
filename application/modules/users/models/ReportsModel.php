@@ -98,7 +98,7 @@ class ReportsModel extends CI_Model
             $showDraft = '';
         }
 
-        $result = $this->db->query('SELECT SUM(final_total) as sumInvoices, invoices_clients.client_name as client FROM invoices INNER JOIN invoices_clients ON invoices_clients.for_invoice = invoices.id WHERE invoices.for_user = ' . USER_ID . ' AND invoices.for_company = ' . SELECTED_COMPANY_ID . $showDraft . $between . ' GROUP BY IF(invoices_clients.client_bulstat=NULL, invoices_clients.client_ident_num, invoices_clients.client_bulstat), invoices_clients.client_name ORDER BY sumInvoices DESC LIMIT 10');
+        $result = $this->db->query('SELECT SUM(final_total) as sumInvoices, invoices_clients.client_name as client FROM invoices INNER JOIN invoices_clients ON invoices_clients.for_invoice = invoices.id WHERE invoices.inv_type = "tax_inv" AND invoices.for_user = ' . USER_ID . ' AND invoices.for_company = ' . SELECTED_COMPANY_ID . $showDraft . $between . ' GROUP BY IF(invoices_clients.client_bulstat=NULL, invoices_clients.client_ident_num, invoices_clients.client_bulstat), invoices_clients.client_name ORDER BY sumInvoices DESC LIMIT 10');
         return $result->result_array();
     }
 

@@ -316,5 +316,5 @@ $lang['show_drafts_report'] = 'Show drafts';
 $lang['to_canceled_stat'] = 'Canceled';
 $lang['status_canceled'] = 'Canceled';
 $lang['remove_canceled_stat'] = 'Remove Canceled';
-$lang['top_clients_stat'] = 'Top clients (amount in %currency%)';
+$lang['top_clients_stat'] = 'Top 10 clients - sum of invoices (amount in %currency%)';
 $lang['sum_of_invoices_in_stat'] = 'Sum of issued invoices';
