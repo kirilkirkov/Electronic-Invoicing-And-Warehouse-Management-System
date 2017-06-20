@@ -8,6 +8,10 @@ class ReportsModel extends CI_Model
         parent::__construct();
     }
 
+    /*
+     * Only num issued invoices 
+     */
+
     public function getIssuedInvoices($from = null, $to = null, $doShowDraft = false)
     {
         $between = '';
@@ -25,6 +29,10 @@ class ReportsModel extends CI_Model
         }
         return $result;
     }
+
+    /*
+     * Issued invoices by month with num issued and final sum for every month
+     */
 
     public function getIssuedInvoicesByMonth($from, $to, $doShowDraft = false)
     {
@@ -74,6 +82,24 @@ class ReportsModel extends CI_Model
             }
         }
         return $invMonths;
+    }
+
+    /*
+     * Clients with the highest priced invoices 
+     */
+
+    public function getTopClients($from, $to, $doShowDraft = false)
+    {
+        $from = strtotime($from);
+        $to = strtotime($to);
+        $between = ' AND created >= ' . $from . ' AND created <= ' . $to;
+        $showDraft = ' AND status != "draft"';
+        if ($doShowDraft == true) {
+            $showDraft = '';
+        }
+
+        $result = $this->db->query('SELECT SUM(final_total) as sumInvoices, invoices_clients.client_name as client FROM invoices INNER JOIN invoices_clients ON invoices_clients.for_invoice = invoices.id WHERE invoices.for_user = ' . USER_ID . ' AND invoices.for_company = ' . SELECTED_COMPANY_ID . $showDraft . $between . ' GROUP BY IF(invoices_clients.client_bulstat=NULL, invoices_clients.client_ident_num, invoices_clients.client_bulstat), invoices_clients.client_name ORDER BY sumInvoices DESC LIMIT 10');
+        return $result->result_array();
     }
 
 }

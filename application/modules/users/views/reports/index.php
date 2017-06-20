@@ -89,7 +89,7 @@
         type: 'line'
         },
                 title: {
-                text: '<?= str_replace('%sum%', $firmCurrency, lang('amount_invoices_by_month_stat')) ?>'
+                text: '<?= str_replace('%currency%', $firmCurrency, lang('amount_invoices_by_month_stat')) ?>'
                 },
                 subtitle: {
                 text: '<?= $betweenDates ?>'
@@ -126,6 +126,57 @@
                     },
     <?php }
     ?>]
+        });
+    </script>
+
+    <div id="top-clients"></div>
+    <script>
+        Highcharts.chart('top-clients', {
+        chart: {
+        type: 'column'
+        },
+                title: {
+                text: '<?= str_replace('%currency%', $firmCurrency, lang('top_clients_stat')) ?>'
+                },
+                subtitle: {
+                text: '<?= $betweenDates ?>'
+                },
+                xAxis: {
+                type: 'category',
+                        labels: {
+                        rotation: - 45,
+                                style: {
+                                fontSize: '13px',
+                                        fontFamily: 'Verdana, sans-serif'
+                                }
+                        }
+                },
+                legend: {
+                enabled: false
+                },
+                tooltip: {
+                pointFormat: '<?= lang('sum_of_invoices_in_stat') ?> <b>{point.y:.1f} <?= $firmCurrency ?></b>'
+                },
+                series: [{
+                name: '',
+                        data: [
+    <?php foreach ($topClients as $topClient) { ?>
+                            ['<?= $topClient['client'] ?>', <?= $topClient['sumInvoices'] ?>],
+    <?php } ?>
+                        ],
+                        dataLabels: {
+                        enabled: true,
+                                rotation: - 90,
+                                color: '#FFFFFF',
+                                align: 'right',
+                                format: '{point.y:.1f}', // one decimal
+                                y: 10, // 10 pixels down from the top
+                                style: {
+                                fontSize: '13px',
+                                        fontFamily: 'Verdana, sans-serif'
+                                }
+                        }
+                }]
         });
     </script>
 <?php } else { ?>
