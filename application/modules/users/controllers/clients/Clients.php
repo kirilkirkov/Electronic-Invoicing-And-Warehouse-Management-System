@@ -83,9 +83,9 @@ class Clients extends USER_Controller
         } else {
             $this->session->set_flashdata('resultAction', $isValid);
             if ($this->editId > 0) {
-                redirect(lang_url('user/edit/client/' . $this->editId));
+                redirect(lang_url('user/client/edit/' . $this->editId));
             } else {
-                redirect(lang_url('user/add/client'));
+                redirect(lang_url('user/client/add'));
             }
         }
     }
@@ -109,6 +109,20 @@ class Clients extends USER_Controller
     {
         $this->ClientsModel->deleteClient($id);
         redirect(lang_url('user/clients'));
+    }
+
+    public function viewClient($id)
+    {
+        $data = array();
+        $head = array();
+        $head['title'] = 'Administration - Home';
+        $result = $this->ClientsModel->getClientInfo($id);
+        if (empty($result)) {
+            show_404();
+        }
+        $data['clientInfo'] = $result;
+        $this->render('clients/viewclient', $head, $data);
+        $this->saveHistory('View client ' . $id);
     }
 
 }

@@ -12,7 +12,7 @@
     </div>
     <div class="border"></div>
 </div>
-<a href="<?= lang_url('user/add/item') ?>" class="btn btn-default"><?= lang('add_new_item') ?></a>
+<a href="<?= lang_url('user/item/add') ?>" class="btn btn-default"><?= lang('add_new_item') ?></a>
 <?php if (!empty($items)) { ?>
     <form method="POST" action="" id="action-form">
         <input type="hidden" name="action" value="">
@@ -32,13 +32,13 @@
                     <?php foreach ($items as $item) { ?>
                         <tr>
                             <td><input type="checkbox" name="ids[]" value="<?= $item['id'] ?>" class="check-me-now"></td>
-                            <td><?= $item['name'] ?></td>
+                            <td><a href="<?= lang_url('user/item/view/' . $item['id']) ?>"><?= $item['name'] ?></a></td>
                             <td><?= $item['quantity_type'] ?></td>
                             <td><?= $item['single_price'] . ' ' . $item['currency'] ?></td>
                             <td>
-                                <a href="<?= lang_url('user/edit/item/' . $item['id']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                                <a href="<?= lang_url('user/item/edit/' . $item['id']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                                 <?php if ($this->permissions->hasPerm('perm_delete_items')) { ?>
-                                    <a href="<?= lang_url('user/delete/item/' . $item['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_item') ?>"><i class="fa fa-remove" aria-hidden="true"></i> Delete</a>
+                                    <a href="<?= lang_url('user/item/delete/' . $item['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_item') ?>"><i class="fa fa-remove" aria-hidden="true"></i> Delete</a>
                                 <?php } ?>
                             </td>
                         </tr>

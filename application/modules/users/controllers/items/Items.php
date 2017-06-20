@@ -85,9 +85,9 @@ class Items extends USER_Controller
         } else {
             $this->session->set_flashdata('resultAction', $isValid);
             if ($this->editId > 0) {
-                redirect(lang_url('user/edit/item/' . $this->editId));
+                redirect(lang_url('user/item/edit/' . $this->editId));
             } else {
-                redirect(lang_url('user/add/item'));
+                redirect(lang_url('user/item/add'));
             }
         }
     }
@@ -108,6 +108,20 @@ class Items extends USER_Controller
     {
         $this->ItemsModel->deleteItem($id);
         redirect(lang_url('user/items'));
+    }
+
+    public function viewItem($id)
+    {
+        $data = array();
+        $head = array();
+        $head['title'] = 'Administration - Home';
+        $result = $this->ItemsModel->getItemInfo($id);
+        if (empty($result)) {
+            show_404();
+        }
+        $data['itemInfo'] = $result;
+        $this->render('items/viewitem', $head, $data);
+        $this->saveHistory('View item ' . $id);
     }
 
 }
