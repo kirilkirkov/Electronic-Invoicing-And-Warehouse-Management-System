@@ -79,7 +79,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="stats"> 
-asd
+                                        asd
                                     </div>
                                 </div>
                             </div>
@@ -119,12 +119,17 @@ asd
                                                 <i class="fa fa-buysellads" aria-hidden="true"></i>
                                                 <?= lang('menu_list_items') ?> 
                                             </a>
-                                        </li>
-
+                                        </li> 
                                         <li>
                                             <a href="<?= lang_url('user/reports') ?>">
                                                 <i class="fa fa-buysellads" aria-hidden="true"></i>
                                                 <?= lang('menu_list_reports') ?> 
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?= lang_url('user/import-export') ?>">
+                                                <i class="fa fa-buysellads" aria-hidden="true"></i>
+                                                <?= lang('menu_list_import_export') ?> 
                                             </a>
                                         </li>
                                     </ul>

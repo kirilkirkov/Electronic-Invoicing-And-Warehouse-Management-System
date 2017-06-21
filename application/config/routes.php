@@ -124,6 +124,7 @@ $route['user/changeinvoicestatus'] = 'users/invoices/invoices/changeinvoicestatu
 $route['user/findresults'] = 'users/home/home/findresults';
 $route['user/client/view/(:num)'] = "users/clients/clients/viewclient/$1";
 $route['user/item/view/(:num)'] = "users/items/items/viewitem/$1";
+$route['user/import-export'] = "users/import_export/ImportExport";
 $route['pdffooter'] = 'home/getinvoicefooter';
 /* USERS PANEL ROUTES */
 

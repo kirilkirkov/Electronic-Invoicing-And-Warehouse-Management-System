@@ -318,3 +318,6 @@ $lang['status_canceled'] = 'Canceled';
 $lang['remove_canceled_stat'] = 'Remove Canceled';
 $lang['top_clients_stat'] = 'Top 10 clients - sum of invoices (amount in %currency%)';
 $lang['sum_of_invoices_in_stat'] = 'Sum of issued invoices';
+$lang['menu_list_import_export'] = 'Import/Export';
+$lang['no_invoices_result_export'] = 'There are no invoices';
+$lang['selected_invalid_exporter'] = 'You select invalid exporter!';

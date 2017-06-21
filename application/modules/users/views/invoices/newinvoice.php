@@ -348,7 +348,7 @@
                 </div>
                 <div class="remarks">
                     <label><?= lang('create_inv_remarks') ?><sup><?= lang('visibile_for_client') ?></sup></label>
-                    <textarea class="form-control field area" name="remarks"><?= isset($_POST['remakrs']) ? $_POST['remakrs'] : '' ?></textarea>
+                    <textarea class="form-control field area" name="remarks"><?= isset($_POST['remarks']) ? $_POST['remarks'] : '' ?></textarea>
                 </div>
                 <div class="payment-type">
                     <label><?= lang('create_inv_payment_type') ?></label>

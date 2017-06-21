@@ -425,6 +425,19 @@ $('.top-search-form .field').keyup(function () {
     }
 });
 /*
+ * when export if check export all
+ * disable input fields
+ */
+$('[name="export_all"]').change(function () {
+    if ($(this).is(":checked")) {
+        $('[name="from_date"]').attr('disabled', true);
+        $('[name="to_date"]').attr('disabled', true);
+    } else {
+        $('[name="from_date"]').attr('disabled', false);
+        $('[name="to_date"]').attr('disabled', false);
+    }
+});
+/*
  * Create draft invoice
  */
 function createDraft() {
