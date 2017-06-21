@@ -16,8 +16,7 @@ class XmlExport
     // wait for invoices array
     public function getXmlFileFromInvoicesArray($invoices)
     {
-        $xml = $this->getXmlStructure($invoices);
-        $headers = $this->getXmlHeaders();
+        $this->getXmlStructure($invoices);
     }
 
     public function setDates($from, $to)

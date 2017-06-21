@@ -77,6 +77,10 @@ class ImportExport extends USER_Controller
             $isSelected = true;
         }
         if ($_POST['exportType'] == 'excel') {
+            $this->load->library('exporters/ExcelExport');
+            $this->excelexport->setDates($from, $to);
+            $this->excelexport->setInvTypes($invReadableTypes);
+            $this->excelexport->getExcelFileFromInovoicesArray($resultInvoices);
             $isSelected = true;
         }
         if ($isSelected == false) {
