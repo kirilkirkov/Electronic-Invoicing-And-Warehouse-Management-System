@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
         <link rel="stylesheet" href="<?= base_url('assets/bootstrap/css/bootstrap.min.css') ?>">
         <link href="<?= base_url('assets/public/css/general.css') ?>" rel="stylesheet">
         <script src="<?= base_url('assets/jquery/jquery.min.js') ?>"></script>
@@ -48,7 +49,7 @@
                         </span>
                         <div class="clearfix"></div>  
                         <div id="site-top">
-                            <h1 class="pull-right"><?= lang('header_text') ?></h1>
+                            <h1 class="pull-right animated zoomInUp"><?= lang('header_text') ?></h1>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -60,7 +61,7 @@
                                     <i class="fa fa-bars" aria-hidden="true"></i>
                                 </button>
                                 <a class="navbar-brand" href="<?= base_url() ?>">
-                                    <img src="<?= base_url('assets/public/imgs/logo.png') ?>" alt="pminvoice.com">
+                                    <img src="<?= base_url('assets/public/imgs/logo.png') ?>" class="animated bounce" alt="pminvoice.com">
                                 </a>
                             </div>
                             <div id="navbar" class="collapse navbar-collapse pull-right">

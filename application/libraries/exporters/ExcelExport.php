@@ -15,6 +15,12 @@ class ExcelExport
     private $invReadableTypes;
     private $fsize;
 
+    public function __construct()
+    {
+        $this->CI = & get_instance();
+        $this->setInvTypes($this->CI->config->item('inv_readable_types'));
+    }
+
     // wait for invoices array
     public function getExcelFileFromInovoicesArray($invoices)
     {
@@ -27,7 +33,7 @@ class ExcelExport
         $this->to = $to;
     }
 
-    public function setInvTypes($invReadableTypes)
+    private function setInvTypes($invReadableTypes)
     {
         $this->invReadableTypes = $invReadableTypes;
     }
@@ -92,7 +98,7 @@ class ExcelExport
             $objPHPExcel->getActiveSheet()->SetCellValue('R' . $i, $invoice['composed']);
             $objPHPExcel->getActiveSheet()->SetCellValue('S' . $i, $invoice['status'] == 'sended' || $invoice['status'] == 'received' ? 1 : 0);
             $objPHPExcel->getActiveSheet()->SetCellValue('T' . $i, $invoice['status'] == 'received' ? 1 : 0);
-            $objPHPExcel->getActiveSheet()->SetCellValue('U' . $i, $invoice['date_received'] != null ? date('d.m.Y', $invoice['date_received']) : '');
+            $objPHPExcel->getActiveSheet()->SetCellValue('U' . $i, $invoice['date_received'] != 0 ? date('d.m.Y', $invoice['date_received']) : '');
             $objPHPExcel->getActiveSheet()->SetCellValue('V' . $i, $invoice['return_reason']);
             $objPHPExcel->getActiveSheet()->SetCellValue('W' . $i, date('d.m.Y', $invoice['created']));
             $objPHPExcel->getActiveSheet()->SetCellValue('X' . $i, $invoice['no_vat_reason']);
@@ -118,7 +124,7 @@ class ExcelExport
 
     private function getXmlHeaders()
     {
-        $filename = 'export_invoices.xml';
+        $filename = 'export_invoices.xls';
         if ($this->from != null && $this->to != null) {
             $this->from = date('d.m.Y', $this->from);
             $this->to = date('d.m.Y', $this->to);

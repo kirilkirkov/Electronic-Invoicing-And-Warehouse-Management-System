@@ -25,7 +25,7 @@
                     if (!empty($invoiceLanguages)) {
                         foreach ($invoiceLanguages as $invLanguage) {
                             ?>
-                            <option value="<?= $invLanguage['id'] ?>"><?= $invLanguage['language_name'] ?></option>
+                            <option value="<?= $invLanguage['id'] ?>"><?= $invLanguage['language_name'] ?>(<?= $invLanguage['id'] ?>)</option>
                             <?php
                         }
                     }

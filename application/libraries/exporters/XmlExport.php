@@ -13,6 +13,12 @@ class XmlExport
     private $to;
     private $invReadableTypes;
 
+    public function __construct()
+    {
+        $this->CI = & get_instance();
+        $this->setInvTypes($this->CI->config->item('inv_readable_types'));
+    }
+
     // wait for invoices array
     public function getXmlFileFromInvoicesArray($invoices)
     {
@@ -25,7 +31,7 @@ class XmlExport
         $this->to = $to;
     }
 
-    public function setInvTypes($invReadableTypes)
+    private function setInvTypes($invReadableTypes)
     {
         $this->invReadableTypes = $invReadableTypes;
     }

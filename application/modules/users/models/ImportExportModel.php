@@ -41,4 +41,22 @@ class ImportExportModel extends CI_Model
         return $invoices;
     }
 
+    /*
+     * This method uses methods from NewInvoiceModel
+     */
+
+    public function setInvoicesFromImport($invoices)
+    {
+        $this->load->model('NewInvoiceModel');
+        foreach ($invoices as $invoice) {
+            /*
+             * If no errors
+             * Lets go import
+             */
+            if (empty($invoice['errors'])) {
+                $this->NewInvoiceModel->setInvoice($invoice['inv']);
+            }
+        }
+    }
+
 }

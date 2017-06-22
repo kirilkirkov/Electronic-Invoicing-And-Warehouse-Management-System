@@ -57,11 +57,11 @@ class NewInvoiceModel extends CI_Model
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         }
-    } 
+    }
 
     public function setNewInvoiceLanguage($post)
     {
-        unset($post['addNewTranslation']);
+        unset($post['addNewInvoiceLanguage']);
         $post['for_user'] = USER_ID;
         if (!$this->db->insert('invoices_languages', $post)) {
             log_message('error', print_r($this->db->error(), true));

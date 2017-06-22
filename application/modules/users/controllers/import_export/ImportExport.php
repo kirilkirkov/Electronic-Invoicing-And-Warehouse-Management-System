@@ -11,6 +11,8 @@ if (!defined('BASEPATH')) {
 class ImportExport extends USER_Controller
 {
 
+    private $resultImport = array();
+
     public function __construct()
     {
         parent::__construct();
@@ -26,6 +28,8 @@ class ImportExport extends USER_Controller
         $thisYear = thisyeardates();
         $data['from_date'] = $thisYear['from'];
         $data['to_date'] = $thisYear['to'];
+        $data['resultImport'] = $this->resultImport;
+        $data['invReadableTypes'] = $this->config->item('inv_readable_types');
         $this->render('import_export/index', $head, $data);
         $this->saveHistory('Go to import export page');
     }
@@ -34,6 +38,9 @@ class ImportExport extends USER_Controller
     {
         if (isset($_POST['exportType'])) {
             $this->doExport();
+        }
+        if (isset($_POST['importType'])) {
+            $this->doImport();
         }
     }
 
@@ -47,7 +54,7 @@ class ImportExport extends USER_Controller
         // check if we export for date range or all
         $from = strtotime($_POST['from_date']);
         $to = strtotime($_POST['to_date']);
-        if ($from == false || $to == false) { // prevent from wrong information exact date
+        if ($from == false || $to == false) { // prevent from wrong date
             $from = null;
             $to = null;
         }
@@ -67,25 +74,36 @@ class ImportExport extends USER_Controller
         /*
          * Lets call the selected exporter
          */
-        $invReadableTypes = $this->config->item('inv_readable_types');
+
         $isSelected = false;
         if ($_POST['exportType'] == 'xml') {
             $this->load->library('exporters/XmlExport');
             $this->xmlexport->setDates($from, $to);
-            $this->xmlexport->setInvTypes($invReadableTypes);
             $this->xmlexport->getXmlFileFromInvoicesArray($resultInvoices);
             $isSelected = true;
         }
         if ($_POST['exportType'] == 'excel') {
             $this->load->library('exporters/ExcelExport');
             $this->excelexport->setDates($from, $to);
-            $this->excelexport->setInvTypes($invReadableTypes);
             $this->excelexport->getExcelFileFromInovoicesArray($resultInvoices);
             $isSelected = true;
         }
         if ($isSelected == false) {
             $this->session->set_flashdata('resultAction', lang('selected_invalid_exporter'));
             redirect(lang_url('user/import-export'));
+        }
+    }
+
+    private function doImport()
+    {
+        if ($_FILES['fileToImport']['size'] == 0) {
+            $this->session->set_flashdata('resultAction', lang('not_selected_import_file'));
+            redirect(lang_url('user/import-export'));
+        }
+        if ($_POST['importType'] == 'uni-xml') {
+            $this->load->library('importers/UniversalXmlImport');
+            $resultImport = $this->universalxmlimport->importFile($_FILES['fileToImport']['tmp_name']);
+            $this->resultImport = $resultImport;
         }
     }
 
