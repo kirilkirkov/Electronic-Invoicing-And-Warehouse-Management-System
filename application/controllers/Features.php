@@ -27,8 +27,18 @@ class Features extends MY_Controller
         $head = array();
         $head['title'] = 'Issue and project tracking system with many features';
         $head['description'] = 'pmTicket has many features like dashboard/agile, issue tracking, multilanguage, mobile friendly and etc.';
-        $head['keywords'] = 'dashboard, aglile, issue tracking, multilanguage, mobilefriendly'; 
+        $head['keywords'] = 'dashboard, aglile, issue tracking, multilanguage, mobilefriendly';
         $this->render('features/importers', $head, $data);
+    }
+
+    public function exporters()
+    {
+        $data = array();
+        $head = array();
+        $head['title'] = 'Issue and project tracking system with many features';
+        $head['description'] = 'pmTicket has many features like dashboard/agile, issue tracking, multilanguage, mobile friendly and etc.';
+        $head['keywords'] = 'dashboard, aglile, issue tracking, multilanguage, mobilefriendly';
+        $this->render('features/exporters', $head, $data);
     }
 
 }
