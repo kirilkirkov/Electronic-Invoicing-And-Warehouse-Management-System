@@ -36,7 +36,9 @@ class Home extends USER_Controller
             }
         }
         $data['inv_readable_types'] = $this->config->item('inv_readable_types');
-        $data['issuedInvoices'] = $this->ReportsModel->getIssuedInvoices();
+        iF (SELECTED_COMPANY_ID != null) { // in first login we dont have companies and this is null
+            $data['issuedInvoices'] = $this->ReportsModel->getIssuedInvoices();
+        }
         $data['betweenDates'] = lang('all_the_time');
         $this->render('home/index', $head, $data);
         $this->saveHistory('Go to home page');

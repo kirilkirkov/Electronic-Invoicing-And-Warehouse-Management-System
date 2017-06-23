@@ -153,15 +153,21 @@ class NewInvoiceModel extends CI_Model
             'schiffer' => $schiffer,
             'created' => time()
         );
+        $this->db->trans_begin();
         if (!$this->db->insert('invoices', $insertArray)) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
         $insertId = $this->db->insert_id();
         $this->setInvoiceTranslation($insertId, $post['invoice_translation']);
         $this->setInvoiceItems($insertId, $post);
         $this->setInvoiceClient($insertId, $post);
         $this->setInvoiceFirm($insertId, $post);
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+            show_error(lang('database_error'));
+        } else {
+            $this->db->trans_commit();
+        }
     }
 
     public function updateInvoice($post)
@@ -229,7 +235,6 @@ class NewInvoiceModel extends CI_Model
         );
         if (!$this->db->insert('invoices_firms', $insertArray)) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
     }
 
@@ -367,7 +372,6 @@ class NewInvoiceModel extends CI_Model
         );
         if (!$this->db->insert('invoices_clients', $insertArray)) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
         /*
          * If client is not selected from list
@@ -397,7 +401,6 @@ class NewInvoiceModel extends CI_Model
             );
             if (!$this->db->insert('invoices_items', $arrItem)) {
                 log_message('error', print_r($this->db->error(), true));
-                show_error(lang('database_error'));
             }
             /*
              * If item is not selected from list
@@ -428,7 +431,6 @@ class NewInvoiceModel extends CI_Model
         $translate['for_user'] = USER_ID;
         if (!$this->db->insert('invoices_translations', $translate)) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
     }
 

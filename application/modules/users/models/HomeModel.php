@@ -34,13 +34,13 @@ class HomeModel extends CI_Model
 
     public function setFirm($post)
     {
+        $this->db->trans_begin();
         if (!$this->db->insert('firms_users', array(
                     'for_user' => USER_ID,
                     'bulstat' => $post['firm_bulstat'],
                     'is_default' => $post['is_default']
                 ))) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
         $lastId = $this->db->insert_id();
         if (!$this->db->insert('firms_translations', array(
@@ -53,7 +53,12 @@ class HomeModel extends CI_Model
                     'is_default' => 1
                 ))) {
             log_message('error', print_r($this->db->error(), true));
+        }
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
             show_error(lang('database_error'));
+        } else {
+            $this->db->trans_commit();
         }
         return $lastId;
     }

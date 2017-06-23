@@ -230,16 +230,21 @@ class SettingsModel extends CI_Model
 
     public function deleteEmployee($id)
     {
+        $this->db->trans_begin();
         $this->db->where('id', $id);
         $this->db->where('for_user', USER_ID);
         if (!$this->db->delete('employees')) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
         $this->db->where('for_employee', $id);
         if (!$this->db->delete('employees_permissions')) {
             log_message('error', print_r($this->db->error(), true));
+        }
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
             show_error(lang('database_error'));
+        } else {
+            $this->db->trans_commit();
         }
     }
 

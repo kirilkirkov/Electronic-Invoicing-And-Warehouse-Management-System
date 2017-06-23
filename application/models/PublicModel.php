@@ -118,16 +118,22 @@ class PublicModel extends CI_Model
 
     public function registerUser($post)
     {
+        $this->db->trans_begin();
         if (!$this->db->insert('users', array(
                     'email' => $post['email'],
                     'password' => md5salt($post['password']),
                     'time_registered' => time()
                 ))) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
         $user_id = $this->db->insert_id();
         $this->insertOptionsTables($user_id);
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+            show_error(lang('database_error'));
+        } else {
+            $this->db->trans_commit();
+        }
     }
 
     /*
@@ -156,7 +162,6 @@ class PublicModel extends CI_Model
         );
         if (!$this->db->insert_batch('value_store', $data)) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
     }
 
