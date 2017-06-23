@@ -88,6 +88,7 @@ class NewInvoiceModel extends CI_Model
         }
         $this->db->where('inv_type', $invType);
         $this->db->where('inv_number', $number);
+        $this->db->where('is_deleted', 0);
         $this->db->where('for_user', USER_ID);
         $this->db->where('for_company', SELECTED_COMPANY_ID);
         $num = $this->db->count_all_results('invoices');
@@ -102,6 +103,7 @@ class NewInvoiceModel extends CI_Model
         $this->db->select_max('inv_number');
         $this->db->where('for_user', USER_ID);
         $this->db->where('for_company', SELECTED_COMPANY_ID);
+        $this->db->where('is_deleted', 0);
         $result = $this->db->get('invoices');
         $row = $result->row_array();
         /*

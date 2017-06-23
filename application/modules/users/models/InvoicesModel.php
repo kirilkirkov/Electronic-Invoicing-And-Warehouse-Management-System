@@ -20,47 +20,18 @@ class InvoicesModel extends CI_Model
         $this->db->select('invoices_clients.client_name, invoices.inv_number, invoices.date_create, invoices.final_total, invoices.inv_type, invoices.status, invoices.inv_currency, invoices.id, invoices.payment_status');
         $this->db->where('invoices.for_user', USER_ID);
         $this->db->where('invoices.for_company', SELECTED_COMPANY_ID);
+        $this->db->where('invoices.is_deleted', 0);
         $this->db->join('invoices_clients', 'invoices_clients.for_invoice = invoices.id');
         $result = $this->db->get('invoices', $limit, $page);
         return $result->result_array();
     }
 
-    public function deletePermanentlyInvoice($id)
+    public function deleteInvoice($id)
     {
         $this->db->where('id', $id);
         $this->db->where('for_user', USER_ID);
         $this->db->where('for_company', SELECTED_COMPANY_ID);
-        if (!$this->db->delete('invoices')) {
-            log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
-        }
-
-        $this->db->where('for_invoice', $id);
-        $this->db->where('for_user', USER_ID);
-        $this->db->where('for_company', SELECTED_COMPANY_ID);
-        if (!$this->db->delete('invoices_clients')) {
-            log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
-        }
-
-        $this->db->where('for_invoice', $id);
-        $this->db->where('for_user', USER_ID);
-        if (!$this->db->delete('invoices_firms')) {
-            log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
-        }
-
-        $this->db->where('for_invoice', $id);
-        $this->db->where('for_user', USER_ID);
-        $this->db->where('for_company', SELECTED_COMPANY_ID);
-        if (!$this->db->delete('invoices_items')) {
-            log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
-        }
-
-        $this->db->where('for_invoice', $id);
-        $this->db->where('for_user', USER_ID);
-        if (!$this->db->delete('invoices_translations')) {
+        if (!$this->db->update('invoices', array('is_deleted' => 1))) {
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         }
@@ -72,37 +43,7 @@ class InvoicesModel extends CI_Model
             $this->db->where_in('id', $ids);
             $this->db->where('for_user', USER_ID);
             $this->db->where('for_company', SELECTED_COMPANY_ID);
-            if (!$this->db->delete('invoices')) {
-                log_message('error', print_r($this->db->error(), true));
-                show_error(lang('database_error'));
-            }
-
-            $this->db->where_in('for_invoice', $ids);
-            $this->db->where('for_user', USER_ID);
-            $this->db->where('for_company', SELECTED_COMPANY_ID);
-            if (!$this->db->delete('invoices_clients')) {
-                log_message('error', print_r($this->db->error(), true));
-                show_error(lang('database_error'));
-            }
-
-            $this->db->where_in('for_invoice', $ids);
-            $this->db->where('for_user', USER_ID);
-            if (!$this->db->delete('invoices_firms')) {
-                log_message('error', print_r($this->db->error(), true));
-                show_error(lang('database_error'));
-            }
-
-            $this->db->where_in('for_invoice', $ids);
-            $this->db->where('for_user', USER_ID);
-            $this->db->where('for_company', SELECTED_COMPANY_ID);
-            if (!$this->db->delete('invoices_items')) {
-                log_message('error', print_r($this->db->error(), true));
-                show_error(lang('database_error'));
-            }
-
-            $this->db->where_in('for_invoice', $ids);
-            $this->db->where('for_user', USER_ID);
-            if (!$this->db->delete('invoices_translations')) {
+            if (!$this->db->update('invoices', array('is_deleted' => 1))) {
                 log_message('error', print_r($this->db->error(), true));
                 show_error(lang('database_error'));
             }

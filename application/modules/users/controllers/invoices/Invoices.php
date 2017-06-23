@@ -64,7 +64,7 @@ class Invoices extends USER_Controller
 
     public function deleteInvoice($id)
     {
-        $this->InvoicesModel->deletePermanentlyInvoice($id);
+        $this->InvoicesModel->deleteInvoice($id);
         redirect(lang_url('user/invoices'));
     }
 
