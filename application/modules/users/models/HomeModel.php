@@ -49,7 +49,7 @@ class HomeModel extends CI_Model
                     'address' => $post['firm_reg_address'],
                     'city' => $post['firm_city'],
                     'mol' => $post['firm_mol'],
-                    'trans_name' => $post['trans_name'],
+                    'trans_name' => $post['trans_name'] == null ? 'default' : $post['trans_name'],
                     'is_default' => 1
                 ))) {
             log_message('error', print_r($this->db->error(), true));
