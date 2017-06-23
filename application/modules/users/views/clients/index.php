@@ -32,7 +32,7 @@
                         <tr>
                             <td><input type="checkbox" name="ids[]" value="<?= $client['id'] ?>" class="check-me-now"></td>
                             <td><a href="<?= lang_url('user/client/view/' . $client['id']) ?>"><?= $client['client_name'] ?></a></td>
-                            <td><?= $client['client_bulstat'] ?></td>
+                            <td><?= $client['is_to_person'] == 1 ? $client['client_ident_num'] : $client['client_bulstat'] ?></td>
                             <td>
                                 <a href="<?= lang_url('user/client/edit/' . $client['id']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
                                 <?php if ($this->permissions->hasPerm('perm_delete_clients')) { ?>
