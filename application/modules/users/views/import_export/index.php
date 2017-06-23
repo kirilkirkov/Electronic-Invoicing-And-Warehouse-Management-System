@@ -14,11 +14,11 @@
 </div>
 
 <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#export" aria-controls="home" role="tab" data-toggle="tab"><?= lang('export') ?></a></li>
-    <li role="presentation"><a href="#import" aria-controls="profile" role="tab" data-toggle="tab"><?= lang('import') ?></a></li> 
+    <li role="presentation" class="<?= !isset($_POST['importType']) ? 'active' : '' ?>"><a href="#export" aria-controls="home" role="tab" data-toggle="tab"><?= lang('export') ?></a></li>
+    <li role="presentation" class="<?= !isset($_POST['importType']) ? '' : 'active' ?>"><a href="#import" aria-controls="profile" role="tab" data-toggle="tab"><?= lang('import') ?></a></li> 
 </ul>
 <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="export">
+    <div role="tabpanel" class="tab-pane <?= !isset($_POST['importType']) ? 'active' : '' ?>" id="export">
         <form class="form-inline site-form" action="" method="POST">
             <div class="form-group">
                 <label for="from_date"><?= lang('from_date') ?></label>
@@ -42,7 +42,7 @@
             </div>
         </form> 
     </div>
-    <div role="tabpanel" class="tab-pane" id="import">
+    <div role="tabpanel" class="tab-pane <?= !isset($_POST['importType']) ? '' : 'active' ?>" id="import">
         <form class="form-inline site-form" action="" method="POST" enctype="multipart/form-data">
             <input type="file" name="fileToImport">
             <div>

@@ -72,6 +72,7 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= lang('btn_features') ?> <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
+                                            <li><a href="<?= lang_url('features/importers') ?>"><?= lang('imports_feature') ?></a></li>
                                             <li><a href="<?= lang_url('features') ?>"><?= lang('store') ?></a></li>
                                             <li><a href="<?= lang_url('features') ?>"><?= lang('saved_clients') ?></a></li>
                                             <li><a href="<?= lang_url('features') ?>"><?= lang('saved_articles') ?></a></li>

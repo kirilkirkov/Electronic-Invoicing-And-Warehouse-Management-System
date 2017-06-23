@@ -89,3 +89,6 @@ $lang['choose_type_of_login'] = 'Choose type of login';
 $lang['there_are_two_types'] = 'There are two types of login for this email and password!';
 $lang['type_employee'] = 'Login as employee';
 $lang['type_user'] = 'Login as user';
+$lang['example_of_xml_import_file'] = 'Example of XML import file';
+$lang['imports_feature'] = 'Import invoices';
+$lang['universal_xml'] = 'Universal XML Import';
