@@ -499,6 +499,7 @@ class NewInvoiceModel extends CI_Model
         $this->db->where('invoices.inv_number', (int) $invId);
         $this->db->where('invoices.for_user', USER_ID);
         $this->db->where('invoices.for_company', SELECTED_COMPANY_ID);
+        $this->db->where('invoices.is_deleted', 0);
         $this->db->limit(1);
         $result = $this->db->get('invoices');
         $arr = $result->row_array();

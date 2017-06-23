@@ -100,15 +100,17 @@ class HomeModel extends CI_Model
     public function findResultsFromSearch($phrase)
     {
         $array = array();
-
         $this->db->select('inv_number, inv_type');
+        $this->db->group_start();
         $this->db->where('invoices.for_user', USER_ID);
         $this->db->where('invoices.for_company', SELECTED_COMPANY_ID);
+        $this->db->where('invoices.is_deleted', 0);
+        $this->db->group_end();
+        $this->db->group_start();
         $this->db->like('inv_number', $phrase);
         $this->db->or_like('client_name', $phrase);
-        $this->db->or_like('invoices_items.name', $phrase);
+        $this->db->group_end();
         $this->db->limit(5);
-        $this->db->join('invoices_items', 'invoices_items.for_invoice = invoices.id');
         $this->db->join('invoices_clients', 'invoices_clients.for_invoice = invoices.id');
         $result = $this->db->get('invoices');
         $rowsInvoices = $result->result_array();

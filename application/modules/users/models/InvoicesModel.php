@@ -12,6 +12,7 @@ class InvoicesModel extends CI_Model
     {
         $this->db->where('for_user', USER_ID);
         $this->db->where('for_company', SELECTED_COMPANY_ID);
+        $this->db->where('invoices.is_deleted', 0);
         return $this->db->count_all_results('invoices');
     }
 

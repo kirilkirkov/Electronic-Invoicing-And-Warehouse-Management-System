@@ -20,6 +20,7 @@ class ImportExportModel extends CI_Model
         }
         $this->db->where('invoices.for_user', USER_ID);
         $this->db->where('invoices.for_company', SELECTED_COMPANY_ID);
+        $this->db->where('invoices.is_deleted', 0);
         $result = $this->db->get('invoices');
         $invoices = $result->result_array();
         if (empty($invoices)) {
