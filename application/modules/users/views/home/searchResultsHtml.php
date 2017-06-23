@@ -17,7 +17,7 @@ if (!empty($result['clients'])) {
         <?php
         foreach ($result['clients'] as $client) {
             ?>
-            <a href="<?= lang_url('user/edit/client/' . $client['id']) ?>">
+            <a href="<?= lang_url('user/client/view/' . $client['id']) ?>">
                 <?= $client['client_name'] ?>
             </a> 
         <?php }
@@ -31,7 +31,7 @@ if (!empty($result['items'])) {
         <?php
         foreach ($result['items'] as $item) {
             ?>
-            <a href="<?= lang_url('user/edit/item/' . $item['id']) ?>">
+            <a href="<?= lang_url('user/item/view/' . $item['id']) ?>">
                 <?= $item['name'] ?>
             </a> 
         <?php }

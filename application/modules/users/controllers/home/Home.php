@@ -36,7 +36,7 @@ class Home extends USER_Controller
             }
         }
         $data['inv_readable_types'] = $this->config->item('inv_readable_types');
-        iF (SELECTED_COMPANY_ID != null) { // in first login we dont have companies and this is null
+        if (SELECTED_COMPANY_ID != null) { // in first login we dont have companies and this is null
             $data['issuedInvoices'] = $this->ReportsModel->getIssuedInvoices();
         }
         $data['betweenDates'] = lang('all_the_time');
