@@ -202,9 +202,9 @@ class NewInvoiceModel extends CI_Model
             'schiffer' => $post['schiffer'],
             'final_total' => $post['final_total']
         );
+        $this->db->trans_begin();
         if (!$this->db->where('id', $post['editId'])->update('invoices', $updateArray)) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
         if (isset($post['show_translations'])) {
             $this->updateInvoiceTranslation($post['editId'], $post['invoice_translation']);
@@ -213,6 +213,12 @@ class NewInvoiceModel extends CI_Model
         $this->updateInvoiceItems($post['editId'], $post);
         if (isset($post['show_translations_firms'])) {
             $this->updateInvoiceFirm($post['editId'], $post);
+        }
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+            show_error(lang('database_error'));
+        } else {
+            $this->db->trans_commit();
         }
     }
 
@@ -259,7 +265,6 @@ class NewInvoiceModel extends CI_Model
         );
         if (!$this->db->where('for_invoice', $invoiceId)->update('invoices_firms', $updateArray)) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
     }
 
@@ -280,7 +285,6 @@ class NewInvoiceModel extends CI_Model
         $this->db->where('for_user', USER_ID);
         if (!$this->db->update('invoices_translations', $translate)) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
     }
 
@@ -303,7 +307,6 @@ class NewInvoiceModel extends CI_Model
         );
         if (!$this->db->where('for_invoice', $invoiceId)->update('invoices_clients', $updateArray)) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
     }
 
@@ -328,7 +331,6 @@ class NewInvoiceModel extends CI_Model
                 );
                 if (!$this->db->where('for_invoice', $invoiceId)->where('id', $post['is_item_update'][$i])->update('invoices_items', $arrItem)) {
                     log_message('error', print_r($this->db->error(), true));
-                    show_error(lang('database_error'));
                 }
             } else {
                 $arrItem = array(
@@ -344,7 +346,6 @@ class NewInvoiceModel extends CI_Model
                 );
                 if (!$this->db->insert('invoices_items', $arrItem)) {
                     log_message('error', print_r($this->db->error(), true));
-                    show_error(lang('database_error'));
                 }
             }
             $i++;

@@ -126,33 +126,43 @@ class ManagefirmsModel extends CI_Model
 
     public function makeDefaultFirmWithId($firmId)
     {
+        $this->db->trans_begin();
         $this->db->where('for_user', USER_ID);
         if (!$this->db->update('firms_users', array('is_default' => 0))) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
 
         $this->db->where('id', $firmId);
         $this->db->where('for_user', USER_ID);
         if (!$this->db->update('firms_users', array('is_default' => 1))) {
             log_message('error', print_r($this->db->error(), true));
+        }
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
             show_error(lang('database_error'));
+        } else {
+            $this->db->trans_commit();
         }
     }
 
     public function makeDefaultTranslationWithId($companyId, $translationId)
     {
+        $this->db->trans_begin();
         $this->db->where('for_firm', $companyId);
         if (!$this->db->update('firms_translations', array('is_default' => 0))) {
             log_message('error', print_r($this->db->error(), true));
-            show_error(lang('database_error'));
         }
 
         $this->db->where('id', $translationId);
         $this->db->where('for_firm', $companyId);
         if (!$this->db->update('firms_translations', array('is_default' => 1))) {
             log_message('error', print_r($this->db->error(), true));
+        }
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
             show_error(lang('database_error'));
+        } else {
+            $this->db->trans_commit();
         }
     }
 
