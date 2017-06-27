@@ -13,11 +13,11 @@
     </div>
     <div class="border"></div>
 </div>
-<a href="<?= base_url('user/' . $invType . '/print/copy/' . $invNum) ?>" class="btn btn-default" style="position: relative;">
+<a href="<?= base_url('user/' . $invType . '/print/copy/' . $invNum) ?>" target="_blank" class="btn btn-default" style="position: relative;">
     <?= lang('download_print_copy') ?>&nbsp;&nbsp;&nbsp;
     <img src="<?= base_url('assets/users/imgs/pdf-icon-100.png') ?>" style="position: absolute; width:20px; top:0; right:2px;" alt="pdf">
 </a>
-<a href="<?= base_url('user/' . $invType . '/print/original/' . $invNum) ?>" class="btn btn-default" style="position: relative;">
+<a href="<?= base_url('user/' . $invType . '/print/original/' . $invNum) ?>" target="_blank" class="btn btn-default" style="position: relative;">
     <?= lang('download_print_original') ?>&nbsp;&nbsp;&nbsp;
     <img src="<?= base_url('assets/users/imgs/pdf-icon-100.png') ?>" style="position: absolute; width:20px; top:0; right:2px;" alt="pdf">
 </a>
