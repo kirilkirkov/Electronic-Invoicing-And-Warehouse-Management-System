@@ -18,8 +18,8 @@ header .support-top a {color: #fff;}
 div#navbar {margin-right:-30px;}
 nav.navbar {margin-bottom: 0;}
 nav.navbar ul.nav li a {font-size:12px; text-transform: uppercase; font-weight: 700; line-height: 20px; color:#eb8900; border-radius: 5px;  margin-bottom: 2px; margin-top: 2px; margin-left: 2px; padding-bottom: 8px; padding-top: 8px;}
-nav.navbar ul.nav li.active a, nav.navbar ul.nav li a:hover, nav.navbar ul.nav li a:active, nav.navbar ul.nav li a:focus, .nav .open > a, .nav .open > a:focus, .nav .open > a:hover { background-color: #eb8900; color: #fff;}
-nav.navbar ul.nav li.active a, nav.navbar ul.nav li a:hover, nav.navbar ul.nav li a:active, nav.navbar ul.nav li a:focus, .nav .open > a, .nav .open > a:focus, .nav .open > a:hover, .orange-gradient { background: rgb(242,156,35);background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YyOWMyMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlYjg5MDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+); background: -moz-linear-gradient(top, rgba(242,156,35,1) 0%, rgba(235,137,0,1) 100%);  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,156,35,1)), color-stop(100%,rgba(235,137,0,1))); background: -webkit-linear-gradient(top, rgba(242,156,35,1) 0%,rgba(235,137,0,1) 100%);background: -o-linear-gradient(top, rgba(242,156,35,1) 0%,rgba(235,137,0,1) 100%);  background: -ms-linear-gradient(top, rgba(242,156,35,1) 0%,rgba(235,137,0,1) 100%);  background: linear-gradient(to bottom, rgba(242,156,35,1) 0%,rgba(235,137,0,1) 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f29c23', endColorstr='#eb8900',GradientType=0 );}
+nav.navbar ul.nav li.active a, nav.navbar ul.nav li a:hover, nav.navbar ul.nav li a:active, nav.navbar ul.nav li a:focus, .nav .open a, .nav .open a:focus, .nav .open  a:hover { background-color: #eb8900; color: #fff;}
+nav.navbar ul.nav li.active a, nav.navbar ul.nav li a:hover, nav.navbar ul.nav li a:active, nav.navbar ul.nav li a:focus, .nav .open a, .nav .open a:focus, .nav .open a:hover, .orange-gradient { background: rgb(242,156,35);background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YyOWMyMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlYjg5MDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+); background: -moz-linear-gradient(top, rgba(242,156,35,1) 0%, rgba(235,137,0,1) 100%);  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,156,35,1)), color-stop(100%,rgba(235,137,0,1))); background: -webkit-linear-gradient(top, rgba(242,156,35,1) 0%,rgba(235,137,0,1) 100%);background: -o-linear-gradient(top, rgba(242,156,35,1) 0%,rgba(235,137,0,1) 100%);  background: -ms-linear-gradient(top, rgba(242,156,35,1) 0%,rgba(235,137,0,1) 100%);  background: linear-gradient(to bottom, rgba(242,156,35,1) 0%,rgba(235,137,0,1) 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f29c23', endColorstr='#eb8900',GradientType=0 );}
 nav.navbar ul.nav li.dropdown a:hover, nav.navbar ul.nav li.dropdown a:active, nav.navbar ul.nav li.dropdown a:focus {border-bottom-left-radius: 0; border-bottom-right-radius: 0;}
 nav.navbar ul.nav li.dropdown.open a.dropdown-toggle {color:#fff !important}
 nav.navbar ul.nav ul.dropdown-menu { background-color: #eba800; background-image: linear-gradient(to bottom, #eb8900, #ebd700); background-repeat: repeat-x; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); color: #fff; text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); margin-top:-5px; margin-left: 2px; border:0; box-shadow:none;}
@@ -43,8 +43,8 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 .membership-pricing-table table tr:first-child th:first-child {    border-top-color: transparent;    border-left-color: transparent;    border-right-color: #e2e2e2;}
 .membership-pricing-table table tr:first-child th .pricing-plan-name {    font-size: 22px;}
 .membership-pricing-table table tr:first-child th .pricing-plan-price {    line-height: 35px;}
-.membership-pricing-table table tr:first-child th .pricing-plan-price>sup {    font-size: 45%;}
-.membership-pricing-table table tr:first-child th .pricing-plan-price>span {    font-size: 30%;}
+.membership-pricing-table table tr:first-child th .pricing-plan-price sup {    font-size: 45%;}
+.membership-pricing-table table tr:first-child th .pricing-plan-price span {    font-size: 30%;}
 .membership-pricing-table table tr:first-child th .pricing-plan-period {    margin-top: -7px;    font-size: 25%;}
 .membership-pricing-table table .header-plan-inner {    position: relative;}
 .membership-pricing-table table .recommended-plan-ribbon {    box-sizing: content-box;    background-color: #dc3b5d;    color: #FFF;    position: absolute;    padding: 3px 6px;    font-size: 11px!important;    font-weight: 500;    left: -6px;    top: -22px;    z-index: 99;    width: 100%;    -webkit-box-shadow: 0 -1px #c2284c inset;    box-shadow: 0 -1px #c2284c inset;    text-shadow: 0 -1px #c2284c}
@@ -187,8 +187,17 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 .footer .footer-bottom .bottom-inner { background: #111 none repeat scroll 0 0; color: #999;font-size: 12px; padding: 15px 0;}
 .footer .payments li img {height: 40px;}
 
-.pagination > li > a, .pagination > li > span, .pagination > li > a:hover, .pagination > li > span:hover {color:#eb8900;}
-.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {background-color: #eb8900; color:#fff; border:1px solid #ddd;}
+.pagination li a, .pagination li span, .pagination li a:hover, .pagination li span:hover {color:#eb8900;}
+.pagination .active a, .pagination .active a:focus, .pagination .active a:hover, .pagination .active span, .pagination .active span:focus, .pagination .active span:hover {background-color: #eb8900; color:#fff; border:1px solid #ddd;}
+
+.inv-accept {padding-top: 20px;}
+.inv-accept .logo { display: inline-block; margin-bottom: 20px;}
+.inv-accept h1 {margin: 0; margin-bottom: 20px; font-size:28px;}
+.inv-accept hr {margin: 0; margin-bottom: 20px;}
+.inv-accept .view-container {height: 461px; overflow:scroll; background: #ccc; border:4px solid #bdbdbd; margin-bottom: 20px;}
+.inv-accept .action {width:100%; margin-bottom: 20px;}
+.inv-accept .action span {font-size:22px; text-transform: uppercase; display: inline-block; }
+.inv-accept .footer-text {text-align: right;}
 
 @media (min-width: 992px) and (max-width: 1199px) { 
     footer {height: 390px;} 
@@ -252,6 +261,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
     #support .contact-form input, #support .contact-form textarea {padding: 12px 12px 12px 54px; height: auto;} 
     #registration h1 {font-size:20px;}
     header .support-top {float: right; }
+    .inv-accept h1 {font-size:18px;} 
 
     /* Dont zoom fileds! */
     input[type="color"],

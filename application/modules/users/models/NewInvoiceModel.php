@@ -153,7 +153,8 @@ class NewInvoiceModel extends CI_Model
             'final_total' => $post['final_total'],
             'composed' => $composedFrom,
             'schiffer' => $schiffer,
-            'created' => time()
+            'created' => time(),
+            'uniqid' => USER_ID . 'u' . uniqid()
         );
         $this->db->trans_begin();
         if (!$this->db->insert('invoices', $insertArray)) {

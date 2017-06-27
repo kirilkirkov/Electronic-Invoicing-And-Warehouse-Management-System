@@ -563,6 +563,28 @@
                             <label><?= lang('trans_page') ?></label>
                             <input type="text" name="page" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
                         </div>
+                        <div class="form-group">
+                            <label><?= lang('trans_i_accept') ?></label>
+                            <input type="text" name="i_accept" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                        </div>
+                        <div class="form-group">
+                            <label><?= lang('trans_i_refuse') ?></label>
+                            <input type="text" name="i_refuse" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                        </div>
+                        <div class="form-group">
+                            <label><?= lang('trans_receive_from') ?></label>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <input type="text" name="receive_inv_from" placeholder="<?= lang('you_receved_tr') ?>" value="" class="form-control field field-new-translate">
+                                </div>
+                                <div class="col-sm-2 text-center">
+                                    <?= lang('invoice') ?>
+                                </div>
+                                <div class="col-sm-5"> 
+                                    <input type="text" name="receive_inv_from" placeholder="<?= lang('from_tr') ?>" value="" class="form-control field field-new-translate">
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">

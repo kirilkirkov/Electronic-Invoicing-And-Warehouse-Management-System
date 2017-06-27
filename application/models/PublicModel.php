@@ -237,4 +237,24 @@ class PublicModel extends CI_Model
         return $arr;
     }
 
+    public function getOneValueStore($key, $userId)
+    {
+        $query = $this->db->query("SELECT value FROM value_store WHERE _key = '$key' AND for_user = " . $userId . "");
+        $result = $query->row_array();
+        if (empty($result)) {
+            return null;
+        }
+        return $result['value'];
+    }
+
+    public function getInvoiceForAccept($userId, $uniqid)
+    {
+        $this->db->select('inv_type, inv_number');
+        $this->db->where('for_user', $userId);
+        $this->db->where('uniqid', $uniqid);
+        $this->db->limit(1);
+        $result = $this->db->get('invoices');
+        return $result->row_array();
+    }
+
 }

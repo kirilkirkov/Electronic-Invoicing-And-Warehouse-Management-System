@@ -23,7 +23,7 @@ class Invoiceview extends USER_Controller
         $head = array();
         $head['title'] = 'Administration - Home';
         $inv_readable_types_flip = array_flip($this->config->item('inv_readable_types'));
-        $invoice = $this->NewInvoiceModel->getInvoiceByNumber($inv_readable_types_flip[$invType], $invNum);
+        $invoice = $this->getInvoiceByNumber($inv_readable_types_flip[$invType], $invNum);
         if ($invoice == null) {
             show_404();
         }
@@ -44,7 +44,7 @@ class Invoiceview extends USER_Controller
     public function viewInvoiceAsPdf($invType, $origin, $invNum)
     {
         $inv_readable_types = array_flip($this->config->item('inv_readable_types'));
-        $invoice = $this->NewInvoiceModel->getInvoiceByNumber($inv_readable_types[$invType], $invNum);
+        $invoice = $this->getInvoiceByNumber($inv_readable_types[$invType], $invNum);
         if ($invoice == null) {
             show_404();
         }
@@ -91,6 +91,11 @@ class Invoiceview extends USER_Controller
         header('Content-Length: ' . strlen($pdf));
         echo $pdf;
         exit;
+    }
+
+    public function getInvoiceByNumber($invType, $invNum)
+    {
+        return $this->NewInvoiceModel->getInvoiceByNumber($invType, $invNum);
     }
 
 }
