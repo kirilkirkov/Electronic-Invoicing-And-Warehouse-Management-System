@@ -101,6 +101,9 @@
                     <p><?= $invoice['client']['accountable_person'] ?></p> 
                 <?php } ?>
             </div>
+            <div class="origin">
+                <?= lang($origin . '_txt') ?>
+            </div>
             <div class="clearfix"></div>
         </div>
     </div>

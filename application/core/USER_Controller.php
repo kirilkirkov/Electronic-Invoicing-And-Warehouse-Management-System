@@ -118,7 +118,7 @@ class USER_Controller extends HEAD_Controller
 
     public function saveHistory()
     {
-        
+        //INSERT DELAYED
     }
 
     protected function validateCompanyDetails($checkBulstat = true)

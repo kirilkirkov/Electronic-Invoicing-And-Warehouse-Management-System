@@ -41,7 +41,7 @@ class Invoiceview extends USER_Controller
         $this->saveHistory('Go to preview invoice with number ' . $invNum . ' and firm id' . SELECTED_COMPANY_ID);
     }
 
-    public function viewInvoiceAsPdf($invType, $invNum)
+    public function viewInvoiceAsPdf($invType, $origin, $invNum)
     {
         $inv_readable_types = array_flip($this->config->item('inv_readable_types'));
         $invoice = $this->NewInvoiceModel->getInvoiceByNumber($inv_readable_types[$invType], $invNum);
@@ -78,7 +78,7 @@ class Invoiceview extends USER_Controller
         echo '</body></html>';
         $html = ob_get_clean();
         $this->htmltopdf->setInvNum($invNum); // set invoice number to give it to footer
-        $this->htmltopdf->setInvType($invType); // set invoice type to give it to footer
+        $this->htmltopdf->setInvType($invType); // set invoice type to give it to footer 
         $this->htmltopdf->setInvPageTranslate($invoice['translation']['page']); // set invoice translation of 'page' word
         $pdf = $this->htmltopdf->generatePdf($html);
         $filename = $invType . ' - ' . $invNum . '.pdf';
