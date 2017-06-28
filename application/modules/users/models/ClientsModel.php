@@ -8,19 +8,35 @@ class ClientsModel extends CI_Model
         parent::__construct();
     }
 
-    public function countClients()
+    public function countClients($get = null)
     {
+        if (!empty($get) && $get != null) {
+            $this->setInvoicesSearchFilter($get);
+        }
         $this->db->where('for_user', USER_ID);
         $this->db->where('for_company', SELECTED_COMPANY_ID);
         return $this->db->count_all_results('clients');
     }
 
-    public function getClients($limit, $page)
+    public function getClients($limit, $page, $get = null)
     {
+        if (!empty($get) && $get != null) {
+            $this->setInvoicesSearchFilter($get);
+        }
         $this->db->where('for_user', USER_ID);
         $this->db->where('for_company', SELECTED_COMPANY_ID);
         $result = $this->db->get('clients', $limit, $page);
         return $result->result_array();
+    }
+
+    private function setInvoicesSearchFilter($get)
+    {
+        if (isset($get['client_name']) && $get['client_name'] != '') {
+            $this->db->like('client_name', $get['client_name']);
+        }
+        if (isset($get['client_bulstat']) && $get['client_bulstat'] != '') {
+            $this->db->like('client_bulstat', $get['client_bulstat']);
+        }
     }
 
     public function getClientInfo($id)

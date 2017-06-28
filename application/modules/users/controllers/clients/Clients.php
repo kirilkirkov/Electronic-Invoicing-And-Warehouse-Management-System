@@ -29,7 +29,7 @@ class Clients extends USER_Controller
         $head['title'] = 'Administration - Home';
         $this->postChecker();
         $rowscount = $this->ClientsModel->countClients($_GET);
-        $data['clients'] = $this->ClientsModel->getClients($this->num_rows, $page);
+        $data['clients'] = $this->ClientsModel->getClients($this->num_rows, $page, $_GET);
         $data['linksPagination'] = pagination('user/clients', $rowscount, $this->num_rows, 3);
         $this->render('clients/index', $head, $data);
         $this->saveHistory('Go to clients page');

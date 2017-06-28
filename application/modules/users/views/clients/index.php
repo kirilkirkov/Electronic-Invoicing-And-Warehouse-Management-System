@@ -13,6 +13,24 @@
     <div class="border"></div>
 </div>
 <a href="<?= lang_url('user/client/add') ?>" class="btn btn-default"><?= lang('add_new_client') ?></a>
+<button data-toggle="collapse" data-target="#invoices-search">Collapsible</button>
+<div id="invoices-search" class="collapse in">    
+    <form method="GET" action=""> 
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label><?= lang('search_client_name') ?></label>
+                    <input type="text" name="client_name" value="<?= isset($_GET['client_name']) ? $_GET['client_name'] : '' ?>" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label><?= lang('search_client_bulstat') ?></label>
+                    <input type="text" name="client_bulstat" value="<?= isset($_GET['client_bulstat']) ? $_GET['client_bulstat'] : '' ?>" class="form-control">
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="search"> 
+    </form>
+</div>
 <?php if (!empty($clients)) { ?>
     <form method="POST" action="" id="action-form">
         <input type="hidden" name="action" value="">
