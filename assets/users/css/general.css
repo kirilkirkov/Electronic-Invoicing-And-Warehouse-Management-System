@@ -105,6 +105,8 @@ header h1 {font-size:26px;}
 .new-invoice .choose-translation {display: inline;}
 .show-pay-statuses {cursor: pointer;}
 .status-changer { position: relative;}
+.action-history {background-color: #fff; padding: 10px;}
+.action-history h1 {font-size:24px; border-bottom: 1px solid #ccc; padding-bottom: 20px; margin-bottom: 20px;}
 #payment-statuses {position: absolute; bottom: -30px; left: 0; display: none; background-color: #fff; padding:5px 15px; z-index: 1100;}
 #payment-statuses a {display: block;}
 .client-individial {display: none;}

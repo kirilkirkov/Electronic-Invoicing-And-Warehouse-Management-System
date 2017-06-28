@@ -582,5 +582,7 @@ $config['inv_statuses'] = array(
     'issued',
     'draft',
     'sended',
-    'canceled'
+    'canceled',
+    'accepted',
+    'refused'
 );

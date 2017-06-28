@@ -526,4 +526,12 @@ class NewInvoiceModel extends CI_Model
         return $arr;
     }
 
+    public function getActionHistory($invoiceId)
+    {
+        $this->db->where('invoice_id', $invoiceId);
+        $this->db->order_by('id', 'desc');
+        $result = $this->db->get('invoices_logs');
+        return $result->result_array();
+    }
+
 }

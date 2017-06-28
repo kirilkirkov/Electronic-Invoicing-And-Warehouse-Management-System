@@ -68,18 +68,23 @@ class Invoices extends USER_Controller
         redirect(lang_url('user/invoices'));
     }
 
-    public function changeInvoiceStatus()
+    public function changeInvoicePaymentStatus()
     {
         if (!$this->input->is_ajax_request()) {
             exit('No direct script access allowed');
         }
         if ((isset($_POST['invId']) && is_numeric($_POST['invId'])) && isset($_POST['newStatus'])) {
-            $this->InvoicesModel->setNewInvoiceStatus($_POST);
+            $this->InvoicesModel->updateInvoicePaymentStatus($_POST);
             echo '1';
             $this->saveHistory('Set new invoice status to - ' . $_POST['invId']);
         } else {
             echo '0';
         }
+    }
+
+    public function changeInvoiceStatus($invoiceId, $toStatus)
+    {
+        $this->InvoicesModel->updateInvoicePaymentStatus($invoiceId, $toStatus);
     }
 
 }

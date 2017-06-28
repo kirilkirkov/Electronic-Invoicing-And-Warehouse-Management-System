@@ -28,23 +28,33 @@
                 <?php include $templateFile; ?>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <a href="" class="btn btn-success action">
-                    <i class="fa fa-2x fa-check-circle-o" aria-hidden="true"></i>
-                    <span><?= $invoice['translation']['i_accept'] ?></span>
-                </a>
+        <?php if ($invoice['status'] != 'accepted' && $invoice['status'] != 'refused') { ?>
+            <form method="POST" action="" id="invReceiveAction">
+                <input type="hidden" name="action" value="">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="javascript:void(0);" onclick="invReceiveAction('accepted')" class="btn btn-success action">
+                            <i class="fa fa-2x fa-check-circle-o" aria-hidden="true"></i>
+                            <span><?= $invoice['translation']['i_accept'] ?></span>
+                        </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="javascript:void(0);" onclick="invReceiveAction('refused')" class="btn btn-danger action">
+                            <i class="fa fa-2x fa-times-circle-o" aria-hidden="true"></i>
+                            <span><?= $invoice['translation']['i_refuse'] ?></span>
+                        </a>
+                        <textarea name="refuse_reason" class="refuse-reason" placeholder="<?= lang('p_reason') ?>"></textarea>
+                    </div>
+                </div>
+            </form>
+        <?php } if ($invoice['status'] == 'accepted' || $invoice['status'] == 'refused') { ?>
+            <div class="status-label <?= $invoice['status'] == 'accepted' ? 'bg-success' : 'bg-danger' ?>">
+                <?= lang('status_' . $invoice['status']) ?>
             </div>
-            <div class="col-sm-6">
-                <a href="" class="btn btn-danger action">
-                    <i class="fa fa-2x fa-times-circle-o" aria-hidden="true"></i>
-                    <span><?= $invoice['translation']['i_refuse'] ?></span>
-                </a>
-            </div>
-        </div>
+        <?php } ?>
         <hr>
         <p class="footer-text">
-            Create and send invoices with - 
+            <?= lang('create_and_send_inv_with') ?> - 
             <a href="">
                 pminvoice.com
             </a>

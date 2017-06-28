@@ -8,8 +8,7 @@ $(document).ready(function () {
         $('.alert-errors').hide();
     });
 });
-function registerValidate()
-{
+function registerValidate() {
     $('.form-registration sup').text('');
     var valid = true;
     var email = $('#user_email').val();
@@ -34,4 +33,8 @@ function registerValidate()
     if (valid == true) {
         document.getElementById("registerMe").submit();
     }
+}
+function invReceiveAction(action) {
+    $('[name="action"]').val(action);
+    document.getElementById('invReceiveAction').submit();
 }

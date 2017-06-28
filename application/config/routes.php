@@ -120,7 +120,7 @@ $route['user/(invoice|pro-forma|debit-note|credit-note)/print/(original|copy)/(:
 $route['user/invoice/delete/(:num)'] = "users/invoices/invoices/deleteInvoice/$1";
 $route['user/reports'] = "users/reports/reports";
 $route['user/settings/global'] = "users/settings/GlobalSettings";
-$route['user/changeinvoicestatus'] = 'users/invoices/invoices/changeinvoicestatus';
+$route['user/changeinvoicestatus'] = 'users/invoices/invoices/changeinvoicepaymentstatus';
 $route['user/findresults'] = 'users/home/home/findresults';
 $route['user/client/view/(:num)'] = "users/clients/clients/viewclient/$1";
 $route['user/item/view/(:num)'] = "users/items/items/viewitem/$1";

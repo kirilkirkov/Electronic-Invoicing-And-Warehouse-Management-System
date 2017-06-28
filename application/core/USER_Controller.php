@@ -36,7 +36,7 @@ class USER_Controller extends HEAD_Controller
     private function loginCheck()
     {
         if (!isset($_SESSION['user_login'])) {
-            redirect(base_url());
+            redirect(lang_url('login'));
         } else {
             $userInfo = $this->PublicModel->getUserInfoFromEmail($_SESSION['user_login']['email'], $_SESSION['user_login']['type']);
             if (!empty($userInfo) && $userInfo['user'] != null) {

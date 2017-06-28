@@ -198,6 +198,8 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 .inv-accept .action {width:100%; margin-bottom: 20px;}
 .inv-accept .action span {font-size:22px; text-transform: uppercase; display: inline-block; }
 .inv-accept .footer-text {text-align: right;}
+.inv-accept .refuse-reason {margin-bottom: 20px; width: 100%; font-size: 14px; padding: 10px;}
+.inv-accept .status-label {width:100%; margin-bottom: 20px; height: 40px; text-align: center; font-size: 16px; line-height: 40px;}
 
 @media (min-width: 992px) and (max-width: 1199px) { 
     footer {height: 390px;} 

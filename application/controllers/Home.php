@@ -66,6 +66,19 @@ class Home extends MY_Controller
             show_404();
         }
 
+        if (isset($_POST['action']) && ($_POST['action'] == 'accepted' || $_POST['action'] == 'refused')) {
+            modules::run('users/invoices/invoices/changeInvoiceStatus', $invoice['id'], $_POST['action']);
+            if ($_POST['action'] == 'accepted') {
+                $action = 'accepted';
+                $info = '';
+            } else {
+                $action = 'refused';
+                $info = $_POST['refuse_reason'];
+            }
+            $this->PublicModel->setInvoiceLog($invoice['id'], $action, $info);
+            redirect(base_url('accept/invoice/' . $invoice['uniqid']));
+        }
+
         $template = $this->PublicModel->getOneValueStore('opt_invTemplate', $userId);
 
         $templates = $this->config->item('templates');

@@ -69,11 +69,10 @@ class InvoicesModel extends CI_Model
         }
     }
 
-    public function setNewInvoiceStatus($post)
+    public function updateInvoicePaymentStatus($invoiceId, $toStatus)
     {
-        $this->db->where('id', $post['invId']);
-        $this->db->where('for_user', USER_ID);
-        if (!$this->db->update('invoices', array('payment_status' => $post['newStatus']))) {
+        $this->db->where('id', $invoiceId);
+        if (!$this->db->update('invoices', array('status' => $toStatus))) {
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         }

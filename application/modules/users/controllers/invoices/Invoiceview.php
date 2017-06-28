@@ -33,6 +33,7 @@ class Invoiceview extends USER_Controller
         if (!is_file($templateFile)) {
             show_error(lang('no_template_file'));
         }
+        $data['actionHistory'] = $this->NewInvoiceModel->getActionHistory($invoice['id']);
         $data['invoice'] = $invoice;
         $data['templateFile'] = $templateFile;
         $data['invType'] = $invType;
