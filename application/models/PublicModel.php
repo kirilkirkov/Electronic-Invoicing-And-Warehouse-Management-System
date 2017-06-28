@@ -259,7 +259,6 @@ class PublicModel extends CI_Model
 
     public function setInvoiceLog($invId, $action, $info = '')
     {
-
         $result = $this->db->query("INSERT DELAYED INTO invoices_logs (invoice_id, action, info, time) VALUES ($invId, '$action', '" . $this->db->escape_str($info) . "', " . time() . ")");
         if ($result != true) {
             log_message('error', print_r($this->db->error(), true));

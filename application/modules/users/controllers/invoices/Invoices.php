@@ -16,7 +16,7 @@ class Invoices extends USER_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('InvoicesModel', 'SettingsModel'));
+        $this->load->model(array('InvoicesModel', 'SettingsModel', 'NewInvoiceModel'));
         $paginationNumRows = $this->SettingsModel->getValueStores('opt_pagination');
         $this->num_rows = $paginationNumRows;
     }
@@ -28,9 +28,10 @@ class Invoices extends USER_Controller
         $head['title'] = 'Administration - Home';
         $this->postChecker();
         $rowscount = $this->InvoicesModel->countInvoices($_GET);
-        $data['invoices'] = $this->InvoicesModel->getInvoices($this->num_rows, $page);
+        $data['invoices'] = $this->InvoicesModel->getInvoices($this->num_rows, $page, $_GET);
         $data['inv_readable_types'] = $this->config->item('inv_readable_types');
         $data['linksPagination'] = pagination('user/invoices', $rowscount, $this->num_rows, 3);
+        $data['paymentMethods'] = $this->NewInvoiceModel->getPaymentMethods();
         $this->render('invoices/index', $head, $data);
         $this->saveHistory('Go to invoices page');
     }
@@ -74,7 +75,7 @@ class Invoices extends USER_Controller
             exit('No direct script access allowed');
         }
         if ((isset($_POST['invId']) && is_numeric($_POST['invId'])) && isset($_POST['newStatus'])) {
-            $this->InvoicesModel->updateInvoicePaymentStatus($_POST);
+            $this->InvoicesModel->updateInvoicePaymentStatus($_POST['invId'], $_POST['newStatus']);
             echo '1';
             $this->saveHistory('Set new invoice status to - ' . $_POST['invId']);
         } else {
