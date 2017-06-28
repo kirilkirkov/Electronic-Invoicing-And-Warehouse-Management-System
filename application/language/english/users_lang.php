@@ -374,3 +374,4 @@ $lang['search_canceled'] = 'Canceled';
 $lang['search_draft'] = 'Draft';
 $lang['search_client_name'] = 'Client name';
 $lang['search_client_bulstat'] = 'Client bulstat';
+$lang['search_item_name'] = 'Item name';

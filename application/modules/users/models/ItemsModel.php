@@ -8,19 +8,38 @@ class ItemsModel extends CI_Model
         parent::__construct();
     }
 
-    public function countItems()
+    public function countItems($get = null)
     {
+        if (!empty($get) && $get != null) {
+            $this->setItemsSearchFilter($get);
+        }
         $this->db->where('for_user', USER_ID);
         $this->db->where('for_company', SELECTED_COMPANY_ID);
         return $this->db->count_all_results('items');
     }
 
-    public function getItems($limit, $page)
+    public function getItems($limit, $page, $get = null)
     {
+        if (!empty($get) && $get != null) {
+            $this->setItemsSearchFilter($get);
+        }
         $this->db->where('for_user', USER_ID);
         $this->db->where('for_company', SELECTED_COMPANY_ID);
         $result = $this->db->get('items', $limit, $page);
         return $result->result_array();
+    }
+
+    private function setItemsSearchFilter($get)
+    {
+        if (isset($get['item_name']) && $get['item_name'] != '') {
+            $this->db->like('name', $get['item_name']);
+        }
+        if (isset($get['amount_from']) && $get['amount_from'] != '') {
+            $this->db->where('single_price >=', (float) $get['amount_from']);
+        }
+        if (isset($get['amount_to']) && $get['amount_to'] != '') {
+            $this->db->where('single_price >=', (float) $get['amount_to']);
+        }
     }
 
     public function getItemInfo($id)
@@ -30,6 +49,16 @@ class ItemsModel extends CI_Model
         $this->db->where('for_company', SELECTED_COMPANY_ID);
         $result = $this->db->get('items');
         return $result->row_array();
+    }
+
+    private function setInvoicesSearchFilter($get)
+    {
+        if (isset($get['client_name']) && $get['client_name'] != '') {
+            $this->db->like('client_name', $get['client_name']);
+        }
+        if (isset($get['client_bulstat']) && $get['client_bulstat'] != '') {
+            $this->db->like('client_bulstat', $get['client_bulstat']);
+        }
     }
 
     public function deleteItem($id)

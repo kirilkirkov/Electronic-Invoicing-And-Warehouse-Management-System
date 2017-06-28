@@ -13,8 +13,8 @@
     <div class="border"></div>
 </div>
 <a href="<?= lang_url('user/client/add') ?>" class="btn btn-default"><?= lang('add_new_client') ?></a>
-<button data-toggle="collapse" data-target="#invoices-search">Collapsible</button>
-<div id="invoices-search" class="collapse in">    
+<button data-toggle="collapse" data-target="#clients-search">Collapsible</button>
+<div id="clients-search" class="collapse in">    
     <form method="GET" action=""> 
         <div class="row">
             <div class="col-sm-4">

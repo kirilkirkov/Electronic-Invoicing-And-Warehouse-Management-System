@@ -13,6 +13,26 @@
     <div class="border"></div>
 </div>
 <a href="<?= lang_url('user/item/add') ?>" class="btn btn-default"><?= lang('add_new_item') ?></a>
+<button data-toggle="collapse" data-target="#items-search">Collapsible</button>
+<div id="items-search" class="collapse in">    
+    <form method="GET" action=""> 
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label><?= lang('search_item_name') ?></label>
+                    <input type="text" name="item_name" value="<?= isset($_GET['item_name']) ? $_GET['item_name'] : '' ?>" class="form-control">
+                </div> 
+                <div class="form-group">
+                    <label><?= lang('search_amount_from') ?></label>
+                    <input type="text" name="amount_from" value="<?= isset($_GET['amount_from']) ? $_GET['amount_from'] : '' ?>" class="form-control">
+                    <label><?= lang('search_to') ?></label>
+                    <input type="text" name="amount_to" value="<?= isset($_GET['amount_to']) ? $_GET['amount_to'] : '' ?>" class="form-control">
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="search"> 
+    </form>
+</div>
 <?php if (!empty($items)) { ?>
     <form method="POST" action="" id="action-form">
         <input type="hidden" name="action" value="">

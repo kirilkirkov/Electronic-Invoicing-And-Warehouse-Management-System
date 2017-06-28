@@ -11,7 +11,7 @@ class ClientsModel extends CI_Model
     public function countClients($get = null)
     {
         if (!empty($get) && $get != null) {
-            $this->setInvoicesSearchFilter($get);
+            $this->setClientsSearchFilter($get);
         }
         $this->db->where('for_user', USER_ID);
         $this->db->where('for_company', SELECTED_COMPANY_ID);
@@ -21,7 +21,7 @@ class ClientsModel extends CI_Model
     public function getClients($limit, $page, $get = null)
     {
         if (!empty($get) && $get != null) {
-            $this->setInvoicesSearchFilter($get);
+            $this->setClientsSearchFilter($get);
         }
         $this->db->where('for_user', USER_ID);
         $this->db->where('for_company', SELECTED_COMPANY_ID);
@@ -29,7 +29,7 @@ class ClientsModel extends CI_Model
         return $result->result_array();
     }
 
-    private function setInvoicesSearchFilter($get)
+    private function setClientsSearchFilter($get)
     {
         if (isset($get['client_name']) && $get['client_name'] != '') {
             $this->db->like('client_name', $get['client_name']);
