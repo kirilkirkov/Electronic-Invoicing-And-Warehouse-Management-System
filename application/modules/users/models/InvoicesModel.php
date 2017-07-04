@@ -37,15 +37,15 @@ class InvoicesModel extends CI_Model
 
     private function setInvoicesSearchFilter($get)
     {
-        if (isset($get['inv_number']) && $get['inv_number'] != '') {
+        if (isset($get['inv_number']) && trim($get['inv_number']) != '') {
             $this->db->like('inv_number', (int) $get['inv_number']);
         }
-        if (isset($get['inv_client']) && $get['inv_client'] != '') {
-            $this->db->like('invoices_clients.client_name', $get['inv_client']);
+        if (isset($get['inv_client']) && trim($get['inv_client']) != '') {
+            $this->db->like('invoices_clients.client_name', trim($get['inv_client']));
         }
-        if (isset($get['inv_item']) && $get['inv_item'] != '') {
+        if (isset($get['inv_item']) && trim($get['inv_item']) != '') {
             $this->db->join('invoices_items', 'invoices_items.for_invoice = invoices.id');
-            $this->db->like('invoices_items.name', $get['inv_item']);
+            $this->db->like('invoices_items.name', trim($get['inv_item']));
             $this->db->distinct();
         }
         if (isset($get['amount_from']) && $get['amount_from'] != '') {
@@ -54,20 +54,20 @@ class InvoicesModel extends CI_Model
         if (isset($get['amount_to']) && $get['amount_to'] != '') {
             $this->db->where('final_total >=', (float) $get['amount_to']);
         }
-        if (isset($get['create_from']) && $get['create_from'] != '') {
+        if (isset($get['create_from']) && trim($get['create_from']) != '') {
             $from = strtotime($get['create_from']);
             if ($from != false) {
                 $this->db->where('created >=', $from);
             }
         }
-        if (isset($get['create_to']) && $get['create_to'] != '') {
+        if (isset($get['create_to']) && trim($get['create_to']) != '') {
             $to = strtotime($get['create_to']);
             if ($to != false) {
                 $this->db->where('created <=', $to);
             }
         }
-        if (isset($get['inv_payment_type']) && $get['inv_payment_type'] != '') {
-            $this->db->where('payment_method', $get['inv_payment_type']);
+        if (isset($get['inv_payment_type']) && trim($get['inv_payment_type']) != '') {
+            $this->db->where('payment_method', trim($get['inv_payment_type']));
         }
         if (isset($get['inv_type']) && $get['inv_type'] != '') {
             $this->db->where_in('inv_type', $get['inv_type']);

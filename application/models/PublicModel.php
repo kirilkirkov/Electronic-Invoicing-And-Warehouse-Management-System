@@ -158,6 +158,21 @@ class PublicModel extends CI_Model
                 'for_user' => $user_id,
                 '_key' => 'opt_pagination',
                 'value' => '20'
+            ),
+            array(
+                'for_user' => $user_id,
+                '_key' => 'opt_movementRoundTo',
+                'value' => '2'
+            ),
+            array(
+                'for_user' => $user_id,
+                '_key' => 'opt_movementCalculator',
+                'value' => '1'
+            ),
+            array(
+                'for_user' => $user_id,
+                '_key' => 'opt_negativeQuantities',
+                'value' => '1'
             )
         );
         if (!$this->db->insert_batch('value_store', $data)) {

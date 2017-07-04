@@ -336,4 +336,40 @@ class SettingsModel extends CI_Model
         }
     }
 
+    public function setNewStore($storeName)
+    {
+        if (!$this->db->insert('stores', array(
+                    'name' => $storeName,
+                    'for_user' => USER_ID,
+                    'for_company' => SELECTED_COMPANY_ID,
+                    'created' => time()
+                ))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+    }
+
+    public function checkStoreNameIsFree($storeName)
+    {
+        $this->db->where('id', USER_ID);
+        $this->db->where('for_company', SELECTED_COMPANY_ID);
+        $this->db->where('name', $storeName);
+        $num = $this->db->count_all_results('stores');
+        if ($num > 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public function deleteStore($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->where('id', USER_ID);
+        $this->db->where('for_company', SELECTED_COMPANY_ID);
+        if (!$this->db->update('stores', array('is_deleted' => 1))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+    }
+
 }

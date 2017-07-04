@@ -102,7 +102,8 @@
                 </div>
             </div>
         </div>
-        <input type="submit" value="search"> 
+        <input type="submit" value="search">
+        <a href="<?= lang_url('user/invoices') ?>"><?= lang('clear_search') ?></a>
     </form>
 </div>
 <?php if (!empty($invoices)) { ?>

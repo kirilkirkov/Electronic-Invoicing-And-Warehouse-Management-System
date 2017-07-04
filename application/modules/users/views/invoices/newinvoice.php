@@ -62,7 +62,7 @@
             </a>
         </div>
         <div class="clearfix"></div>
-        <div class="new-invoice">
+        <div class="create-document">
             <div class="type">
                 <label><?= lang('create_inv_type') ?></label> 
                 <div class="special-radio">
@@ -371,42 +371,11 @@
             <a href="<?= lang_url('user/invoices') ?>"><?= lang('open_invoices') ?></a>
         </div>
     </form>
-    <!-- Modal Add New Quantity Type -->
-    <div class="modal fade" id="addQuantityType" tabindex="-1" role="dialog" aria-labelledby="addQuantityType">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><?= lang('add_new_quantity_type') ?></h4>
-                </div>
-                <div class="modal-body site-form">
-                    <input type="text" value="" placeholder="<?= lang('type_quantity_type') ?>" class="form-control field new-quantity-value">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close') ?></button>
-                    <button type="button" class="btn btn-primary add-my-new-quantity-type"><?= lang('add_the_quantity') ?></button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal Add Payment Method -->
-    <div class="modal fade" id="addPaymentMethod" tabindex="-1" role="dialog" aria-labelledby="addPaymentMethod">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><?= lang('add_new_payment_method') ?></h4>
-                </div>
-                <div class="modal-body site-form">
-                    <input type="text" value="" placeholder="<?= lang('type_payment_method') ?>" class="form-control field my-new-pay-method">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close') ?></button>
-                    <button type="button" class="btn btn-primary add-my-new-pay-method"><?= lang('add_the_pay_method') ?></button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php
+    include 'application/modules/users/views/invoices/modals/add_quantity_type.php';
+    include 'application/modules/users/views/invoices/modals/add_payment_method.php';
+    include 'application/modules/users/views/invoices/modals/selector.php';
+    ?>
     <!-- Modal Explain Add Translations -->
     <div class="modal fade" id="modalExplainTranslation" tabindex="-1" role="dialog" aria-labelledby="modalExplainTranslation">
         <div class="modal-dialog" role="document">
@@ -594,23 +563,6 @@
             </div>
         </div>
     </div>
-    <!-- Modal Selector -->
-    <div class="modal fade" id="modalSelector" tabindex="-1" role="dialog" aria-labelledby="modalSelector">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"></h4>
-                </div>
-                <div class="modal-body">
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close') ?></button> 
-                </div>
-            </div>
-        </div>
-    </div>
     <?php
     /*
      * if edit invoice and have more from one items
@@ -619,12 +571,12 @@
     if (isset($_POST['items']) && count($_POST['items']) > 1) {
         ?>
         <style>
-            .new-invoice .actions {display: block;}
+            .create-document .actions {display: block;}
         </style>
     <?php }
     ?>
     <script>
-        var createInv = {
+        var createDocument = {
             rountTo: <?= $opt_invRoundTo ?>,
             calculatorStatus: <?= $opt_invCalculator ?>
         };

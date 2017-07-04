@@ -121,6 +121,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </a>
                                         </li> 
                                         <li>
+                                            <a href="<?= lang_url('user/store') ?>">
+                                                <i class="fa fa-buysellads" aria-hidden="true"></i>
+                                                <?= lang('menu_list_store') ?> 
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="<?= lang_url('user/reports') ?>">
                                                 <i class="fa fa-buysellads" aria-hidden="true"></i>
                                                 <?= lang('menu_list_reports') ?> 

@@ -561,7 +561,9 @@ $config['permissions'] = array(
     'perm_delete_employees' => 1,
     'perm_edit_employees' => 1,
     'perm_add_employees' => 1,
-    'perm_can_manage_firms' => 1
+    'perm_can_manage_firms' => 1,
+    'perm_add_movement' => 1,
+    'perm_view_movement_page' => 1
 );
 $config['templates'] = array(
     'creative'

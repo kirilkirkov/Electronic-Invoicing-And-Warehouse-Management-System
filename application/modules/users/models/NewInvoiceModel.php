@@ -111,9 +111,9 @@ class NewInvoiceModel extends CI_Model
          * Else the max number + 1
          */
         if (empty($row)) {
-            return full_inv_number(1);
+            return full_document_number(1);
         } else {
-            return full_inv_number($row['inv_number'] + 1);
+            return full_document_number($row['inv_number'] + 1);
         }
     }
 
@@ -488,7 +488,7 @@ class NewInvoiceModel extends CI_Model
             $result = $this->db->get('clients');
         }
         if ($type == 'item') {
-            $this->db->select('name, quantity_type, single_price, currency');
+            $this->db->select('id, name, quantity_type, single_price, currency');
             $result = $this->db->get('items');
         }
         return $result->result_array();

@@ -31,6 +31,7 @@
             </div>
         </div>
         <input type="submit" value="search"> 
+        <a href="<?= lang_url('user/items') ?>"><?= lang('clear_search') ?></a>
     </form>
 </div>
 <?php if (!empty($items)) { ?>

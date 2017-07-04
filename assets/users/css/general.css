@@ -55,54 +55,54 @@ header h1 {font-size:26px;}
 .special-radio .control--checkbox input:disabled ~ .control__indicator:after {border-color: #7b7b7b;}
 .special-radio .control--radio .control__indicator:after {top: 7px;left: 7px;width: 6px;height: 6px;border-radius: 50%;background: #fff;}
 .special-radio .control--radio input:disabled ~ .control__indicator:after {background: #7b7b7b;}
-.new-invoice {padding:0 100px; padding-top:20px; color:#414141;}
-.new-invoice .type {margin-bottom: 30px;} 
-.new-invoice .type .special-radio {display: inline;}
-.new-invoice .type .special-radio .control {font-weight: normal;}
-.new-invoice .inner {padding:50px; border: 1px solid #d8d8d8; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15); margin-bottom: 15px;}
-.new-invoice .choose {color:#26b6e8; text-transform: uppercase; font-size: 12px;}
-.new-invoice .choose:hover {text-decoration: none;}
-.new-invoice .choose i {  background: #eee none repeat scroll 0 0;    border: 1px solid #ccc;    border-radius: 30px;    color: #888;    display: inline-block;    height: 28px;    line-height: 25px;    margin-right: 3px;    text-align: center;    width: 28px;}
-.new-invoice .choose span {font-size:10px;}
-.new-invoice .client .form-control {display: inline; width:auto;}
-.new-invoice .client label {display: block;}
-.new-invoice .client .choose {float: right;}
-.new-invoice .maturity-date {display:  none;}
-.new-invoice .table-items {border:1px solid #d8d8d8; margin-bottom: 15px;}
-.new-invoice .table-items tr td {border-top:0;}
-.new-invoice .table-items thead tr th {border-bottom:1px solid #d8d8d8;}
-.new-invoice .add-new-item {background-color: #f8f8f8; display: inline-block;  border-radius: 1000px; padding: 6px 20px 7px;   transition: background-color 0.1s ease-in-out 0s;}
-.new-invoice .add-new-item:hover {text-decoration: none; background-color: #f3f3f3;}
-.new-invoice .items-features, .new-invoice .remarks, .new-invoice .amounts {margin-bottom: 20px;} 
-.new-invoice .amounts .text-discount, .new-invoice .amounts .select-discount {width:80px; display: inline-block;} 
-.new-invoice .amounts .amount {text-align: right;}
-.new-invoice .amounts .vat-field {width:50px; text-align: right; display: inline-block;}
-.new-invoice .amounts .discount {float: right;}
-.new-invoice .amounts .total {font-size:25px;}
-.new-invoice .quantity-field {text-align: right;}
-.new-invoice .quantity-field, .new-invoice .quantity-type {width:60px; display: inline-block;}
-.new-invoice .quantity-type { width:90px;}
-.new-invoice .price-field {width:150px; display: inline-block; text-align: right;}
-.new-invoice .table-responsive {overflow: visible;} 
-.new-invoice .column-data {margin-bottom: 15px;}
-.new-invoice .field {height: 35px;}
-.new-invoice .field.area {height: 100px;}
-.new-invoice h1 {margin-bottom: 30px;}
-.new-invoice .invoice-setting {max-width: 400px; float: right;}
-.new-invoice .amount-row {margin-bottom: 15px;}
-.new-invoice .discount-txt {padding-top: 12px;}
-.new-invoice .total-row {border-top: 1px solid #f3f3f3; padding-top: 15px;}
-.new-invoice .item-total-price {padding-top: 7px;} 
-.new-invoice .actions {display: none;}
-.new-invoice .field-item-name {width:auto; display: inline-block;}
-.new-invoice .no-vat-field {display: none;}
-.new-invoice .no-vat-field .form-control { margin-bottom: 5px;}
-.new-invoice .select-currency {margin-bottom: 10px}
-.new-invoice .the-vat {padding-top:10px;}
-.new-invoice .no-vat {padding-top:20px;}
-.new-invoice .inv-type-num {font-weight:bold;} 
-.new-invoice .credit-debit-option {display: none;}
-.new-invoice .choose-translation {display: inline;}
+.create-document {padding:0 100px; padding-top:20px; color:#414141;}
+.create-document .type {margin-bottom: 30px;} 
+.create-document .type .special-radio {display: inline;}
+.create-document .type .special-radio .control {font-weight: normal;}
+.create-document .inner {padding:50px; border: 1px solid #d8d8d8; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15); margin-bottom: 15px;}
+.create-document .choose {color:#26b6e8; text-transform: uppercase; font-size: 12px;}
+.create-document .choose:hover {text-decoration: none;}
+.create-document .choose i {  background: #eee none repeat scroll 0 0;    border: 1px solid #ccc;    border-radius: 30px;    color: #888;    display: inline-block;    height: 28px;    line-height: 25px;    margin-right: 3px;    text-align: center;    width: 28px;}
+.create-document .choose span {font-size:10px;}
+.create-document .client .form-control {display: inline; width:auto;}
+.create-document .client label {display: block;}
+.create-document .client .choose {float: right;}
+.create-document .maturity-date {display:  none;}
+.create-document .table-items {border:1px solid #d8d8d8; margin-bottom: 15px;}
+.create-document .table-items tr td {border-top:0;}
+.create-document .table-items thead tr th {border-bottom:1px solid #d8d8d8;}
+.create-document .add-new-item {background-color: #f8f8f8; display: inline-block;  border-radius: 1000px; padding: 6px 20px 7px;   transition: background-color 0.1s ease-in-out 0s;}
+.create-document .add-new-item:hover {text-decoration: none; background-color: #f3f3f3;}
+.create-document .items-features, .create-document .remarks, .create-document .amounts {margin-bottom: 20px;} 
+.create-document .amounts .text-discount, .create-document .amounts .select-discount {width:80px; display: inline-block;} 
+.create-document .amounts .amount {text-align: right;}
+.create-document .amounts .vat-field {width:50px; text-align: right; display: inline-block;}
+.create-document .amounts .discount {float: right;}
+.create-document .amounts .total {font-size:25px;}
+.create-document .quantity-field {text-align: right;}
+.create-document .quantity-field, .create-document .quantity-type {width:60px; display: inline-block;}
+.create-document .quantity-type { width:90px;}
+.create-document .price-field {width:150px; display: inline-block; text-align: right;}
+.create-document .table-responsive {overflow: visible;} 
+.create-document .column-data {margin-bottom: 15px;}
+.create-document .field {height: 35px;}
+.create-document .field.area {height: 100px;}
+.create-document h1 {margin-bottom: 30px;}
+.create-document .invoice-setting {max-width: 400px; float: right;}
+.create-document .amount-row {margin-bottom: 15px;}
+.create-document .discount-txt {padding-top: 12px;}
+.create-document .total-row {border-top: 1px solid #f3f3f3; padding-top: 15px;}
+.create-document .item-total-price {padding-top: 7px;} 
+.create-document .actions {display: none;}
+.create-document .field-item-name {width:auto; display: inline-block;}
+.create-document .no-vat-field {display: none;}
+.create-document .no-vat-field .form-control { margin-bottom: 5px;}
+.create-document .select-currency {margin-bottom: 10px}
+.create-document .the-vat {padding-top:10px;}
+.create-document .no-vat {padding-top:20px;}
+.create-document .inv-type-num {font-weight:bold;} 
+.create-document .credit-debit-option {display: none;}
+.create-document .choose-translation {display: inline;}
 .show-pay-statuses {cursor: pointer;}
 .status-changer { position: relative;}
 .action-history {background-color: #fff; padding: 10px;}
@@ -120,12 +120,12 @@ header h1 {font-size:26px;}
 #topSearchResults {position: absolute; display: none;}
 .invoice-search-result a {display: block;}
 .client-search-result a {display: block;}
-.item-search-result a {display: block;}
+.item-search-result a {display: block;} 
 footer { background-color: #f8f8f8;    border-top: 1px solid #e7e7e7;    bottom: 0;    color: #333;    height: 60px;    left: 0;    padding: 20px 0;    position: absolute;    text-align: center;    width: 100%;}
 
 @media screen and (max-width: 767px) {
     .left-col {position:relative; top:0; margin-bottom: 20px;}
-    .new-invoice .table-responsive {overflow-x: auto;}
+    .create-document .table-responsive {overflow-x: auto;}
     /* Dont zoom fileds! */
     input[type="color"],
     input[type="date"],

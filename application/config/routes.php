@@ -125,6 +125,11 @@ $route['user/findresults'] = 'users/home/home/findresults';
 $route['user/client/view/(:num)'] = "users/clients/clients/viewclient/$1";
 $route['user/item/view/(:num)'] = "users/items/items/viewitem/$1";
 $route['user/import-export'] = "users/import_export/ImportExport";
+$route['user/store'] = "users/store/Store";
+$route['user/store/(:num)'] = "users/store/store/index/$1";
+$route['user/settings/stores'] = "users/settings/stores";
+$route['user/settings/stores/delete/store/(:num)'] = "users/settings/stores/deletestore/$1";
+$route['user/store/add-movement'] = "users/store/Store/addmovement";
 $route['pdffooter'] = 'home/getinvoicefooter';
 /* USERS PANEL ROUTES */
 

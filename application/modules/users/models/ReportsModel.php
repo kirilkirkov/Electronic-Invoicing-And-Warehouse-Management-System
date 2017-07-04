@@ -22,7 +22,7 @@ class ReportsModel extends CI_Model
         if ($doShowDraft == true) {
             $showDraft = '';
         }
-        $query = $this->db->query('SELECT SUM(IF(inv_type="tax_inv",1,0)) as tax_inv, SUM(IF(inv_type="prof",1,0)) as prof, SUM(IF(inv_type="debit",1,0)) as debit, SUM(IF(inv_type="credit",1,0)) as credit FROM invoices WHERE is_deleted = 0 AND for_user = ' . USER_ID . ' AND for_company = ' . SELECTED_COMPANY_ID . $showDraft . $between);
+        $query = $this->db->query('SELECT SUM(IF(inv_type="tax_inv",1,0)) as tax_inv, SUM(IF(inv_type="prof",1,0)) as prof, SUM(IF(inv_type="debit",1,0)) as debit, SUM(IF(inv_type="credit",1,0)) as credit FROM invoices WHERE is_deleted = 0 AND status != "canceled" AND for_user = ' . USER_ID . ' AND for_company = ' . SELECTED_COMPANY_ID . $showDraft . $between);
         $result = $query->row_array();
         if ($result['tax_inv'] === null && $result['prof'] === null && $result['debit'] === null && $result['credit'] === null) {
             return array();
@@ -67,7 +67,7 @@ class ReportsModel extends CI_Model
         if ($doShowDraft == true) {
             $showDraft = '';
         }
-        $query = $this->db->query('SELECT COUNT(id) AS num_created, inv_type, SUM(final_total) as final_total, DATE_FORMAT(FROM_UNIXTIME(created), "%b %Y") AS date_created FROM invoices WHERE is_deleted = 0 AND for_user = ' . USER_ID . ' AND for_company = ' . SELECTED_COMPANY_ID . $showDraft . $between . ' GROUP BY date_created, inv_type');
+        $query = $this->db->query('SELECT COUNT(id) AS num_created, inv_type, SUM(final_total) as final_total, DATE_FORMAT(FROM_UNIXTIME(created), "%b %Y") AS date_created FROM invoices WHERE is_deleted = 0 AND status != "canceled" AND for_user = ' . USER_ID . ' AND for_company = ' . SELECTED_COMPANY_ID . $showDraft . $between . ' GROUP BY date_created, inv_type');
         $result = $query->result_array();
 
         // add to months of each type of invoice - num issued
@@ -98,7 +98,7 @@ class ReportsModel extends CI_Model
             $showDraft = '';
         }
 
-        $result = $this->db->query('SELECT SUM(final_total) as sumInvoices, invoices_clients.client_name as client FROM invoices INNER JOIN invoices_clients ON invoices_clients.for_invoice = invoices.id WHERE invoices.is_deleted = 0 AND invoices.inv_type = "tax_inv" AND invoices.for_user = ' . USER_ID . ' AND invoices.for_company = ' . SELECTED_COMPANY_ID . $showDraft . $between . ' GROUP BY IF(invoices_clients.client_bulstat=NULL, invoices_clients.client_ident_num, invoices_clients.client_bulstat), invoices_clients.client_name ORDER BY sumInvoices DESC LIMIT 10');
+        $result = $this->db->query('SELECT SUM(final_total) as sumInvoices, invoices_clients.client_name as client FROM invoices INNER JOIN invoices_clients ON invoices_clients.for_invoice = invoices.id WHERE invoices.is_deleted = 0 AND invoices.status != "canceled" AND invoices.inv_type = "tax_inv" AND invoices.for_user = ' . USER_ID . ' AND invoices.for_company = ' . SELECTED_COMPANY_ID . $showDraft . $between . ' GROUP BY IF(invoices_clients.client_bulstat=NULL, invoices_clients.client_ident_num, invoices_clients.client_bulstat), invoices_clients.client_name ORDER BY sumInvoices DESC LIMIT 10');
         return $result->result_array();
     }
 

@@ -231,7 +231,7 @@
         <form method="POST" action="" class="site-form" id="formRoundTotals">
             <table>
                 <tr>
-                    <td><input type="text" value="<?= $opt_invRoundTo ?>" name="opt_invRoundTo" class="form-control field"></td>
+                    <td><input type="text" value="<?= $opt_invRoundTo ?>" name="opt_invRoundTo" class="form-control field optRoundTo"></td>
                     <td>
                         <a href="javascript:void(0);" onclick="updateRoundTotals()" class="btn btn-xs btn-default pull-right">
                             <?= lang('update_round_totals') ?>
@@ -242,7 +242,7 @@
         </form>
     </div>    
     <div class="col-sm-4">     
-        <h4><?= lang('stop_inv_calculator') ?></h4>
+        <h4><?= lang('stop_movem_calculator') ?></h4>
         <form method="POST" action="">
             <div class="input-group">
                 <input class="form-control field" name="opt_invCalculator" value="<?= $opt_invCalculator ?>" type="text">

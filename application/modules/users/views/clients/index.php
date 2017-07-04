@@ -29,6 +29,7 @@
             </div>
         </div>
         <input type="submit" value="search"> 
+        <a href="<?= lang_url('user/clients') ?>"><?= lang('clear_search') ?></a>
     </form>
 </div>
 <?php if (!empty($clients)) { ?>

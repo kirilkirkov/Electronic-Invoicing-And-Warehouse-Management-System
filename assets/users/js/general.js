@@ -438,6 +438,46 @@ $('[name="export_all"]').change(function () {
     }
 });
 /*
+ * Store movements type
+ */
+$('.movement-type').change(function () {
+    var movement_type = $(this).val();
+    if (movement_type == 'in') {
+        $('.label-from-client').removeClass('hidden');
+        $('.label-to-client').addClass('hidden');
+
+        $('.label-from-store').addClass('hidden');
+        $('.label-to-store').removeClass('hidden');
+
+        $('.movement-for-client').show();
+        $('.to-store-movement').addClass('hidden');
+    }
+    if (movement_type == 'out') {
+        $('.label-from-client').addClass('hidden');
+        $('.label-to-client').removeClass('hidden');
+
+        $('.label-from-store').removeClass('hidden');
+        $('.label-to-store').addClass('hidden');
+
+        $('.movement-for-client').show();
+        $('.to-store-movement').addClass('hidden');
+    }
+
+    if (movement_type == 'move') {
+        $('.movement-for-client').hide();
+        $('.label-from-store').removeClass('hidden');
+        $('.label-to-store').addClass('hidden');
+        $('.to-store-movement').removeClass('hidden');
+    }
+
+    if (movement_type == 'revision') {
+        $('.movement-for-client').hide();
+        $('.label-from-store').removeClass('hidden');
+        $('.label-to-store').addClass('hidden');
+        $('.to-store-movement').addClass('hidden');
+    }
+});
+/*
  * Create draft invoice
  */
 function createDraft() {
@@ -449,6 +489,8 @@ function createDraft() {
  */
 function createNewInvValidate() {
     var valid = true;
+    var validItems = true;
+
     $('[name="client_name"]').css("border-color", border_color_fields);
     $('[name="client_address"]').css("border-color", border_color_fields);
     $('[name="inv_number"]').css("border-color", border_color_fields);
@@ -493,21 +535,10 @@ function createNewInvValidate() {
         $('[name="inv_number"]').css("border-color", border_color_wrong);
         valid = false;
     }
-    $('.body-items tr').each(function () {
-        $('.quantity-field', this).css("border-color", border_color_fields);
-        $('.field-item-name', this).css("border-color", border_color_fields);
-        var item_quantity = $('.quantity-field', this).val();
-        var item_name = $('.field-item-name', this).val();
-        if (!pattern_sums.test(item_quantity) || item_quantity.length == 0 || item_quantity <= 0) {
-            $('.quantity-field', this).css("border-color", border_color_wrong);
-            valid = false;
-        }
-        if ($.trim(item_name).length == 0) {
-            $('.field-item-name', this).css("border-color", border_color_wrong);
-            valid = false;
-        }
-
-    });
+    validItems = validateItems();
+    if (validItems == false) {
+        valid = false;
+    }
     if (valid == true) {
         document.getElementById('setInvoiceForm').submit();
     } else {
@@ -521,6 +552,57 @@ function createNewInvValidate() {
         }, 1000);
         showError(lang.errorCreateInvoice);
     }
+}
+/*
+ * Store movement validator
+ */
+function validateStoreMovement() {
+    var valid = true;
+    var validItems = true;
+
+    validItems = validateItems();
+
+    if (validItems == false) {
+        valid = false;
+    }
+
+    if (valid == true) {
+        document.getElementById('setMovementForm').submit();
+    } else {
+        /*
+         * Return to some default values
+         * who is changed from submit buttons
+         */
+        $('[name="status"]').val('issued');
+        $('html, body').animate({
+            scrollTop: $("#setMovementForm").offset().top
+        }, 1000);
+        showError(lang.errorCreateInvoice);
+    }
+}
+/*
+ * Add items validation
+ */
+function validateItems() {
+    var valid = true;
+    $('.body-items tr').each(function () {
+        $('.quantity-field', this).css("border-color", border_color_fields);
+        $('.field-item-name', this).css("border-color", border_color_fields);
+        var item_quantity = $('.quantity-field', this).val();
+        var item_name = $('.field-item-name', this).val();
+        if (!pattern_sums.test(item_quantity) || item_quantity.length == 0 || item_quantity <= 0) {
+            $('.quantity-field', this).css("border-color", border_color_wrong);
+            valid = false;
+        }
+        if ($.trim(item_name).length == 0) {
+            $('.field-item-name', this).css("border-color", border_color_wrong);
+            valid = false;
+        }
+    });
+    if (valid == false) {
+        return false;
+    }
+    return true;
 }
 /*
  * Show alert box
@@ -596,16 +678,31 @@ function addNewNoVatReason() {
     }
 }
 /*
+ * Add new store validator
+ */
+function addNewStore() {
+    var valid = true;
+    var name = $('[name="newStore"]').val();
+    name = $.trim(name);
+    if (name.length == 0) {
+        $('[name="newStore"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if (valid == true) {
+        document.getElementById('formAddStore').submit();
+    }
+}
+/*
  * Create Invoice Calculator
  * Sum Items prices
  * Sum Vat %/Currency
  * Sum Discount
  * We will use math.js library
- * createInv variable is initialized in create invoice page
+ * createDocument variable is initialized in calculator used pages
  */
 function createInvoiceCalculator() {
     // if is enabled calculator
-    if (createInv.calculatorStatus == 1) {
+    if (createDocument.calculatorStatus == 1) {
         // Sum item by item
         var items_total = 0.00;
         $('.body-items tr').each(function () {
@@ -623,10 +720,10 @@ function createInvoiceCalculator() {
                 is_valid = false;
             }
             if (is_valid == true) {
-                var item_total = math.multiply(item_quantity, item_price).toFixed(createInv.rountTo);
+                var item_total = math.multiply(item_quantity, item_price).toFixed(createDocument.rountTo);
                 $('.item-total', this).text(item_total);
                 $('.item-total', this).val(item_total);
-                items_total = math.add(items_total, item_total).toFixed(createInv.rountTo);
+                items_total = math.add(items_total, item_total).toFixed(createDocument.rountTo);
             }
         });
         $('#items-total').text(items_total);
@@ -637,9 +734,9 @@ function createInvoiceCalculator() {
         if (pattern_sums.test(discount_value)) {
             $('.text-discount').css("border-color", border_color_fields);
             if (discount_type == '%') {
-                var tax_base = math.subtract(items_total, math.multiply(items_total, math.divide(discount_value, 100))).toFixed(createInv.rountTo);
+                var tax_base = math.subtract(items_total, math.multiply(items_total, math.divide(discount_value, 100))).toFixed(createDocument.rountTo);
             } else {
-                var tax_base = math.subtract(items_total, discount_value).toFixed(createInv.rountTo);
+                var tax_base = math.subtract(items_total, discount_value).toFixed(createDocument.rountTo);
             }
             $('#tax-base').text(tax_base);
             $('.tax-base').val(tax_base);
@@ -652,10 +749,10 @@ function createInvoiceCalculator() {
             var vat_percent = $('.vat-field').val();
             if (pattern_sums.test(vat_percent)) {
                 $('.vat-field').css("border-color", border_color_fields);
-                var vat_sum = math.multiply(math.divide(tax_base, 100), vat_percent).toFixed(createInv.rountTo);
+                var vat_sum = math.multiply(math.divide(tax_base, 100), vat_percent).toFixed(createDocument.rountTo);
                 $('#vat-sum').text(vat_sum);
                 $('.vat-sum').val(vat_sum);
-                final_sum = math.add(tax_base, vat_sum).toFixed(createInv.rountTo);
+                final_sum = math.add(tax_base, vat_sum).toFixed(createDocument.rountTo);
             } else {
                 $('.vat-field').css("border-color", border_color_wrong);
             }
@@ -671,7 +768,7 @@ function createInvoiceCalculator() {
 function updateRoundTotals() {
     var pattern = /^[0-9]+$/;
     var valid = true;
-    var name = $('[name="opt_invRoundTo"]').val();
+    var name = $('.optRoundTo').val();
     name = $.trim(name);
     if (name.length == 0 || !pattern.test(name)) {
         $('[name="opt_invRoundTo"]').css("border-color", border_color_wrong);
@@ -737,7 +834,7 @@ function getClient(id) {
  * parse object and fill fields
  */
 function getItem(id) {
-    $('[name="item_from_list[]"]:eq(' + chooseItemIndex + ')').val(1);
+    $('[name="item_from_list[]"]:eq(' + chooseItemIndex + ')').val(items[id].id);
     $('[name="items_names[]"]:eq(' + chooseItemIndex + ')').val(items[id].name);
     $('[name="items_prices[]"]:eq(' + chooseItemIndex + ')').val(items[id].single_price);
     if ($('[name="items_quantity_types[]"]:eq(' + chooseItemIndex + ') option[value="' + items[id].quantity_type + '"]').length <= 0) {

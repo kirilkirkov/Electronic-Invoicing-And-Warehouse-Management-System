@@ -31,7 +31,7 @@ class Newinvoice extends USER_Controller
         $data['paymentMethods'] = $this->NewInvoiceModel->getPaymentMethods();
         $data['invoiceLanguages'] = $this->NewInvoiceModel->getMyInvoiceLanguages();
         $data['myNoVatReasons'] = $this->SettingsModel->getMyNoVatReasons();
-        $nextInvNumber = $this->NewInvoiceModel->getNextFreeInvoiceNumber();
+        $data['nextInvNumber'] = $this->NewInvoiceModel->getNextFreeInvoiceNumber();
         if ($invNum > 0) {
             $this->invNum = $invNum;
             $inv_readable_types = array_flip($this->config->item('inv_readable_types'));
@@ -45,8 +45,7 @@ class Newinvoice extends USER_Controller
         } else {
             $this->postChecker();
         }
-
-        $data['nextInvNumber'] = $nextInvNumber;
+ 
         $data['editId'] = $this->editId;
         if (isset($_POST['inv_currency'])) {
             $theCurrency = $_POST['inv_currency'];

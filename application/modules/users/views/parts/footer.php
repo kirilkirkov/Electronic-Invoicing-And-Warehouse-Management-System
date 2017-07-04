@@ -29,7 +29,8 @@ if ($this->session->flashdata('resultAction')) {
         addNewPaymentMethod: "<?= base_url('user/addnewpaymentmethod') ?>",
         modalSelector: "<?= base_url('user/modalselector') ?>",
         changeInvoiceStatus: "<?= base_url('user/changeinvoicestatus') ?>",
-        topNavSearch: "<?= base_url('user/findresults') ?>"
+        topNavSearch: "<?= base_url('user/findresults') ?>",
+        searchInStoreItems: "<?= base_url('user/searchinstoreitems') ?>"
     };
 </script>
 <script src="<?= base_url('assets/users/js/general.js') ?>"></script> 
