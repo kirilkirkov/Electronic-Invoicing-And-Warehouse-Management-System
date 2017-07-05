@@ -9,8 +9,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class HtmlToPdf
 {
 
-    private $invNum;
-    private $invType;
+    private $num;
+    private $type;
 
     public function generatePdf(
     $html, $left_right = null, $top_bot = null, $dpi = null, $size = null, $extra_params = null
@@ -34,7 +34,7 @@ class HtmlToPdf
         $tmpfile = tempnam($sys_tmp_dir, 'pdf_html');
 
         if ($tmpfile === false) {
-            log_message('error', 'Was not able to generate a temporary file for invoice preview in system /tmp for user - ' . print_r($_SESSION['user_login'], true));
+            log_message('error', 'Was not able to generate a temporary file for ' . $this->type . ' preview in system /tmp for user - ' . print_r($_SESSION['user_login'], true));
         }
 
         $tmphtml = $tmpfile . '.html';
@@ -45,15 +45,15 @@ class HtmlToPdf
         }
 
         if (false === file_put_contents($tmphtml, $html)) {
-            log_message('error', 'Was not able to put html to a temporary file for invoice preview in system /tmp for user - ' . print_r($_SESSION['user_login'], true));
+            log_message('error', 'Was not able to put html to a temporary file for ' . $this->type . ' preview in system /tmp for user - ' . print_r($_SESSION['user_login'], true));
         }
         $tmpfname = tempnam($sys_tmp_dir, 'html_pdf');
 
         if ($tmpfname === false) {
-            log_message('error', 'Was not able to generate a temporary file 2 for invoice preview in system /tmp for user - ' . print_r($_SESSION['user_login'], true));
+            log_message('error', 'Was not able to generate a temporary file 2 for ' . $this->type . ' preview in system /tmp for user - ' . print_r($_SESSION['user_login'], true));
         }
 
-        $footerUrl = base_url('pdffooter?invNum=' . $this->invNum . '&invType=' . $this->invType . '&pageTranslate=' . $this->pageTranslation);
+        $footerUrl = base_url('pdffooter?num=' . $this->num . '&type=' . $this->type . '&pageTranslate=' . $this->pageTranslation);
         $cmd = '/home/kiro/wkhtmltox/bin/wkhtmltopdf --footer-html "' . $footerUrl . '" --load-error-handling ignore --enable-local-file-access' .
                 ' --no-stop-slow-scripts' .
                 ' -q ' . $extra_params .
@@ -106,17 +106,17 @@ class HtmlToPdf
         return $pdfcontents;
     }
 
-    public function setInvNum($invNum)
+    public function setNum($num)
     {
-        $this->invNum = $invNum;
+        $this->num = $num;
     }
 
-    public function setInvType($invType)
+    public function setType($type)
     {
-        $this->invType = $invType;
+        $this->type = $type;
     }
 
-    public function setInvPageTranslate($translation)
+    public function setPageTranslate($translation)
     {
         $this->pageTranslation = urlencode($translation);
     }

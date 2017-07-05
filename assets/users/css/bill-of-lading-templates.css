@@ -1,0 +1,29 @@
+/*
+ * Bill of lading Templates 
+ */
+
+tr {page-break-inside: avoid !important;}
+
+/*
+ * Font family is default of bootstrap  - font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; 
+ */
+.default-movement { min-height: 1000px; background-color: #fff; padding:35px; font-size:16px;}
+.default-movement h1 {font-size:22px; margin-bottom: 20px;}
+.default-movement .client-info {width:300px; float:left;}
+.default-movement .client-info h1 {text-align: center; background-color: #f4f4f4; padding-top: 5px; padding-bottom: 5px;  font-weight: bold;} 
+.default-movement .document-type h1 {text-align: center; margin:0; text-transform: uppercase;  font-weight: bold;}
+.default-movement .firm-info {width:300px;float:right;}
+.default-movement .firm-info h1 {text-align: center; background-color: #f4f4f4; padding-top: 5px; padding-bottom: 5px; font-weight: bold;} 
+.default-movement .info { margin-bottom: 20px;}
+.default-movement .document-info {margin-bottom: 20px;}
+.default-movement .document-info .number {float:left; width:300px; border:2px solid #f4f4f4; padding: 10px; border-radius: 10px;}
+.default-movement .document-info .date-create {float:right;width:300px; border:2px solid #f4f4f4; padding: 10px; border-radius: 10px;}
+.default-movement .items {margin-bottom: 20px;}
+.default-movement .amounts {margin-bottom: 20px;}
+.default-movement .amounts .payment-method {float:left; width:300px;}
+.default-movement .amounts .payment-method p {margin: 0; font-weight: bold;}
+.default-movement .amounts .amount {float:right; width:300px;}
+.default-movement .amounts .amount p span { float:right;}
+.default-movement .transmission .betrayed {float:left;}
+.default-movement .transmission .accepted {float:right;}
+.default-movement .transmission span {text-decoration: underline;}

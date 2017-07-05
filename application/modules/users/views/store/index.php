@@ -22,25 +22,37 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label><?= lang('search_item_name') ?></label>
-                        <input type="text" name="item_name" value="<?= isset($_GET['item_name']) ? $_GET['item_name'] : '' ?>" class="form-control">
+                        <label><?= lang('search_by_store') ?></label>
+                        <select class="selectpicker" name="selected_store" data-live-search="true">
+                            <option value="all"><?= lang('all_stores') ?></option>
+                            <?php
+                            foreach ($myStores as $myStore) {
+                                ?>
+                                <option <?= isset($_GET['selected_store']) && $_GET['selected_store'] == $myStore['id'] ? 'selected="selected"' : '' ?> value="<?= $myStore['id'] ?>"><?= $myStore['name'] ?></option>
+                            <?php } ?>
+                        </select>
                     </div> 
                     <div class="form-group">
-                        <label><?= lang('search_amount_from') ?></label>
-                        <input type="text" name="amount_from" value="<?= isset($_GET['amount_from']) ? $_GET['amount_from'] : '' ?>" class="form-control">
-                        <label><?= lang('search_to') ?></label>
-                        <input type="text" name="amount_to" value="<?= isset($_GET['amount_to']) ? $_GET['amount_to'] : '' ?>" class="form-control">
+                        <label><?= lang('search_store_client') ?></label>
+                        <input type="text" name="client_name" value="<?= isset($_GET['client_name']) ? $_GET['client_name'] : '' ?>" class="form-control">
                     </div>
+                    <div class="form-group">
+                        <label><?= lang('search_date_from') ?></label>
+                        <input type="text" name="create_from" value="<?= isset($_GET['create_from']) ? $_GET['create_from'] : '' ?>" class="form-control datepicker">
+                        <label><?= lang('search_to') ?></label>
+                        <input type="text" name="create_to" value="<?= isset($_GET['create_to']) ? $_GET['create_to'] : '' ?>" class="form-control datepicker">
+                    </div> 
                 </div>
             </div>
             <input type="submit" value="search"> 
-            <a href="<?= lang_url('user/items') ?>"><?= lang('clear_search') ?></a>
+            <a href="<?= lang_url('user/store') ?>"><?= lang('clear_search') ?></a>
         </form>
     </div>
     <?php if (!empty($movements)) { ?>
         <form method="POST" action="" id="action-form">
             <input type="hidden" name="action" value="">
-            <a href="javascript:void(0);" class="btn btn-default list-action" data-action-type="delete"><?= lang('delete') ?></a>
+            <a href="javascript:void(0);" class="btn btn-default list-action" data-action-type="stat_canceled"><?= lang('to_canceled_stat') ?></a>
+            <a href="javascript:void(0);" class="btn btn-default list-action" data-action-type="remove_canceled"><?= lang('remove_canceled_stat') ?></a>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -76,12 +88,12 @@
                             ?>
                             <tr>
                                 <td><input type="checkbox" name="ids[]" value="<?= $movem['id'] ?>" class="check-me-now"></td>
-                                <td><a href=""><?= lang('movem_preview') ?></a></td>
-                                <td><a href=""><?= $movem['movement_number'] ?></a></td>
+                                <td><a href="<?= lang_url('user/movement/view/' . $movem['movement_number']) ?>"><?= lang('movem_preview') ?></a></td>
+                                <td><a href="<?= lang_url('user/bill-of-lading/print/' . $movem['movement_number']) ?>"><?= $movem['movement_number'] ?></a></td>
                                 <td><?= lang('movem_type_' . $movem['movement_type']) ?></td>
                                 <td><?= $from ?></td>
                                 <td><?= $to ?></td>
-                                <td><?= lang('movem_stat_confirmed') ?></td>
+                                <td><?= $movem['cancelled'] == 0 ? lang('movem_stat_confirmed') : lang('movem_stat_cancelled') ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>

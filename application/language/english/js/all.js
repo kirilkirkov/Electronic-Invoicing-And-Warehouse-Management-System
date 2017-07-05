@@ -15,5 +15,7 @@ var lang = {
     errorCreateEmployee: 'You have invalid fields!',
     noCheckedCheckboxes: 'There is nothing selected!',
     confirmDelete: 'Are you sure want to delete?',
-    errorChangeInvStatusAjax: 'Invoice status change error. Try again please!'
+    errorChangeInvStatusAjax: 'Invoice status change error. Try again please!',
+    confirmCancel: 'Are you sure want to cancel?',
+    confirmRemoveCancel: 'Are you sure want to remove status cancelled?'
 };

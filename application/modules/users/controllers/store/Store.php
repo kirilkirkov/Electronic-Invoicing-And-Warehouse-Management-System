@@ -35,8 +35,22 @@ class Store extends USER_Controller
         $rowscount = $this->StoreModel->countMovements($_GET);
         $data['movements'] = $this->StoreModel->getMovements($this->num_rows, $page, $_GET);
         $data['linksPagination'] = pagination('user/store', $rowscount, $this->num_rows, 3);
+        if (isset($_POST['action'])) {
+            if ($_POST['action'] == 'stat_canceled') {
+                $this->changeStatusCanceled($_POST['ids'], true);
+            }
+            if ($_POST['action'] == 'remove_canceled') {
+                $this->changeStatusCanceled($_POST['ids'], false);
+            }
+        }
         $this->render('store/index', $head, $data);
         $this->saveHistory('Go to store page');
+    }
+
+    private function changeStatusCanceled($ids, $toStatus)
+    {
+        $this->StoreModel->multipleStatusCanceledMovements($ids, $toStatus);
+        redirect(lang_url('user/store'));
     }
 
     public function addMovement()

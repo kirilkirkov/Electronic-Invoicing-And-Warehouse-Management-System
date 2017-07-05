@@ -130,6 +130,8 @@ $route['user/store/(:num)'] = "users/store/store/index/$1";
 $route['user/settings/stores'] = "users/settings/stores";
 $route['user/settings/stores/delete/store/(:num)'] = "users/settings/stores/deletestore/$1";
 $route['user/store/add-movement'] = "users/store/Store/addmovement";
+$route['user/movement/view/(:num)'] = "users/store/movementview/index/$1";
+$route['user/bill-of-lading/print/(:num)'] = "users/store/movementview/viewMovementAsPdf/$1";
 $route['pdffooter'] = 'home/getinvoicefooter';
 /* USERS PANEL ROUTES */
 

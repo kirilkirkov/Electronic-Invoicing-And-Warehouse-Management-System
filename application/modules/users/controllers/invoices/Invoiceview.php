@@ -66,21 +66,30 @@ class Invoiceview extends USER_Controller
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Administration - Home</title> 
         <link href="' . base_url('assets/bootstrap/css/bootstrap.min.css') . '" rel="stylesheet"> 
+        <link href="' . base_url('assets/users/css/invoices-templates.css') . '" rel="stylesheet">  
         <script src="' . base_url('assets/jquery/jquery.min.js') . '"></script>  
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body>
-    <link rel="stylesheet" href="' . base_url('assets/users/css/invoices-templates.css') . '">   
+    <body> 
     ';
         include $templateFile;
         echo '</body></html>';
         $html = ob_get_clean();
-        $this->htmltopdf->setInvNum($invNum); // set invoice number to give it to footer
-        $this->htmltopdf->setInvType($invType); // set invoice type to give it to footer 
-        $this->htmltopdf->setInvPageTranslate($invoice['translation']['page']); // set invoice translation of 'page' word
+        $this->htmltopdf->setNum($invNum); // set invoice number to give it to footer
+        if ($invType == 'invoice') {
+            $invTypeT = $invoice['translation']['invoice'];
+        } elseif ($invType == 'debit-note') {
+            $invTypeT = $invoice['translation']['debit_note'];
+        } elseif ($invType == 'credit-note') {
+            $invTypeT = $invoice['translation']['credit_note'];
+        } elseif ($invType == 'pro-forma') {
+            $invTypeT = $invoice['translation']['pro_forma'];
+        }
+        $this->htmltopdf->setType($invTypeT); // set invoice type to give it to footer 
+        $this->htmltopdf->setPageTranslate($invoice['translation']['page']); // set invoice translation of 'page' word
         $pdf = $this->htmltopdf->generatePdf($html);
         $filename = $invType . ' - ' . $invNum . '.pdf';
 

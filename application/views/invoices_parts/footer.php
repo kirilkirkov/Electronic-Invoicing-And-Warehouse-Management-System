@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
     <head>
         <meta charset="utf-8">
@@ -30,6 +30,6 @@
         </script>
     </head>
     <body onload="substitutePdfVariables()">
-        <p style="text-align:right;"><span style="text-transform: capitalize;"><?= $invType ?></span> № <?= $invNum ?> | <?= $pageTranslate ?> <span class="page"></span> / <span class="topage"></span></p>
+        <p style="text-align:right;"><span style="text-transform: capitalize;"><?= $type ?></span> № <?= $num ?> | <?= $pageTranslate ?> <span class="page"></span> / <span class="topage"></span></p>
     </body>
 </html>

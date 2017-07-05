@@ -13,8 +13,9 @@ class StoreModel extends CI_Model
         if (!empty($get) && $get != null) {
             $this->setMovementsSearchFilter($get);
         }
-        $this->db->where('for_user', USER_ID);
-        $this->db->where('for_company', SELECTED_COMPANY_ID);
+        $this->db->where('movements.for_user', USER_ID);
+        $this->db->where('movements.for_company', SELECTED_COMPANY_ID);
+        $this->db->join('movements_clients', 'movements_clients.for_movement = movements.id');
         return $this->db->count_all_results('movements');
     }
 
@@ -28,22 +29,31 @@ class StoreModel extends CI_Model
         $this->db->join('movements_clients', 'movements_clients.for_movement = movements.id');
         $this->db->join('movements_from_to_store', 'movements_from_to_store.for_movement = movements.id', 'left');
         $this->db->order_by('id', 'asc');
-        $this->db->where('for_user', USER_ID);
-        $this->db->where('for_company', SELECTED_COMPANY_ID);
+        $this->db->where('movements.for_user', USER_ID);
+        $this->db->where('movements.for_company', SELECTED_COMPANY_ID);
         $result = $this->db->get('movements', $limit, $page);
         return $result->result_array();
     }
 
     private function setMovementsSearchFilter($get)
     {
-        if (isset($get['item_name']) && $get['item_name'] != '') {
-            $this->db->like('name', $get['item_name']);
+        if (isset($get['client_name']) && trim($get['client_name']) != '') {
+            $this->db->like('movements_clients.client_name', trim($get['client_name']));
         }
-        if (isset($get['amount_from']) && $get['amount_from'] != '') {
-            $this->db->where('single_price >=', (float) $get['amount_from']);
+        if (isset($get['selected_store']) && (trim($get['selected_store']) != '' && trim($get['selected_store']) != 'all')) {
+            $this->db->where('movements.store_id', (int) $get['selected_store']);
         }
-        if (isset($get['amount_to']) && $get['amount_to'] != '') {
-            $this->db->where('single_price >=', (float) $get['amount_to']);
+        if (isset($get['create_from']) && trim($get['create_from']) != '') {
+            $from = strtotime($get['create_from']);
+            if ($from != false) {
+                $this->db->where('created >=', $from);
+            }
+        }
+        if (isset($get['create_to']) && trim($get['create_to']) != '') {
+            $to = strtotime($get['create_to']);
+            if ($to != false) {
+                $this->db->where('created <=', $to);
+            }
         }
     }
 
@@ -87,7 +97,9 @@ class StoreModel extends CI_Model
             'final_total' => $post['final_total'],
             'remarks' => $post['remarks'],
             'payment_method' => $post['payment_method'],
-            'created' => strtotime($post['date_create'])
+            'created' => strtotime($post['date_create']),
+            'betrayed' => $post['betrayed'],
+            'accepted' => $post['accepted']
         );
         if (!$this->db->insert('movements', $storeMoveArr)) {
             log_message('error', print_r($this->db->error(), true));
@@ -191,7 +203,7 @@ class StoreModel extends CI_Model
         $translate = $result->row_array();
         unset($translate['id']);
         unset($translate['for_user']);
-        $translate['for_movement'] = $translateId;
+        $translate['for_movement'] = $movementId;
         if (!$this->db->insert('movements_translations', $translate)) {
             log_message('error', print_r($this->db->error(), true));
         }
@@ -323,7 +335,7 @@ class StoreModel extends CI_Model
 
                 if (!$this->db->insert('movements_revisions', array(
                             'for_movement' => $movementId,
-                            'name' => 'aa',
+                            'name' => $post['items_names'][$i],
                             'before_revision' => $currentQuantityInStore,
                             'after_revision' => $currentQuantity,
                             'difference' => $currentQuantity - $currentQuantityInStore
@@ -412,6 +424,64 @@ class StoreModel extends CI_Model
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         }
+    }
+
+    public function multipleStatusCanceledMovements($ids, $doCanceled)
+    {
+        if ($ids != null && is_array($ids)) {
+            $this->db->where_in('id', $ids);
+            $this->db->where('for_user', USER_ID);
+            $this->db->where('for_company', SELECTED_COMPANY_ID);
+            if ($doCanceled == true) {
+                $status = 1;
+            } else {
+                $status = 0;
+            }
+            if (!$this->db->update('movements', array('cancelled' => $status))) {
+                log_message('error', print_r($this->db->error(), true));
+                show_error(lang('database_error'));
+            }
+        }
+    }
+
+    public function getMovementByNumber($movementNumber)
+    {
+        $this->db->where('movement_number', (int) $movementNumber);
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('for_company', SELECTED_COMPANY_ID);
+        $this->db->limit(1);
+        $result = $this->db->get('movements');
+        $arr = $result->row_array();
+// if dont find this movement.. dont search other info
+        if (empty($arr)) {
+            return $arr;
+        }
+        $result = $this->db->where('for_movement', $arr['id'])->order_by('position', 'asc')->get('movement_items');
+        $items = $result->result_array();
+        $arr['items'] = $items;
+
+        $result = $this->db->where('for_movement', $arr['id'])->get('movements_clients');
+        $client = $result->row_array();
+        $arr['client'] = $client;
+
+        $result = $this->db->where('for_movement', $arr['id'])->get('movements_firms');
+        $firm = $result->row_array();
+        $arr['firm'] = $firm;
+
+        $result = $this->db->where('for_movement', $arr['id'])->get('movements_translations');
+        $translation = $result->row_array();
+        $arr['translation'] = $translation;
+
+        $result = $this->db->where('for_movement', $arr['id'])->get('movements_from_to_store');
+        $stores = $result->row_array();
+        $arr['f_stores'] = $stores;
+
+        if ($arr['movement_type'] == 'revision') {
+            $result = $this->db->where('for_movement', $arr['id'])->get('movements_revisions');
+            $revision = $result->result_array();
+            $arr['revision'] = $revision;
+        }
+        return $arr;
     }
 
 }

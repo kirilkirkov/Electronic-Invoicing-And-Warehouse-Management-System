@@ -34,13 +34,13 @@ class Home extends MY_Controller
 
     public function getInvoiceFooter()
     {
-        if (!isset($_GET['invNum'])) {
-            log_message('error', 'Call footer for wkhtmltopdf without GET[invNum] variable - ' . print_r($_SESSION['user_login'], true));
+        if (!isset($_GET['num'])) {
+            log_message('error', 'Call footer for wkhtmltopdf without GET[num] variable - ' . print_r($_SESSION['user_login'], true));
             exit;
         }
         $data = array();
-        $data['invNum'] = $_GET['invNum'];
-        $data['invType'] = $_GET['invType'];
+        $data['num'] = $_GET['num'];
+        $data['type'] = $_GET['type'];
         $data['pageTranslate'] = urldecode($_GET['pageTranslate']);
         $this->load->view('invoices_parts/footer.php', $data);
     }

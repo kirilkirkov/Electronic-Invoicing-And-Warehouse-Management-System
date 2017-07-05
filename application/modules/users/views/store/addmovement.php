@@ -317,18 +317,32 @@
                     <label><?= lang('create_inv_remarks') ?><sup><?= lang('visibile_for_client') ?></sup></label>
                     <textarea class="form-control field area" name="remarks"><?= isset($_POST['remarks']) ? $_POST['remarks'] : '' ?></textarea>
                 </div>
-                <div class="payment-type">
-                    <label><?= lang('create_inv_payment_type') ?></label>
-                    <select class="selectpicker payment-method" name="payment_method">
-                        <?php foreach ($paymentMethods as $paymentMethod) { ?>
-                            <option value="<?= $paymentMethod['name'] ?>"><?= $paymentMethod['name'] ?></option>
-                        <?php } if (isset($_POST['payment_method'])) { ?>
-                            <option value="<?= $_POST['payment_method'] ?>" selected=""><?= $_POST['payment_method'] ?></option>
-                        <?php } ?>
-                        <option value="--">--</option>
-                        <option value="createNewMethod"><?= lang('create_new_pay_method') ?></option>
-                    </select> 
-                </div> 
+                <div class="row">
+                    <div class="col-sm-7">
+                        <div class="payment-type">
+                            <label><?= lang('create_inv_payment_type') ?></label>
+                            <select class="selectpicker payment-method" name="payment_method">
+                                <?php foreach ($paymentMethods as $paymentMethod) { ?>
+                                    <option value="<?= $paymentMethod['name'] ?>"><?= $paymentMethod['name'] ?></option>
+                                <?php } if (isset($_POST['payment_method'])) { ?>
+                                    <option value="<?= $_POST['payment_method'] ?>" selected=""><?= $_POST['payment_method'] ?></option>
+                                <?php } ?>
+                                <option value="--">--</option>
+                                <option value="createNewMethod"><?= lang('create_new_pay_method') ?></option>
+                            </select> 
+                        </div> 
+                    </div> 
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <label><?= lang('momvem_betrayed') ?></label>
+                            <input type="text" class="form-control field" name="betrayed" value="">
+                        </div>
+                        <div class="form-group">
+                            <label><?= lang('momvem_accepted') ?></label>
+                            <input type="text" class="form-control field" name="accepted" value="">
+                        </div>
+                    </div>
+                </div>
             </div> 
             <a href="javascript:void(0);" onclick="validateStoreMovement()" class="btn btn-green"><?= lang('create_store_movement') ?></a>
             <?= lang('or') ?>
@@ -397,6 +411,10 @@
                             <input type="text" name="address" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
                         </div>
                         <div class="form-group">
+                            <label><?= lang('trans_city') ?></label>
+                            <input type="text" name="city" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                        </div>
+                        <div class="form-group">
                             <label><?= lang('trans_betrayed') ?></label>
                             <input type="text" name="betrayed" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
                         </div>
@@ -451,6 +469,10 @@
                         <div class="form-group">
                             <label><?= lang('trans_payment_method') ?></label>
                             <input type="text" name="payment_method" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                        </div> 
+                        <div class="form-group">
+                            <label><?= lang('trans_page') ?></label>
+                            <input type="text" name="page" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
                         </div> 
                     </form>
                 </div>

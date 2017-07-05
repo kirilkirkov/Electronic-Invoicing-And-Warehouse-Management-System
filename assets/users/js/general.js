@@ -366,27 +366,32 @@ $('.list-action').click(function () {
         return;
     }
     if (action == 'delete') {
-        bootbox.confirm({
-            message: lang.confirmDelete,
-            buttons: {
-                confirm: {
-                    label: 'Yes',
-                    className: 'btn-success'
-                },
-                cancel: {
-                    label: 'No',
-                    className: 'btn-danger'
-                }
-            },
-            callback: function (result) {
-                if (result) {
-                    document.getElementById('action-form').submit();
-                }
-            }
-        });
-    } else {
-        document.getElementById('action-form').submit();
+        var the_message = lang.confirmDelete;
     }
+    if (action == 'stat_canceled') {
+        var the_message = lang.confirmCancel;
+    }
+    if (action == 'remove_canceled') {
+        var the_message = lang.confirmRemoveCancel;
+    }
+    bootbox.confirm({
+        message: the_message,
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                document.getElementById('action-form').submit();
+            }
+        }
+    });
 });
 /*
  * Change invoices payment status
