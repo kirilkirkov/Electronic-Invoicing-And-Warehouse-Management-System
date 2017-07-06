@@ -484,4 +484,40 @@ class StoreModel extends CI_Model
         return $arr;
     }
 
+    public function countStocks($get = null)
+    {
+        if ($get != null && is_array($get)) {
+            if (trim($get['store']) != '') {
+                $this->db->where('stock_availability.for_store', (int) $get['store']);
+            }
+            if (trim($get['item']) != '') {
+                $this->db->where('items.name', $get['item']);
+            }
+        }
+        $this->db->where('stock_availability.for_user', USER_ID);
+        $this->db->where('stock_availability.for_company', SELECTED_COMPANY_ID);
+        $this->db->join('items', 'items.id = stock_availability.item_id');
+        $this->db->join('stores', 'stores.id = stock_availability.for_store');
+        return $this->db->count_all_results('stock_availability');
+    }
+
+    public function getStockQuantities($limit, $page, $get = null)
+    {
+        if ($get != null && is_array($get)) {
+            if (trim($get['store']) != '') {
+                $this->db->where('stock_availability.for_store', (int) $get['store']);
+            }
+            if (trim($get['item']) != '') {
+                $this->db->where('items.name', $get['item']);
+            }
+        }
+        $this->db->select('items.name, stock_availability.quantity, stores.name as store_name');
+        $this->db->where('stock_availability.for_user', USER_ID);
+        $this->db->where('stock_availability.for_company', SELECTED_COMPANY_ID);
+        $this->db->join('items', 'items.id = stock_availability.item_id');
+        $this->db->join('stores', 'stores.id = stock_availability.for_store');
+        $result = $this->db->get('stock_availability', $limit, $page);
+        return $result->result_array();
+    }
+
 }

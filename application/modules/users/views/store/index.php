@@ -15,6 +15,7 @@
 <?php if ($this->permissions->hasPerm('perm_view_movement_page')) { ?>
     <a href="<?= lang_url('user/settings/stores') ?>" class="btn btn-default"><?= lang('store_settings') ?></a>
     <a href="<?= lang_url('user/store/add-movement') ?>" class="btn btn-default"><?= lang('add_store_movement') ?></a>
+    <a href="<?= lang_url('user/store/stocks') ?>" class="btn btn-default"><?= lang('store_stocks') ?></a>
 
     <button data-toggle="collapse" data-target="#store-search">Collapsible</button>
     <div id="store-search" class="collapse">    

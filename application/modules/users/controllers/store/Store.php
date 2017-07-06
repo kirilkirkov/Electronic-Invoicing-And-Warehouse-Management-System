@@ -150,4 +150,17 @@ class Store extends USER_Controller
         return $errors;
     }
 
+    public function stocks($page = 0)
+    {
+        $data = array();
+        $head = array();
+        $head['title'] = 'Administration - Home';
+        $data['myStores'] = $this->StoreModel->getStores();
+        $rowscount = $this->StoreModel->countStocks($this->num_rows, $page, $_GET);
+        $data['stockQuantities'] = $this->StoreModel->getStockQuantities($this->num_rows, $page, $_GET);
+        $data['linksPagination'] = pagination('user/store/stocks', $rowscount, $this->num_rows, 4);
+        $this->render('store/stocks', $head, $data);
+        $this->saveHistory('Go to store stocks');
+    }
+
 }

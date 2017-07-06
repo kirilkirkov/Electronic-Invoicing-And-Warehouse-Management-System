@@ -28,7 +28,7 @@ if ($movement['movement'] == 'move') {
 if ($movement['movement_type'] == 'revision') {
     $from = $movement['f_stores']['from_store'];
     $to = $movement['f_stores']['to_store'];
-}
+} 
 ?>
 <div class="row">
     <div class="col-sm-6">
@@ -38,6 +38,8 @@ if ($movement['movement_type'] == 'revision') {
         <p><?= lang('preview_movem_status') ?> <?= $movem['cancelled'] == 0 ? lang('movem_stat_confirmed') : lang('movem_stat_cancelled') ?><p>
         <p><?= lang('preview_movem_from') ?> <?= $from ?><p>
         <p><?= lang('preview_movem_to') ?> <?= $to ?><p>
+        <p><?= lang('preview_movem_betrayed') ?> <?= $movement['betrayed'] ?><p>
+        <p><?= lang('preview_movem_accepted') ?> <?= $movement['accepted'] ?><p>
     </div>
     <div class="col-sm-6">
         <a href="<?= lang_url('user/bill-of-lading/print/' . $movement['movement_number']) ?>"><?= lang('bill_of_lading') ?></a>
