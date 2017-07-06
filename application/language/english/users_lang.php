@@ -462,3 +462,6 @@ $lang['no_stocks_yet'] = 'No stocks';
 $lang['back_to_movements'] = 'Back to movements';
 $lang['countInvoices'] = 'Count invoices:';
 $lang['with_sum_of'] = 'With sum of';
+$lang['report_show_paid'] = 'Show only paid invoices';
+$lang['report_show_unpaid'] = 'Show only unpaid invoices';
+$lang['report_show_all'] = 'Show only all (paid, unpaid) invoices';

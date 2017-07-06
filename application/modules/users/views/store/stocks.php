@@ -20,6 +20,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     <select class="selectpicker" name="store"> 
+                        <option value=""></option>
                         <?php
                         foreach ($myStores as $store) {
                             ?>

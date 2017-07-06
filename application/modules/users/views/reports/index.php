@@ -25,6 +25,13 @@
                 <label for="to_date"><?= lang('to_date') ?></label>
                 <input class="form-control field datepicker" value="<?= isset($_GET['to_date']) ? $_GET['to_date'] : '' ?>" id="to_date" name="to_date" placeholder="dd.mm.yyyy" type="text">
             </div> 
+            <div class="form-group">
+                <select class="selectpicker" name="payment_status"> 
+                    <option <?= !isset($_GET['payment_status']) || $_GET['payment_status'] == 'all' ? 'selected="selected"' : '' ?> value="all"><?= lang('report_show_all') ?></option>
+                    <option <?= isset($_GET['payment_status']) && $_GET['payment_status'] == 'paid' ? 'selected="selected"' : '' ?> value="paid"><?= lang('report_show_paid') ?></option>
+                    <option <?= isset($_GET['payment_status']) && $_GET['payment_status'] == 'unpaid' ? 'selected="selected"' : '' ?> value="unpaid"><?= lang('report_show_unpaid') ?></option>
+                </select>
+            </div>
             <div class="checkbox">
                 <label><input type="checkbox" <?= isset($_GET['show_drafts']) && $_GET['show_drafts'] == 'true' ? 'checked="checked"' : '' ?> name="show_drafts" value="true"><?= lang('show_drafts_report') ?></label>
             </div>
