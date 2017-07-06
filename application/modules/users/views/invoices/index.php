@@ -151,6 +151,7 @@
                     <?php } ?>
                 </tbody>
             </table>
+            <?= lang('countInvoices') . $countInvoices . ' ' . lang('with_sum_of') . ' ' . round($sumAmount, $opt_invRoundTo) ?>
         </div>
         <div id="payment-statuses">
             <a href="javascript:void(0);" data-new-pay-status="paid" class="change-pay-status"><?= lang('payment_status_paid') ?></a>

@@ -32,6 +32,8 @@ class Invoices extends USER_Controller
         $data['inv_readable_types'] = $this->config->item('inv_readable_types');
         $data['linksPagination'] = pagination('user/invoices', $rowscount, $this->num_rows, 3);
         $data['paymentMethods'] = $this->NewInvoiceModel->getPaymentMethods();
+        $data['countInvoices'] = $rowscount;
+        $data['sumAmount'] = $this->InvoicesModel->sumOfAmounts($_GET);
         $this->render('invoices/index', $head, $data);
         $this->saveHistory('Go to invoices page');
     }

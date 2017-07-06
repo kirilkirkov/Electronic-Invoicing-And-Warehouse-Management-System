@@ -21,6 +21,21 @@ class InvoicesModel extends CI_Model
         return $this->db->count_all_results('invoices');
     }
 
+    public function sumOfAmounts($get = null)
+    {
+        if (!empty($get) && $get != null) {
+            $this->setInvoicesSearchFilter($get);
+        }
+        $this->db->select('SUM(invoices.final_total) as sumAmount');
+        $this->db->where('invoices.for_user', USER_ID);
+        $this->db->where('invoices.for_company', SELECTED_COMPANY_ID);
+        $this->db->where('invoices.is_deleted', 0);
+        $this->db->join('invoices_clients', 'invoices_clients.for_invoice = invoices.id');
+        $result = $this->db->get('invoices');
+        $row = $result->row_array();
+        return $row['sumAmount'];
+    }
+
     public function getInvoices($limit, $page, $get = null)
     {
         if (!empty($get) && $get != null) {

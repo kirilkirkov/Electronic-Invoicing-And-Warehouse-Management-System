@@ -460,3 +460,5 @@ $lang['preview_movem_betrayed'] = 'Betrayed:';
 $lang['preview_movem_accepted'] = 'Accepted:';
 $lang['no_stocks_yet'] = 'No stocks';
 $lang['back_to_movements'] = 'Back to movements';
+$lang['countInvoices'] = 'Count invoices:';
+$lang['with_sum_of'] = 'With sum of';
