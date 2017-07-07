@@ -566,7 +566,9 @@ $config['permissions'] = array(
     'perm_view_movement_page' => 1,
     'perm_view_store_stocks' => 1,
     'perm_view_warranty_page' => 1,
-    'perm_add_warranty' => 1
+    'perm_add_warranty' => 1,
+    'perm_view_warranty_events' => 1,
+    'perm_add_warranty_events' => 1
 );
 $config['templates'] = array(
     'creative'

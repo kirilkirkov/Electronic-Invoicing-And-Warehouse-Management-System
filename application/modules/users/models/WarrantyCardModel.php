@@ -450,4 +450,27 @@ class WarrantyCardModel extends CI_Model
         }
     }
 
+    public function setWarrantyEvent($post, $warrantyId)
+    {
+        $insertArray = array(
+            'for_warranty' => $warrantyId,
+            'type' => $post['type'],
+            'on_date' => strtotime($post['on_date']),
+            'item' => $post['item'],
+            'description' => $post['description'],
+            'created' => time()
+        );
+        if (!$this->db->insert('warranty_events`', $insertArray)) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+    }
+
+    public function getWarrantyEvents($id)
+    {
+        $this->db->where('for_warranty', $id);
+        $result = $this->db->get('warranty_events');
+        return $result->result_array();
+    }
+
 }

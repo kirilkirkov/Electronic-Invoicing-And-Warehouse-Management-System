@@ -50,6 +50,7 @@
                             <th><?= lang('list_war_to_inv') ?></th>
                             <th><?= lang('list_war_valid_from') ?></th>
                             <th><?= lang('list_war_client') ?></th>
+                            <th><?= lang('list_war_events') ?></th>
                             <th><?= lang('list_war_action') ?></th>
                         </tr>
                     </thead>
@@ -63,6 +64,7 @@
                                 <td><?= $warranty['to_invoice'] ?></td>
                                 <td><?= date('d.m.Y', $warranty['valid_from']) ?></td>
                                 <td><?= $warranty['client'] ?></td>
+                                <td><a href="<?= lang_url('user/warranty/events/' . $warranty['warranty_number']) ?>" class="btn btn-default"><?= lang('war_events') ?></a></td>
                                 <td><a href="<?= lang_url('user/warranty/edit/' . $warranty['warranty_number']) ?>"><?= lang('edit_warranty') ?></a></td> 
                             </tr>
                         <?php } ?>

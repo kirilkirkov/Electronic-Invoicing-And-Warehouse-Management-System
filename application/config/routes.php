@@ -141,6 +141,8 @@ $route['user/warranty/print/(:num)'] = "users/warranty/warrantyview/viewWarranty
 $route['user/warranty/edit/(:num)'] = "users/warranty/warranty/addwarranty/$1";
 $route['user/settings/warranty'] = "users/settings/warranty";
 $route['user/settings/warranty/delete/condition/(:num)'] = "users/settings/warranty/deleteCondition/$1";
+$route['user/warranty/events/(:num)'] = "users/warranty/events/index/$1";
+$route['user/warranty/events/(:num)/add-event'] = "users/warranty/events/addevent/$1";
 $route['pdffooter'] = 'home/getinvoicefooter';
 /* USERS PANEL ROUTES */
 
