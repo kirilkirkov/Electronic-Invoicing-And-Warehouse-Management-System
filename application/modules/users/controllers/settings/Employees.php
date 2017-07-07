@@ -48,6 +48,7 @@ class Employees extends USER_Controller
         if ($id > 0) {
             $result = $this->SettingsModel->getEmployeeInfo($id);
             if (empty($result)) {
+                log_message('error', 'User with id - ' . USER_ID . ' gets 404 when try to edit employee with id - ' . $id);
                 show_404();
             }
             unset($result['password']);

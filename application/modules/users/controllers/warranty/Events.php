@@ -26,6 +26,7 @@ class Events extends USER_Controller
         $head['title'] = 'Administration - Home';
         $warranty = $this->WarrantyCardModel->getWarrantyByNumber($number);
         if (empty($warranty)) {
+            log_message('error', 'User with id - ' . USER_ID . ' gets 404 when try to open events for warranty with number - ' . $number);
             show_404();
         }
         $data['events'] = $this->WarrantyCardModel->getWarrantyEvents($warranty['id']);
@@ -40,6 +41,7 @@ class Events extends USER_Controller
         $head['title'] = 'Administration - Home';
         $warranty = $this->WarrantyCardModel->getWarrantyByNumber($number);
         if (empty($warranty)) {
+            log_message('error', 'User with id - ' . USER_ID . ' gets 404 when try to add event for warranty with number - ' . $number);
             show_404();
         }
         $this->warrantyId = $warranty['id'];

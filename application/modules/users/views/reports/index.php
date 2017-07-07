@@ -187,5 +187,5 @@
         });
     </script>
 <?php } else { ?>
-    <h1 class="no-invoices"><?= lang('no_reports_yet') ?></h1>
+    <h1 class="no-results-found"><?= lang('no_reports_yet') ?></h1>
 <?php } ?>

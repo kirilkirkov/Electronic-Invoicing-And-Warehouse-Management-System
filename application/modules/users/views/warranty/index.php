@@ -74,7 +74,7 @@
         </form>
         <?= $linksPagination ?>
     <?php } else { ?>
-        <h1 class="no-invoices"><?= lang('no_warranties_yet') ?></h1>
+        <h1 class="no-results-found"><?= lang('no_warranties_yet') ?></h1>
     <?php } ?>
 
 <?php } else { ?>

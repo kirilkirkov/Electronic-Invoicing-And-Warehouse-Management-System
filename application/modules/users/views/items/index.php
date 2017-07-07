@@ -70,5 +70,5 @@
     </form>
     <?= $linksPagination ?>
 <?php } else { ?>
-    <h1 class="no-invoices"><?= lang('no_items_yet') ?></h1>
+    <h1 class="no-results-found"><?= lang('no_items_yet') ?></h1>
 <?php } ?>

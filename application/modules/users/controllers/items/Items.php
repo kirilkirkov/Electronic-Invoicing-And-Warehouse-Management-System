@@ -45,6 +45,7 @@ class Items extends USER_Controller
         if ($id > 0) {
             $result = $this->ItemsModel->getItemInfo($id);
             if (empty($result)) {
+                log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to edit item with id -' . $id);
                 show_404();
             }
             $_POST = $result;
@@ -117,6 +118,7 @@ class Items extends USER_Controller
         $head['title'] = 'Administration - Home';
         $result = $this->ItemsModel->getItemInfo($id);
         if (empty($result)) {
+            log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to view item with id -' . $id);
             show_404();
         }
         $data['itemInfo'] = $result;

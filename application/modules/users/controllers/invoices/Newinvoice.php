@@ -37,6 +37,7 @@ class Newinvoice extends USER_Controller
             $inv_readable_types = array_flip($this->config->item('inv_readable_types'));
             $result = $this->NewInvoiceModel->getInvoiceByNumber($inv_readable_types[$invType], $invNum);
             if (empty($result)) {
+                log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to edit invoice with type -' . $invType . ' and number - ' . $invNum);
                 show_404();
             }
             $this->editId = $result['id'];

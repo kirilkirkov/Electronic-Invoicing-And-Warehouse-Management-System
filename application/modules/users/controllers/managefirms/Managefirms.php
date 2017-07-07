@@ -43,6 +43,7 @@ class Managefirms extends USER_Controller
     public function deleteCompany($companyId)
     {
         if (!in_array($companyId, $this->canUseFirms)) {
+            log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to delete company with id -' . $companyId);
             show_404();
         }
         $this->ManagefirmsModel->deleteCompany($companyId);
@@ -63,15 +64,17 @@ class Managefirms extends USER_Controller
         $head = array();
         $head['title'] = ' ';
         if (!in_array($companyId, $this->canUseFirms)) {
+            log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to edit company with id -' . $companyId . ' No permissions!');
             show_404();
         }
         $result = $this->getCompanyInfo($companyId);
         if (empty($result['company']) || !is_numeric($companyId)) {
+            log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to edit company with id -' . $companyId . ' Not found this id or is not numeric searched for id');
             show_404();
         }
         if ($translateId > 0) {
             $companyTranslate = $this->ManagefirmsModel->getTranslationInfo($translateId, $companyId);
-            if (empty($companyTranslate)) {
+            if (empty($companyTranslate)) { 
                 show_404();
             }
             $data['companyTranslate'] = $companyTranslate;

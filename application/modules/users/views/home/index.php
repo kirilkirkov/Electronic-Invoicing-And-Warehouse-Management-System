@@ -8,7 +8,7 @@
             <div id="report-num-invoices"></div>
             <?php include 'application/modules/users/views/reports/reportNumInvoices.php'; ?>
         <?php } else { ?>
-            <h1 class="no-invoices"><?= lang('no_reports_yet_all_time') ?></h1>
+            <h1 class="no-results-found"><?= lang('no_reports_yet_all_time') ?></h1>
             <?php
         }
     }

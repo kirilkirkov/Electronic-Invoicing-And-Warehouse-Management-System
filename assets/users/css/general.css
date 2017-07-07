@@ -121,6 +121,7 @@ header h1 {font-size:26px;}
 .invoice-search-result a {display: block;}
 .client-search-result a {display: block;}
 .item-search-result a {display: block;} 
+.no-results-found {}
 footer { background-color: #f8f8f8;    border-top: 1px solid #e7e7e7;    bottom: 0;    color: #333;    height: 60px;    left: 0;    padding: 20px 0;    position: absolute;    text-align: center;    width: 100%;}
 
 @media screen and (max-width: 767px) {

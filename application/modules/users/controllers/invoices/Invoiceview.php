@@ -25,6 +25,7 @@ class Invoiceview extends USER_Controller
         $inv_readable_types_flip = array_flip($this->config->item('inv_readable_types'));
         $invoice = $this->getInvoiceByNumber($inv_readable_types_flip[$invType], $invNum);
         if ($invoice == null) {
+            log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to view invoice with type -' . $invType . ' and number - ' . $invNum);
             show_404();
         }
         $choosedTemplate = 'creative';
@@ -47,6 +48,7 @@ class Invoiceview extends USER_Controller
         $inv_readable_types = array_flip($this->config->item('inv_readable_types'));
         $invoice = $this->getInvoiceByNumber($inv_readable_types[$invType], $invNum);
         if ($invoice == null) {
+            log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to render PDF invoice with type -' . $invType . ' and number - ' . $invNum);
             show_404();
         }
         $choosedTemplate = 'creative';

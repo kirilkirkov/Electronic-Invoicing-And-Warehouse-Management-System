@@ -25,6 +25,7 @@ class Movementview extends USER_Controller
 
         $movement = $this->StoreModel->getMovementByNumber($movementNumber);
         if ($movement == null) {
+            log_message('error', 'User with id - ' . USER_ID . ' gets 404 when try to open movement with number - ' . $movementNumber);
             show_404();
         }
         $data['movement'] = $movement;
@@ -36,6 +37,7 @@ class Movementview extends USER_Controller
     {
         $movement = $this->StoreModel->getMovementByNumber($movementNumber);
         if ($movement == null) {
+            log_message('error', 'User with id - ' . USER_ID . ' gets 404 when try to view as PDF movement with number - ' . $movementNumber);
             show_404();
         }
         $choosedTemplate = 'default';

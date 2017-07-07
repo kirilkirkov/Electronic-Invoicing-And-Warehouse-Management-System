@@ -45,6 +45,7 @@ class Clients extends USER_Controller
         if ($id > 0) {
             $result = $this->ClientsModel->getClientInfo($id);
             if (empty($result)) {
+                log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to edit client with id -' . $id);
                 show_404();
             }
             $_POST = $result;
@@ -118,6 +119,7 @@ class Clients extends USER_Controller
         $head['title'] = 'Administration - Home';
         $result = $this->ClientsModel->getClientInfo($id);
         if (empty($result)) {
+            log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to view client with id -' . $id);
             show_404();
         }
         $data['clientInfo'] = $result;

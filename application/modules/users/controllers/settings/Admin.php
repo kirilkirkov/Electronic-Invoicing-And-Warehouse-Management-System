@@ -20,6 +20,7 @@ class Admin extends USER_Controller
     public function index()
     {
         if (defined('EMPLOYEE_ID')) {
+            log_message('error', 'Employee with user id - ' . USER_ID . ' and employee id - ' . EMPLOYEE_ID . ' try to open administration');
             show_404();
         }
         $data = array();

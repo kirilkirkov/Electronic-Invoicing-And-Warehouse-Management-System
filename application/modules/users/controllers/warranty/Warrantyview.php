@@ -26,6 +26,7 @@ class Warrantyview extends USER_Controller
     {
         $warranty = $this->WarrantyCardModel->getWarrantyByNumber($warrantyNumber);
         if ($warranty == null) {
+            log_message('error', 'User with id - ' . USER_ID . ' gets 404 when try to open as PDF warranty with number - ' . $warrantyNumber);
             show_404();
         }
         $choosedTemplate = 'default';

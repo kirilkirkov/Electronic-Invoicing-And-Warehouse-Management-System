@@ -73,6 +73,7 @@ class Warranty extends USER_Controller
         if ($number > 0) {
             $result = $this->WarrantyCardModel->getWarrantyByNumber($number);
             if (empty($result)) {
+                log_message('error', 'User with id - ' . USER_ID . ' gets 404 when try to edit warranty with number - ' . $number);
                 show_404();
             }
             $this->editId = $result['id'];

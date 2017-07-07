@@ -27,7 +27,7 @@
         }
     } else {
         ?>
-        <h1 class="no-invoices"><?= lang('no_war_events_yet') ?></h1>
+        <h1 class="no-results-found"><?= lang('no_war_events_yet') ?></h1>
         <?php
     }
     ?>
