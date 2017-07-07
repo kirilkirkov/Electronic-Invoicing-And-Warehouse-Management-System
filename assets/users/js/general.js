@@ -145,10 +145,14 @@ $('.add-new-item').click(function () {
     if (!selectedOption) {
         selectedOption = $('.currency-text').first().text();
     }
-    obj.find('.item-total-price').append('<span class="item-total">0.00</span> <span class="currency-text">' + selectedOption + '</span><input type="hidden" class="item-total" value="0.00" name="items_totals[]">');
+    obj.find('.item-total-price').append('<span class="item-total">0.00</span> <input type="hidden" class="item-total field" value="0.00" name="items_totals[]"> <span class="currency-text">' + selectedOption + '</span>');
     $('.body-items .actions').css('display', 'inline-block');
     numItemsDefault = numItemsDefault + 1;
     obj.find('.quantity-type select').attr('data-my-id', numItemsDefault);
+    if (createDocument.calculatorStatus == 0) {
+        $('input.item-total, [name="invoice_amount"], [name="tax_base"], [name="vat_sum"], [name="final_total"]').attr('type', 'text');
+
+    }
 });
 /*
  * Remove Item in create invoice page
