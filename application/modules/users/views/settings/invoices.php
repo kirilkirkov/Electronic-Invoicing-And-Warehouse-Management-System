@@ -242,7 +242,7 @@
         </form>
     </div>    
     <div class="col-sm-4">     
-        <h4><?= lang('stop_movem_calculator') ?></h4>
+        <h4><?= lang('stop_inv_calculator') ?></h4>
         <form method="POST" action="">
             <div class="input-group">
                 <input class="form-control field" name="opt_invCalculator" value="<?= $opt_invCalculator ?>" type="text">

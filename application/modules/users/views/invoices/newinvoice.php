@@ -258,7 +258,7 @@
                             <div class="col-sm-6">
                                 <div class="amount">
                                     <span id="items-total"><?= isset($_POST['invoice_amount']) ? $_POST['invoice_amount'] : '0.00' ?></span> 
-                                    <input type="hidden" value="<?= isset($_POST['invoice_amount']) ? $_POST['invoice_amount'] : '0.00' ?>" name="invoice_amount" class="items-total">
+                                    <input type="hidden" value="<?= isset($_POST['invoice_amount']) ? $_POST['invoice_amount'] : '0.00' ?>" name="invoice_amount" class="items-total field">
                                     <span class="currency-text">
                                         <?= $theCurrency ?>
                                     </span>
@@ -290,7 +290,7 @@
                             <div class="col-sm-6">
                                 <div class="amount">
                                     <span id="tax-base"><?= isset($_POST['tax_base']) ? $_POST['tax_base'] : '0.00' ?></span>
-                                    <input type="hidden" value="<?= isset($_POST['tax_base']) ? $_POST['tax_base'] : '0.00' ?>" name="tax_base" class="tax-base">
+                                    <input type="hidden" value="<?= isset($_POST['tax_base']) ? $_POST['tax_base'] : '0.00' ?>" name="tax_base" class="tax-base field">
                                     <span class="currency-text">
                                         <?= $theCurrency ?>
                                     </span>
@@ -313,7 +313,7 @@
                             <div class="col-sm-6"> 
                                 <div class="amount the-vat" <?= isset($_POST['no_vat']) && $_POST['no_vat'] == 1 ? 'style="display:none;"' : '' ?>>
                                     <span id="vat-sum"><?= isset($_POST['vat_sum']) ? $_POST['vat_sum'] : '0.00' ?></span> 
-                                    <input type="hidden" name="vat_sum" value="<?= isset($_POST['vat_sum']) ? $_POST['vat_sum'] : '0.00' ?>" class="vat-sum">
+                                    <input type="hidden" name="vat_sum" value="<?= isset($_POST['vat_sum']) ? $_POST['vat_sum'] : '0.00' ?>" class="vat-sum field">
                                     <span class="currency-text">
                                         <?= $theCurrency ?>
                                     </span>
@@ -340,7 +340,7 @@
                             <div class="col-sm-6">
                                 <div class="amount total">
                                     <span id="final-total"><?= isset($_POST['final_total']) ? $_POST['final_total'] : '0.00' ?></span>
-                                    <input type="hidden" name="final_total" class="final-total" value="<?= isset($_POST['final_total']) ? $_POST['final_total'] : '0.00' ?>">
+                                    <input type="hidden" name="final_total" class="final-total field" value="<?= isset($_POST['final_total']) ? $_POST['final_total'] : '0.00' ?>">
                                     <span class="currency-text">
                                         <?= $theCurrency ?>
                                     </span>
@@ -566,7 +566,15 @@
             </div>
         </div>
     </div>
-    <?php
+    <?php if ($opt_invCalculator == 0) { ?>
+        <style>
+            span.item-total, #items-total, #tax-base, #vat-sum, #final-total {display: none;}
+        </style>
+        <script>
+            $('input.item-total, [name="invoice_amount"], [name="tax_base"], [name="vat_sum"], [name="final_total"]').attr('type', 'text');
+        </script>
+        <?php
+    }
     /*
      * if edit invoice and have more from one items
      * show action buttons

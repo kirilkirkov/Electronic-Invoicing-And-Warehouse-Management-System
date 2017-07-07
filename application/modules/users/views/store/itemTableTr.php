@@ -39,11 +39,11 @@
     </td>
     <td class="text-right">
         <div class="item-total-price">
-            <span class="item-total"><?= isset($itemPost) ? $itemPost['total_price'] : '0.00' ?></span> 
+            <span class="item-total"><?= isset($itemPost) ? $itemPost['total_price'] : '0.00' ?></span>
+            <input type="hidden" class="item-total field" value="<?= isset($itemPost) ? $itemPost['total_price'] : '0.00' ?>" name="items_totals[]">
             <span class="currency-text">
                 <?= $theCurrency ?>
-            </span>
-            <input type="hidden" class="item-total" value="<?= isset($itemPost) ? $itemPost['total_price'] : '0.00' ?>" name="items_totals[]">
+            </span> 
         </div>
     </td>
 </tr> 
