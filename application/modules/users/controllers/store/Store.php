@@ -66,7 +66,7 @@ class Store extends USER_Controller
         $data['myNoVatReasons'] = $this->SettingsModel->getMyNoVatReasons();
         $data['movementsLanguages'] = $this->StoreModel->getMyMovementsLanguages();
         $data['allForFirm'] = $this->ManagefirmsModel->getCompanyInfo(SELECTED_COMPANY_ID);
-        $data['nextMovementNumber'] = $this->StoreModel->getNextFreeInvoiceNumber();
+        $data['nextMovementNumber'] = $this->StoreModel->getNextFreeMovementNumber();
         if ($data['myDefaultFirmCurrency'] != null) {
             $theCurrency = $data['myDefaultFirmCurrency'];
         } else {

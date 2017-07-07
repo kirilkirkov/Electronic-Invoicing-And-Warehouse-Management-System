@@ -41,11 +41,15 @@ class Newinvoice extends USER_Controller
             }
             $this->editId = $result['id'];
             $this->postChecker();
+            $currentItems = array();
+            foreach ($result['items'] as $item) {
+                $currentItems[] = $item['id'];
+            }
             $_POST = $result;
         } else {
             $this->postChecker();
         }
- 
+
         $data['editId'] = $this->editId;
         if (isset($_POST['inv_currency'])) {
             $theCurrency = $_POST['inv_currency'];
@@ -54,6 +58,7 @@ class Newinvoice extends USER_Controller
         } else {
             $theCurrency = 'EUR';
         }
+        $data['currentItems'] = $currentItems;
         $data['theCurrency'] = $theCurrency;
         $data['allForFirm'] = $this->ManagefirmsModel->getCompanyInfo(SELECTED_COMPANY_ID);
         $this->render('invoices/newinvoice', $head, $data);

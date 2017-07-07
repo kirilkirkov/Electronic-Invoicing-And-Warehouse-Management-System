@@ -564,7 +564,9 @@ $config['permissions'] = array(
     'perm_can_manage_firms' => 1,
     'perm_add_movement' => 1,
     'perm_view_movement_page' => 1,
-    'perm_view_store_stocks' => 1
+    'perm_view_store_stocks' => 1,
+    'perm_view_warranty_page' => 1,
+    'perm_add_warranty' => 1
 );
 $config['templates'] = array(
     'creative'

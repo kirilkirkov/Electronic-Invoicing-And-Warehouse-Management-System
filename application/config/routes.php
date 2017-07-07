@@ -134,6 +134,13 @@ $route['user/movement/view/(:num)'] = "users/store/movementview/index/$1";
 $route['user/bill-of-lading/print/(:num)'] = "users/store/movementview/viewMovementAsPdf/$1";
 $route['user/store/stocks'] = "users/store/Store/stocks";
 $route['user/store/stocks/(:num)'] = "users/store/Store/stocks/$1";
+$route['user/warranties'] = "users/warranty/warranty";
+$route['user/warranties/(:num)'] = "users/warranty/warranty/index/$1";
+$route['user/warranties/add-warranty'] = "users/warranty/warranty/addwarranty";
+$route['user/warranty/print/(:num)'] = "users/warranty/warrantyview/viewWarrantyAsPdf/$1";
+$route['user/warranty/edit/(:num)'] = "users/warranty/warranty/addwarranty/$1";
+$route['user/settings/warranty'] = "users/settings/warranty";
+$route['user/settings/warranty/delete/condition/(:num)'] = "users/settings/warranty/deleteCondition/$1";
 $route['pdffooter'] = 'home/getinvoicefooter';
 /* USERS PANEL ROUTES */
 

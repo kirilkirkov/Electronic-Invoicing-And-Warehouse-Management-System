@@ -316,6 +316,19 @@ class NewInvoiceModel extends CI_Model
         $numItems = count($post['items_names']) - 1;
         $i = 0;
         $position = 1;
+        $deleteIds = array();
+        foreach (explode(',', $post['onLoadItems']) as $onLoadItem) {
+            if (!in_array($onLoadItem, $post['is_item_update'])) {
+                $deleteIds[] = $onLoadItem;
+            }
+        }
+        if (!empty($deleteIds)) {
+            $this->db->where('for_invoice', $invoiceId);
+            $this->db->where_in('id', $deleteIds);
+            if (!$this->db->delete('invoices_items')) {
+                log_message('error', print_r($this->db->error(), true));
+            }
+        }
         while ($i <= $numItems) {
             /*
              * If is update, update the item

@@ -3,7 +3,7 @@
         <input type="hidden" name="item_from_list[]" value="0">
         <input type="hidden" name="is_item_update[]" value="<?= isset($itemPost) ? $itemPost['id'] : '0' ?>">
         <div class="actions">
-            <a href="javascript:void(0);" class="btn btn-default delete-item" data-my-message="<?= lang('sure_want_to_del_item') ?>">
+            <a href="javascript:void(0);" class="btn btn-default delete-item">
                 <i class="fa fa-times" aria-hidden="true"></i>
             </a>
             <a href="javascript:void(0);" class="btn btn-default move-me">

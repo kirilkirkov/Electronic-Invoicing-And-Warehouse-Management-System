@@ -483,6 +483,15 @@ $('.movement-type').change(function () {
     }
 });
 /*
+ * Choose saved condition 
+ * When create warranty
+ */
+$('.saved-condition').change(function () {
+    var selected_condition = $(this).val();
+    var description_text = $('[data-saved-condition="' + selected_condition + '"]').text();
+    $('[name="conditions"]').empty().append(description_text);
+});
+/*
  * Create draft invoice
  */
 function createDraft() {
@@ -555,7 +564,7 @@ function createNewInvValidate() {
         $('html, body').animate({
             scrollTop: $("#setInvoiceForm").offset().top
         }, 1000);
-        showError(lang.errorCreateInvoice);
+        showError(lang.errorCreateDocument);
     }
 }
 /*
@@ -564,13 +573,10 @@ function createNewInvValidate() {
 function validateStoreMovement() {
     var valid = true;
     var validItems = true;
-
     validItems = validateItems();
-
     if (validItems == false) {
         valid = false;
     }
-
     if (valid == true) {
         document.getElementById('setMovementForm').submit();
     } else {
@@ -582,8 +588,48 @@ function validateStoreMovement() {
         $('html, body').animate({
             scrollTop: $("#setMovementForm").offset().top
         }, 1000);
-        showError(lang.errorCreateInvoice);
+        showError(lang.errorCreateDocument);
     }
+}
+/*
+ * Create warranty validator
+ */
+function validateWarranty() {
+    var valid = true;
+    var validItems = true;
+    validItems = validateWarrantyItems();
+    if (validItems == false) {
+        valid = false;
+    }
+    if (valid == true) {
+        document.getElementById('setWarrantyForm').submit();
+    } else {
+        $('html, body').animate({
+            scrollTop: $("#setWarrantyForm").offset().top
+        }, 1000);
+        showError(lang.errorCreateDocument);
+    }
+}
+function validateWarrantyItems() {
+    var valid = true;
+    $('.body-items tr').each(function () {
+        $('.field-item-name', this).css("border-color", border_color_fields);
+        $('.field-item-months', this).css("border-color", border_color_fields);
+        var item_name = $('.field-item-name', this).val();
+        var items_months = $('.field-item-months', this).val();
+        if (!pattern_sums.test(items_months) || $.trim(items_months).length == 0 || items_months <= 0) {
+            $('.field-item-months', this).css("border-color", border_color_wrong);
+            valid = false;
+        }
+        if ($.trim(item_name).length == 0) {
+            $('.field-item-name', this).css("border-color", border_color_wrong);
+            valid = false;
+        }
+    });
+    if (valid == false) {
+        return false;
+    }
+    return true;
 }
 /*
  * Add items validation
@@ -595,7 +641,7 @@ function validateItems() {
         $('.field-item-name', this).css("border-color", border_color_fields);
         var item_quantity = $('.quantity-field', this).val();
         var item_name = $('.field-item-name', this).val();
-        if (!pattern_sums.test(item_quantity) || item_quantity.length == 0 || item_quantity <= 0) {
+        if (!pattern_sums.test(item_quantity) || $.trim(item_quantity).length == 0 || item_quantity <= 0) {
             $('.quantity-field', this).css("border-color", border_color_wrong);
             valid = false;
         }
@@ -847,7 +893,8 @@ function getItem(id) {
     }
     $('[name="items_quantity_types[]"]:eq(' + chooseItemIndex + ')').val(items[id].quantity_type);
     var selectedCurrency = $('#selectCurrencyNewInv').val();
-    if (selectedCurrency != items[id].currency) {
+    // typeof checking is because in some fileds we do not use currency
+    if (typeof selectedCurrency !== "undefined" && selectedCurrency != items[id].currency) {
         showError(lang.currencyItemNotSame + ' - ' + items[id].currency);
     }
     $('#modalSelector').modal('hide');
@@ -937,4 +984,32 @@ function newEmployeeValidate() {
     } else {
         showError(lang.errorCreateEmployee);
     }
+}
+/*
+ * Validation add warranty conditions
+ */
+function addNewWarrantyCondition() {
+    var valid = true;
+    var condition = $('[name="condition"]').val();
+    condition = $.trim(condition);
+    var condition_title = $('[name="conditionTitle"]').val();
+    condition_title = $.trim(condition_title);
+    if (condition_title.length == 0) {
+        $('[name="conditionTitle"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if (condition.length == 0) {
+        $('[name="condition"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if (valid == true) {
+        document.getElementById('formAddWarrantyCondition').submit();
+    }
+}
+/*
+ * Open preview warranty descriptions
+ */
+function openConditionDescription(id) {
+    var description_text = $('[data-descr-id="' + id + '"]').text();
+    $('#modalDescriptionExplain .modal-body').empty().append(description_text);
 }

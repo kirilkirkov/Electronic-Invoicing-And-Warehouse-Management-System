@@ -365,7 +365,7 @@ class StoreModel extends CI_Model
         return $result->result_array();
     }
 
-    public function getNextFreeInvoiceNumber()
+    public function getNextFreeMovementNumber()
     {
         $this->db->select_max('movement_number');
         $this->db->where('for_user', USER_ID);

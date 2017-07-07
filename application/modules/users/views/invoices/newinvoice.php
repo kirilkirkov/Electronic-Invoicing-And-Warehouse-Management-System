@@ -17,6 +17,9 @@
     <form action="" id="setInvoiceForm" class="site-form" method="POST">
         <input type="hidden" name="client_from_list" value="0"> 
         <input type="hidden" name="status" value="issued"> 
+        <?php if ($editId > 0) { ?>
+            <input type="hidden" name="onLoadItems" value="<?= implode(',', $currentItems) ?>">
+        <?php } ?>
         <div> 
             <div class="choose-translation" <?= $editId > 0 ? 'style="display:none;"' : '' ?>>
                 <select class="selectpicker" name="invoice_translation" title="<?= lang('choose_translation') ?>">

@@ -1,0 +1,30 @@
+/*
+ * Warranty Cards Templates 
+ */
+
+tr {page-break-inside: avoid !important;}
+
+/*
+ * Font family is default of bootstrap  - font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; 
+ */
+.default-warranty { min-height: 1000px; background-color: #fff; padding:35px; font-size:16px;}
+.default-warranty h1 {font-size:22px; margin-bottom: 20px;}
+.default-warranty .client-info {width:300px; float:left;}
+.default-warranty .client-info h1 {text-align: center; background-color: #f4f4f4; padding-top: 5px; padding-bottom: 5px;  font-weight: bold;} 
+.default-warranty .document-type h1 {text-align: center; margin:0; text-transform: uppercase;  font-weight: bold;}
+.default-warranty .firm-info {width:300px;float:right;}
+.default-warranty .firm-info h1 {text-align: center; background-color: #f4f4f4; padding-top: 5px; padding-bottom: 5px; font-weight: bold;} 
+.default-warranty .info { margin-bottom: 20px;}
+.default-warranty .document-info {margin-bottom: 20px;}
+.default-warranty .document-info .number {float:left; width:300px; border:2px solid #f4f4f4; padding: 10px; border-radius: 10px;}
+.default-warranty .document-info .date-create {float:right;width:300px; border:2px solid #f4f4f4; padding: 10px; border-radius: 10px;}
+.default-warranty .items {margin-bottom: 20px;}
+.default-warranty .amounts {margin-bottom: 20px;}
+.default-warranty .amounts .payment-method {float:left; width:300px;}
+.default-warranty .amounts .payment-method p {margin: 0; font-weight: bold;}
+.default-warranty .amounts .amount {float:right; width:300px;}
+.default-warranty .amounts .amount p span { float:right;}
+.default-warranty .transmission .received {float:left;}
+.default-warranty .transmission .compiled {float:right;}
+.default-warranty .transmission span {text-decoration: underline;}
+.default-warranty .conditions {margin-bottom: 20px;}
