@@ -95,11 +95,11 @@ class ManagefirmsModel extends CI_Model
         $this->db->where('for_firm', $companyId);
         $this->db->where('id', $post['translation_id']);
         if (!$this->db->update('firms_translations', array(
-                    'trans_name' => $post['trans_name'],
-                    'name' => $post['firm_name'],
-                    'address' => $post['firm_reg_address'],
-                    'city' => $post['firm_city'],
-                    'mol' => $post['firm_mol'],
+                    'trans_name' => htmlspecialchars($post['trans_name']),
+                    'name' => htmlspecialchars($post['firm_name']),
+                    'address' => htmlspecialchars($post['firm_reg_address']),
+                    'city' => htmlspecialchars($post['firm_city']),
+                    'mol' => htmlspecialchars($post['firm_mol']),
                     'image' => $post['image']
                 ))) {
             log_message('error', print_r($this->db->error(), true));
@@ -111,11 +111,11 @@ class ManagefirmsModel extends CI_Model
     {
         if (!$this->db->insert('firms_translations', array(
                     'for_firm' => $companyId,
-                    'trans_name' => $post['trans_name'],
-                    'name' => $post['firm_name'],
-                    'address' => $post['firm_reg_address'],
-                    'city' => $post['firm_city'],
-                    'mol' => $post['firm_mol'],
+                    'trans_name' => htmlspecialchars($post['trans_name']),
+                    'name' => htmlspecialchars($post['firm_name']),
+                    'address' => htmlspecialchars($post['firm_reg_address']),
+                    'city' => htmlspecialchars($post['firm_city']),
+                    'mol' => htmlspecialchars($post['firm_mol']),
                     'image' => $post['image'],
                     'is_default' => 0
                 ))) {

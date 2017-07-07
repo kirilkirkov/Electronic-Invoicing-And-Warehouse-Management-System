@@ -75,12 +75,12 @@ class WarrantyCardModel extends CI_Model
         $warrantyArray = array(
             'for_user' => USER_ID,
             'for_company' => SELECTED_COMPANY_ID,
-            'warranty_number' => $post['warranty_number'],
+            'warranty_number' => htmlspecialchars($post['warranty_number']),
             'valid_from' => strtotime($post['valid_from_date']),
-            'received' => $post['received'],
-            'compiled' => $post['compiled'],
-            'conditions' => $post['conditions'],
-            'remarks' => $post['remarks'],
+            'received' => htmlspecialchars($post['received']),
+            'compiled' => htmlspecialchars($post['compiled']),
+            'conditions' => htmlspecialchars($post['conditions']),
+            'remarks' => htmlspecialchars($post['remarks']),
             'created' => time()
         );
         if (!$this->db->insert('warranties', $warrantyArray)) {
@@ -107,12 +107,12 @@ class WarrantyCardModel extends CI_Model
         $this->db->trans_begin();
 
         $warrantyArray = array(
-            'warranty_number' => $post['warranty_number'],
-            'received' => $post['received'],
-            'compiled' => $post['compiled'],
+            'warranty_number' => htmlspecialchars($post['warranty_number']),
+            'received' => htmlspecialchars($post['received']),
+            'compiled' => htmlspecialchars($post['compiled']),
             'valid_from' => strtotime($post['valid_from_date']),
-            'conditions' => $post['conditions'],
-            'remarks' => $post['remarks']
+            'conditions' => htmlspecialchars($post['conditions']),
+            'remarks' => htmlspecialchars($post['remarks'])
         );
         $this->db->where('for_user', USER_ID);
         $this->db->where('for_company', SELECTED_COMPANY_ID);
@@ -141,17 +141,17 @@ class WarrantyCardModel extends CI_Model
         $is_to_person = isset($post['is_to_person']) ? 1 : 0;
         $client_vat_registered = isset($post['client_vat_registered']) ? 1 : 0;
         $insertArray = array(
-            'client_name' => $post['client_name'],
-            'client_bulstat' => $post['client_bulstat'],
+            'client_name' => htmlspecialchars($post['client_name']),
+            'client_bulstat' => htmlspecialchars($post['client_bulstat']),
             'is_to_person' => $is_to_person,
             'client_vat_registered' => $client_vat_registered,
-            'vat_number' => $post['vat_number'],
-            'client_ident_num' => $post['client_ident_num'],
-            'client_address' => $post['client_address'],
-            'client_city' => $post['client_city'],
-            'client_country' => $post['client_country'],
-            'accountable_person' => $post['accountable_person'],
-            'recipient_name' => $post['client_name']
+            'vat_number' => htmlspecialchars($post['vat_number']),
+            'client_ident_num' => htmlspecialchars($post['client_ident_num']),
+            'client_address' => htmlspecialchars($post['client_address']),
+            'client_city' => htmlspecialchars($post['client_city']),
+            'client_country' => htmlspecialchars($post['client_country']),
+            'accountable_person' => htmlspecialchars($post['accountable_person']),
+            'recipient_name' => htmlspecialchars($post['client_name'])
         );
         $this->db->where('for_warranty', $warrantyId);
         if (!$this->db->update('warranties_clients ', $insertArray)) {
@@ -184,10 +184,10 @@ class WarrantyCardModel extends CI_Model
              */
             if ($post['is_item_update'][$i] > 0) {
                 $arrItem = array(
-                    'name' => $post['items_names'][$i],
+                    'name' => htmlspecialchars($post['items_names'][$i]),
                     'months' => $post['items_months'][$i],
                     'valid_to' => strtotime('+ ' . (int) $post['items_months'][$i] . ' months', strtotime($post['valid_from_date'])),
-                    'serial' => $post['items_serial_nums'][$i],
+                    'serial' => htmlspecialchars($post['items_serial_nums'][$i]),
                     'position' => $position
                 );
                 $this->db->where('for_warranty', $warrantyId);
@@ -198,9 +198,9 @@ class WarrantyCardModel extends CI_Model
             } else {
                 $arrItem = array(
                     'for_warranty' => $warrantyId,
-                    'name' => $post['items_names'][$i],
-                    'months' => $post['items_months'][$i],
-                    'serial' => $post['items_serial_nums'][$i],
+                    'name' => htmlspecialchars($post['items_names'][$i]),
+                    'months' => htmlspecialchars($post['items_months'][$i]),
+                    'serial' => htmlspecialchars($post['items_serial_nums'][$i]),
                     'position' => $position
                 );
                 if (!$this->db->insert('warranties_items', $arrItem)) {
@@ -222,11 +222,11 @@ class WarrantyCardModel extends CI_Model
         $firm = $result->row_array();
 
         $insertArray = array(
-            'bulstat' => $firm['bulstat'],
-            'name' => $firm['name'],
-            'address' => $firm['address'],
-            'city' => $firm['city'],
-            'accountable_person' => $firm['mol'],
+            'bulstat' => htmlspecialchars($firm['bulstat']),
+            'name' => htmlspecialchars($firm['name']),
+            'address' => htmlspecialchars($firm['address']),
+            'city' => htmlspecialchars($firm['city']),
+            'accountable_person' => htmlspecialchars($firm['mol']),
             'image' => $firm['image'] == null ? '' : $firm['image']
         );
         $this->db->where('for_warranty', $warrantyId);
@@ -259,17 +259,17 @@ class WarrantyCardModel extends CI_Model
         $client_vat_registered = isset($post['client_vat_registered']) ? 1 : 0;
         $insertArray = array(
             'for_warranty' => $warrantyId,
-            'client_name' => $post['client_name'],
-            'client_bulstat' => $post['client_bulstat'],
+            'client_name' => htmlspecialchars($post['client_name']),
+            'client_bulstat' => htmlspecialchars($post['client_bulstat']),
             'is_to_person' => $is_to_person,
             'client_vat_registered' => $client_vat_registered,
-            'vat_number' => $post['vat_number'],
-            'client_ident_num' => $post['client_ident_num'],
-            'client_address' => $post['client_address'],
-            'client_city' => $post['client_city'],
-            'client_country' => $post['client_country'],
-            'accountable_person' => $post['accountable_person'],
-            'recipient_name' => $post['client_name']
+            'vat_number' => htmlspecialchars($post['vat_number']),
+            'client_ident_num' => htmlspecialchars($post['client_ident_num']),
+            'client_address' => htmlspecialchars($post['client_address']),
+            'client_city' => htmlspecialchars($post['client_city']),
+            'client_country' => htmlspecialchars($post['client_country']),
+            'accountable_person' => htmlspecialchars($post['accountable_person']),
+            'recipient_name' => htmlspecialchars($post['client_name'])
         );
         if (!$this->db->insert('warranties_clients ', $insertArray)) {
             log_message('error', print_r($this->db->error(), true));
@@ -284,10 +284,10 @@ class WarrantyCardModel extends CI_Model
         while ($i <= $numItems) {
             $arrItem = array(
                 'for_warranty' => $warrantyId,
-                'name' => $post['items_names'][$i],
-                'months' => $post['items_months'][$i],
+                'name' => htmlspecialchars($post['items_names'][$i]),
+                'months' => htmlspecialchars($post['items_months'][$i]),
                 'valid_to' => strtotime('+ ' . (int) $post['items_months'][$i] . ' months', strtotime($post['valid_from_date'])),
-                'serial' => $post['items_serial_nums'][$i],
+                'serial' => htmlspecialchars($post['items_serial_nums'][$i]),
                 'position' => $position
             );
             if (!$this->db->insert('warranties_items', $arrItem)) {
@@ -309,11 +309,11 @@ class WarrantyCardModel extends CI_Model
 
         $insertArray = array(
             'for_warranty' => $warrantyId,
-            'bulstat' => $firm['bulstat'],
-            'name' => $firm['name'],
-            'address' => $firm['address'],
-            'city' => $firm['city'],
-            'accountable_person' => $firm['mol'],
+            'bulstat' => htmlspecialchars($firm['bulstat']),
+            'name' => htmlspecialchars($firm['name']),
+            'address' => htmlspecialchars($firm['address']),
+            'city' => htmlspecialchars($firm['city']),
+            'accountable_person' => htmlspecialchars($firm['mol']),
             'image' => $firm['image'] == null ? '' : $firm['image']
         );
         if (!$this->db->insert('warranties_firms`', $insertArray)) {
@@ -454,10 +454,10 @@ class WarrantyCardModel extends CI_Model
     {
         $insertArray = array(
             'for_warranty' => $warrantyId,
-            'type' => $post['type'],
+            'type' => htmlspecialchars($post['type']),
             'on_date' => strtotime($post['on_date']),
-            'item' => $post['item'],
-            'description' => $post['description'],
+            'item' => htmlspecialchars($post['item']),
+            'description' => htmlspecialchars($post['description']),
             'created' => time()
         );
         if (!$this->db->insert('warranty_events`', $insertArray)) {

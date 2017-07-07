@@ -42,7 +42,11 @@ class SettingsModel extends CI_Model
 
     public function setNewCurrency($post)
     {
-        if (!$this->db->insert('users_currencies', array('for_user' => USER_ID, 'name' => $post['currencyName'], 'value' => $post['currencyValue']))) {
+        if (!$this->db->insert('users_currencies', array(
+                    'for_user' => USER_ID,
+                    'name' => htmlspecialchars($post['currencyName']),
+                    'value' => htmlspecialchars($post['currencyValue']
+            )))) {
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         }
@@ -157,10 +161,10 @@ class SettingsModel extends CI_Model
     {
         $insertArray = array(
             'for_user' => USER_ID,
-            'name' => $post['name'],
-            'email' => $post['email'],
-            'phone' => $post['phone'],
-            'schiffer' => $post['schiffer'],
+            'name' => htmlspecialchars($post['name']),
+            'email' => htmlspecialchars($post['email']),
+            'phone' => htmlspecialchars($post['phone']),
+            'schiffer' => htmlspecialchars($post['schiffer']),
             'password' => md5salt($post['password']),
             'time_added' => time()
         );

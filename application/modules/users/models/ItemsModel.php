@@ -77,10 +77,10 @@ class ItemsModel extends CI_Model
         $insertArray = array(
             'for_user' => USER_ID,
             'for_company' => SELECTED_COMPANY_ID,
-            'name' => $post['name'],
-            'quantity_type' => $post['quantity_type'],
-            'single_price' => $post['single_price'],
-            'currency' => $post['currency']
+            'name' => htmlspecialchars($post['name']),
+            'quantity_type' => htmlspecialchars($post['quantity_type']),
+            'single_price' => htmlspecialchars($post['single_price']),
+            'currency' => htmlspecialchars($post['currency'])
         );
         if ($post['editId'] > 0) {
             if (!$this->db->where('id', $post['editId'])->update('items', $insertArray)) {

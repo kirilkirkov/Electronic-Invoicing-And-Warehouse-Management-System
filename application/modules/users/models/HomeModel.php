@@ -37,7 +37,7 @@ class HomeModel extends CI_Model
         $this->db->trans_begin();
         if (!$this->db->insert('firms_users', array(
                     'for_user' => USER_ID,
-                    'bulstat' => $post['firm_bulstat'],
+                    'bulstat' => htmlspecialchars($post['firm_bulstat']),
                     'is_default' => $post['is_default']
                 ))) {
             log_message('error', print_r($this->db->error(), true));
@@ -45,10 +45,10 @@ class HomeModel extends CI_Model
         $lastId = $this->db->insert_id();
         if (!$this->db->insert('firms_translations', array(
                     'for_firm' => $lastId,
-                    'name' => $post['firm_name'],
-                    'address' => $post['firm_reg_address'],
-                    'city' => $post['firm_city'],
-                    'mol' => $post['firm_mol'],
+                    'name' => htmlspecialchars($post['firm_name']),
+                    'address' => htmlspecialchars($post['firm_reg_address']),
+                    'city' => htmlspecialchars($post['firm_city']),
+                    'mol' => htmlspecialchars($post['firm_mol']),
                     'trans_name' => $post['trans_name'] == null ? 'default' : $post['trans_name'],
                     'is_default' => 1
                 ))) {

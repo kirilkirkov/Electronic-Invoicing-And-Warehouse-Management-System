@@ -128,31 +128,31 @@ class NewInvoiceModel extends CI_Model
         $insertArray = array(
             'for_user' => USER_ID,
             'for_company' => SELECTED_COMPANY_ID,
-            'inv_type' => $post['inv_type'],
+            'inv_type' => htmlspecialchars($post['inv_type']),
             'status' => !in_array($post['status'], $inv_statuses) ? 'issued' : $post['status'],
-            'inv_number' => $post['inv_number'],
-            'inv_currency' => $post['inv_currency'],
+            'inv_number' => htmlspecialchars($post['inv_number']),
+            'inv_currency' => htmlspecialchars($post['inv_currency']),
             'date_create' => strtotime($post['date_create']),
             'date_tax_event' => strtotime($post['date_tax_event']),
             'cash_accounting' => $cash_accounting,
             'have_maturity_date' => $have_maturity_date,
             'maturity_date' => strtotime($post['maturity_date']),
-            'remarks' => $post['remarks'],
-            'payment_method' => $post['payment_method'],
+            'remarks' => htmlspecialchars($post['remarks']),
+            'payment_method' => htmlspecialchars($post['payment_method']),
             'payment_status' => 'unpaid',
-            'to_inv_number' => $post['to_inv_number'],
+            'to_inv_number' => htmlspecialchars($post['to_inv_number']),
             'to_inv_date' => strtotime($post['to_inv_date']),
-            'invoice_amount' => $post['invoice_amount'],
-            'discount' => $post['discount'],
-            'discount_type' => $post['discount_type'],
-            'tax_base' => $post['tax_base'],
-            'vat_percent' => $post['vat_percent'],
-            'vat_sum' => $post['vat_sum'],
+            'invoice_amount' => htmlspecialchars($post['invoice_amount']),
+            'discount' => htmlspecialchars($post['discount']),
+            'discount_type' => htmlspecialchars($post['discount_type']),
+            'tax_base' => htmlspecialchars($post['tax_base']),
+            'vat_percent' => htmlspecialchars($post['vat_percent']),
+            'vat_sum' => htmlspecialchars($post['vat_sum']),
             'no_vat' => $no_vat,
-            'no_vat_reason' => $post['no_vat_reason'],
-            'final_total' => $post['final_total'],
-            'composed' => $composedFrom,
-            'schiffer' => $schiffer,
+            'no_vat_reason' => htmlspecialchars($post['no_vat_reason']),
+            'final_total' => htmlspecialchars($post['final_total']),
+            'composed' => htmlspecialchars($composedFrom),
+            'schiffer' => htmlspecialchars($schiffer),
             'created' => time(),
             'uniqid' => USER_ID . 'u' . uniqid()
         );
@@ -179,29 +179,29 @@ class NewInvoiceModel extends CI_Model
         $have_maturity_date = isset($post['have_maturity_date']) ? 1 : 0;
         $no_vat = isset($post['no_vat']) ? 1 : 0;
         $updateArray = array(
-            'inv_type' => $post['inv_type'],
-            'inv_number' => $post['inv_number'],
-            'inv_currency' => $post['inv_currency'],
+            'inv_type' => htmlspecialchars($post['inv_type']),
+            'inv_number' => htmlspecialchars($post['inv_number']),
+            'inv_currency' => htmlspecialchars($post['inv_currency']),
             'date_create' => strtotime($post['date_create']),
             'date_tax_event' => strtotime($post['date_tax_event']),
             'cash_accounting' => $cash_accounting,
             'have_maturity_date' => $have_maturity_date,
             'maturity_date' => strtotime($post['maturity_date']),
-            'remarks' => $post['remarks'],
-            'payment_method' => $post['payment_method'],
-            'to_inv_number' => $post['to_inv_number'],
+            'remarks' => htmlspecialchars($post['remarks']),
+            'payment_method' => htmlspecialchars($post['payment_method']),
+            'to_inv_number' => htmlspecialchars($post['to_inv_number']),
             'to_inv_date' => strtotime($post['to_inv_date']),
-            'invoice_amount' => $post['invoice_amount'],
-            'discount' => $post['discount'],
-            'discount_type' => $post['discount_type'],
-            'tax_base' => $post['tax_base'],
-            'vat_percent' => $post['vat_percent'],
-            'vat_sum' => $post['vat_sum'],
+            'invoice_amount' => htmlspecialchars($post['invoice_amount']),
+            'discount' => htmlspecialchars($post['discount']),
+            'discount_type' => htmlspecialchars($post['discount_type']),
+            'tax_base' => htmlspecialchars($post['tax_base']),
+            'vat_percent' => htmlspecialchars($post['vat_percent']),
+            'vat_sum' => htmlspecialchars($post['vat_sum']),
             'no_vat' => $no_vat,
-            'no_vat_reason' => $post['no_vat_reason'],
-            'composed' => $post['composed'],
-            'schiffer' => $post['schiffer'],
-            'final_total' => $post['final_total']
+            'no_vat_reason' => htmlspecialchars($post['no_vat_reason']),
+            'composed' => htmlspecialchars($post['composed']),
+            'schiffer' => htmlspecialchars($post['schiffer']),
+            'final_total' => htmlspecialchars($post['final_total'])
         );
         $this->db->trans_begin();
         if (!$this->db->where('id', $post['editId'])->update('invoices', $updateArray)) {
@@ -235,11 +235,11 @@ class NewInvoiceModel extends CI_Model
         $insertArray = array(
             'for_invoice' => $invoiceId,
             'for_user' => USER_ID,
-            'bulstat' => $firm['bulstat'],
-            'name' => $firm['name'],
-            'address' => $firm['address'],
-            'city' => $firm['city'],
-            'accountable_person' => $firm['mol'],
+            'bulstat' => htmlspecialchars($firm['bulstat']),
+            'name' => htmlspecialchars($firm['name']),
+            'address' => htmlspecialchars($firm['address']),
+            'city' => htmlspecialchars($firm['city']),
+            'accountable_person' => htmlspecialchars($firm['mol']),
             'image' => $firm['image'] == null ? '' : $firm['image']
         );
         if (!$this->db->insert('invoices_firms', $insertArray)) {
@@ -257,11 +257,11 @@ class NewInvoiceModel extends CI_Model
         $firm = $result->row_array();
 
         $updateArray = array(
-            'bulstat' => $firm['bulstat'],
-            'name' => $firm['name'],
-            'address' => $firm['address'],
-            'city' => $firm['city'],
-            'accountable_person' => $firm['mol'],
+            'bulstat' => htmlspecialchars($firm['bulstat']),
+            'name' => htmlspecialchars($firm['name']),
+            'address' => htmlspecialchars($firm['address']),
+            'city' => htmlspecialchars($firm['city']),
+            'accountable_person' => htmlspecialchars($firm['mol']),
             'image' => $firm['image']
         );
         if (!$this->db->where('for_invoice', $invoiceId)->update('invoices_firms', $updateArray)) {
@@ -294,17 +294,17 @@ class NewInvoiceModel extends CI_Model
         $is_to_person = isset($post['is_to_person']) ? 1 : 0;
         $client_vat_registered = isset($post['client_vat_registered']) ? 1 : 0;
         $updateArray = array(
-            'client_name' => $post['client_name'],
-            'client_bulstat' => $post['client_bulstat'],
+            'client_name' => htmlspecialchars($post['client_name']),
+            'client_bulstat' => htmlspecialchars($post['client_bulstat']),
             'is_to_person' => $is_to_person,
             'client_vat_registered' => $client_vat_registered,
-            'vat_number' => $post['vat_number'],
-            'client_ident_num' => $post['client_ident_num'],
-            'client_address' => $post['client_address'],
-            'client_city' => $post['client_city'],
-            'client_country' => $post['client_country'],
-            'accountable_person' => $post['accountable_person'],
-            'recipient_name' => $post['recipient_name'],
+            'vat_number' => htmlspecialchars($post['vat_number']),
+            'client_ident_num' => htmlspecialchars($post['client_ident_num']),
+            'client_address' => htmlspecialchars($post['client_address']),
+            'client_city' => htmlspecialchars($post['client_city']),
+            'client_country' => htmlspecialchars($post['client_country']),
+            'accountable_person' => htmlspecialchars($post['accountable_person']),
+            'recipient_name' => htmlspecialchars($post['recipient_name']),
         );
         if (!$this->db->where('for_invoice', $invoiceId)->update('invoices_clients', $updateArray)) {
             log_message('error', print_r($this->db->error(), true));
@@ -336,11 +336,11 @@ class NewInvoiceModel extends CI_Model
              */
             if ($post['is_item_update'][$i] > 0) {
                 $arrItem = array(
-                    'name' => $post['items_names'][$i],
-                    'quantity' => $post['items_quantities'][$i],
-                    'quantity_type' => $post['items_quantity_types'][$i],
-                    'single_price' => $post['items_prices'][$i],
-                    'total_price' => $post['items_totals'][$i],
+                    'name' => htmlspecialchars($post['items_names'][$i]),
+                    'quantity' => htmlspecialchars($post['items_quantities'][$i]),
+                    'quantity_type' => htmlspecialchars($post['items_quantity_types'][$i]),
+                    'single_price' => htmlspecialchars($post['items_prices'][$i]),
+                    'total_price' => htmlspecialchars($post['items_totals'][$i]),
                     'position' => $position
                 );
                 if (!$this->db->where('for_invoice', $invoiceId)->where('id', $post['is_item_update'][$i])->update('invoices_items', $arrItem)) {
@@ -351,11 +351,11 @@ class NewInvoiceModel extends CI_Model
                     'for_invoice' => $invoiceId,
                     'for_user' => USER_ID,
                     'for_company' => SELECTED_COMPANY_ID,
-                    'name' => $post['items_names'][$i],
-                    'quantity' => $post['items_quantities'][$i],
-                    'quantity_type' => $post['items_quantity_types'][$i],
-                    'single_price' => $post['items_prices'][$i],
-                    'total_price' => $post['items_totals'][$i],
+                    'name' => htmlspecialchars($post['items_names'][$i]),
+                    'quantity' => htmlspecialchars($post['items_quantities'][$i]),
+                    'quantity_type' => htmlspecialchars($post['items_quantity_types'][$i]),
+                    'single_price' => htmlspecialchars($post['items_prices'][$i]),
+                    'total_price' => htmlspecialchars($post['items_totals'][$i]),
                     'position' => $position
                 );
                 if (!$this->db->insert('invoices_items', $arrItem)) {
@@ -375,17 +375,17 @@ class NewInvoiceModel extends CI_Model
             'for_invoice' => $invoiceId,
             'for_user' => USER_ID,
             'for_company' => SELECTED_COMPANY_ID,
-            'client_name' => $post['client_name'],
+            'client_name' => htmlspecialchars($post['client_name']),
             'client_bulstat' => $post['client_bulstat'],
             'is_to_person' => $is_to_person,
             'client_vat_registered' => $client_vat_registered,
-            'vat_number' => $post['vat_number'],
-            'client_ident_num' => $post['client_ident_num'],
-            'client_address' => $post['client_address'],
-            'client_city' => $post['client_city'],
-            'client_country' => $post['client_country'],
-            'accountable_person' => $post['accountable_person'],
-            'recipient_name' => $post['recipient_name'],
+            'vat_number' => htmlspecialchars($post['vat_number']),
+            'client_ident_num' => htmlspecialchars($post['client_ident_num']),
+            'client_address' => htmlspecialchars($post['client_address']),
+            'client_city' => htmlspecialchars($post['client_city']),
+            'client_country' => htmlspecialchars($post['client_country']),
+            'accountable_person' => htmlspecialchars($post['accountable_person']),
+            'recipient_name' => htmlspecialchars($post['recipient_name']),
         );
         if (!$this->db->insert('invoices_clients', $insertArray)) {
             log_message('error', print_r($this->db->error(), true));
@@ -409,11 +409,11 @@ class NewInvoiceModel extends CI_Model
                 'for_invoice' => $invoiceId,
                 'for_user' => USER_ID,
                 'for_company' => SELECTED_COMPANY_ID,
-                'name' => $post['items_names'][$i],
-                'quantity' => $post['items_quantities'][$i],
-                'quantity_type' => $post['items_quantity_types'][$i],
-                'single_price' => $post['items_prices'][$i],
-                'total_price' => $post['items_totals'][$i],
+                'name' => htmlspecialchars($post['items_names'][$i]),
+                'quantity' => htmlspecialchars($post['items_quantities'][$i]),
+                'quantity_type' => htmlspecialchars($post['items_quantity_types'][$i]),
+                'single_price' => htmlspecialchars($post['items_prices'][$i]),
+                'total_price' => htmlspecialchars($post['items_totals'][$i]),
                 'position' => $position
             );
             if (!$this->db->insert('invoices_items', $arrItem)) {
@@ -458,17 +458,17 @@ class NewInvoiceModel extends CI_Model
         $insertArray = array(
             'for_user' => USER_ID,
             'for_company' => SELECTED_COMPANY_ID,
-            'client_name' => $post['client_name'],
-            'client_bulstat' => $post['client_bulstat'],
+            'client_name' => htmlspecialchars($post['client_name']),
+            'client_bulstat' => htmlspecialchars($post['client_bulstat']),
             'is_to_person' => $is_to_person,
             'client_vat_registered' => $client_vat_registered,
-            'vat_number' => $post['vat_number'],
-            'client_ident_num' => $post['client_ident_num'],
-            'client_address' => $post['client_address'],
-            'client_city' => $post['client_city'],
-            'client_country' => $post['client_country'],
-            'accountable_person' => $post['accountable_person'],
-            'recipient_name' => $post['recipient_name'],
+            'vat_number' => htmlspecialchars($post['vat_number']),
+            'client_ident_num' => htmlspecialchars($post['client_ident_num']),
+            'client_address' => htmlspecialchars($post['client_address']),
+            'client_city' => htmlspecialchars($post['client_city']),
+            'client_country' => htmlspecialchars($post['client_country']),
+            'accountable_person' => htmlspecialchars($post['accountable_person']),
+            'recipient_name' => htmlspecialchars($post['recipient_name']),
         );
         if ($post['editId'] > 0) {
             if (!$this->db->where('id', $post['editId'])->update('clients', $insertArray)) {
