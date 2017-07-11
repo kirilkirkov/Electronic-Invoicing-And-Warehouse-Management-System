@@ -75,12 +75,12 @@ class WarrantyCardModel extends CI_Model
         $warrantyArray = array(
             'for_user' => USER_ID,
             'for_company' => SELECTED_COMPANY_ID,
-            'warranty_number' => htmlspecialchars($post['warranty_number']),
+            'warranty_number' => htmlspecialchars(trim($post['warranty_number'])),
             'valid_from' => strtotime($post['valid_from_date']),
-            'received' => htmlspecialchars($post['received']),
-            'compiled' => htmlspecialchars($post['compiled']),
-            'conditions' => htmlspecialchars($post['conditions']),
-            'remarks' => htmlspecialchars($post['remarks']),
+            'received' => htmlspecialchars(trim($post['received'])),
+            'compiled' => htmlspecialchars(trim($post['compiled'])),
+            'conditions' => htmlspecialchars(trim($post['conditions'])),
+            'remarks' => htmlspecialchars(trim($post['remarks'])),
             'created' => time()
         );
         if (!$this->db->insert('warranties', $warrantyArray)) {
@@ -141,17 +141,17 @@ class WarrantyCardModel extends CI_Model
         $is_to_person = isset($post['is_to_person']) ? 1 : 0;
         $client_vat_registered = isset($post['client_vat_registered']) ? 1 : 0;
         $insertArray = array(
-            'client_name' => htmlspecialchars($post['client_name']),
-            'client_bulstat' => htmlspecialchars($post['client_bulstat']),
+            'client_name' => htmlspecialchars(trim($post['client_name'])),
+            'client_bulstat' => htmlspecialchars(trim($post['client_bulstat'])),
             'is_to_person' => $is_to_person,
             'client_vat_registered' => $client_vat_registered,
-            'vat_number' => htmlspecialchars($post['vat_number']),
-            'client_ident_num' => htmlspecialchars($post['client_ident_num']),
-            'client_address' => htmlspecialchars($post['client_address']),
-            'client_city' => htmlspecialchars($post['client_city']),
-            'client_country' => htmlspecialchars($post['client_country']),
-            'accountable_person' => htmlspecialchars($post['accountable_person']),
-            'recipient_name' => htmlspecialchars($post['client_name'])
+            'vat_number' => htmlspecialchars(trim($post['vat_number'])),
+            'client_ident_num' => htmlspecialchars(trim($post['client_ident_num'])),
+            'client_address' => htmlspecialchars(trim($post['client_address'])),
+            'client_city' => htmlspecialchars(trim($post['client_city'])),
+            'client_country' => htmlspecialchars(trim($post['client_country'])),
+            'accountable_person' => htmlspecialchars(trim($post['accountable_person'])),
+            'recipient_name' => htmlspecialchars(trim($post['client_name']))
         );
         $this->db->where('for_warranty', $warrantyId);
         if (!$this->db->update('warranties_clients ', $insertArray)) {
@@ -222,11 +222,11 @@ class WarrantyCardModel extends CI_Model
         $firm = $result->row_array();
 
         $insertArray = array(
-            'bulstat' => htmlspecialchars($firm['bulstat']),
-            'name' => htmlspecialchars($firm['name']),
-            'address' => htmlspecialchars($firm['address']),
-            'city' => htmlspecialchars($firm['city']),
-            'accountable_person' => htmlspecialchars($firm['mol']),
+            'bulstat' => htmlspecialchars(trim($firm['bulstat'])),
+            'name' => htmlspecialchars(trim($firm['name'])),
+            'address' => htmlspecialchars(trim($firm['address'])),
+            'city' => htmlspecialchars(trim($firm['city'])),
+            'accountable_person' => htmlspecialchars(trim($firm['mol'])),
             'image' => $firm['image'] == null ? '' : $firm['image']
         );
         $this->db->where('for_warranty', $warrantyId);
@@ -259,17 +259,17 @@ class WarrantyCardModel extends CI_Model
         $client_vat_registered = isset($post['client_vat_registered']) ? 1 : 0;
         $insertArray = array(
             'for_warranty' => $warrantyId,
-            'client_name' => htmlspecialchars($post['client_name']),
-            'client_bulstat' => htmlspecialchars($post['client_bulstat']),
+            'client_name' => htmlspecialchars(trim($post['client_name'])),
+            'client_bulstat' => htmlspecialchars(trim($post['client_bulstat'])),
             'is_to_person' => $is_to_person,
             'client_vat_registered' => $client_vat_registered,
-            'vat_number' => htmlspecialchars($post['vat_number']),
-            'client_ident_num' => htmlspecialchars($post['client_ident_num']),
-            'client_address' => htmlspecialchars($post['client_address']),
-            'client_city' => htmlspecialchars($post['client_city']),
-            'client_country' => htmlspecialchars($post['client_country']),
-            'accountable_person' => htmlspecialchars($post['accountable_person']),
-            'recipient_name' => htmlspecialchars($post['client_name'])
+            'vat_number' => htmlspecialchars(trim($post['vat_number'])),
+            'client_ident_num' => htmlspecialchars(trim($post['client_ident_num'])),
+            'client_address' => htmlspecialchars(trim($post['client_address'])),
+            'client_city' => htmlspecialchars(trim($post['client_city'])),
+            'client_country' => htmlspecialchars(trim($post['client_country'])),
+            'accountable_person' => htmlspecialchars(trim($post['accountable_person'])),
+            'recipient_name' => htmlspecialchars(trim($post['client_name']))
         );
         if (!$this->db->insert('warranties_clients ', $insertArray)) {
             log_message('error', print_r($this->db->error(), true));
@@ -454,10 +454,10 @@ class WarrantyCardModel extends CI_Model
     {
         $insertArray = array(
             'for_warranty' => $warrantyId,
-            'type' => htmlspecialchars($post['type']),
-            'on_date' => strtotime($post['on_date']),
-            'item' => htmlspecialchars($post['item']),
-            'description' => htmlspecialchars($post['description']),
+            'type' => htmlspecialchars(trim($post['type'])),
+            'on_date' => strtotime(trim($post['on_date'])),
+            'item' => htmlspecialchars(trim($post['item'])),
+            'description' => htmlspecialchars(trim($post['description'])),
             'created' => time()
         );
         if (!$this->db->insert('warranty_events`', $insertArray)) {

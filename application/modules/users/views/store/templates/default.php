@@ -81,6 +81,6 @@
     <?php if (trim($movement['remarks']) != '') { ?>
         <hr>
         <p><b><?= $movement['translation']['remarks'] ?></b></p>
-        <?= htmlspecialchars($movement['remarks']) ?>
+        <?= $movement['remarks'] ?>
     <?php } ?>
 </div>

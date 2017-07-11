@@ -83,23 +83,23 @@ class StoreModel extends CI_Model
         $storeMoveArr = array(
             'for_user' => USER_ID,
             'for_company' => SELECTED_COMPANY_ID,
-            'movement_type' => htmlspecialchars($post['type']),
-            'movement_number' => htmlspecialchars($post['movement_number']),
+            'movement_type' => htmlspecialchars(trim($post['type'])),
+            'movement_number' => htmlspecialchars(trim($post['movement_number'])),
             'store_id' => $post['selected_store'],
-            'movement_currency' => htmlspecialchars($post['movement_currency']),
-            'amount' => htmlspecialchars($post['amount']),
-            'discount' => $post['discount'],
-            'discount_type' => htmlspecialchars($post['discount_type']),
-            'tax_base' => htmlspecialchars($post['tax_base']),
-            'vat_percent' => htmlspecialchars($post['vat_percent']),
-            'vat_sum' => htmlspecialchars($post['vat_sum']),
-            'no_vat_reason' => htmlspecialchars($post['no_vat_reason']),
+            'movement_currency' => htmlspecialchars(trim($post['movement_currency'])),
+            'amount' => htmlspecialchars(trim($post['amount'])),
+            'discount' => htmlspecialchars(trim($post['discount'])),
+            'discount_type' => htmlspecialchars(trim($post['discount_type'])),
+            'tax_base' => htmlspecialchars(trim($post['tax_base'])),
+            'vat_percent' => htmlspecialchars(trim($post['vat_percent'])),
+            'vat_sum' => htmlspecialchars(trim($post['vat_sum'])),
+            'no_vat_reason' => htmlspecialchars(trim($post['no_vat_reason'])),
             'final_total' => htmlspecialchars($post['final_total']),
-            'remarks' => htmlspecialchars($post['remarks']),
-            'payment_method' => htmlspecialchars($post['payment_method']),
+            'remarks' => htmlspecialchars(trim($post['remarks'])),
+            'payment_method' => htmlspecialchars(trim($post['payment_method'])),
             'created' => strtotime($post['date_create']),
-            'betrayed' => htmlspecialchars($post['betrayed']),
-            'accepted' => htmlspecialchars($post['accepted'])
+            'betrayed' => htmlspecialchars(trim($post['betrayed'])),
+            'accepted' => htmlspecialchars(trim($post['accepted']))
         );
         if (!$this->db->insert('movements', $storeMoveArr)) {
             log_message('error', print_r($this->db->error(), true));
@@ -128,17 +128,17 @@ class StoreModel extends CI_Model
         $client_vat_registered = isset($post['client_vat_registered']) ? 1 : 0;
         $insertArray = array(
             'for_movement' => $movementId,
-            'client_name' => htmlspecialchars($post['client_name']),
-            'client_bulstat' => htmlspecialchars($post['client_bulstat']),
+            'client_name' => htmlspecialchars(trim($post['client_name'])),
+            'client_bulstat' => htmlspecialchars(trim($post['client_bulstat'])),
             'is_to_person' => $is_to_person,
             'client_vat_registered' => $client_vat_registered,
-            'vat_number' => htmlspecialchars($post['vat_number']),
-            'client_ident_num' => htmlspecialchars($post['client_ident_num']),
-            'client_address' => htmlspecialchars($post['client_address']),
-            'client_city' => htmlspecialchars($post['client_city']),
-            'client_country' => htmlspecialchars($post['client_country']),
-            'accountable_person' => htmlspecialchars($post['accountable_person']),
-            'recipient_name' => htmlspecialchars($post['client_name'])
+            'vat_number' => htmlspecialchars(trim($post['vat_number'])),
+            'client_ident_num' => htmlspecialchars(trim($post['client_ident_num'])),
+            'client_address' => htmlspecialchars(trim($post['client_address'])),
+            'client_city' => htmlspecialchars(trim($post['client_city'])),
+            'client_country' => htmlspecialchars(trim($post['client_country'])),
+            'accountable_person' => htmlspecialchars(trim($post['accountable_person'])),
+            'recipient_name' => htmlspecialchars(trim($post['client_name']))
         );
         if (!$this->db->insert('movements_clients ', $insertArray)) {
             log_message('error', print_r($this->db->error(), true));
@@ -153,11 +153,11 @@ class StoreModel extends CI_Model
         while ($i <= $numItems) {
             $arrItem = array(
                 'for_movement' => $movementId,
-                'name' => htmlspecialchars($post['items_names'][$i]),
-                'quantity' => htmlspecialchars($post['items_quantities'][$i]),
-                'quantity_type' => htmlspecialchars($post['items_quantity_types'][$i]),
-                'single_price' => htmlspecialchars($post['items_prices'][$i]),
-                'total_price' => htmlspecialchars($post['items_totals'][$i]),
+                'name' => htmlspecialchars(trim($post['items_names'][$i])),
+                'quantity' => htmlspecialchars(trim($post['items_quantities'][$i])),
+                'quantity_type' => htmlspecialchars(trim($post['items_quantity_types'][$i])),
+                'single_price' => htmlspecialchars(trim($post['items_prices'][$i])),
+                'total_price' => htmlspecialchars(trim($post['items_totals'][$i])),
                 'position' => $position
             );
             if (!$this->db->insert('movement_items', $arrItem)) {
@@ -179,11 +179,11 @@ class StoreModel extends CI_Model
 
         $insertArray = array(
             'for_movement' => $movementId,
-            'bulstat' => htmlspecialchars($firm['bulstat']),
-            'name' => htmlspecialchars($firm['name']),
-            'address' => htmlspecialchars($firm['address']),
-            'city' => htmlspecialchars($firm['city']),
-            'accountable_person' => htmlspecialchars($firm['mol']),
+            'bulstat' => htmlspecialchars(trim($firm['bulstat'])),
+            'name' => htmlspecialchars(trim($firm['name'])),
+            'address' => htmlspecialchars(trim($firm['address'])),
+            'city' => htmlspecialchars(trim($firm['city'])),
+            'accountable_person' => htmlspecialchars(trim($firm['mol'])),
             'image' => $firm['image'] == null ? '' : $firm['image']
         );
         if (!$this->db->insert('movements_firms`', $insertArray)) {

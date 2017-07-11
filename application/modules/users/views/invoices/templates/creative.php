@@ -209,6 +209,6 @@
     </div>
     <div class="remarks">
         <p><?= $invoice['translation']['remarks'] ?>:</p>
-        <p><?= htmlspecialchars($invoice['remarks']) ?></p>
+        <p><?= $invoice['remarks'] ?></p>
     </div>
 </div>

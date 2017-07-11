@@ -76,6 +76,6 @@
     <?php if (trim($warranty['remarks']) != '') { ?>
         <hr>
         <p><b><?= $warranty['translation']['remarks'] ?></b></p>
-        <?= htmlspecialchars($warranty['remarks']) ?>
+        <?= $warranty['remarks'] ?>
     <?php } ?>
 </div>

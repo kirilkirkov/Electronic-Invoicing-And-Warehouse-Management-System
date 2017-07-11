@@ -111,6 +111,6 @@
     <?php if (trim($protocol['remarks']) != '') { ?>
         <hr>
         <p><b><?= $protocol['translation']['remarks'] ?></b></p>
-        <?= htmlspecialchars($protocol['remarks']) ?>
+        <?= $protocol['remarks'] ?>
     <?php } ?>
 </div>

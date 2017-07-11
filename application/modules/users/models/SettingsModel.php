@@ -161,10 +161,10 @@ class SettingsModel extends CI_Model
     {
         $insertArray = array(
             'for_user' => USER_ID,
-            'name' => htmlspecialchars($post['name']),
-            'email' => htmlspecialchars($post['email']),
-            'phone' => htmlspecialchars($post['phone']),
-            'schiffer' => htmlspecialchars($post['schiffer']),
+            'name' => htmlspecialchars(trim($post['name'])),
+            'email' => htmlspecialchars(trim($post['email'])),
+            'phone' => htmlspecialchars(trim($post['phone'])),
+            'schiffer' => htmlspecialchars(trim($post['schiffer'])),
             'password' => md5salt($post['password']),
             'time_added' => time()
         );
