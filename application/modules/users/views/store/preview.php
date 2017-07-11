@@ -12,7 +12,7 @@
     </div>
     <div class="border"></div>
 </div>
-<?php
+<?php 
 if ($movement['movement_type'] == 'in') {
     $from = $movement['client']['client_name'];
     $to = $movement['firm']['name'];
@@ -21,21 +21,17 @@ if ($movement['movement_type'] == 'out') {
     $from = $movement['firm']['name'];
     $to = $movement['client']['client_name'];
 }
-if ($movement['movement'] == 'move') {
-    $from = $movem['from_store'];
-    $to = $movement['to_store'];
-}
-if ($movement['movement_type'] == 'revision') {
+if ($movement['movement_type'] == 'move' || $movement['movement_type'] == 'revision') {
     $from = $movement['f_stores']['from_store'];
     $to = $movement['f_stores']['to_store'];
-} 
+}
 ?>
 <div class="row">
     <div class="col-sm-6">
         <p><?= lang('preview_movem_num') ?> <?= $movement['movement_number'] ?><p>
         <p><?= lang('preview_movem_type') ?> <?= lang('movem_type_' . $movement['movement_type']) ?><p>
         <p><?= lang('preview_movem_currency') ?> <?= $movement['movement_currency'] ?><p>
-        <p><?= lang('preview_movem_status') ?> <?= $movem['cancelled'] == 0 ? lang('movem_stat_confirmed') : lang('movem_stat_cancelled') ?><p>
+        <p><?= lang('preview_movem_status') ?> <?= $movement['cancelled'] == 0 ? lang('movem_stat_confirmed') : lang('movem_stat_cancelled') ?><p>
         <p><?= lang('preview_movem_from') ?> <?= $from ?><p>
         <p><?= lang('preview_movem_to') ?> <?= $to ?><p>
         <p><?= lang('preview_movem_betrayed') ?> <?= $movement['betrayed'] ?><p>

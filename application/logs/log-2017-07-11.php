@@ -88,3 +88,24 @@ AND `protocols`.`for_company` = '1'
 AND `protocols`.`is_deleted` =0
 ERROR - 2017-07-11 10:37:09 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
 ERROR - 2017-07-11 10:37:31 --> Severity: Error --> Call to undefined method ProtocolsModel::setOffersSearchFilter() /var/www/html/inv/application/modules/users/models/ProtocolsModel.php 26
+ERROR - 2017-07-11 10:40:47 --> Severity: Notice --> Undefined index: movement /var/www/html/inv/application/modules/users/views/store/preview.php 24
+ERROR - 2017-07-11 10:40:47 --> Severity: Notice --> Undefined variable: movem /var/www/html/inv/application/modules/users/views/store/preview.php 38
+ERROR - 2017-07-11 10:40:47 --> Severity: Notice --> Undefined variable: invNum /var/www/html/inv/application/modules/users/controllers/store/Movementview.php 33
+ERROR - 2017-07-11 10:41:26 --> Severity: Notice --> Undefined index: movement /var/www/html/inv/application/modules/users/views/store/preview.php 24
+ERROR - 2017-07-11 10:41:26 --> Severity: Notice --> Undefined variable: movem /var/www/html/inv/application/modules/users/views/store/preview.php 38
+ERROR - 2017-07-11 10:42:19 --> Severity: Notice --> Undefined index: movement /var/www/html/inv/application/modules/users/views/store/preview.php 24
+ERROR - 2017-07-11 10:42:19 --> Severity: Notice --> Undefined variable: movem /var/www/html/inv/application/modules/users/views/store/preview.php 38
+ERROR - 2017-07-11 10:42:19 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-11 10:42:20 --> Severity: Notice --> Undefined index: movement /var/www/html/inv/application/modules/users/views/store/preview.php 24
+ERROR - 2017-07-11 10:42:20 --> Severity: Notice --> Undefined variable: movem /var/www/html/inv/application/modules/users/views/store/preview.php 38
+ERROR - 2017-07-11 10:42:42 --> Severity: Notice --> Undefined index: movement /var/www/html/inv/application/modules/users/views/store/preview.php 25
+ERROR - 2017-07-11 10:42:42 --> Severity: Notice --> Undefined variable: movem /var/www/html/inv/application/modules/users/views/store/preview.php 39
+ERROR - 2017-07-11 10:44:06 --> Severity: Notice --> Undefined index: movement /var/www/html/inv/application/modules/users/views/store/preview.php 24
+ERROR - 2017-07-11 10:44:06 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-11 10:45:33 --> Severity: Notice --> Undefined index: movement /var/www/html/inv/application/modules/users/views/store/preview.php 24
+ERROR - 2017-07-11 10:45:34 --> Severity: Notice --> Undefined index: movement /var/www/html/inv/application/modules/users/views/store/preview.php 24
+ERROR - 2017-07-11 10:45:49 --> Severity: Notice --> Undefined index: movement /var/www/html/inv/application/modules/users/views/store/preview.php 25
+ERROR - 2017-07-11 10:46:16 --> Severity: Notice --> Undefined variable: title /var/www/html/inv/application/modules/users/views/parts/header.php 10
+ERROR - 2017-07-11 10:46:19 --> Could not find the language line "choose_war_translation"
+ERROR - 2017-07-11 10:46:19 --> Severity: Notice --> Undefined variable: quantityTypes /var/www/html/inv/application/modules/users/views/protocols/itemTableTr.php 25
+ERROR - 2017-07-11 10:46:19 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/inv/application/modules/users/views/protocols/itemTableTr.php 25

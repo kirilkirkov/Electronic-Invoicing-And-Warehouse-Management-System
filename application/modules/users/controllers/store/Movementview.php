@@ -30,7 +30,7 @@ class Movementview extends USER_Controller
         }
         $data['movement'] = $movement;
         $this->render('store/preview', $head, $data);
-        $this->saveHistory('Go to preview movement with number ' . $invNum . ' and firm id' . SELECTED_COMPANY_ID);
+        $this->saveHistory('Go to preview movement with number ' . $movementNumber . ' and firm id' . SELECTED_COMPANY_ID);
     }
 
     public function viewMovementAsPdf($movementNumber)
