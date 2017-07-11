@@ -67,7 +67,7 @@
                     <th><?= $protocol['translation']['product_quantity'] ?></th>
                     <th><?= $protocol['translation']['product_quantity_type'] ?></th>
                     <th><?= $protocol['translation']['product_single_price'] ?></th> 
-                    <th><?= $protocol['translation']['product_final_price'] ?></th> 
+                    <th class="text-right"><?= $protocol['translation']['product_final_price'] ?></th> 
                 </tr>
             </thead>
             <tbody>
@@ -77,7 +77,7 @@
                         <td><?= $item['quantity'] ?></td>
                         <td><?= $item['quantity_type'] ?></td>
                         <td><?= $item['single_price'] . $protocol['currency'] ?></td> 
-                        <td><?= $item['total_price'] . $protocol['currency'] ?></td> 
+                        <td class="text-right"><?= $item['total_price'] . $protocol['currency'] ?></td> 
                     </tr>
                 <?php } ?>
             </tbody>

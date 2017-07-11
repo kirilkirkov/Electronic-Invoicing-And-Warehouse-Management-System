@@ -32,6 +32,6 @@ tr {page-break-inside: avoid !important;}
 .default-protocol .transmission .compiled {float:right; width:300px;}
 .default-protocol .transmission span {text-decoration: underline;}
 .default-protocol .provider-transmit {margin-bottom: 20px;}
-.default-protocol .contract {margin-bottom: 20px;}
+.default-protocol .contract {margin-bottom: 100px;}
 .default-protocol .protocol-totals {float: right; width:300px; text-align: right; margin-bottom: 20px;}
 .default-protocol .protocol-totals span {font-weight: bold;}
