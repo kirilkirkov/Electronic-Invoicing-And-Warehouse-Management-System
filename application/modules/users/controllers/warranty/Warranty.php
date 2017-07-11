@@ -70,6 +70,7 @@ class Warranty extends USER_Controller
         if (isset($_POST['warranty_number'])) {
             $this->createWarranty();
         }
+        $currentItems = array();
         if ($number > 0) {
             $result = $this->WarrantyCardModel->getWarrantyByNumber($number);
             if (empty($result)) {
@@ -77,14 +78,13 @@ class Warranty extends USER_Controller
                 show_404();
             }
             $this->editId = $result['id'];
-            $currentItems = array();
             foreach ($result['items'] as $item) {
                 $currentItems[] = $item['id'];
             }
             $_POST = $result;
         }
         $data['currentItems'] = $currentItems;
-        $data['updateId'] = $this->editId;
+        $data['editId'] = $this->editId;
         $data['theCurrency'] = $theCurrency;
         $data['myConditions'] = $this->WarrantyCardModel->getWarrantyConditions();
         $this->render('warranty/addwarranty', $head, $data);
@@ -102,7 +102,7 @@ class Warranty extends USER_Controller
     {
         $isValid = $this->validateWarranty();
         if ($isValid === true) {
-            if ($_POST['updateId'] > 0) {
+            if ($_POST['editId'] > 0) {
                 $this->WarrantyCardModel->updateWarranty($_POST);
                 $this->session->set_flashdata('resultAction', lang('warranty_updated'));
             } else {
@@ -123,7 +123,7 @@ class Warranty extends USER_Controller
         if (mb_strlen(trim($_POST['warranty_number'])) == 0) {
             $errors[] = lang('err_create_war_num');
         } else {
-            $isFreeNum = $this->WarrantyCardModel->checkIsFreeWarrantyNumber($_POST['warranty_number'], $_POST['updateId']);
+            $isFreeNum = $this->WarrantyCardModel->checkIsFreeWarrantyNumber($_POST['warranty_number'], $_POST['editId']);
             if ($isFreeNum === false) {
                 $errors[] = lang('err_create_war_num_is_taken');
             }

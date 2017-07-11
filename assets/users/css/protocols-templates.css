@@ -1,0 +1,37 @@
+/*
+ * Protocols Templates 
+ */
+
+tr {page-break-inside: avoid !important;}
+
+/*
+ * Font family is default of bootstrap  - font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; 
+ */
+.default-protocol { min-height: 1000px; background-color: #fff; padding:35px; font-size:16px;}
+.default-protocol h1 {font-size:22px; margin-bottom: 20px;}
+.default-protocol .client-info {width:300px; float:left;}
+.default-protocol .client-info span {font-weight: bold;}
+.default-protocol .client-info h1 {text-align: center; background-color: #f4f4f4; padding-top: 5px; padding-bottom: 5px;  font-weight: bold;} 
+.default-protocol .document-type h1 {text-align: center; margin:0; text-transform: uppercase;  font-weight: bold;}
+.default-protocol .firm-info {width:300px;float:right;}
+.default-protocol .firm-info h1 {text-align: center; background-color: #f4f4f4; padding-top: 5px; padding-bottom: 5px; font-weight: bold;} 
+.default-protocol .firm-info span {font-weight: bold;}
+.default-protocol .info { margin-bottom: 20px;}
+.default-protocol .document-info {margin-bottom: 20px;}
+.default-protocol .document-info .number {float:left; width:300px; border:2px solid #f4f4f4; padding: 10px; border-radius: 10px;}
+.default-protocol .document-info .date-create {float:right;width:300px; border:2px solid #f4f4f4; padding: 10px; border-radius: 10px;}
+.default-protocol .to-inv {margin-bottom: 20px;}
+.default-protocol .number-inv {float:left; width:300px; border:2px solid #f4f4f4; padding: 10px; border-radius: 10px;}
+.default-protocol .items {margin-bottom: 20px;}
+.default-protocol .amounts {margin-bottom: 20px;}
+.default-protocol .amounts .payment-method {float:left; width:300px;}
+.default-protocol .amounts .payment-method p {margin: 0; font-weight: bold;}
+.default-protocol .amounts .amount {float:right; width:300px;}
+.default-protocol .amounts .amount p span { float:right;}
+.default-protocol .transmission .received {float:left; width:300px;}
+.default-protocol .transmission .compiled {float:right; width:300px;}
+.default-protocol .transmission span {text-decoration: underline;}
+.default-protocol .provider-transmit {margin-bottom: 20px;}
+.default-protocol .contract {margin-bottom: 20px;}
+.default-protocol .protocol-totals {float: right; width:300px; text-align: right; margin-bottom: 20px;}
+.default-protocol .protocol-totals span {font-weight: bold;}

@@ -12,12 +12,12 @@
     </div>
     <div class="border"></div>
 </div>
-<?php if ($this->permissions->hasPerm('perm_view_warranty_page')) { ?>
-    <a href="<?= lang_url('user/settings/warranty') ?>" class="btn btn-default"><?= lang('warranty_settings') ?></a>
-    <a href="<?= lang_url('user/warranties/add-warranty') ?>" class="btn btn-default"><?= lang('add_warranty') ?></a>
+<?php if ($this->permissions->hasPerm('perm_view_protocols_page')) { ?>
+    <a href="<?= lang_url('user/settings/protocols') ?>" class="btn btn-default"><?= lang('protocols_settings') ?></a>
+    <a href="<?= lang_url('user/protocols/add-protocol') ?>" class="btn btn-default"><?= lang('add_protocol') ?></a>
 
-    <button data-toggle="collapse" data-target="#warranties-search">Collapsible</button>
-    <div id="warranties-search" class="collapse">    
+    <button data-toggle="collapse" data-target="#protocols-search">Collapsible</button>
+    <div id="protocols-search" class="collapse">    
         <form method="GET" action=""> 
             <div class="row">
                 <div class="col-sm-4"> 
@@ -34,38 +34,36 @@
                 </div>
             </div>
             <input type="submit" value="search"> 
-            <a href="<?= lang_url('user/warranties') ?>"><?= lang('clear_search') ?></a>
+            <a href="<?= lang_url('user/protocols') ?>"><?= lang('clear_search') ?></a>
         </form>
     </div>
-    <?php if (!empty($warranties)) { ?>
+    <?php if (!empty($protocols)) { ?>
         <form method="POST" action="" id="action-form">
             <input type="hidden" name="action" value="">
-            <a href="javascript:void(0);" class="btn btn-default list-action" data-action-type="delete"><?= lang('delete_warranties') ?></a>
+            <a href="javascript:void(0);" class="btn btn-default list-action" data-action-type="delete"><?= lang('delete_protocols') ?></a>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" class="check-all-boxes"></th>
-                            <th><?= lang('list_war_number') ?></th>
-                            <th><?= lang('list_war_to_inv') ?></th>
-                            <th><?= lang('list_war_valid_from') ?></th>
-                            <th><?= lang('list_war_client') ?></th>
-                            <th><?= lang('list_war_events') ?></th>
-                            <th><?= lang('list_war_action') ?></th>
+                            <th><input type="checkbox" class="check-all-boxes"></th> 
+                            <th><?= lang('protocol_number') ?></th> 
+                            <th><?= lang('protocol_to_inv') ?></th> 
+                            <th><?= lang('protocol_from_date') ?></th> 
+                            <th><?= lang('protocol_client') ?></th> 
+                            <th><?= lang('protocols_action') ?></th> 
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($warranties as $warranty) {
+                        foreach ($protocols as $protocol) {
                             ?>
                             <tr>
-                                <td><input type="checkbox" name="ids[]" value="<?= $warranty['id'] ?>" class="check-me-now"></td>
-                                <td><a href="<?= lang_url('user/warranty/print/' . $warranty['warranty_number']) ?>"><?= $warranty['warranty_number'] ?></a></td>
-                                <td><?= $warranty['to_invoice'] ?></td>
-                                <td><?= date('d.m.Y', $warranty['valid_from']) ?></td>
-                                <td><?= $warranty['client'] ?></td>
-                                <td><a href="<?= lang_url('user/warranty/events/' . $warranty['warranty_number']) ?>" class="btn btn-default"><?= lang('war_events') ?></a></td>
-                                <td><a href="<?= lang_url('user/warranty/edit/' . $warranty['warranty_number']) ?>"><?= lang('edit_warranty') ?></a></td> 
+                                <td><input type="checkbox" name="ids[]" value="<?= $protocol['id'] ?>" class="check-me-now"></td>
+                                <td><a href="<?= lang_url('user/protocol/print/' . $protocol['protocol_number']) ?>"><?= $protocol['protocol_number'] ?></a></td>
+                                <td><?= $protocol['to_invoice'] ?></td>
+                                <td><?= date('d.m.Y', $protocol['from_date']) ?></td>
+                                <td><?= $protocol['client'] ?></td>
+                                <td><a href="<?= lang_url('user/protocol/edit/' . $protocol['protocol_number']) ?>">edit</a></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -74,9 +72,8 @@
         </form>
         <?= $linksPagination ?>
     <?php } else { ?>
-        <h1 class="no-results-found"><?= lang('no_warranties_yet') ?></h1>
+        <h1 class="no-results-found"><?= lang('no_protocols_yet') ?></h1>
     <?php } ?>
-
 <?php } else { ?>
     <h1 class="no-permissions"><?= lang('no_permissions') ?></h1>
 <?php } ?>

@@ -116,7 +116,7 @@ class WarrantyCardModel extends CI_Model
         );
         $this->db->where('for_user', USER_ID);
         $this->db->where('for_company', SELECTED_COMPANY_ID);
-        $this->db->where('warranty_number', $post['warranty_number']);
+        $this->db->where('id', $post['editId']);
         if (!$this->db->update('warranties', $warrantyArray)) {
             log_message('error', print_r($this->db->error(), true));
         }

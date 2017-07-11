@@ -14,9 +14,9 @@
     <div class="border"></div>
 </div>
 <?php if ($this->permissions->hasPerm('perm_add_warranty')) { ?>
-    <form action="" id="setWarrantyForm" class="site-form" method="POST">
-        <input type="hidden" name="updateId" value="<?= $updateId ?>">
-        <?php if ($updateId > 0) { ?>
+    <form action="" id="setWarrantyForm" class="site-form" method="POST"> 
+        <?php if ($editId > 0) { ?>
+            <input type="hidden" name="editId" value="<?= $editId ?>">
             <input type="hidden" name="onLoadItems" value="<?= implode(',', $currentItems) ?>">
         <?php } ?>
         <div> 
@@ -34,7 +34,7 @@
                     ?> 
                 </select>
                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalAddNewTranslation" class="btn btn-default">
-                    <?= lang('choose_war_translation') ?>
+                    <?= lang('add_war_translation') ?>
                 </a>
                 <a href="javascript:void(0);" data-toggle="modal" data-target="#modalExplainTranslation">
                     <i class="fa fa-question-circle" aria-hidden="true"></i>

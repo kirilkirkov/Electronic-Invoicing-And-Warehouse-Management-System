@@ -113,7 +113,7 @@ class HtmlToPdf
 
     public function setType($type)
     {
-        $this->type = $type;
+        $this->type = urlencode($type);
     }
 
     public function setPageTranslate($translation)

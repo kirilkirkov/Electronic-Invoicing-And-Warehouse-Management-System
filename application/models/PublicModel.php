@@ -174,6 +174,18 @@ class PublicModel extends CI_Model
                 '_key' => 'opt_negativeQuantities',
                 'value' => '1'
             )
+            ,
+            array(
+                'for_user' => $user_id,
+                '_key' => 'opt_protocolCalculator',
+                'value' => '1'
+            )
+            ,
+            array(
+                'for_user' => $user_id,
+                '_key' => 'opt_protocolRoundTo',
+                'value' => '1'
+            )
         );
         if (!$this->db->insert_batch('value_store', $data)) {
             log_message('error', print_r($this->db->error(), true));

@@ -14,7 +14,7 @@ class Warranty extends USER_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('WarrantyCardModel'));
+        $this->load->model('WarrantyCardModel');
     }
 
     public function index()

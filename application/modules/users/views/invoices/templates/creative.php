@@ -148,7 +148,7 @@
                 </tr>
                 <tr>
                     <td class="info">
-                        Tax base 
+                        <?= $invoice['translation']['tax_base'] ?>  
                     </td>
                     <td>
                         <?= $invoice['tax_base'] . ' ' . $invoice['inv_currency'] ?>

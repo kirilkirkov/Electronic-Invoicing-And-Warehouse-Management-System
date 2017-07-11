@@ -496,6 +496,24 @@ $('.saved-condition').change(function () {
     $('[name="conditions"]').empty().append(description_text);
 });
 /*
+ * Choose saved contracts 
+ * When create protocols
+ */
+$('.saved-contract').change(function () {
+    var selected = $(this).val();
+    var description_text = $('[data-saved-contract="' + selected + '"]').text();
+    $('[name="contract"]').empty().append(description_text);
+});
+/*
+ * Choose saved contracts 
+ * When create protocols
+ */
+$('.saved-prov-trans').change(function () {
+    var selected = $(this).val();
+    var description_text = $('[data-saved-prov-trans="' + selected + '"]').text();
+    $('[name="provider_trasmit"]').empty().append(description_text);
+});
+/*
  * Create draft invoice
  */
 function createDraft() {
@@ -1016,4 +1034,87 @@ function addNewWarrantyCondition() {
 function openConditionDescription(id) {
     var description_text = $('[data-descr-id="' + id + '"]').text();
     $('#modalDescriptionExplain .modal-body').empty().append(description_text);
+}
+/*
+ * Create protocol validator
+ */
+function createNewProtocolValidate() {
+    var valid = true;
+    var validItems = true;
+    $('[name="client_name"]').css("border-color", border_color_fields);
+
+    var client_name = $('[name="client_name"]').val();
+    if ($.trim(client_name).length == 0) {
+        $('[name="client_name"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    validItems = validateItems();
+    if (validItems == false) {
+        valid = false;
+    }
+    if (valid == false) {
+        $('html, body').animate({
+            scrollTop: $("#setProtocol").offset().top
+        }, 1000);
+        showError(lang.errorCreateDocument);
+    }
+    if (valid == true) {
+        document.getElementById('setProtocol').submit();
+    }
+}
+/*
+ * Validation add provider transmit
+ */
+function addNewProviderTransmitText() {
+    var valid = true;
+    var description = $('[name="description"]').val();
+    description = $.trim(description);
+    var title = $('[name="title"]').val();
+    title = $.trim(title);
+    if (title.length == 0) {
+        $('[name="title"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if (description.length == 0) {
+        $('[name="description"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if (valid == true) {
+        document.getElementById('formAddProviderTransmitText').submit();
+    }
+}
+/*
+ * Open provider transmit description
+ */
+function openProviderTransmitDescription(id) {
+    var description_text = $('[data-descr-id="' + id + '"]').text();
+    $('#modalDescriptionExplain .modal-body').empty().append(description_text);
+}
+/*
+ * Open contract description
+ */
+function openContractDescription(id) {
+    var description_text = $('[data-contr-id="' + id + '"]').text();
+    $('#modalDescriptionExplain .modal-body').empty().append(description_text);
+}
+/*
+ * Validation contract texts add
+ */
+function addNewContractText() {
+    var valid = true;
+    var description = $('[name="contract"]').val();
+    description = $.trim(description);
+    var title = $('[name="title_contract"]').val();
+    title = $.trim(title);
+    if (title.length == 0) {
+        $('[name="title_contract"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if (description.length == 0) {
+        $('[name="contract"]').css("border-color", border_color_wrong);
+        valid = false;
+    }
+    if (valid == true) {
+        document.getElementById('formContractText').submit();
+    }
 }

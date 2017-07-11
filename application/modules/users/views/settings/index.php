@@ -17,3 +17,4 @@
 <a href="<?= lang_url('user/settings/global') ?>">global</a>
 <a href="<?= lang_url('user/settings/stores') ?>">store</a>
 <a href="<?= lang_url('user/settings/warranty') ?>">warranty</a>
+<a href="<?= lang_url('user/settings/protocols') ?>">protocols</a>

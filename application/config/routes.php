@@ -143,6 +143,14 @@ $route['user/settings/warranty'] = "users/settings/warranty";
 $route['user/settings/warranty/delete/condition/(:num)'] = "users/settings/warranty/deleteCondition/$1";
 $route['user/warranty/events/(:num)'] = "users/warranty/events/index/$1";
 $route['user/warranty/events/(:num)/add-event'] = "users/warranty/events/addevent/$1";
+$route['user/protocols'] = "users/protocols/protocols";
+$route['user/protocols/(:num)'] = "users/protocols/protocols/index/$1";
+$route['user/settings/protocols'] = "users/settings/protocols";
+$route['user/protocols/add-protocol'] = "users/protocols/protocols/addprotocol";
+$route['user/protocol/print/(:num)'] = "users/protocols/protocolview/viewProtocolAsPdf/$1";
+$route['user/protocol/edit/(:num)'] = "users/protocols/protocols/addprotocol/$1";
+$route['user/settings/protocols/delete/provider-transmit/(:num)'] = "users/settings/protocols/deleteProviderTransmitText/$1";
+$route['user/settings/protocols/delete/contract/(:num)'] = "users/settings/protocols/deleteContract/$1";
 $route['pdffooter'] = 'home/getinvoicefooter';
 /* USERS PANEL ROUTES */
 

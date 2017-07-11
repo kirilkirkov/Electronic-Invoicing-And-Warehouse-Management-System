@@ -26,7 +26,7 @@
             № <?= $warranty['warranty_number'] ?>
         </div>
         <div class="date-create">
-            <?= $warranty['translation']['date_valid'] . ' ' . date('d.m.Y', $warranty['created']) ?>
+            <?= $warranty['translation']['date_valid'] . ' ' . date('d.m.Y', $warranty['valid_from']) ?>
         </div>
         <div class="clearfix"></div>
     </div>
