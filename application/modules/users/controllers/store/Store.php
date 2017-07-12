@@ -34,7 +34,7 @@ class Store extends USER_Controller
         $data['myStores'] = $this->StoreModel->getStores();
         $rowscount = $this->StoreModel->countMovements($_GET);
         $data['movements'] = $this->StoreModel->getMovements($this->num_rows, $page, $_GET);
-        $data['linksPagination'] = pagination('user/store', $rowscount, $this->num_rows, 3);
+        $data['linksPagination'] = pagination('user/store', $rowscount, $this->num_rows, MY_DEFAULT_LANGUAGE_ABBR != MY_LANGUAGE_ABBR ? 4 : 3);
         if (isset($_POST['action'])) {
             if ($_POST['action'] == 'stat_canceled') {
                 $this->changeStatusCanceled($_POST['ids'], true);
@@ -158,7 +158,7 @@ class Store extends USER_Controller
         $data['myStores'] = $this->StoreModel->getStores();
         $rowscount = $this->StoreModel->countStocks($this->num_rows, $page, $_GET);
         $data['stockQuantities'] = $this->StoreModel->getStockQuantities($this->num_rows, $page, $_GET);
-        $data['linksPagination'] = pagination('user/store/stocks', $rowscount, $this->num_rows, 4);
+        $data['linksPagination'] = pagination('user/store/stocks', $rowscount, $this->num_rows, MY_DEFAULT_LANGUAGE_ABBR != MY_LANGUAGE_ABBR ? 5 : 4);
         $this->render('store/stocks', $head, $data);
         $this->saveHistory('Go to store stocks');
     }

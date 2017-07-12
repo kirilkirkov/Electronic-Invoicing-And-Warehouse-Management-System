@@ -30,7 +30,7 @@ class Invoices extends USER_Controller
         $rowscount = $this->InvoicesModel->countInvoices($_GET);
         $data['invoices'] = $this->InvoicesModel->getInvoices($this->num_rows, $page, $_GET);
         $data['inv_readable_types'] = $this->config->item('inv_readable_types');
-        $data['linksPagination'] = pagination('user/invoices', $rowscount, $this->num_rows, 3);
+        $data['linksPagination'] = pagination('user/invoices', $rowscount, $this->num_rows, MY_DEFAULT_LANGUAGE_ABBR != MY_LANGUAGE_ABBR ? 4 : 3);
         $data['paymentMethods'] = $this->NewInvoiceModel->getPaymentMethods();
         $data['countInvoices'] = $rowscount;
         $data['sumAmount'] = $this->InvoicesModel->sumOfAmounts($_GET);

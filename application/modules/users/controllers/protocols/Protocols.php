@@ -34,7 +34,7 @@ class Protocols extends USER_Controller
         $head['title'] = 'Administration - Home';
         $rowscount = $this->ProtocolsModel->countProtocols($_GET);
         $data['protocols'] = $this->ProtocolsModel->getProtocols($this->num_rows, $page, $_GET);
-        $data['linksPagination'] = pagination('user/protocols', $rowscount, $this->num_rows, 3);
+        $data['linksPagination'] = pagination('user/protocols', $rowscount, $this->num_rows, MY_DEFAULT_LANGUAGE_ABBR != MY_LANGUAGE_ABBR ? 4 : 3);
         if (isset($_POST['action'])) {
             if ($_POST['action'] == 'delete') {
                 $this->deleteProtocols($_POST['ids']);

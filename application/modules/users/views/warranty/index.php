@@ -60,7 +60,7 @@
                             ?>
                             <tr>
                                 <td><input type="checkbox" name="ids[]" value="<?= $warranty['id'] ?>" class="check-me-now"></td>
-                                <td><a href="<?= lang_url('user/warranty/print/' . $warranty['warranty_number']) ?>"><?= $warranty['warranty_number'] ?></a></td>
+                                <td><a href="<?= base_url('user/warranty/print/' . $warranty['warranty_number']) ?>"><?= $warranty['warranty_number'] ?></a></td>
                                 <td><?= $warranty['to_invoice'] ?></td>
                                 <td><?= date('d.m.Y', $warranty['valid_from']) ?></td>
                                 <td><?= $warranty['client'] ?></td>

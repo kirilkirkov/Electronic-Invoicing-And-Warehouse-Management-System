@@ -59,7 +59,7 @@
                             ?>
                             <tr>
                                 <td><input type="checkbox" name="ids[]" value="<?= $protocol['id'] ?>" class="check-me-now"></td>
-                                <td><a href="<?= lang_url('user/protocol/print/' . $protocol['protocol_number']) ?>"><?= $protocol['protocol_number'] ?></a></td>
+                                <td><a href="<?= base_url('user/protocol/print/' . $protocol['protocol_number']) ?>"><?= $protocol['protocol_number'] ?></a></td>
                                 <td><?= $protocol['to_invoice'] ?></td>
                                 <td><?= date('d.m.Y', $protocol['from_date']) ?></td>
                                 <td><?= $protocol['client'] ?></td>

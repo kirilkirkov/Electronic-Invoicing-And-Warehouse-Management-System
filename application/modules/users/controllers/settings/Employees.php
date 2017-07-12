@@ -30,7 +30,7 @@ class Employees extends USER_Controller
         $head['title'] = 'Administration - Settings';
         $rowscount = $this->SettingsModel->countEmployees($_GET);
         $data['employees'] = $this->SettingsModel->getEmployees($this->num_rows, $page);
-        $data['linksPagination'] = pagination('user/settings/employees', $rowscount, $this->num_rows, 4);
+        $data['linksPagination'] = pagination('user/settings/employees', $rowscount, $this->num_rows, MY_DEFAULT_LANGUAGE_ABBR != MY_LANGUAGE_ABBR ? 5 : 4);
         $this->render('settings/employees', $head, $data);
         $this->saveHistory('Go to settings employees table page');
     }

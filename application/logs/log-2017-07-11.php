@@ -119,3 +119,20 @@ ERROR - 2017-07-11 11:37:00 --> Severity: Core Warning --> PHP Startup: Unable t
 ERROR - 2017-07-11 11:37:00 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
 ERROR - 2017-07-11 11:37:47 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
 ERROR - 2017-07-11 11:38:18 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-11 12:12:53 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-11 12:12:56 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-11 12:12:56 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-11 14:10:55 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-11 14:10:55 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-11 14:10:56 --> 404 Page Not Found: /index
+ERROR - 2017-07-11 14:10:56 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-11 14:10:56 --> 404 Page Not Found: /index
+ERROR - 2017-07-11 14:10:59 --> Could not find the language line "choose_war_translation"
+ERROR - 2017-07-11 14:10:59 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/inv/application/modules/users/views/protocols/itemTableTr.php 25
+ERROR - 2017-07-11 14:11:20 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-11 14:11:25 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-11 14:11:36 --> Severity: Warning --> Missing argument 2 for MY_Controller::setUserLogin(), called in /var/www/html/inv/application/controllers/Registration.php on line 16 and defined /var/www/html/inv/application/core/MY_Controller.php 18
+ERROR - 2017-07-11 14:11:36 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-11 14:11:46 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-11 14:11:55 --> Severity: Warning --> mkdir(): File exists /var/www/html/inv/application/core/USER_Controller.php 162
+ERROR - 2017-07-11 14:11:55 --> Error create company folder: ./attachments/companiesimages/4

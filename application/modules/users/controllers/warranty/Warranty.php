@@ -34,7 +34,7 @@ class Warranty extends USER_Controller
         $head['title'] = 'Administration - Home';
         $rowscount = $this->WarrantyCardModel->countWarranties($_GET);
         $data['warranties'] = $this->WarrantyCardModel->getWarranties($this->num_rows, $page, $_GET);
-        $data['linksPagination'] = pagination('user/warranties', $rowscount, $this->num_rows, 3);
+        $data['linksPagination'] = pagination('user/warranties', $rowscount, $this->num_rows, MY_DEFAULT_LANGUAGE_ABBR != MY_LANGUAGE_ABBR ? 4 : 3);
         if (isset($_POST['action'])) {
             if ($_POST['action'] == 'delete') {
                 $this->deleteWarranties($_POST['ids']);

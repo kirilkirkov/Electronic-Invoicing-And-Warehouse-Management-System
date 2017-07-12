@@ -24,13 +24,12 @@ if ($this->session->flashdata('resultAction')) {
 <script src="<?= base_url('assets/plugins/bootbox.min.js') ?>"></script>
 <script>
     var urls = {
-        changeDefaultCurrency: "<?= base_url('user/defaultcurrency') ?>",
-        addNewQuantityType: "<?= base_url('user/addnewquantitytype') ?>",
-        addNewPaymentMethod: "<?= base_url('user/addnewpaymentmethod') ?>",
-        modalSelector: "<?= base_url('user/modalselector') ?>",
-        changeInvoiceStatus: "<?= base_url('user/changeinvoicestatus') ?>",
-        topNavSearch: "<?= base_url('user/findresults') ?>",
-        searchInStoreItems: "<?= base_url('user/searchinstoreitems') ?>"
+        changeDefaultCurrency: "<?= lang_url('user/defaultcurrency') ?>",
+        addNewQuantityType: "<?= lang_url('user/addnewquantitytype') ?>",
+        addNewPaymentMethod: "<?= lang_url('user/addnewpaymentmethod') ?>",
+        modalSelector: "<?= lang_url('user/modalselector') ?>",
+        changeInvoiceStatus: "<?= lang_url('user/changeinvoicestatus') ?>",
+        topNavSearch: "<?= lang_url('user/findresults') ?>"
     };
 </script>
 <script src="<?= base_url('assets/users/js/general.js') ?>"></script> 

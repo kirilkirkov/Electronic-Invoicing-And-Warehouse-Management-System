@@ -38,7 +38,7 @@ if ($movement['movement_type'] == 'move' || $movement['movement_type'] == 'revis
         <p><?= lang('preview_movem_accepted') ?> <?= $movement['accepted'] ?><p>
     </div>
     <div class="col-sm-6">
-        <a href="<?= lang_url('user/bill-of-lading/print/' . $movement['movement_number']) ?>"><?= lang('bill_of_lading') ?></a>
+        <a href="<?= base_url('user/bill-of-lading/print/' . $movement['movement_number']) ?>"><?= lang('bill_of_lading') ?></a>
     </div>
 </div>
 <hr>

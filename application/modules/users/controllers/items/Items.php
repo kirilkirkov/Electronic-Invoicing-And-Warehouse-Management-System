@@ -30,7 +30,7 @@ class Items extends USER_Controller
         $this->postChecker();
         $rowscount = $this->ItemsModel->countItems($_GET);
         $data['items'] = $this->ItemsModel->getItems($this->num_rows, $page, $_GET);
-        $data['linksPagination'] = pagination('user/items', $rowscount, $this->num_rows, 3);
+        $data['linksPagination'] = pagination('user/items', $rowscount, $this->num_rows, MY_DEFAULT_LANGUAGE_ABBR != MY_LANGUAGE_ABBR ? 4 : 3);
         $this->render('items/index', $head, $data);
         $this->saveHistory('Go to items page');
     }

@@ -30,7 +30,7 @@ class Clients extends USER_Controller
         $this->postChecker();
         $rowscount = $this->ClientsModel->countClients($_GET);
         $data['clients'] = $this->ClientsModel->getClients($this->num_rows, $page, $_GET);
-        $data['linksPagination'] = pagination('user/clients', $rowscount, $this->num_rows, 3);
+        $data['linksPagination'] = pagination('user/clients', $rowscount, $this->num_rows, MY_DEFAULT_LANGUAGE_ABBR != MY_LANGUAGE_ABBR ? 4 : 3);
         $this->render('clients/index', $head, $data);
         $this->saveHistory('Go to clients page');
     }

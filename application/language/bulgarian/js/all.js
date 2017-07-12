@@ -1,0 +1,21 @@
+var lang = {
+    invalid_email: 'Невалиден имейл адрес!',
+    invalid_pass: 'Въведете парола!',
+    invalid_pass2: 'Повтори паролата!',
+    passwords_dont_match: 'Паролите не съвшадат!',
+    rules_not_checked: 'Потвърди правилата!',
+    proforma: 'Проформа',
+    invoice: 'Данъчна',
+    debit_note: 'Дебитно известие',
+    credit_note: 'Кредитно известие',
+    errorCreateDocument: 'Намерихме следните празни полета',
+    currencyItemNotSame: 'Въведената цена за този артикул е с различна валута',
+    errorCreateClient: 'Има празни полета на клиента!',
+    errorCreateItem: 'Има празни полета на артикул!',
+    errorCreateEmployee: 'Невалидни полета!',
+    noCheckedCheckboxes: 'Не е избрано нищо!',
+    confirmDelete: 'Сигурен ли сте, че искате да изтриете?',
+    errorChangeInvStatusAjax: 'Проблем със смяната на статуса на фактурата. Свържете се с нас!',
+    confirmCancel: 'Сигурен ли сте, че искате да анулирате?',
+    confirmRemoveCancel: 'Сигурен ли сте, че искате да премахнете статус анулирана?'
+};

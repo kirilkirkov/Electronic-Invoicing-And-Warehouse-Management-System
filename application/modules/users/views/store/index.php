@@ -90,7 +90,7 @@
                             <tr>
                                 <td><input type="checkbox" name="ids[]" value="<?= $movem['id'] ?>" class="check-me-now"></td>
                                 <td><a href="<?= lang_url('user/movement/view/' . $movem['movement_number']) ?>"><?= lang('movem_preview') ?></a></td>
-                                <td><a href="<?= lang_url('user/bill-of-lading/print/' . $movem['movement_number']) ?>"><?= $movem['movement_number'] ?></a></td>
+                                <td><a href="<?= base_url('user/bill-of-lading/print/' . $movem['movement_number']) ?>"><?= $movem['movement_number'] ?></a></td>
                                 <td><?= lang('movem_type_' . $movem['movement_type']) ?></td>
                                 <td><?= $from ?></td>
                                 <td><?= $to ?></td>
