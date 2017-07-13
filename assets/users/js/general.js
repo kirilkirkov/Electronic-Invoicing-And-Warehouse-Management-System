@@ -1118,3 +1118,11 @@ function addNewContractText() {
         document.getElementById('formContractText').submit();
     }
 }
+/*
+ * Remove firm logo when edit firm
+ */
+function removeFirmLogo() {
+    $('[name="old_image"]').val('');
+    $('.firm-image-container').remove();
+    $('.remove-firm-logo-btn').remove();
+}

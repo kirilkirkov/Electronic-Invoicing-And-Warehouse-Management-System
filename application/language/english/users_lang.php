@@ -573,3 +573,5 @@ $lang['create_protocol_amount'] = 'Amount';
 $lang['trans_to_invoice'] = 'To invoice';
 $lang['trans_transmission_protocol'] = 'Transmission protocol';
 $lang['language'] = 'Language';
+$lang['show_logo_in_inv'] = 'Show logo in invoices';
+$lang['remove_firm_image'] = 'Remove logo';

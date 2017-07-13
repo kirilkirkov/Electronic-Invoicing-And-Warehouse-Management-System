@@ -1,8 +1,8 @@
 <div class="invoice-creative">
     <div class="row-my-firm">
-        <?php if ($invoice['firm']['image'] != null) { ?>
+        <?php if ($invoice['firm']['image'] != null && $firmInfo['show_logo'] == 1) { ?>
             <div class="firm-logo">
-                <img src="<?= base_url('attachments/companiesimages/' . $invoice['firm']['id'] . '/' . $invoice['firm']['image']) ?>" alt="">
+                <img src="<?= base_url('attachments/companiesimages/' . $firmInfo['id'] . '/' . $invoice['firm']['image']) ?>" alt="">
             </div>
         <?php } ?>
         <div class="my-firm-info">

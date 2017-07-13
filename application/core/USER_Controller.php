@@ -4,7 +4,7 @@ class USER_Controller extends HEAD_Controller
 {
 
     private $firms;
-    private $firmInfo;
+    protected $firmInfo;
     public $userInfo;
 
     public function __construct()

@@ -573,3 +573,5 @@ $lang['create_protocol_amount'] = 'Цнеа';
 $lang['trans_to_invoice'] = 'По фактура';
 $lang['trans_transmission_protocol'] = 'Приемо-предавателен протокол';
 $lang['language'] = 'Език';
+$lang['show_logo_in_inv'] = 'Покажи логото във фактурите';
+$lang['remove_firm_image'] = 'Изтрий логото';

@@ -13,14 +13,14 @@ tr {page-break-inside: avoid !important;}
 .invoice-creative .row-my-firm {color:#9f9f9f; margin-bottom: 30px;}
 .invoice-creative .firm-logo {width:200px;float: left; margin-right: 50px;}
 .invoice-creative .firm-logo img {width: 100%;}
-.invoice-creative .my-firm-info {float: left;}
+.invoice-creative .my-firm-info {float: left; font-size:16px; max-width: 400px; word-break: break-all; overflow: hidden;}
 .invoice-creative p {margin-bottom: 7px;}
-.invoice-creative .row-my-firm .firm-name {color:#3193c4;}
+.invoice-creative .row-my-firm .firm-name {color:#3193c4; font-size:20px;}
 .invoice-creative .invoice-type {font-size:16px; color:#3193c4; display: inline-block; margin-bottom: 5px;}
 .invoice-creative .row-invoice-info .info {color:#2d2d2d; border-top:2px solid #c6c6c6; border-bottom:2px solid #c6c6c6; padding-top: 7px; padding-bottom: 7px;}
 .invoice-creative .head-td {padding-right: 20px;}
 .invoice-creative .row-invoice-info table {float: left; width: 210px; margin-right: 40px;}
-.invoice-creative .row-invoice-info .client-info {float: left;}
+.invoice-creative .row-invoice-info .client-info {float: left; max-width:200px; word-break: break-all; overflow: hidden;}
 .invoice-creative .row-invoice-info { margin-bottom: 30px;}
 .invoice-creative .row-invoice-info .origin {float:right; text-transform: uppercase; font-size: 36px;}
 .invoice-creative .items-table  {color:#2c2c2c;}
@@ -30,7 +30,7 @@ tr {page-break-inside: avoid !important;}
 .invoice-creative .invoice-totals .info {text-align: left;}
 .invoice-creative .invoice-totals .final-total td {padding-top: 20px; font-size: 18px;}
 .invoice-creative .invoice-totals .final-total .total-price {color:#3193c4;}
-.invoice-creative .invoice-payment {float:left; color:#2c2c2c;}
+.invoice-creative .invoice-payment {float:left; color:#2c2c2c; max-width: 200px; word-break: break-all; overflow: hidden;}
 .invoice-creative .invoice-payments {margin-bottom: 30px;}
 .invoice-creative .recipient {margin-bottom: 30px; color:#2c2c2c;}
 .invoice-creative .recipient .rec {float: left;}

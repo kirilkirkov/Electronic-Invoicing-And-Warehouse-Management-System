@@ -186,7 +186,7 @@ class Managefirms extends USER_Controller
     {
         $result = $this->HomeModel->checkBulstatIsFree($_POST['firm_bulstat'], $companyId);
         if ($result === true) {
-            $this->ManagefirmsModel->updateCompanyStaticInfo($_POST['firm_bulstat'], $companyId);
+            $this->ManagefirmsModel->updateCompanyStaticInfo($_POST, $companyId);
         }
         return $result;
     }

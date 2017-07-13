@@ -20,6 +20,9 @@
                     <label><?= lang('firm_bulstat') ?></label>
                     <input type="text" name="firm_bulstat" value="<?= $companyInfo['company']['bulstat'] ?>" class="form-control field">
                 </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" name="show_logo" <?= $companyInfo['company']['show_logo'] == 1 ? 'checked="checked"' : '' ?> value=""><?= lang('show_logo_in_inv') ?></label>
+                </div>
                 <button type="submit" class="btn btn-default"><?= lang('save_changes') ?></button>
             </form>
             <h2><?= lang('firms_translations') ?></h2>
@@ -71,10 +74,17 @@
                 </div>
                 <div class="form-group">
                     <input type="hidden" name="old_image" value="<?= $companyTranslate['image'] ?>">
-                    <div><img src="<?= base_url('attachments/' . COMPANIES_IMAGES_DIR . '/' . $companyInfo['company']['id'] . '/' . $companyTranslate['image']) ?>" alt="<?= lang('no_image') ?>"></div>
+                    <div class="firm-image-container">
+                        <img src="<?= base_url('attachments/' . COMPANIES_IMAGES_DIR . '/' . $companyInfo['company']['id'] . '/' . $companyTranslate['image']) ?>" alt="<?= lang('no_image') ?>">
+                    </div>
+                    <?php if (is_file('attachments/' . COMPANIES_IMAGES_DIR . '/' . $companyInfo['company']['id'] . '/' . $companyTranslate['image'])) { ?>
+                        <div>
+                            <a href="javascript:void(0);" class="btn btn-default remove-firm-logo-btn" onclick="removeFirmLogo()"><?= lang('remove_firm_image') ?></a>
+                        </div>
+                    <?php } ?>
                     <label><?= lang('firm_image') ?></label>
                     <input type="file" name="input_file">
-                </div> 
+                </div>  
                 <button type="submit" name="saveTranslate" class="btn btn-default"><?= lang('save_translation') ?></button>
             </form>
         </div>

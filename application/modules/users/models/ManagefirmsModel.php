@@ -47,7 +47,7 @@ class ManagefirmsModel extends CI_Model
     {
         $array = array();
 
-        $this->db->select('id, bulstat');
+        $this->db->select('id, bulstat, show_logo');
         $this->db->where('id', $companyId);
         $this->db->where('for_user', USER_ID);
         $result = $this->db->get('firms_users');
@@ -61,12 +61,18 @@ class ManagefirmsModel extends CI_Model
         return $array;
     }
 
-    public function updateCompanyStaticInfo($bulstat, $companyId)
+    public function updateCompanyStaticInfo($post, $companyId)
     {
         $this->db->where('id', $companyId);
         $this->db->where('for_user', USER_ID);
+        $bulstat = htmlspecialchars(trim($post['firm_bulstat']));
+        $showLogo = 0;
+        if (isset($post['show_logo'])) {
+            $showLogo = 1;
+        }
         if (!$this->db->update('firms_users', array(
-                    'bulstat' => $bulstat
+                    'bulstat' => $bulstat,
+                    'show_logo' => $showLogo
                 ))) {
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));

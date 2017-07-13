@@ -57,6 +57,7 @@ class Invoiceview extends USER_Controller
         if (!is_file($templateFile)) {
             show_error(lang('no_template_file'));
         }
+        $firmInfo = $this->firmInfo;
         $this->load->library('HtmlToPdf');
         ob_start();
         echo '
