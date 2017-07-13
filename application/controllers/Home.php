@@ -24,7 +24,7 @@ class Home extends MY_Controller
     {
         unset($_SESSION['user_login']);
         unset($_SESSION['selected_company']);
-        redirect(base_url());
+        redirect(lang_url());
     }
 
     /*

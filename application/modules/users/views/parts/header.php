@@ -66,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <?php if (!defined('EMPLOYEE_ID')) { ?>
                                 <li><a href="<?= lang_url('user/admin') ?>"><?= lang('usr_admin_menu') ?></a></li>
                             <?php } ?>
-                            <li><a href="<?= base_url('user/logout') ?>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                            <li><a href="<?= lang_url('user/logout') ?>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                         </ul>
                         <?php
                         $cleanUriString = uri_string();
