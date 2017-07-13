@@ -572,3 +572,4 @@ $lang['protocols_action'] = 'Action';
 $lang['create_protocol_amount'] = 'Amount';
 $lang['trans_to_invoice'] = 'To invoice';
 $lang['trans_transmission_protocol'] = 'Transmission protocol';
+$lang['language'] = 'Language';

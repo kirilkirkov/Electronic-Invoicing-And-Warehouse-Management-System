@@ -572,3 +572,4 @@ $lang['protocols_action'] = 'Действия';
 $lang['create_protocol_amount'] = 'Цнеа';
 $lang['trans_to_invoice'] = 'По фактура';
 $lang['trans_transmission_protocol'] = 'Приемо-предавателен протокол';
+$lang['language'] = 'Език';

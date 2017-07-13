@@ -61,12 +61,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
                                 <div id="topSearchResults"></div>
                             </div>
-                        </form>
+                        </form> 
                         <ul class="nav navbar-nav navbar-right">
                             <?php if (!defined('EMPLOYEE_ID')) { ?>
                                 <li><a href="<?= lang_url('user/admin') ?>"><?= lang('usr_admin_menu') ?></a></li>
                             <?php } ?>
                             <li><a href="<?= base_url('user/logout') ?>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                        </ul>
+                        <?php
+                        $cleanUriString = uri_string();
+                        if (mb_strlen($this->uri->segment(1)) == 2) {
+                            $cleanUriString = str_replace($this->uri->segment(1) . '/', '', uri_string());
+                        }
+                        ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= lang('language') ?><b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="<?= base_url($cleanUriString) ?>">English</a></li>
+                                    <li><a href="<?= base_url('bg/' . $cleanUriString) ?>">Български</a></li>
+                                </ul>
+                            </li>    
                         </ul>
                     </div>
                 </nav>

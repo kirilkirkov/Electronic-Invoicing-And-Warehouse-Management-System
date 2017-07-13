@@ -81,6 +81,21 @@
                                             <li><a href="<?= lang_url('features') ?>"><?= lang('periodic_invoices') ?></a></li>
                                         </ul>
                                     </li>
+                                    <?php
+                                    $cleanUriString = uri_string();
+                                    if (mb_strlen($this->uri->segment(1)) == 2) {
+                                        $cleanUriString = str_replace($this->uri->segment(1) . '/', '', uri_string());
+                                    }
+                                    ?>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= lang('language') ?><b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="<?= base_url($cleanUriString) ?>">English</a></li>
+                                                <li><a href="<?= base_url('bg/' . $cleanUriString) ?>">Български</a></li>
+                                            </ul>
+                                        </li>    
+                                    </ul>
                                     <li <?= uri_string() == 'help' ? ' class="active"' : '' ?>><a href="<?= lang_url('help') ?>"><?= lang('btn_help') ?></a></li>
                                     <li <?= uri_string() == 'contacts' ? ' class="active"' : '' ?>><a href="<?= lang_url('contacts') ?>"><?= lang('btn_contacts') ?></a></li>
                                 </ul>
