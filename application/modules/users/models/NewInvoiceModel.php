@@ -235,11 +235,13 @@ class NewInvoiceModel extends CI_Model
         $insertArray = array(
             'for_invoice' => $invoiceId,
             'for_user' => USER_ID,
-            'bulstat' => htmlspecialchars(trim($firm['bulstat'])),
-            'name' => htmlspecialchars(trim($firm['name'])),
-            'address' => htmlspecialchars($firm['address']),
-            'city' => htmlspecialchars(trim($firm['city'])),
-            'accountable_person' => htmlspecialchars(trim($firm['mol'])),
+            'bulstat' => $firm['bulstat'],
+            'name' => $firm['name'],
+            'address' => $firm['address'],
+            'city' => $firm['city'],
+            'accountable_person' => $firm['mol'],
+            'is_vat_registered' => $firm['is_vat_registered'],
+            'vat_number' => $firm['vat_number'],
             'image' => $firm['image'] == null ? '' : $firm['image']
         );
         if (!$this->db->insert('invoices_firms', $insertArray)) {
@@ -257,11 +259,13 @@ class NewInvoiceModel extends CI_Model
         $firm = $result->row_array();
 
         $updateArray = array(
-            'bulstat' => htmlspecialchars(trim($firm['bulstat'])),
-            'name' => htmlspecialchars(trim($firm['name'])),
-            'address' => htmlspecialchars(trim($firm['address'])),
-            'city' => htmlspecialchars(trim($firm['city'])),
-            'accountable_person' => htmlspecialchars(trim($firm['mol'])),
+            'bulstat' => $firm['bulstat'],
+            'name' => $firm['name'],
+            'address' => $firm['address'],
+            'city' => $firm['city'],
+            'accountable_person' => $firm['mol'],
+            'is_vat_registered' => $firm['is_vat_registered'],
+            'vat_number' => $firm['vat_number'],
             'image' => $firm['image']
         );
         if (!$this->db->where('for_invoice', $invoiceId)->update('invoices_firms', $updateArray)) {

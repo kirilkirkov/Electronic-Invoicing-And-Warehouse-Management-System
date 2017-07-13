@@ -74,7 +74,7 @@ class Managefirms extends USER_Controller
         }
         if ($translateId > 0) {
             $companyTranslate = $this->ManagefirmsModel->getTranslationInfo($translateId, $companyId);
-            if (empty($companyTranslate)) { 
+            if (empty($companyTranslate)) {
                 show_404();
             }
             $data['companyTranslate'] = $companyTranslate;
@@ -89,8 +89,8 @@ class Managefirms extends USER_Controller
             if ($result === false) {
                 $this->session->set_flashdata('resultAction', lang('bulstat_is_taken'));
             } else {
-                $this->saveHistory('Update bulstat for company Id - ' . $companyId);
-                $this->session->set_flashdata('resultAction', lang('bulstat_changed'));
+                $this->saveHistory('Update firm details for Id - ' . $companyId);
+                $this->session->set_flashdata('resultAction', lang('firm_details_changed'));
             }
             redirect(lang_url('user/managefirms/edit/' . $companyId));
         }

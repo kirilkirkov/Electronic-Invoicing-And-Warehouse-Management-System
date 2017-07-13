@@ -1,14 +1,21 @@
 <div class="invoice-creative">
     <div class="row-my-firm">
-        <?php if ($invoice['firm']['image'] != null && $firmInfo['show_logo'] == 1) { ?>
+        <?php
+        if ($invoice['firm']['image'] != null && $firmInfo['show_logo'] == 1) {
+            ?>
             <div class="firm-logo">
                 <img src="<?= base_url('attachments/companiesimages/' . $firmInfo['id'] . '/' . $invoice['firm']['image']) ?>" alt="">
             </div>
         <?php } ?>
         <div class="my-firm-info">
             <p class="firm-name"><?= $invoice['firm']['name'] ?></p>
+            <p><b><?= $invoice['translation']['bulstat'] ?></b> <?= $invoice['firm']['bulstat'] ?></p>
+            <?php if ($invoice['firm']['is_vat_registered'] == 1) { ?>
+                <p><b><?= $invoice['translation']['vat_number'] ?></b> <?= $invoice['firm']['vat_number'] ?></p>
+            <?php } ?>
             <p><?= $invoice['firm']['address'] ?></p>
             <p><?= $invoice['firm']['city'] ?></p>
+            <p><b><?= $invoice['translation']['mol'] ?></b> <?= $invoice['firm']['accountable_person'] ?></p>
         </div>
         <div class="clearfix"></div>
     </div> 
@@ -88,7 +95,7 @@
             <div class="client-info">
                 <p><b><?= $invoice['client']['client_name'] ?></b></p>
                 <?php if ($invoice['client']['is_to_person'] == 0) { ?>
-                    <p><?= $invoice['client']['client_bulstat'] ?></p>
+                    <p><b><?= $invoice['translation']['bulstat'] ?></b> <?= $invoice['client']['client_bulstat'] ?></p>
                 <?php } else { ?>
                     <?= $invoice['client']['client_ident_num'] ?>
                 <?php } if ($invoice['client']['client_vat_registered'] == 1) { ?>
@@ -98,7 +105,7 @@
                 <p><?= $invoice['client']['client_city'] ?></p>
                 <p><?= $invoice['client']['client_country'] ?></p>
                 <?php if ($invoice['client']['is_to_person'] == 0) { ?>
-                    <p><?= $invoice['client']['accountable_person'] ?></p> 
+                    <p><b><?= $invoice['translation']['mol'] ?></b> <?= $invoice['client']['accountable_person'] ?></p> 
                 <?php } ?>
             </div>
             <div class="origin">

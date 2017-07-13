@@ -467,7 +467,11 @@
                         <div class="form-group">
                             <label><?= lang('trans_page') ?></label>
                             <input type="text" name="page" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
-                        </div> 
+                        </div>
+                        <div class="form-group">
+                            <label><?= lang('trans_vat_number') ?></label>
+                            <input type="text" name="vat_number" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">

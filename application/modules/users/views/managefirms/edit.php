@@ -21,6 +21,13 @@
                     <input type="text" name="firm_bulstat" value="<?= $companyInfo['company']['bulstat'] ?>" class="form-control field">
                 </div>
                 <div class="checkbox">
+                    <label><input type="checkbox" name="is_vat_registered" <?= $companyInfo['company']['is_vat_registered'] == 1 ? 'checked="checked"' : '' ?> value=""><?= lang('firm_is_vat_registered') ?></label>
+                </div> 
+                <div class="form-group firm-vat-number <?= $companyInfo['company']['is_vat_registered'] == 0 ? 'hidden' : '' ?>">
+                    <label><?= lang('firm_vat_number') ?></label>
+                    <input type="text" name="vat_number" value="<?= $companyInfo['company']['vat_number'] ?>" class="form-control field">
+                </div> 
+                <div class="checkbox">
                     <label><input type="checkbox" name="show_logo" <?= $companyInfo['company']['show_logo'] == 1 ? 'checked="checked"' : '' ?> value=""><?= lang('show_logo_in_inv') ?></label>
                 </div>
                 <button type="submit" class="btn btn-default"><?= lang('save_changes') ?></button>

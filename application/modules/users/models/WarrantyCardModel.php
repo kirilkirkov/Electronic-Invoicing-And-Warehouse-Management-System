@@ -222,11 +222,13 @@ class WarrantyCardModel extends CI_Model
         $firm = $result->row_array();
 
         $insertArray = array(
-            'bulstat' => htmlspecialchars(trim($firm['bulstat'])),
-            'name' => htmlspecialchars(trim($firm['name'])),
-            'address' => htmlspecialchars(trim($firm['address'])),
-            'city' => htmlspecialchars(trim($firm['city'])),
-            'accountable_person' => htmlspecialchars(trim($firm['mol'])),
+            'bulstat' => $firm['bulstat'],
+            'name' => $firm['name'],
+            'address' => $firm['address'],
+            'city' => $firm['city'],
+            'accountable_person' => $firm['mol'],
+            'is_vat_registered' => $firm['is_vat_registered'],
+            'vat_number' => $firm['vat_number'],
             'image' => $firm['image'] == null ? '' : $firm['image']
         );
         $this->db->where('for_warranty', $warrantyId);
@@ -309,11 +311,13 @@ class WarrantyCardModel extends CI_Model
 
         $insertArray = array(
             'for_warranty' => $warrantyId,
-            'bulstat' => htmlspecialchars($firm['bulstat']),
-            'name' => htmlspecialchars($firm['name']),
-            'address' => htmlspecialchars($firm['address']),
-            'city' => htmlspecialchars($firm['city']),
-            'accountable_person' => htmlspecialchars($firm['mol']),
+            'bulstat' => $firm['bulstat'],
+            'name' => $firm['name'],
+            'address' => $firm['address'],
+            'city' => $firm['city'],
+            'accountable_person' => $firm['mol'],
+            'is_vat_registered' => $firm['is_vat_registered'],
+            'vat_number' => $firm['vat_number'],
             'image' => $firm['image'] == null ? '' : $firm['image']
         );
         if (!$this->db->insert('warranties_firms`', $insertArray)) {

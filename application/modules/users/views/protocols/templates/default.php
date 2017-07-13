@@ -11,6 +11,9 @@
                 <p><span><?= $protocol['translation']['city'] ?></span> <?= $protocol['firm']['city'] ?></p>
                 <p><span><?= $protocol['translation']['address'] ?></span> <?= $protocol['firm']['address'] ?></p>
                 <p><span><?= $protocol['translation']['bulstat'] ?></span> <?= $protocol['firm']['bulstat'] ?></p>
+                <?php if ($protocol['firm']['is_vat_registered'] == 1) { ?>
+                    <p><b><?= $protocol['translation']['vat_number'] ?></b> <?= $protocol['firm']['vat_number'] ?></p>
+                <?php } ?>
             <?php } else { ?>
                 <h1><?= $protocol['translation']['recipient'] ?></h1>
                 <p><?= $protocol['client']['client_name'] ?></p>
@@ -28,6 +31,9 @@
                 <p><span><?= $protocol['translation']['city'] ?></span> <?= $protocol['firm']['city'] ?></p>
                 <p><span><?= $protocol['translation']['address'] ?></span> <?= $protocol['firm']['address'] ?></p>
                 <p><span><?= $protocol['translation']['bulstat'] ?></span> <?= $protocol['firm']['bulstat'] ?></p>
+                <?php if ($protocol['firm']['is_vat_registered'] == 1) { ?>
+                    <p><b><?= $protocol['translation']['vat_number'] ?></b> <?= $protocol['firm']['vat_number'] ?></p>
+                <?php } ?>
             <?php } else { ?>
                 <h1><?= $protocol['translation']['recipient'] ?></h1>
                 <p><?= $protocol['client']['client_name'] ?></p>

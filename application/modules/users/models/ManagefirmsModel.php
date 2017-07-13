@@ -47,7 +47,7 @@ class ManagefirmsModel extends CI_Model
     {
         $array = array();
 
-        $this->db->select('id, bulstat, show_logo');
+        $this->db->select('id, bulstat, show_logo, is_vat_registered, vat_number');
         $this->db->where('id', $companyId);
         $this->db->where('for_user', USER_ID);
         $result = $this->db->get('firms_users');
@@ -66,13 +66,20 @@ class ManagefirmsModel extends CI_Model
         $this->db->where('id', $companyId);
         $this->db->where('for_user', USER_ID);
         $bulstat = htmlspecialchars(trim($post['firm_bulstat']));
+        $vatNumber = htmlspecialchars(trim($post['vat_number']));
         $showLogo = 0;
         if (isset($post['show_logo'])) {
             $showLogo = 1;
         }
+        $isVatRegistered = 0;
+        if (isset($post['is_vat_registered'])) {
+            $isVatRegistered = 1;
+        }
         if (!$this->db->update('firms_users', array(
                     'bulstat' => $bulstat,
-                    'show_logo' => $showLogo
+                    'show_logo' => $showLogo,
+                    'is_vat_registered' => $isVatRegistered,
+                    'vat_number' => $vatNumber
                 ))) {
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));

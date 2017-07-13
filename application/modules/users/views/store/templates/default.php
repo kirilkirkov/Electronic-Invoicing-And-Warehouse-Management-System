@@ -18,6 +18,9 @@
             <p><span><?= $movement['translation']['city'] ?></span> <?= $movement['firm']['city'] ?></p>
             <p><span><?= $movement['translation']['address'] ?></span> <?= $movement['firm']['address'] ?></p>
             <p><span><?= $movement['translation']['bulstat'] ?></span> <?= $movement['firm']['bulstat'] ?></p>
+            <?php if ($movement['firm']['is_vat_registered'] == 1) { ?>
+                <p><b><?= $movement['translation']['vat_number'] ?></b> <?= $movement['firm']['vat_number'] ?></p>
+            <?php } ?>
         </div>
         <div class="clearfix"></div>
     </div>

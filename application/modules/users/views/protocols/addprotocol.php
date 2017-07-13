@@ -481,9 +481,13 @@
                             <label><?= lang('trans_bulstat') ?></label>
                             <input type="text" name="bulstat" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
                         </div>
-                          <div class="form-group">
+                        <div class="form-group">
                             <label><?= lang('trans_transmission_protocol') ?></label>
                             <input type="text" name="transmission_protocol" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                        </div>
+                        <div class="form-group">
+                            <label><?= lang('trans_vat_number') ?></label>
+                            <input type="text" name="vat_number" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
                         </div>
                     </form>
                 </div>

@@ -514,6 +514,16 @@ $('.saved-prov-trans').change(function () {
     $('[name="provider_trasmit"]').empty().append(description_text);
 });
 /*
+ * Firm vat registration field show/hide
+ */
+$('[name="is_vat_registered"]').change(function () {
+    if ($(this).is(":checked")) {
+        $('.firm-vat-number').removeClass('hidden');
+    } else {
+        $('.firm-vat-number').addClass('hidden');
+    }
+});
+/*
  * Create draft invoice
  */
 function createDraft() {

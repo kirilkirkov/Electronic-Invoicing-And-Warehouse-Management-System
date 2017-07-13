@@ -545,6 +545,10 @@
                             <input type="text" name="i_refuse" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
                         </div>
                         <div class="form-group">
+                            <label><?= lang('trans_vat_number') ?></label>
+                            <input type="text" name="vat_number" placeholder="<?= lang('your_translation') ?>" value="" class="form-control field field-new-translate">
+                        </div>
+                        <div class="form-group">
                             <label><?= lang('trans_receive_from') ?></label>
                             <div class="row">
                                 <div class="col-sm-5">

@@ -18,6 +18,9 @@
             <p><span><?= $warranty['translation']['city'] ?></span> <?= $warranty['firm']['city'] ?></p>
             <p><span><?= $warranty['translation']['address'] ?></span> <?= $warranty['firm']['address'] ?></p>
             <p><span><?= $warranty['translation']['bulstat'] ?></span> <?= $warranty['firm']['bulstat'] ?></p>
+            <?php if ($warranty['firm']['is_vat_registered'] == 1) { ?>
+                <p><b><?= $warranty['translation']['vat_number'] ?></b> <?= $warranty['firm']['vat_number'] ?></p>
+            <?php } ?>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -55,7 +58,7 @@
     <div class="conditions">
         <?= $warranty['translation']['warranty_conditions'] ?>  
         <div>
-             <?= $warranty['conditions'] ?>  
+            <?= $warranty['conditions'] ?>  
         </div>
     </div>
     <div class="transmission">
