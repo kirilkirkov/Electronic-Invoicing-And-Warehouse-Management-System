@@ -74,3 +74,29 @@ ERROR - 2017-07-13 12:05:30 --> Severity: Core Warning --> PHP Startup: Unable t
 ERROR - 2017-07-13 12:08:37 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
 ERROR - 2017-07-13 12:08:40 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
 ERROR - 2017-07-13 12:24:53 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 12:27:33 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 12:27:40 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 12:29:06 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 12:32:05 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 12:32:06 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 12:33:12 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 12:33:13 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 13:02:35 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 13:03:32 --> User with id - 1 get 404 when try to view invoice with type -invoice and number - 0002
+ERROR - 2017-07-13 13:03:32 --> 404 Page Not Found: 
+ERROR - 2017-07-13 13:03:32 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 13:03:32 --> User with id - 1 get 404 when try to view invoice with type -invoice and number - 0002
+ERROR - 2017-07-13 13:03:32 --> 404 Page Not Found: 
+ERROR - 2017-07-13 13:03:34 --> User with id - 1 get 404 when try to view invoice with type -invoice and number - 0002
+ERROR - 2017-07-13 13:03:34 --> 404 Page Not Found: 
+ERROR - 2017-07-13 13:03:35 --> User with id - 1 get 404 when try to view invoice with type -invoice and number - 0002
+ERROR - 2017-07-13 13:03:35 --> 404 Page Not Found: 
+ERROR - 2017-07-13 13:03:35 --> User with id - 1 get 404 when try to view invoice with type -invoice and number - 0002
+ERROR - 2017-07-13 13:03:35 --> 404 Page Not Found: 
+ERROR - 2017-07-13 13:03:39 --> User with id - 1 get 404 when try to view invoice with type -invoice and number - 0002
+ERROR - 2017-07-13 13:03:39 --> 404 Page Not Found: 
+ERROR - 2017-07-13 13:03:50 --> User with id - 1 get 404 when try to view invoice with type -invoice and number - 00000002
+ERROR - 2017-07-13 13:03:50 --> 404 Page Not Found: 
+ERROR - 2017-07-13 13:03:50 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 13:03:52 --> User with id - 1 get 404 when try to view invoice with type -invoice and number - 000000002
+ERROR - 2017-07-13 13:03:52 --> 404 Page Not Found: 
