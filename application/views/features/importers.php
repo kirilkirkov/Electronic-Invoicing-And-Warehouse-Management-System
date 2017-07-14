@@ -21,7 +21,7 @@
         <maturity_date>1497906000</maturity_date> <!-- timestamp format -->
         <remarks>Additional information</remarks>
         <payment_method>Credit or Debit Card</payment_method>
-        <payment_status>unpaid</payment_status> <!-- unpaid/paid -->
+        <payment_status>unpaid</payment_status> <!-- unpaid/paid/partly_paid -->
         <to_inv_number></to_inv_number>
         <to_inv_date>1497906000</to_inv_date> <!-- timestamp format -->
         <invoice_amount>27.30</invoice_amount>

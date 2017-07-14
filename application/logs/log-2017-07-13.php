@@ -173,3 +173,36 @@ ERROR - 2017-07-13 14:34:52 --> Severity: Warning --> Invalid argument supplied 
 ERROR - 2017-07-13 14:35:00 --> Could not find the language line "choose_war_translation"
 ERROR - 2017-07-13 14:35:00 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/inv/application/modules/users/views/protocols/itemTableTr.php 25
 ERROR - 2017-07-13 14:42:35 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 15:11:35 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 15:11:35 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 15:14:58 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 15:14:59 --> 404 Page Not Found: /index
+ERROR - 2017-07-13 15:14:59 --> 404 Page Not Found: /index
+ERROR - 2017-07-13 16:33:16 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 16:38:44 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 16:38:51 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 16:39:25 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 16:40:20 --> Could not find the language line "choose_war_translation"
+ERROR - 2017-07-13 16:40:20 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/inv/application/modules/users/views/protocols/itemTableTr.php 25
+ERROR - 2017-07-13 16:40:27 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 16:40:33 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 16:40:34 --> Could not find the language line "choose_war_translation"
+ERROR - 2017-07-13 16:40:34 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/inv/application/modules/users/views/protocols/itemTableTr.php 25
+ERROR - 2017-07-13 16:45:26 --> Could not find the language line "choose_war_translation"
+ERROR - 2017-07-13 16:45:26 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/inv/application/modules/users/views/protocols/itemTableTr.php 25
+ERROR - 2017-07-13 16:45:42 --> Could not find the language line "choose_war_translation"
+ERROR - 2017-07-13 16:45:42 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/inv/application/modules/users/views/protocols/itemTableTr.php 25
+ERROR - 2017-07-13 16:45:50 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 16:45:55 --> Could not find the language line "choose_war_translation"
+ERROR - 2017-07-13 16:45:55 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/inv/application/modules/users/views/protocols/itemTableTr.php 25
+ERROR - 2017-07-13 16:46:11 --> Could not find the language line "choose_war_translation"
+ERROR - 2017-07-13 16:46:11 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/inv/application/modules/users/views/protocols/itemTableTr.php 25
+ERROR - 2017-07-13 16:47:34 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 16:47:38 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 16:47:41 --> Could not find the language line "choose_war_translation"
+ERROR - 2017-07-13 16:47:41 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/inv/application/modules/users/views/protocols/itemTableTr.php 25
+ERROR - 2017-07-13 16:47:44 --> Could not find the language line "choose_war_translation"
+ERROR - 2017-07-13 16:47:44 --> Severity: Warning --> Invalid argument supplied for foreach() /var/www/html/inv/application/modules/users/views/protocols/itemTableTr.php 25
+ERROR - 2017-07-13 17:05:05 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 17:05:08 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0
+ERROR - 2017-07-13 17:07:47 --> Severity: Core Warning --> PHP Startup: Unable to load dynamic library '/usr/lib/php/20131226/php_intl.dll' - /usr/lib/php/20131226/php_intl.dll: cannot open shared object file: No such file or directory Unknown 0

@@ -30,6 +30,7 @@
                     <option <?= !isset($_GET['payment_status']) || $_GET['payment_status'] == 'all' ? 'selected="selected"' : '' ?> value="all"><?= lang('report_show_all') ?></option>
                     <option <?= isset($_GET['payment_status']) && $_GET['payment_status'] == 'paid' ? 'selected="selected"' : '' ?> value="paid"><?= lang('report_show_paid') ?></option>
                     <option <?= isset($_GET['payment_status']) && $_GET['payment_status'] == 'unpaid' ? 'selected="selected"' : '' ?> value="unpaid"><?= lang('report_show_unpaid') ?></option>
+                    <option <?= isset($_GET['payment_status']) && $_GET['payment_status'] == 'partly_paid' ? 'selected="selected"' : '' ?> value="partly_paid"><?= lang('report_show_partly_paid') ?></option>
                 </select>
             </div>
             <div class="checkbox">

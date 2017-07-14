@@ -76,6 +76,9 @@
                     <div class="checkbox">
                         <label><input type="checkbox" name="inv_payment[]" <?= isset($_GET['inv_payment']) && in_array('unpaid', $_GET['inv_payment']) ? 'checked="checked"' : '' ?> value="unpaid"><?= lang('search_unpaied') ?></label>
                     </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="inv_payment[]" <?= isset($_GET['inv_payment']) && in_array('partly_paid', $_GET['inv_payment']) ? 'checked="checked"' : '' ?> value="partly_paid"><?= lang('search_partly_paid') ?></label>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-4">
@@ -156,6 +159,7 @@
         <div id="payment-statuses">
             <a href="javascript:void(0);" data-new-pay-status="paid" class="change-pay-status"><?= lang('payment_status_paid') ?></a>
             <a href="javascript:void(0);" data-new-pay-status="unpaid" class="change-pay-status"><?= lang('payment_status_unpaid') ?></a>
+            <a href="javascript:void(0);" data-new-pay-status="partly_paid" class="change-pay-status"><?= lang('payment_status_partly_paid') ?></a>
         </div>
     </form>
     <?= $linksPagination ?>
