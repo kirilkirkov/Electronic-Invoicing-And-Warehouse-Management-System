@@ -13,6 +13,7 @@ class USER_Controller extends HEAD_Controller
         $this->loginCheck();
         $this->firmCkecker();
         $this->load->helper(array('uploader', 'pagination'));
+        $this->load->library('MailSend');
     }
 
     public function render($view, $head, $data = null)
@@ -76,7 +77,7 @@ class USER_Controller extends HEAD_Controller
         $this->load->model('HomeModel');
         $defaultFirmForUser = $this->HomeModel->getDefaultCompany();
         $firmsForUser = $this->HomeModel->getFirms();
-        if (isset($_SESSION['selected_company'])) { 
+        if (isset($_SESSION['selected_company'])) {
             $isValidFirmForUser = $this->HomeModel->checkCompanyIsValidForUser($_SESSION['selected_company']['id']);
             if (!empty($isValidFirmForUser)) {
                 $selectedFirmId = $_SESSION['selected_company']['id'];
