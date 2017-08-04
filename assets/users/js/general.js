@@ -55,6 +55,24 @@ $(document).ready(function () {
     $('.body-items').sortable({
         handle: '.move-me'
     });
+    /*
+     * NavBar Border Bottom check
+     */
+    if ($(window).scrollTop() != 0) {
+        $(".navbar-user").addClass("navbar-scroll-border");
+    } else {
+        $(".navbar-user").removeClass("navbar-scroll-border");
+    }
+});
+/*
+ * NavBar Border Bottom check
+ */
+$(window).scroll(function () {
+    if ($(this).scrollTop() != 0) {
+        $(".navbar-user").addClass("navbar-scroll-border");
+    } else {
+        $(".navbar-user").removeClass("navbar-scroll-border");
+    }
 });
 /*
  * Alerts close
@@ -410,6 +428,7 @@ $('.change-pay-status').click(function () { // ajax change status
     var new_pay_status_text = $(this).text();
     var to_inv_id = parent_div_statuses.data('inv-id');
     parent_div_statuses.find('.new_pay_status_text').text(new_pay_status_text);
+    parent_div_statuses.parents('.status-changer').removeClass().addClass('txt_status_' + new_pay_status + ' status-changer');
     $('#payment-statuses').hide();
     $.post(urls.changeInvoiceStatus, {invId: to_inv_id, newStatus: new_pay_status}, function (result) {
         if (result != '1') {
@@ -424,9 +443,11 @@ $('.top-search-form .field').keyup(function () {
     var search_phrase = jQuery.trim($(this).val());
     if (search_phrase != '') {
         $('.top-search-form .fa-spinner').show();
+        $('.top-search-form .spray-search').hide();
         $.post(urls.topNavSearch, {search: search_phrase}, function (result) {
             $('#topSearchResults').empty().hide();
             $('.top-search-form .fa-spinner').hide();
+            $('.top-search-form .spray-search').show();
             $('#topSearchResults').append(result).show();
         });
     } else {

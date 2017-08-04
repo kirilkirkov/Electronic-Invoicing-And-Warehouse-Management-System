@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 <?php } ?>
 <footer>
-    bebe
+    © PMInvoice.com Copyright 2017. All Rights Reserved.
 </footer>
 </div> 
 </div> 

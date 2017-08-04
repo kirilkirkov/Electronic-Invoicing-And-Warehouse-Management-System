@@ -1,16 +1,13 @@
 <div class="selected-page">
     <div class="inner">
-        <h1>
-            <i class="fa fa-cog" aria-hidden="true"></i>
+        <h1> 
             <?= lang('selected_manage_firms') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li>
+            <li class="active"><?= lang('selected_manage_firms') ?></li>
         </ol>
-    </div>
-    <div class="border"></div>
+    </div> 
 </div>
 <?php if ($this->permissions->hasPerm('perm_can_manage_firms')) { ?>
     <div class="row">

@@ -2,16 +2,15 @@
 <div class="selected-page">
     <div class="inner">
         <h1>
-            <i class="fa fa-file-text-o" aria-hidden="true"></i>
-            add-movement
+            <?= lang('add_warranty_event') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li> 
+            <li><a href="<?= lang_url('user/warranties') ?>"><?= lang('warranties') ?></a></li>  
+            <li><a href="<?= lang_url('user/warranty/events/' . $eventNumber) ?>"><?= lang('warranty_events') ?></a></li>  
+            <li class="active"><?= lang('add_warranty_event') ?></li>
         </ol>
     </div>
-    <div class="border"></div>
 </div>
 <?php if ($this->permissions->hasPerm('perm_add_warranty_events')) { ?>
     <div class="row">
@@ -41,6 +40,7 @@
                     <textarea class="form-control" name="description" rows="5"></textarea>
                 </div> 
                 <button type="submit" class="btn btn-default"><?= lang('save_war_event') ?></button>
+                <a href="<?= lang_url('user/warranty/events/' . $eventNumber) ?>" class="btn btn-default"><?= lang('cancel') ?></a>
             </form>
         </div>
     </div>

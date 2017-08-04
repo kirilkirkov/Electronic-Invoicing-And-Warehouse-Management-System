@@ -13,6 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <link href="<?= base_url('assets/users/css/general.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/bootstrap-select-1.12.2/dist/css/bootstrap-select.min.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/bootstrap-datepicker-1.6.4-dist/css/bootstrap-datepicker.min.css') ?>" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
         <script src="<?= base_url('assets/jquery/jquery.min.js') ?>"></script>
         <script src="<?= base_url('assets/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js') ?>"></script> 
         <script src="<?= lang_url('loadlanguage/all.js') ?>"></script>
@@ -26,75 +27,93 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div id="content">
                 <nav class="navbar navbar-user navbar-fixed-top">
                     <div class="container-fluid"> 
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <span class="label label-success">
-                                        <i class="fa fa-copyright" aria-hidden="true"></i>
-                                    </span>
-                                    <?= lang('change_firm') ?>
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <?php if (empty($myFirms)) { ?>
-                                        <li><a href="#"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <?= lang('dont_have_firms') ?></a></li> 
-                                        <?php
-                                    } else {
-                                        foreach ($myFirms as $firm) {
-                                            if (in_array($firm['id'], $canUseFirms)) {
-                                                ?>
-                                                <li <?= SELECTED_COMPANY_ID == $firm['id'] ? 'class="active"' : '' ?>><a href="<?= lang_url('user/usecompany/' . $firm['id']) ?>"><?= $firm['name'] ?></a></li> 
-                                                <?php
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand visible-xs" href="#"><?= $firmInfo['name'] ?></a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"> 
+                                        <?= lang('change_firm') ?>
+                                        <span class="sprite-caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <?php if (empty($myFirms)) { ?>
+                                            <li><a href="#"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> <?= lang('dont_have_firms') ?></a></li> 
+                                            <?php
+                                        } else {
+                                            foreach ($myFirms as $firm) {
+                                                if (in_array($firm['id'], $canUseFirms)) {
+                                                    ?>
+                                                    <li <?= SELECTED_COMPANY_ID == $firm['id'] ? 'class="active"' : '' ?>><a href="<?= lang_url('user/usecompany/' . $firm['id']) ?>"><?= SELECTED_COMPANY_ID == $firm['id'] ? '<i class="fa fa-check" aria-hidden="true"></i>' : '' ?> <?= $firm['name'] ?></a></li> 
+                                                    <?php
+                                                }
                                             }
                                         }
-                                    }
-                                    ?>
-                                    <li class="divider"></li>
-                                    <li><a href="<?= lang_url('user/managefirms') ?>" class="text-center"><?= lang('manage_firms') ?></a></li>
-                                </ul>
-                            </li>
-                            <li><a href="<?= lang_url('user/settings') ?>"><?= lang('settings') ?></a></li>
-                        </ul>
-                        <form class="navbar-form navbar-left top-search-form" role="search">
-                            <div class="form-group">
-                                <input class="form-control field" type="text" placeholder="<?= lang('search_header_u') ?>">
-                                <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
-                                <div id="topSearchResults"></div>
-                            </div>
-                        </form> 
-                        <ul class="nav navbar-nav navbar-right">
-                            <?php if (!defined('EMPLOYEE_ID')) { ?>
-                                <li><a href="<?= lang_url('user/admin') ?>"><?= lang('usr_admin_menu') ?></a></li>
-                            <?php } ?>
-                            <li><a href="<?= lang_url('user/logout') ?>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                        </ul>
-                        <?php
-                        $cleanUriString = uri_string();
-                        if (mb_strlen($this->uri->segment(1)) == 2) {
-                            $cleanUriString = str_replace($this->uri->segment(1) . '/', '', uri_string());
-                        }
-                        ?>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= lang('language') ?><b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="<?= base_url($cleanUriString) ?>">English</a></li>
-                                    <li><a href="<?= base_url('bg/' . $cleanUriString) ?>">Български</a></li>
-                                </ul>
-                            </li>    
-                        </ul>
+                                        ?>
+                                        <li class="divider hidden-xs"></li>
+                                        <li><a href="<?= lang_url('user/managefirms') ?>" class="manage-firms"><?= lang('manage_firms') ?></a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="settings" href="<?= lang_url('user/settings') ?>"><span class="sprite-cog"></span> <?= lang('settings') ?></a></li>
+                            </ul> 
+                            <form class="navbar-form navbar-left top-search-form" role="search">
+                                <div class="form-group">
+                                    <input class="field" type="text" placeholder="<?= lang('search_header_u') ?>">
+                                    <span class="sprite-search"></span>
+                                    <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+                                    <div id="topSearchResults"></div>
+                                </div>
+                            </form> 
+                            <ul class="nav navbar-nav navbar-right">
+                                <?php if (!defined('EMPLOYEE_ID')) { ?>
+                                    <li><a href="<?= lang_url('user/admin') ?>"><?= lang('usr_admin_menu') ?></a></li>
+                                <?php } ?>
+                                <li><a class="logout" href="<?= lang_url('user/logout') ?>"><?= lang('logout') ?></a></li>
+                            </ul>
+                            <?php
+                            $cleanUriString = uri_string();
+                            if (mb_strlen($this->uri->segment(1)) == 2) {
+                                $cleanUriString = str_replace($this->uri->segment(1) . '/', '', uri_string());
+                            }
+                            ?>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= lang('language') ?><span class="sprite-caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?= base_url($cleanUriString) ?>">English</a></li>
+                                        <li><a href="<?= base_url('bg/' . $cleanUriString) ?>">Български</a></li>
+                                    </ul>
+                                </li>    
+                            </ul>
+                        </div>
                     </div>
                 </nav>
                 <?php if (!empty($myFirms)) { ?>
                     <header>
                         <div class="container-fluid"> 
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <h1> f</h1>
+                                <div class="col-sm-6 col-firm-info"> 
+                                    <h1>
+                                        <?php if (is_file('attachments/' . COMPANIES_IMAGES_DIR . '/' . $firmInfo['id'] . '/' . $firmInfo['image'])) { ?>
+                                            <img src="<?= base_url('attachments/' . COMPANIES_IMAGES_DIR . '/' . $firmInfo['id'] . '/' . $firmInfo['image']) ?>" alt="<?= lang('no_image') ?>">
+                                        <?php } ?>                                       
+                                        <?= $firmInfo['name'] ?>
+                                    </h1>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div class="stats"> 
-                                        asd
+                                <div class="col-sm-6 col-stats">
+                                    <div class="stats">
+                                        <div class="stat">
+                                            <span class="sprite-inv-docs icon"></span> <span class="num">61</span> <?= lang('documents') ?>
+                                        </div>
+                                        <div class="stat">
+                                            <span class="sprite-companies icon"></span> <span class="num">61</span> <?= lang('companies') ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -103,66 +122,119 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-3 col-md-3 col-lg-2 left-col">
-                                <div class="left-menu">
+                                <div class="visible-xs text-center">
+                                    <button data-toggle="collapse" class="btn btn-blue" data-target="#demo"><?= lang('show_main_menu') ?></button>
+                                </div>
+                                <div id="demo" class="left-menu collapse">
                                     <ul>
                                         <li>
                                             <a href="<?= lang_url('user') ?>">
-                                                <i class="fa fa-home" aria-hidden="true"></i>
+                                                <div class="left-icon">
+                                                    <span class="sprite-home"></span>
+                                                </div>
                                                 <?= lang('menu_home') ?> 
+                                                <div class="right-arrow">
+                                                    <span class="sprite-arrow-right"></span>
+                                                </div>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="<?= lang_url('user/new/invoice') ?>">
-                                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                                <div class="left-icon">
+                                                    <span class="sprite-new-inv"></span>
+                                                </div>
                                                 <?= lang('menu_create_invoice') ?> 
+                                                <div class="right-arrow">
+                                                    <span class="sprite-arrow-right"></span>
+                                                </div>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="<?= lang_url('user/invoices') ?>">
-                                                <i class="fa fa-list-alt" aria-hidden="true"></i>
+                                                <div class="left-icon">
+                                                    <span class="sprite-invoices"></span>
+                                                </div>
                                                 <?= lang('menu_list_invoices') ?> 
+                                                <div class="right-arrow">
+                                                    <span class="sprite-arrow-right"></span>
+                                                </div>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="<?= lang_url('user/clients') ?>">
-                                                <i class="fa fa-users" aria-hidden="true"></i>
+                                                <div class="left-icon">
+                                                    <span class="sprite-clients"></span>
+                                                </div>
                                                 <?= lang('menu_list_clients') ?> 
+                                                <div class="right-arrow">
+                                                    <span class="sprite-arrow-right"></span>
+                                                </div>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="<?= lang_url('user/items') ?>">
-                                                <i class="fa fa-buysellads" aria-hidden="true"></i>
+                                                <div class="left-icon">
+                                                    <span class="sprite-items"></span>
+                                                </div>
                                                 <?= lang('menu_list_items') ?> 
+                                                <div class="right-arrow">
+                                                    <span class="sprite-arrow-right"></span>
+                                                </div>
                                             </a>
                                         </li> 
                                         <li>
                                             <a href="<?= lang_url('user/store') ?>">
-                                                <i class="fa fa-buysellads" aria-hidden="true"></i>
+                                                <div class="left-icon">
+                                                    <span class="sprite-storage"></span>
+                                                </div>
                                                 <?= lang('menu_list_store') ?> 
+                                                <div class="right-arrow">
+                                                    <span class="sprite-arrow-right"></span>
+                                                </div>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="<?= lang_url('user/warranties') ?>">
-                                                <i class="fa fa-buysellads" aria-hidden="true"></i>
+                                                <div class="left-icon">
+                                                    <span class="sprite-war-card"></span>
+                                                </div>
                                                 <?= lang('menu_list_warranties') ?> 
+                                                <div class="right-arrow">
+                                                    <span class="sprite-arrow-right"></span>
+                                                </div>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="<?= lang_url('user/protocols') ?>">
-                                                <i class="fa fa-buysellads" aria-hidden="true"></i>
+                                                <div class="left-icon">
+                                                    <span class="sprite-protocols"></span>
+                                                </div>
                                                 <?= lang('menu_list_protocols') ?> 
+                                                <div class="right-arrow">
+                                                    <span class="sprite-arrow-right"></span>
+                                                </div>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="<?= lang_url('user/reports') ?>">
-                                                <i class="fa fa-buysellads" aria-hidden="true"></i>
+                                                <div class="left-icon">
+                                                    <span class="sprite-reports"></span>
+                                                </div>
                                                 <?= lang('menu_list_reports') ?> 
+                                                <div class="right-arrow">
+                                                    <span class="sprite-arrow-right"></span>
+                                                </div>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="<?= lang_url('user/import-export') ?>">
-                                                <i class="fa fa-buysellads" aria-hidden="true"></i>
+                                                <div class="left-icon">
+                                                    <span class="sprite-imp-exp"></span>
+                                                </div>
                                                 <?= lang('menu_list_import_export') ?> 
+                                                <div class="right-arrow">
+                                                    <span class="sprite-arrow-right"></span>
+                                                </div>
                                             </a>
                                         </li>
                                     </ul>

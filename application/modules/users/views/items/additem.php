@@ -1,16 +1,14 @@
 <div class="selected-page">
     <div class="inner">
-        <h1>
-            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+        <h1> 
             <?= lang('add_item') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li>  
+            <li><a href="<?= lang_url('user/items') ?>"><?= lang('items') ?></a></li>  
+            <li class="active"><?= lang('add_item') ?></li>
         </ol>
-    </div>
-    <div class="border"></div>
+    </div> 
 </div>
 <?php if ($this->permissions->hasPerm('perm_add_items') && $editId == 0 || $this->permissions->hasPerm('perm_edit_items') && $editId > 0) { ?>
     <form action="" class="site-form" method="POST" id="setNewItem">
@@ -46,7 +44,7 @@
                         <?php } ?>
                     </select>
                 </div>
-                <a href="javascript:void(0);" onclick="newItemValidate()" class="btn btn-default"><?= lang('save_item') ?></a>
+                <a href="javascript:void(0);" onclick="newItemValidate()" class="btn btn-green"><?= lang('save_item') ?></a>
                 <a href="<?= lang_url('user/items') ?>" class="btn btn-default"><?= lang('cancel_save_item') ?></a>
             </div>
         </div>

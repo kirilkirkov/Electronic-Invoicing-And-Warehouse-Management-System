@@ -595,3 +595,23 @@ $config['inv_statuses'] = array(
     'accepted',
     'refused'
 );
+/*
+ * plans
+ */
+$config['plans'] = array(
+    'BASIC' => array(
+        'PRICE' => 5,
+        'NUM_INVOICES' => 20,
+        'NUM_FIRMS' => 1
+    ),
+    'ADVANCED' => array(
+        'PRICE' => 15,
+        'NUM_INVOICES' => 200,
+        'NUM_FIRMS' => 3
+    ),
+    'PRO' => array(
+        'PRICE' => 40,
+        'NUM_INVOICES' => 1000,
+        'NUM_FIRMS' => 5
+    )
+);

@@ -1,18 +1,16 @@
 <div class="selected-page">
     <div class="inner">
         <h1>
-            <i class="fa fa-file-text-o" aria-hidden="true"></i>
-            <?= lang('items') ?>
+            <?= lang('movement_preview') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li> 
+            <li><a href="<?= lang_url('user/store') ?>"><?= lang('store') ?></a></li>  
+            <li class="active"><?= lang('movement_preview') ?></li>
         </ol>
-    </div>
-    <div class="border"></div>
+    </div> 
 </div>
-<?php 
+<?php
 if ($movement['movement_type'] == 'in') {
     $from = $movement['client']['client_name'];
     $to = $movement['firm']['name'];
@@ -37,8 +35,8 @@ if ($movement['movement_type'] == 'move' || $movement['movement_type'] == 'revis
         <p><?= lang('preview_movem_betrayed') ?> <?= $movement['betrayed'] ?><p>
         <p><?= lang('preview_movem_accepted') ?> <?= $movement['accepted'] ?><p>
     </div>
-    <div class="col-sm-6">
-        <a href="<?= base_url('user/bill-of-lading/print/' . $movement['movement_number']) ?>"><?= lang('bill_of_lading') ?></a>
+    <div class="col-sm-6 text-right">
+        <a class="btn btn-default" href="<?= base_url('user/bill-of-lading/print/' . $movement['movement_number']) ?>"><?= lang('bill_of_lading') ?></a>
     </div>
 </div>
 <hr>

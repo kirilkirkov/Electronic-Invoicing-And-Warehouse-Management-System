@@ -1,52 +1,51 @@
 <div class="selected-page">
     <div class="inner">
-        <h1>
-            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+        <h1> 
             <?= lang('items') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li>  
+            <li class="active"><?= lang('items') ?></li>
         </ol>
-    </div>
-    <div class="border"></div>
+    </div> 
 </div>
-<a href="<?= lang_url('user/item/add') ?>" class="btn btn-default"><?= lang('add_new_item') ?></a>
-<button data-toggle="collapse" data-target="#items-search">Collapsible</button>
-<div id="items-search" class="collapse in">    
-    <form method="GET" action=""> 
+<div class="inner-page-menu">
+    <a href="<?= lang_url('user/item/add') ?>" class="btn btn-blue"><?= lang('add_new_item') ?></a>
+    <a href="javascript:void(0);" class="btn btn-blue list-action" data-action-type="delete"><?= lang('delete') ?></a>
+    <button data-toggle="collapse" data-target="#items-search" class="btn btn-blue"><?= lang('search') ?></button>
+</div> 
+<div id="items-search" class="collapse">    
+    <form method="GET" action="" class="site-form"> 
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
                     <label><?= lang('search_item_name') ?></label>
-                    <input type="text" name="item_name" value="<?= isset($_GET['item_name']) ? $_GET['item_name'] : '' ?>" class="form-control">
+                    <input type="text" name="item_name" value="<?= isset($_GET['item_name']) ? $_GET['item_name'] : '' ?>" class="form-control field">
                 </div> 
                 <div class="form-group">
                     <label><?= lang('search_amount_from') ?></label>
-                    <input type="text" name="amount_from" value="<?= isset($_GET['amount_from']) ? $_GET['amount_from'] : '' ?>" class="form-control">
+                    <input type="text" name="amount_from" value="<?= isset($_GET['amount_from']) ? $_GET['amount_from'] : '' ?>" class="form-control field">
                     <label><?= lang('search_to') ?></label>
-                    <input type="text" name="amount_to" value="<?= isset($_GET['amount_to']) ? $_GET['amount_to'] : '' ?>" class="form-control">
+                    <input type="text" name="amount_to" value="<?= isset($_GET['amount_to']) ? $_GET['amount_to'] : '' ?>" class="form-control field">
                 </div>
             </div>
         </div>
-        <input type="submit" value="search"> 
+        <input type="submit" class="btn btn-green" value="search"> 
         <a href="<?= lang_url('user/items') ?>"><?= lang('clear_search') ?></a>
     </form>
 </div>
 <?php if (!empty($items)) { ?>
     <form method="POST" action="" id="action-form">
-        <input type="hidden" name="action" value="">
-        <a href="javascript:void(0);" class="btn btn-default list-action" data-action-type="delete"><?= lang('delete') ?></a>
+        <input type="hidden" name="action" value=""> 
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-list table-striped">
                 <thead>
                     <tr>
                         <th><input type="checkbox" class="check-all-boxes"></th>
                         <th><?= lang('list_item_name') ?></th>
                         <th><?= lang('list_cli_qu_type') ?></th>
                         <th><?= lang('list_cli_price') ?></th>
-                        <th><?= lang('list_cli_manage') ?></th> 
+                        <th class="text-right"><?= lang('list_cli_manage') ?></th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -55,12 +54,25 @@
                             <td><input type="checkbox" name="ids[]" value="<?= $item['id'] ?>" class="check-me-now"></td>
                             <td><a href="<?= lang_url('user/item/view/' . $item['id']) ?>"><?= $item['name'] ?></a></td>
                             <td><?= $item['quantity_type'] ?></td>
-                            <td><?= $item['single_price'] . ' ' . $item['currency'] ?></td>
-                            <td>
-                                <a href="<?= lang_url('user/item/edit/' . $item['id']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                                <?php if ($this->permissions->hasPerm('perm_delete_items')) { ?>
-                                    <a href="<?= lang_url('user/item/delete/' . $item['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_item') ?>"><i class="fa fa-remove" aria-hidden="true"></i> Delete</a>
+                            <td><?= $item['single_price'] . ' ' . $item['currency'] ?></td>                           
+                            <td class="table-options"> 
+                                <?php if ($this->permissions->hasPerm('perm_delete_clients')) { ?>
+                                    <div class="dropdown more-btn option">
+                                        <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                            <span class="sprite-more"></span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li> 
+                                                <a href="<?= lang_url('user/item/delete/' . $item['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_item') ?>">
+                                                    <?= lang('delete') ?>
+                                                </a>
+                                            </li> 
+                                        </ul>
+                                    </div>
                                 <?php } ?>
+                                <a class="option" href="<?= lang_url('user/item/edit/' . $item['id']) ?>">
+                                    <span class="sprite-edit"></span>
+                                </a>
                             </td>
                         </tr>
                     <?php } ?>

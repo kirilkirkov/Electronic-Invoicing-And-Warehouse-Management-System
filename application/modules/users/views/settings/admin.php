@@ -1,16 +1,13 @@
 <div class="selected-page">
     <div class="inner">
-        <h1>
-            <i class="fa fa-cog" aria-hidden="true"></i>
+        <h1> 
             <?= lang('settings') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li>
+            <li class="active"><?= lang('edit_admin') ?></li>
         </ol>
-    </div>
-    <div class="border"></div>
+    </div> 
 </div>
 <form action="" class="site-form" method="POST" id="editAdminUserForm">
     <div class="row">
@@ -35,7 +32,7 @@
                 <label><?= lang('add_employee_pass') ?></label> 
                 <input type="text" name="password" value="" placeholder="<?= lang('if_dont_change_usr_pass') ?>" class="form-control field">
             </div>
-            <button type="submit" class="btn btn-default"><?= lang('save_user_data') ?></button>
+            <button type="submit" class="btn btn-green"><?= lang('save_user_data') ?></button>
             <a href="<?= lang_url('user') ?>" class="btn btn-default"><?= lang('cancel_save_user') ?></a>
         </div>
     </div>

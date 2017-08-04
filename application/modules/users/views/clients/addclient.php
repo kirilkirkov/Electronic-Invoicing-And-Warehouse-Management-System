@@ -1,16 +1,14 @@
 <div class="selected-page">
     <div class="inner">
-        <h1>
-            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+        <h1> 
             <?= lang('add_client') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li>
+            <li><a href="<?= lang_url('user/clients') ?>"><?= lang('clients') ?></a></li>  
+            <li class="active"><?= lang('add_client') ?></li>
         </ol>
     </div>
-    <div class="border"></div>
 </div>
 <?php if ($this->permissions->hasPerm('perm_add_clients') && $editId == 0 || $this->permissions->hasPerm('perm_edit_clients') && $editId > 0) { ?>
     <form action="" class="site-form" method="POST" id="setNewClient">
@@ -62,7 +60,7 @@
                     <label><?= lang('create_inv_recipient') ?></label> 
                     <input type="text" value="<?= isset($_POST['recipient_name']) ? $_POST['recipient_name'] : '' ?>" name="recipient_name" class="form-control field"> 
                 </div>
-                <a href="javascript:void(0);" onclick="newClientValidate()" class="btn btn-default"><?= lang('save_client') ?></a>
+                <a href="javascript:void(0);" onclick="newClientValidate()" class="btn btn-green"><?= lang('save_client') ?></a>
                 <a href="<?= lang_url('user/clients') ?>" class="btn btn-default"><?= lang('cancel_save_client') ?></a>
             </div>
         </div>

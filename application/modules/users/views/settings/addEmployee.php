@@ -1,16 +1,15 @@
 <div class="selected-page">
     <div class="inner">
-        <h1>
-            <i class="fa fa-cog" aria-hidden="true"></i>
-            <?= lang('settings') ?>
+        <h1> 
+            <?= lang('add_employees') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li>  
+            <li><a href="<?= lang_url('user/settings') ?>"><?= lang('settings') ?></a></li>  
+            <li><a href="<?= lang_url('user/settings/employees') ?>"><?= lang('employees') ?></a></li>  
+            <li class="active"><?= lang('add_employees') ?></li>
         </ol>
-    </div>
-    <div class="border"></div>
+    </div> 
 </div>
 <?php if ($this->permissions->hasPerm('perm_add_employees')) { ?>
     <form action="" class="site-form" method="POST" id="setNewEmployee">
@@ -46,7 +45,7 @@
                     }
                 }
                 ?>
-                <a href="javascript:void(0);" onclick="newEmployeeValidate()" class="btn btn-default"><?= lang('save_employee') ?></a>
+                <a href="javascript:void(0);" onclick="newEmployeeValidate()" class="btn btn-green"><?= lang('save_employee') ?></a>
                 <a href="<?= lang_url('user/settings/employees') ?>" class="btn btn-default"><?= lang('cancel_save_employee') ?></a>
             </div>
         </div>

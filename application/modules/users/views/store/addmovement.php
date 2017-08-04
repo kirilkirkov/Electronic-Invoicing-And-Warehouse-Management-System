@@ -2,53 +2,58 @@
 <div class="selected-page">
     <div class="inner">
         <h1>
-            <i class="fa fa-file-text-o" aria-hidden="true"></i>
-            add-movement
+            <?= lang('add_movement') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li>  
+            <li><a href="<?= lang_url('user/store') ?>"><?= lang('store') ?></a></li>  
+            <li class="active"><?= lang('add_movement') ?></li>
         </ol>
-    </div>
-    <div class="border"></div>
-</div>
+    </div> 
+</div> 
 <?php if ($this->permissions->hasPerm('perm_add_movement')) { ?>
     <form action="" id="setMovementForm" class="site-form" method="POST">
-        <div> 
-            <div class="choose-translation">
-                <select class="selectpicker" name="movement_translation" title="<?= lang('choose_movem_translation') ?>">
-                    <option value="0" selected=""><?= lang('default_inv_lang') ?></option>
-                    <?php
-                    if (!empty($movementsLanguages)) {
-                        foreach ($movementsLanguages as $mvLanguage) {
-                            ?>
-                            <option value="<?= $mvLanguage['id'] ?>"><?= $mvLanguage['language_name'] ?>(<?= $mvLanguage['id'] ?>)</option>
-                            <?php
-                        }
-                    }
-                    ?> 
-                </select>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#modalAddNewTranslation" class="btn btn-default">
-                    <?= lang('choose_movem_translation') ?>
-                </a>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#modalExplainTranslation">
-                    <i class="fa fa-question-circle" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div class="choose-firm-translation">
-                <select class="selectpicker" name="movement_firm_translation"> 
-                    <?php
-                    foreach ($allForFirm['translations'] as $theFirm) {
-                        ?>
-                        <option value="<?= $theFirm['id'] ?>" <?= $theFirm['is_default'] == 1 ? 'selected="selected"' : '' ?>><?= $theFirm['trans_name'] ?></option>
+        <div class="row">
+            <div class="col-sm-6">  
+                <div class="choose-translation">
+                    <p><?= lang('explain_movem_translation') ?></p>
+                    <select class="selectpicker" name="movement_translation" title="<?= lang('choose_movem_translation') ?>">
+                        <option value="0" selected=""><?= lang('default_inv_lang') ?></option>
                         <?php
-                    }
-                    ?> 
-                </select>
+                        if (!empty($movementsLanguages)) {
+                            foreach ($movementsLanguages as $mvLanguage) {
+                                ?>
+                                <option value="<?= $mvLanguage['id'] ?>"><?= $mvLanguage['language_name'] ?>(<?= $mvLanguage['id'] ?>)</option>
+                                <?php
+                            }
+                        }
+                        ?> 
+                    </select>
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modalAddNewTranslation" class="btn btn-default">
+                        <?= lang('choose_movem_translation') ?>
+                    </a>
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modalExplainTranslation">
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div> 
+            <div class="col-sm-6">
+                <div class="pull-right">  
+                    <div class="choose-firm-translation">
+                        <p><?= lang('explain_firm_translation') ?></p>
+                        <select class="selectpicker" name="movement_firm_translation"> 
+                            <?php
+                            foreach ($allForFirm['translations'] as $theFirm) {
+                                ?>
+                                <option value="<?= $theFirm['id'] ?>" <?= $theFirm['is_default'] == 1 ? 'selected="selected"' : '' ?>><?= $theFirm['trans_name'] ?></option>
+                                <?php
+                            }
+                            ?> 
+                        </select>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="clearfix"></div>
+        </div>  
         <div class="create-document">
             <div class="type">
                 <label><?= lang('create_movement_type') ?></label> 

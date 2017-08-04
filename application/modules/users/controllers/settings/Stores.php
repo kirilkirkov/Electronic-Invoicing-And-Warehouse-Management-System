@@ -35,20 +35,20 @@ class Stores extends USER_Controller
         if (isset($_POST['deleteStore'])) {
             $this->deleteStore();
         }
-        if (isset($_POST['opt_movementCalculator'])) {
+        if (isset($_POST['stopMovementCalculator'])) {
             $this->updateMovementsCaluculatorUsage();
         }
         if (isset($_POST['opt_movementRoundTo'])) {
             $this->updateMovementsRoundTo();
         }
-        if (isset($_POST['opt_negativeQuantities'])) {
+        if (isset($_POST['allowNegativeQuantities'])) {
             $this->updateNegativeQuantities();
         }
     }
 
     private function updateMovementsCaluculatorUsage()
     {
-        $this->SettingsModel->setValueStore('opt_movementCalculator', $_POST['opt_movementCalculator']);
+        $this->SettingsModel->setValueStore('opt_movementCalculator', isset($_POST['opt_movementCalculator']) ? 0 : 1);
         $this->saveHistory('Set calculator usage fo movements to - ' . $_POST['opt_movementCalculator'] == 0 ? 'off' : 'on');
         redirect(lang_url('user/settings/stores'));
     }
@@ -62,7 +62,7 @@ class Stores extends USER_Controller
 
     private function updateNegativeQuantities()
     {
-        $this->SettingsModel->setValueStore('opt_negativeQuantities', $_POST['opt_negativeQuantities']);
+        $this->SettingsModel->setValueStore('opt_negativeQuantities', isset($_POST['opt_negativeQuantities']) ? 0 : 1);
         $this->saveHistory('Update allow negative quantities - ' . $_POST['opt_negativeQuantities']);
         redirect(lang_url('user/settings/stores'));
     }

@@ -1,49 +1,48 @@
 <div class="selected-page">
     <div class="inner">
-        <h1>
-            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+        <h1> 
             <?= lang('clients') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li>  
+            <li class="active"><?= lang('clients') ?></li>
         </ol>
     </div>
-    <div class="border"></div>
 </div>
-<a href="<?= lang_url('user/client/add') ?>" class="btn btn-default"><?= lang('add_new_client') ?></a>
-<button data-toggle="collapse" data-target="#clients-search">Collapsible</button>
-<div id="clients-search" class="collapse in">    
-    <form method="GET" action=""> 
+<div class="inner-page-menu">
+    <a href="<?= lang_url('user/client/add') ?>" class="btn btn-blue"><?= lang('add_new_client') ?></a>
+    <a href="javascript:void(0);" class="btn btn-blue list-action" data-action-type="delete"><?= lang('delete') ?></a>
+    <button data-toggle="collapse" data-target="#clients-search" class="btn btn-blue"><?= lang('search') ?></button> 
+</div> 
+<div id="clients-search" class="collapse">    
+    <form method="GET" action="" class="site-form"> 
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
                     <label><?= lang('search_client_name') ?></label>
-                    <input type="text" name="client_name" value="<?= isset($_GET['client_name']) ? $_GET['client_name'] : '' ?>" class="form-control">
+                    <input type="text" name="client_name" value="<?= isset($_GET['client_name']) ? $_GET['client_name'] : '' ?>" class="form-control field">
                 </div>
                 <div class="form-group">
                     <label><?= lang('search_client_bulstat') ?></label>
-                    <input type="text" name="client_bulstat" value="<?= isset($_GET['client_bulstat']) ? $_GET['client_bulstat'] : '' ?>" class="form-control">
+                    <input type="text" name="client_bulstat" value="<?= isset($_GET['client_bulstat']) ? $_GET['client_bulstat'] : '' ?>" class="form-control field">
                 </div>
             </div>
         </div>
-        <input type="submit" value="search"> 
+        <input type="submit" class="btn btn-green" value="search"> 
         <a href="<?= lang_url('user/clients') ?>"><?= lang('clear_search') ?></a>
     </form>
 </div>
 <?php if (!empty($clients)) { ?>
     <form method="POST" action="" id="action-form">
         <input type="hidden" name="action" value="">
-        <a href="javascript:void(0);" class="btn btn-default list-action" data-action-type="delete"><?= lang('delete') ?></a>
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-list table-striped">
                 <thead>
                     <tr>
                         <th><input type="checkbox" class="check-all-boxes"></th>
                         <th><?= lang('list_cli_name') ?></th>
                         <th><?= lang('list_cli_bulstat') ?></th>
-                        <th><?= lang('list_cli_manage') ?></th> 
+                        <th class="text-right"><?= lang('list_cli_manage') ?></th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -52,11 +51,24 @@
                             <td><input type="checkbox" name="ids[]" value="<?= $client['id'] ?>" class="check-me-now"></td>
                             <td><a href="<?= lang_url('user/client/view/' . $client['id']) ?>"><?= $client['client_name'] ?></a></td>
                             <td><?= $client['is_to_person'] == 1 ? $client['client_ident_num'] : $client['client_bulstat'] ?></td>
-                            <td>
-                                <a href="<?= lang_url('user/client/edit/' . $client['id']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                            <td class="table-options"> 
                                 <?php if ($this->permissions->hasPerm('perm_delete_clients')) { ?>
-                                    <a href="<?= lang_url('user/client/delete/' . $client['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_client') ?>"><i class="fa fa-remove" aria-hidden="true"></i> Delete</a>
+                                    <div class="dropdown more-btn option">
+                                        <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                            <span class="sprite-more"></span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li> 
+                                                <a href="<?= lang_url('user/client/delete/' . $client['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_client') ?>">
+                                                    <?= lang('delete') ?>
+                                                </a>
+                                            </li> 
+                                        </ul>
+                                    </div>
                                 <?php } ?>
+                                <a class="option" href="<?= lang_url('user/client/edit/' . $client['id']) ?>">
+                                    <span class="sprite-edit"></span>
+                                </a>
                             </td>
                         </tr>
                     <?php } ?>

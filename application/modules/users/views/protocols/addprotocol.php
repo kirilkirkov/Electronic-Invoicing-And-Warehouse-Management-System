@@ -1,57 +1,63 @@
 <script src="<?= base_url('assets/plugins/math.min.js') ?>"></script>
 <div class="selected-page">
     <div class="inner">
-        <h1>
-            <i class="fa fa-file-text-o" aria-hidden="true"></i>
-            <?= lang('create_invoice') ?>
+        <h1> 
+            <?= lang('add_protocol') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li> 
+            <li><a href="<?= lang_url('user/protocols') ?>"><?= lang('protocols') ?></a></li>  
+            <li class="active"><?= lang('add_protocol') ?></li>
         </ol>
-    </div>
-    <div class="border"></div>
+    </div> 
 </div>
 <?php if ($this->permissions->hasPerm('perm_add_protocol')) { ?>
     <form action="" id="setProtocol" class="site-form" method="POST"> 
         <?php if ($editId > 0) { ?>
             <input type="hidden" name="editId" value="<?= $editId ?>">
             <input type="hidden" name="onLoadItems" value="<?= implode(',', $currentItems) ?>">
-        <?php } ?>
-        <div> 
-            <div class="choose-translation">
-                <select class="selectpicker" name="protocol_translation" title="<?= lang('choose_war_translation') ?>">
-                    <option value="0" selected=""><?= lang('default_inv_lang') ?></option>
-                    <?php
-                    if (!empty($protocolsLanguages)) {
-                        foreach ($protocolsLanguages as $protocolsLanguage) {
-                            ?>
-                            <option value="<?= $protocolsLanguage['id'] ?>"><?= $protocolsLanguage['language_name'] ?>(<?= $protocolsLanguage['id'] ?>)</option>
-                            <?php
-                        }
-                    }
-                    ?> 
-                </select>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#modalAddNewTranslation" class="btn btn-default">
-                    <?= lang('add_protocol_translation') ?>
-                </a>
-                <a href="javascript:void(0);" data-toggle="modal" data-target="#modalExplainTranslation">
-                    <i class="fa fa-question-circle" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div class="choose-firm-translation">
-                <select class="selectpicker" name="protocol_firm_translation"> 
-                    <?php
-                    foreach ($allForFirm['translations'] as $theFirm) {
-                        ?>
-                        <option value="<?= $theFirm['id'] ?>" <?= $theFirm['is_default'] == 1 ? 'selected="selected"' : '' ?>><?= $theFirm['trans_name'] ?></option>
+        <?php } ?> 
+        <div class="row">
+            <div class="col-sm-6">  
+                <div class="choose-translation">
+                    <p><?= lang('explain_protocol_translation') ?></p>
+                    <select class="selectpicker" name="protocol_translation" title="<?= lang('choose_war_translation') ?>">
+                        <option value="0" selected=""><?= lang('default_inv_lang') ?></option>
                         <?php
-                    }
-                    ?> 
-                </select>
+                        if (!empty($protocolsLanguages)) {
+                            foreach ($protocolsLanguages as $protocolsLanguage) {
+                                ?>
+                                <option value="<?= $protocolsLanguage['id'] ?>"><?= $protocolsLanguage['language_name'] ?>(<?= $protocolsLanguage['id'] ?>)</option>
+                                <?php
+                            }
+                        }
+                        ?> 
+                    </select>
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modalAddNewTranslation" class="btn btn-default">
+                        <?= lang('add_protocol_translation') ?>
+                    </a>
+                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modalExplainTranslation">
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div> 
+            <div class="col-sm-6">
+                <div class="pull-right">  
+                    <div class="choose-firm-translation">
+                        <p><?= lang('explain_firm_translation') ?></p>
+                        <select class="selectpicker" name="protocol_firm_translation"> 
+                            <?php
+                            foreach ($allForFirm['translations'] as $theFirm) {
+                                ?>
+                                <option value="<?= $theFirm['id'] ?>" <?= $theFirm['is_default'] == 1 ? 'selected="selected"' : '' ?>><?= $theFirm['trans_name'] ?></option>
+                                <?php
+                            }
+                            ?> 
+                        </select>
+                    </div>
+                </div>
             </div>
-        </div>
+        </div>  
         <div class="create-document">
             <div class="type">
                 <label><?= lang('create_protocol_type') ?></label> 

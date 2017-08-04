@@ -1,20 +1,45 @@
 <div class="selected-page">
     <div class="inner">
-        <h1>
-            <i class="fa fa-cog" aria-hidden="true"></i>
+        <h1> 
             <?= lang('settings') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li>  
+            <li class="active"><?= lang('settings') ?></li>
         </ol>
-    </div>
-    <div class="border"></div>
+    </div> 
 </div>
-<a href="<?= lang_url('user/settings/employees') ?>">employees</a>
-<a href="<?= lang_url('user/settings/invoices') ?>">invoices</a>
-<a href="<?= lang_url('user/settings/global') ?>">global</a>
-<a href="<?= lang_url('user/settings/stores') ?>">store</a>
-<a href="<?= lang_url('user/settings/warranty') ?>">warranty</a>
-<a href="<?= lang_url('user/settings/protocols') ?>">protocols</a>
+<div class="settings-page">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="<?= lang_url('user/settings/employees') ?>"><?= lang('employees') ?>
+                <span class="sprite-arrow-right"></span>
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="<?= lang_url('user/settings/invoices') ?>"><?= lang('invoices') ?>
+                <span class="sprite-arrow-right"></span>
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="<?= lang_url('user/settings/global') ?>"><?= lang('global') ?>
+                <span class="sprite-arrow-right"></span>
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="<?= lang_url('user/settings/warranty') ?>"><?= lang('warranty') ?>
+                <span class="sprite-arrow-right"></span>
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="<?= lang_url('user/settings/protocols') ?>"><?= lang('protocols') ?>
+                <span class="sprite-arrow-right"></span>
+            </a>
+        </li> 
+        <li class="list-group-item">
+            <a href="<?= lang_url('user/settings/stores') ?>"><?= lang('store') ?>
+                <span class="sprite-arrow-right"></span>
+            </a>
+        </li> 
+    </ul> 
+</div>

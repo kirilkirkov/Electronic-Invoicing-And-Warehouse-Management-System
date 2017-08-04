@@ -12,6 +12,7 @@ class Events extends USER_Controller
 {
 
     private $warrantyId = 0;
+    private $warrantyNumber = 0;
 
     public function __construct()
     {
@@ -30,6 +31,7 @@ class Events extends USER_Controller
             show_404();
         }
         $data['events'] = $this->WarrantyCardModel->getWarrantyEvents($warranty['id']);
+        $data['eventId'] = $number;
         $this->render('warranty/events', $head, $data);
         $this->saveHistory('Go to events page');
     }
@@ -45,10 +47,12 @@ class Events extends USER_Controller
             show_404();
         }
         $this->warrantyId = $warranty['id'];
+        $this->warrantyNumber = $number;
         $data['warranty'] = $warranty;
         if (isset($_POST['item'])) {
             $this->setNewEvent();
         }
+        $data['eventNumber'] = $number;
         $this->render('warranty/add_event', $head, $data);
         $this->saveHistory('Go to add events page');
     }
@@ -56,8 +60,8 @@ class Events extends USER_Controller
     private function setNewEvent()
     {
         $this->WarrantyCardModel->setWarrantyEvent($_POST, $this->warrantyId);
-        $this->saveHistory('Add warranty event for warrantyId - ' . $this->warrantyId . ' and item - ' . $_POST['item']);
-        redirect(lang_url('user/warranty/events/' . $this->warrantyId));
+        $this->saveHistory('Add warranty event for warrantyId - ' . $this->warrantyNumber . ' and item - ' . $_POST['item']);
+        redirect(lang_url('user/warranty/events/' . $this->warrantyNumber));
     }
 
 }

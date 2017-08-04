@@ -5,12 +5,12 @@
             <?= lang('settings') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li>  
+            <li><a href="<?= lang_url('user/settings') ?>"><?= lang('settings') ?></a></li>  
+            <li><a href="<?= lang_url('user/settings/employees') ?>"><?= lang('employees') ?></a></li>  
+            <li class="active"><?= lang('rights') ?></li>
         </ol>
-    </div>
-    <div class="border"></div>
+    </div> 
 </div>
 <?php if ($this->permissions->hasPerm('perm_can_manage_rights')) { ?>
     <form method="POST" action="">
@@ -19,7 +19,8 @@
                 <label><input type="checkbox" name="<?= $permission ?>" value="" <?= $userPermissions[$permission] ? 'checked="checked"' : '' ?>><?= lang($permission) ?></label>
             </div>
         <?php } ?>
-        <input type="submit" name="savePermissions" class="btn btn-default">
+        <input type="submit" name="savePermissions" value="<?= lang('save') ?>" class="btn btn-green">
+        <a href="<?= lang_url('user/settings/employees') ?>" class="btn btn-default"><?= lang('cancel_save_employee') ?></a>
     </form> 
 <?php } else { ?>
     <h1 class="no-permissions"><?= lang('no_permissions') ?></h1>

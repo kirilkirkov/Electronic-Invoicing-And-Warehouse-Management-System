@@ -1,18 +1,15 @@
-<script src="<?= base_url('assets/highcharts/highcharts.src.js') ?>"></script>
+<script src="<?= base_url('assets/highcharts/highcharts.js') ?>"></script>
 <script src="<?= base_url('assets/highcharts/modules/exporting.js') ?>"></script>
 <div class="selected-page">
     <div class="inner">
-        <h1>
-            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+        <h1> 
             <?= lang('reports') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li> 
+            <li class="active"><?= lang('reports') ?></li>
         </ol>
-    </div>
-    <div class="border"></div>
+    </div> 
 </div>
 <div class="reports-page">
     <div class="dates"> 
@@ -134,8 +131,7 @@
                     },
     <?php }
     ?>]
-        });
-    </script>
+        });</script>
 
     <div id="top-clients"></div>
     <script>

@@ -1,16 +1,13 @@
 <div class="selected-page">
     <div class="inner">
-        <h1>
-            <i class="fa fa-file-text-o" aria-hidden="true"></i>
-            <?= lang('items') ?>
+        <h1> 
+            <?= lang('import_export') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li> 
+            <li class="active"><?= lang('import_export') ?></li>
         </ol>
-    </div>
-    <div class="border"></div>
+    </div> 
 </div>
 
 <ul class="nav nav-tabs" role="tablist">

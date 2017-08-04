@@ -1,46 +1,50 @@
 <div class="selected-page">
     <div class="inner">
-        <h1>
-            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+        <h1> 
             <?= lang('invoices') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li> 
+            <li class="active"><?= lang('invoices') ?></li>
         </ol>
-    </div>
-    <div class="border"></div>
+    </div> 
 </div>
-<a href="<?= lang_url('user/new/invoice') ?>" class="btn btn-default"><?= lang('create_new_inv') ?></a>
-<button data-toggle="collapse" data-target="#invoices-search">Collapsible</button>
-<div id="invoices-search" class="collapse in">    
-    <form method="GET" action=""> 
+<div class="inner-page-menu">
+    <a href="<?= lang_url('user/new/invoice') ?>" class="btn btn-blue"><?= lang('create_new_inv') ?></a>
+    <div class="pull-right">
+        <button data-toggle="collapse" class="btn btn-blue" data-target="#invoices-search"><?= lang('search') ?></button>
+        <a href="javascript:void(0);" class="btn btn-blue list-action" data-action-type="delete"><?= lang('delete') ?></a>
+        <a href="javascript:void(0);" class="btn btn-blue list-action" data-action-type="stat_canceled"><?= lang('to_canceled_stat') ?></a>
+        <a href="javascript:void(0);" class="btn btn-blue list-action" data-action-type="remove_canceled"><?= lang('remove_canceled_stat') ?></a>
+    </div>
+</div> 
+<div id="invoices-search" class="collapse">    
+    <form method="GET" class="site-form" action=""> 
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
                     <label><?= lang('search_inv_num') ?></label>
-                    <input type="text" name="inv_number" value="<?= isset($_GET['inv_number']) ? $_GET['inv_number'] : '' ?>" class="form-control">
+                    <input type="text" name="inv_number" value="<?= isset($_GET['inv_number']) ? $_GET['inv_number'] : '' ?>" class="form-control field">
                 </div>
                 <div class="form-group">
                     <label><?= lang('search_client') ?></label>
-                    <input type="text" name="inv_client" value="<?= isset($_GET['inv_client']) ? $_GET['inv_client'] : '' ?>" class="form-control">
+                    <input type="text" name="inv_client" value="<?= isset($_GET['inv_client']) ? $_GET['inv_client'] : '' ?>" class="form-control field">
                 </div>
                 <div class="form-group">
                     <label><?= lang('search_item') ?></label>
-                    <input type="text" name="inv_item" value="<?= isset($_GET['inv_item']) ? $_GET['inv_item'] : '' ?>" class="form-control">
+                    <input type="text" name="inv_item" value="<?= isset($_GET['inv_item']) ? $_GET['inv_item'] : '' ?>" class="form-control field">
                 </div>
                 <div class="form-group">
                     <label><?= lang('search_amount_from') ?></label>
-                    <input type="text" name="amount_from" value="<?= isset($_GET['amount_from']) ? $_GET['amount_from'] : '' ?>" class="form-control">
+                    <input type="text" name="amount_from" value="<?= isset($_GET['amount_from']) ? $_GET['amount_from'] : '' ?>" class="form-control field field">
                     <label><?= lang('search_to') ?></label>
-                    <input type="text" name="amount_to" value="<?= isset($_GET['amount_to']) ? $_GET['amount_to'] : '' ?>" class="form-control">
+                    <input type="text" name="amount_to" value="<?= isset($_GET['amount_to']) ? $_GET['amount_to'] : '' ?>" class="form-control field">
                 </div>
                 <div class="form-group">
                     <label><?= lang('search_date_from') ?></label>
-                    <input type="text" name="create_from" value="<?= isset($_GET['create_from']) ? $_GET['create_from'] : '' ?>" class="form-control datepicker">
+                    <input type="text" name="create_from" value="<?= isset($_GET['create_from']) ? $_GET['create_from'] : '' ?>" class="form-control field datepicker">
                     <label><?= lang('search_to') ?></label>
-                    <input type="text" name="create_to" value="<?= isset($_GET['create_to']) ? $_GET['create_to'] : '' ?>" class="form-control datepicker">
+                    <input type="text" name="create_to" value="<?= isset($_GET['create_to']) ? $_GET['create_to'] : '' ?>" class="form-control field datepicker">
                 </div> 
                 <div class="form-group">
                     <label><?= lang('search_payment_type') ?></label>
@@ -105,18 +109,15 @@
                 </div>
             </div>
         </div>
-        <input type="submit" value="search">
+        <input type="submit" class="btn btn-green" value="search">
         <a href="<?= lang_url('user/invoices') ?>"><?= lang('clear_search') ?></a>
     </form>
 </div>
 <?php if (!empty($invoices)) { ?>
-    <form method="POST" action="" id="action-form">
+    <form method="POST" action="" class="invoices-list-form" id="action-form">
         <input type="hidden" name="action" value="">
-        <a href="javascript:void(0);" class="btn btn-default list-action" data-action-type="delete"><?= lang('delete') ?></a>
-        <a href="javascript:void(0);" class="btn btn-default list-action" data-action-type="stat_canceled"><?= lang('to_canceled_stat') ?></a>
-        <a href="javascript:void(0);" class="btn btn-default list-action" data-action-type="remove_canceled"><?= lang('remove_canceled_stat') ?></a>
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-list table-striped">
                 <thead>
                     <tr>
                         <th><input type="checkbox" class="check-all-boxes"></th>
@@ -127,7 +128,7 @@
                         <th><?= lang('list_inv_payment_status') ?></th>
                         <th><?= lang('list_inv_status') ?></th>
                         <th><?= lang('list_inv_sum') ?></th>  
-                        <th><?= lang('list_inv_manage') ?></th> 
+                        <th class="text-right"><?= lang('list_inv_manage') ?></th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -138,7 +139,7 @@
                             <td><?= date('d.m.Y', $invoice['date_create']) ?></td>
                             <td><?= $invoice['client_name'] ?></td>
                             <td><?= lang('type_' . $invoice['inv_type']) ?></td>
-                            <td class="status-changer">
+                            <td class="status-changer txt_status_<?= $invoice['payment_status'] ?>">
                                 <span class="show-pay-statuses" data-inv-id="<?= $invoice['id'] ?>">
                                     <span class="new_pay_status_text"><?= lang('payment_status_' . $invoice['payment_status']) ?></span>
                                     <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -146,15 +147,30 @@
                             </td>
                             <td><?= lang('status_' . $invoice['status']) ?></td> 
                             <td><?= $invoice['final_total'] . $invoice['inv_currency'] ?></td> 
-                            <td>
-                                <a href="<?= lang_url('user/' . $inv_readable_types[$invoice['inv_type']] . '/edit/' . $invoice['inv_number']) ?>"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                                <a href="<?= lang_url('user/invoice/delete/' . $invoice['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_invoice') ?>"><i class="fa fa-remove" aria-hidden="true"></i> Remove</a>
+                            <td class="table-options">
+                                <?php if ($this->permissions->hasPerm('perm_delete_invoice')) { ?>
+                                    <div class="dropdown more-btn option">
+                                        <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                            <span class="sprite-more"></span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li> 
+                                                <a href="<?= lang_url('user/invoice/delete/' . $invoice['id']) ?>" class="confirm" data-my-message="<?= lang('confirm_delete_invoice') ?>">
+                                                    <?= lang('delete') ?>
+                                                </a>
+                                            </li> 
+                                        </ul>
+                                    </div>
+                                <?php } ?>
+                                <a class="option" href="<?= lang_url('user/' . $inv_readable_types[$invoice['inv_type']] . '/edit/' . $invoice['inv_number']) ?>">
+                                    <span class="sprite-edit"></span>
+                                </a>
                             </td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
-            <?= lang('countInvoices') . $countInvoices . ' ' . lang('with_sum_of') . ' ' . round($sumAmount, $opt_invRoundTo) ?>
+            <?= lang('countInvoices') . ' <b>' . $countInvoices . '</b> ' . lang('with_sum_of') . ' <b>' . round($sumAmount, $opt_invRoundTo) . '</b>' ?>
         </div>
         <div id="payment-statuses">
             <a href="javascript:void(0);" data-new-pay-status="paid" class="change-pay-status"><?= lang('payment_status_paid') ?></a>
