@@ -6,14 +6,22 @@ class USER_Controller extends HEAD_Controller
     private $firms;
     protected $firmInfo;
     public $userInfo;
+    public $planUnits;
 
     public function __construct()
     {
         parent::__construct();
         $this->loginCheck();
+        $this->load->helper(array(
+            'uploader',
+            'pagination'
+        ));
+        $this->load->library(array(
+            'MailSend',
+            'Plans'
+        ));
+        $this->planUnits = $this->plans->getMyCurrentPlanUnits();
         $this->firmCkecker();
-        $this->load->helper(array('uploader', 'pagination'));
-        $this->load->library('MailSend');
     }
 
     public function render($view, $head, $data = null)
@@ -24,6 +32,7 @@ class USER_Controller extends HEAD_Controller
         $vars['canUseFirms'] = $this->canUseFirms;
         $vars['firmInfo'] = $this->firmInfo;
         $this->load->vars($vars);
+        $head['planUnits'] = $this->planUnits;
         $this->load->view('parts/header', $head);
         $this->load->view($view, $data);
         $this->load->view('parts/footer');
@@ -112,8 +121,27 @@ class USER_Controller extends HEAD_Controller
         define('SELECTED_COMPANY_ID', $firmId);
         $this->firms = $firmsForUser;
         $this->canUseFirms = $canUseFirms;
-        if (empty($firmsForUser) && uri_string() != 'user') {
+        if (empty($firmsForUser) && (uri_string() != 'user' && uri_string() != $this->language->getUrlAbbrevation() . '/user')) {
             redirect(lang_url('user'));
+        }
+        $this->checkExceededLimitOfCompanies();
+    }
+
+    /*
+     * if we have added companies
+     * check how many companies we can use
+     * for selected plan
+     */
+
+    private function checkExceededLimitOfCompanies()
+    {
+        if (!empty($this->firms)) {
+            $planUnits = $this->planUnits;
+            if (count($this->firms) > $planUnits['num_firms']) {
+                if (uri_string() != 'user/managefirms' && uri_string() != $this->language->getUrlAbbrevation() . '/user/managefirms') {
+                    redirect(lang_url('user/managefirms'));
+                }
+            }
         }
     }
 

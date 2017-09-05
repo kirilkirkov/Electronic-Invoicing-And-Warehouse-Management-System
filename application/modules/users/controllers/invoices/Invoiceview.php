@@ -21,7 +21,7 @@ class Invoiceview extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_inv_preview') . $invNum;
         $inv_readable_types_flip = array_flip($this->config->item('inv_readable_types'));
         $invoice = $this->getInvoiceByNumber($inv_readable_types_flip[$invType], $invNum);
         if ($invoice == null) {

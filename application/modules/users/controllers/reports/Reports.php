@@ -21,7 +21,7 @@ class Reports extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_reports');
         if (!isset($_GET['from_date']) && !isset($_GET['to_date'])) {
             $thisYear = thisyeardates();
             $_GET['from_date'] = $thisYear['from'];

@@ -26,7 +26,7 @@ class Clients extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime').lang('title_clients');
         $this->postChecker();
         $rowscount = $this->ClientsModel->countClients($_GET);
         $data['clients'] = $this->ClientsModel->getClients($this->num_rows, $page, $_GET);
@@ -39,7 +39,7 @@ class Clients extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime').lang('title_add_client');
         $this->editId = $id;
         $this->postChecker();
         if ($id > 0) {
@@ -116,7 +116,7 @@ class Clients extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime').lang('title_preview_client');
         $result = $this->ClientsModel->getClientInfo($id);
         if (empty($result)) {
             log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to view client with id -' . $id);

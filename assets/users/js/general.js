@@ -154,7 +154,7 @@ var numItemsDefault = 1;
 $('.add-new-item').click(function () {
     var obj = $('.body-items tr:first').clone(true).insertAfter('tr:last');
     obj.find('.field').val('').css("border-color", border_color_fields);
-    obj.find('.quantity-field').val('0.00').css("border-color", border_color_fields);
+    obj.find('.quantity-field').val('1.00').css("border-color", border_color_fields);
     obj.find('.price-field').val('0.00').css("border-color", border_color_fields);
     obj.find('.item-total-price').text('');
     obj.find('[name="item_from_list[]"]').val('0'); // clear some indicators
@@ -544,6 +544,18 @@ $('[name="is_vat_registered"]').change(function () {
         $('.firm-vat-number').addClass('hidden');
     }
 });
+/*
+ * Main menu button 
+ * Show/Hide text for opened and hidden
+ */
+$('#btn-show-main-menu').click(function () {
+    $("#main-menu").on("hide.bs.collapse", function () {
+        $('#btn-show-main-menu').text(lang.show_main_menu);
+    });
+    $("#main-menu").on("show.bs.collapse", function () {
+        $('#btn-show-main-menu').text(lang.hide_main_menu);
+    });
+})
 /*
  * Create draft invoice
  */
@@ -1156,4 +1168,26 @@ function removeFirmLogo() {
     $('[name="old_image"]').val('');
     $('.firm-image-container').remove();
     $('.remove-firm-logo-btn').remove();
+}
+/*
+ * Validate and submit form for
+ * custom plan request
+ */
+function makePlanRequest() {
+    var submit = true;
+    $('[name="inv_per_month"]').css("border-color", border_color_fields);
+    $('[name="want_companies"]').css("border-color", border_color_fields);
+    var inv_per_month = parseInt($('[name="inv_per_month"]').val());
+    var want_companies = parseInt($('[name="want_companies"]').val());
+    if (inv_per_month == 0 || isNaN(inv_per_month)) {
+        $('[name="inv_per_month"]').css("border-color", border_color_wrong);
+        submit = false;
+    }
+    if (want_companies == 0 || isNaN(want_companies)) {
+        $('[name="want_companies"]').css("border-color", border_color_wrong);
+        submit = false;
+    }
+    if (submit == true) {
+        document.getElementById("formMakePlanReq").submit();
+    }
 }

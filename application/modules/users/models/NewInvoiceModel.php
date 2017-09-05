@@ -130,7 +130,7 @@ class NewInvoiceModel extends CI_Model
             'for_company' => SELECTED_COMPANY_ID,
             'inv_type' => htmlspecialchars(trim($post['inv_type'])),
             'status' => !in_array($post['status'], $inv_statuses) ? 'issued' : $post['status'],
-            'inv_number' => htmlspecialchars(trim($post['inv_number'])),
+            'inv_number' => full_document_number(htmlspecialchars(trim($post['inv_number']))),
             'inv_currency' => htmlspecialchars(trim($post['inv_currency'])),
             'date_create' => strtotime($post['date_create']),
             'date_tax_event' => strtotime($post['date_tax_event']),
@@ -165,6 +165,7 @@ class NewInvoiceModel extends CI_Model
         $this->setInvoiceItems($insertId, $post);
         $this->setInvoiceClient($insertId, $post);
         $this->setInvoiceFirm($insertId, $post);
+        $this->removeInvoiceNumberFromPlans(); // decrement invoices number from plans
         if ($this->db->trans_status() === FALSE) {
             $this->db->trans_rollback();
             show_error(lang('database_error'));
@@ -245,6 +246,20 @@ class NewInvoiceModel extends CI_Model
             'image' => $firm['image'] == null ? '' : $firm['image']
         );
         if (!$this->db->insert('invoices_firms', $insertArray)) {
+            log_message('error', print_r($this->db->error(), true));
+        }
+    }
+
+    private function removeInvoiceNumberFromPlans()
+    {
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('from_date <=', time());
+        $this->db->where('to_date >=', time());
+        $this->db->where('num_invoices >', 0);
+        $this->db->order_by('to_date', 'ASC');
+        $this->db->limit(1);
+        $this->db->set('num_invoices', 'num_invoices - 1', FALSE);
+        if (!$this->db->update('firms_plans')) {
             log_message('error', print_r($this->db->error(), true));
         }
     }

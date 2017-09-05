@@ -17,5 +17,7 @@ var lang = {
     confirmDelete: 'Are you sure want to delete?',
     errorChangeInvStatusAjax: 'Invoice status change error. Try again please!',
     confirmCancel: 'Are you sure want to cancel?',
-    confirmRemoveCancel: 'Are you sure want to remove status cancelled?'
+    confirmRemoveCancel: 'Are you sure want to remove status cancelled?',
+    show_main_menu: 'Show menu',
+    hide_main_menu: 'Hide menu'
 };

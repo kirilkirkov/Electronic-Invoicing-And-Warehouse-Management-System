@@ -122,12 +122,14 @@ class PublicModel extends CI_Model
         if (!$this->db->insert('users', array(
                     'email' => $post['email'],
                     'password' => md5salt($post['password']),
+                    'ip_address' => $post['ip_address'],
                     'time_registered' => time()
                 ))) {
             log_message('error', print_r($this->db->error(), true));
         }
         $user_id = $this->db->insert_id();
         $this->insertOptionsTables($user_id);
+        $this->addFirstFreePlan($user_id);
         if ($this->db->trans_status() === FALSE) {
             $this->db->trans_rollback();
             show_error(lang('database_error'));
@@ -188,6 +190,26 @@ class PublicModel extends CI_Model
             )
         );
         if (!$this->db->insert_batch('value_store', $data)) {
+            log_message('error', print_r($this->db->error(), true));
+        }
+    }
+
+    /*
+     * Add first free plan when register
+     */
+
+    public function addFirstFreePlan($user_id)
+    {
+        if (!$this->db->insert('firms_plans', array(
+                    'for_user' => $user_id,
+                    'from_date' => time(),
+                    'to_date' => strtotime("+1 month", time()),
+                    'plan_type' => 'PRO',
+                    'num_invoices' => 1000,
+                    'num_firms' => 5,
+                    'time' => time(),
+                    'sponsored' => 1
+                ))) {
             log_message('error', print_r($this->db->error(), true));
         }
     }

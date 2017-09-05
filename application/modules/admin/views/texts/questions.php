@@ -33,7 +33,7 @@
                                         <td><?= $question['position'] ?></td>
                                         <td>
                                             <a href="<?= base_url('admin/addquestion?edit=' . $question['id']) ?>" class="btn btn-xs btn-primary">Edit</a>
-                                            <a href="?delete=<?= $question['id'] ?>" class="btn btn-xs btn-danger confirm-delete">Delete</a>
+                                            <a href="?delete=<?= $question['id'] ?>" class="btn btn-xs btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
                                         </td>
                                     </tr>
                                 <?php }

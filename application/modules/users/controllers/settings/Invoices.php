@@ -22,7 +22,7 @@ class Invoices extends USER_Controller
         $data = array();
         $head = array();
         $this->postChecker();
-        $head['title'] = 'Administration - Settings Invoices';
+        $head['title'] = lang('title_everytime') . lang('title_inv_sett');
         $data['myFirms'] = $this->SettingsModel->getMyFirmsDefaultCurrency();
         $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
         $data['myCurrencies'] = $this->SettingsModel->getMyCurrencies();

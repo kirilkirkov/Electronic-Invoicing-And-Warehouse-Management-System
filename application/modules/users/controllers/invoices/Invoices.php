@@ -25,7 +25,7 @@ class Invoices extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] =  lang('title_everytime').lang('title_invoices');
         $this->postChecker();
         $rowscount = $this->InvoicesModel->countInvoices($_GET);
         $data['invoices'] = $this->InvoicesModel->getInvoices($this->num_rows, $page, $_GET);

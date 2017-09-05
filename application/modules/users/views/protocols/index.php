@@ -10,14 +10,15 @@
     </div> 
 </div>
 <div class="inner-page-menu">
-    <div class="pull-left">
+    <div class="left-nav-side">
         <a href="<?= lang_url('user/protocols/add-protocol') ?>" class="btn btn-blue"><?= lang('add_protocol') ?></a>
         <a href="javascript:void(0);" class="btn btn-blue list-action" data-action-type="delete"><?= lang('delete_protocols') ?></a>
         <button data-toggle="collapse" class="btn btn-blue" data-target="#protocols-search"><?= lang('search') ?></button>
     </div>
-    <div class="pull-right">
+    <div class="right-nav-side">
         <a href="<?= lang_url('user/settings/protocols') ?>" class="btn btn-blue"><?= lang('protocols_settings') ?></a>
     </div>
+    <div class="clearfix"></div>
 </div> 
 <?php if ($this->permissions->hasPerm('perm_view_protocols_page')) { ?>
     <div id="protocols-search" class="collapse">    

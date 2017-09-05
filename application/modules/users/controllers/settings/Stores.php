@@ -21,6 +21,7 @@ class Stores extends USER_Controller
     {
         $data = array();
         $head = array();
+        $head['title'] = lang('title_everytime') . lang('title_store_sett');
         $this->postChecker();
         $data['myStores'] = $this->StoreModel->getStores();
         $this->render('settings/stores', $head, $data);

@@ -25,7 +25,7 @@ class Admin extends USER_Controller
         }
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Settings';
+        $head['title'] = lang('title_everytime') . lang('title_admin');
         if (isset($_POST['name'])) {
             $this->updateUser();
         }

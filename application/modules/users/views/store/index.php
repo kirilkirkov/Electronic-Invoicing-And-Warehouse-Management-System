@@ -10,16 +10,17 @@
     </div> 
 </div>
 <div class="inner-page-menu">
-    <div class="pull-left">
+    <div class="left-nav-side">
         <a href="<?= lang_url('user/store/add-movement') ?>" class="btn btn-blue"><?= lang('add_store_movement') ?></a>
         <a href="<?= lang_url('user/store/stocks') ?>" class="btn btn-blue"><?= lang('store_stocks') ?></a>
         <button data-toggle="collapse" class="btn btn-blue" data-target="#store-search"><?= lang('search') ?></button>
         <a href="javascript:void(0);" class="btn btn-blue list-action" data-action-type="stat_canceled"><?= lang('to_canceled_stat') ?></a>
         <a href="javascript:void(0);" class="btn btn-blue list-action" data-action-type="remove_canceled"><?= lang('remove_canceled_stat') ?></a>
     </div>
-    <div class="pull-right">
+    <div class="right-nav-side">
         <a href="<?= lang_url('user/settings/stores') ?>" class="btn btn-blue"><?= lang('store_settings') ?></a>
     </div>
+    <div class="clearfix"></div>
 </div> 
 <div id="store-search" class="collapse">    
     <form method="GET" action=""> 

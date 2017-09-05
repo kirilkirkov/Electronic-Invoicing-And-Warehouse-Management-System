@@ -22,7 +22,7 @@ class Home extends USER_Controller
 
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime').lang('title_home_page');
         if (isset($_POST['firm_name'])) {
             $result = $this->validateCompanyDetails();
             if ($result === true) {

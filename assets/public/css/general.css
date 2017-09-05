@@ -65,7 +65,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 .terms-and-condit {padding: 20px 0;}
 
 #collapseLogin {background-color: #eb8900; border-bottom-left-radius: 5px; padding: 10px; color:#fff; float:right;}
-#collapseLogin .my-addr {border:0; color:#333; width:175px; padding:0 8px; font-size:12px;}
+#collapseLogin .my-addr {border:0; color:#333; width:175px; padding:5px 8px; font-size:12px;}
 #collapseLogin span {font-size:12px; display: inline-block; width: 55px; }
 #collapseLogin .form-group { margin-bottom: 5px;}
 #collapseLogin .form-group:last-child { margin-bottom: 0; }

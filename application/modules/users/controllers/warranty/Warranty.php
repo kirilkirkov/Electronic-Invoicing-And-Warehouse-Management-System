@@ -31,7 +31,7 @@ class Warranty extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_warranties');
         $rowscount = $this->WarrantyCardModel->countWarranties($_GET);
         $data['warranties'] = $this->WarrantyCardModel->getWarranties($this->num_rows, $page, $_GET);
         $data['linksPagination'] = pagination('user/warranties', $rowscount, $this->num_rows, MY_DEFAULT_LANGUAGE_ABBR != MY_LANGUAGE_ABBR ? 4 : 3);
@@ -54,7 +54,7 @@ class Warranty extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_add_warr');
         $data['myDefaultFirmCurrency'] = $this->NewInvoiceModel->getFirmDefaultCurrency();
         $data['nextWarrantyNumber'] = $this->WarrantyCardModel->getNextFreeWarrantyNumber();
         $data['warrantiesLanguages'] = $this->WarrantyCardModel->getMyWarrantiesLanguages();

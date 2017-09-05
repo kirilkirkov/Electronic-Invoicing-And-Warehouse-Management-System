@@ -18,8 +18,8 @@
             <span><?= lang('create_inv_choose') ?></span>
         </a>
     </td>
-    <td>
-        <input type="text" value="<?= isset($itemPost) ? $itemPost['quantity'] : '0.00' ?>" name="items_quantities[]" class="form-control field quantity-field">
+    <td class="min-w-190">
+        <input type="text" value="<?= isset($itemPost) ? $itemPost['quantity'] : '1.00' ?>" name="items_quantities[]" class="form-control field quantity-field">
         <div class="quantity-type">
             <select class="form-control" name="items_quantity_types[]" data-my-id="1">
                 <?php foreach ($quantityTypes as $quantityType) { ?>
@@ -33,7 +33,7 @@
         </div>
         x
     </td>
-    <td>
+    <td class="min-w-180">
         <input type="text" value="<?= isset($itemPost) ? $itemPost['single_price'] : '0.00' ?>" name="items_prices[]" class="form-control field price-field">
         =
     </td>

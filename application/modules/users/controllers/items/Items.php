@@ -26,7 +26,7 @@ class Items extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_items');
         $this->postChecker();
         $rowscount = $this->ItemsModel->countItems($_GET);
         $data['items'] = $this->ItemsModel->getItems($this->num_rows, $page, $_GET);
@@ -39,7 +39,7 @@ class Items extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_add_item');
         $this->editId = $id;
         $this->postChecker();
         if ($id > 0) {
@@ -115,7 +115,7 @@ class Items extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_item_preview');
         $result = $this->ItemsModel->getItemInfo($id);
         if (empty($result)) {
             log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to view item with id -' . $id);

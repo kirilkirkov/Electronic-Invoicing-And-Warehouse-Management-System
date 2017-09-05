@@ -3,6 +3,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require 'PHPMailer/PHPMailerAutoload.php';
 
+/*
+ * This class is used to send invoices from users
+ */
 class MailSend
 {
 

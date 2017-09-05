@@ -31,7 +31,7 @@ class Protocols extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_protocols');
         $rowscount = $this->ProtocolsModel->countProtocols($_GET);
         $data['protocols'] = $this->ProtocolsModel->getProtocols($this->num_rows, $page, $_GET);
         $data['linksPagination'] = pagination('user/protocols', $rowscount, $this->num_rows, MY_DEFAULT_LANGUAGE_ABBR != MY_LANGUAGE_ABBR ? 4 : 3);
@@ -54,7 +54,7 @@ class Protocols extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_add_protocol');
         $data['prov_transmits'] = $this->ProtocolsModel->getProviderTransmits();
         $data['contracts'] = $this->ProtocolsModel->getContracts();
         $data['nextProtocolNumber'] = $this->ProtocolsModel->getNextFreeProtocolNumber();

@@ -58,4 +58,9 @@ class Language
         define('LANG_URL', rtrim(base_url($langLinkStart), '/'));
     }
 
+    public function getUrlAbbrevation()
+    {
+        return $this->urlAbbrevation;
+    }
+
 }

@@ -30,7 +30,7 @@ class Store extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_movements');
         $data['myStores'] = $this->StoreModel->getStores();
         $rowscount = $this->StoreModel->countMovements($_GET);
         $data['movements'] = $this->StoreModel->getMovements($this->num_rows, $page, $_GET);
@@ -57,7 +57,7 @@ class Store extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_add_movement');
         $data['myStores'] = $this->StoreModel->getStores();
         $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
         $data['quantityTypes'] = $this->NewInvoiceModel->getAllQuantityTypes();
@@ -154,7 +154,7 @@ class Store extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_stocks');
         $data['myStores'] = $this->StoreModel->getStores();
         $rowscount = $this->StoreModel->countStocks($this->num_rows, $page, $_GET);
         $data['stockQuantities'] = $this->StoreModel->getStockQuantities($this->num_rows, $page, $_GET);

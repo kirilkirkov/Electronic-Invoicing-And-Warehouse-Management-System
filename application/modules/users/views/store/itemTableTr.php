@@ -18,7 +18,7 @@
             <span><?= lang('create_inv_choose') ?></span>
         </a>
     </td>
-    <td>
+     <td class="min-w-190">
         <input type="text" value="0.00" name="items_quantities[]" class="form-control field quantity-field">
         <div class="quantity-type">
             <select class="form-control" name="items_quantity_types[]" data-my-id="1">
@@ -31,7 +31,7 @@
         </div>
         x
     </td>
-    <td>
+    <td class="min-w-180">
         <input type="text" value="0.00" name="items_prices[]" class="form-control field price-field">
         =
     </td>

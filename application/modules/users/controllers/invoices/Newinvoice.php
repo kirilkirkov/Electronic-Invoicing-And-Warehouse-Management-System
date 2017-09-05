@@ -24,7 +24,7 @@ class Newinvoice extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_new_inv');
         $data['currencies'] = $this->NewInvoiceModel->getCurrencies();
         $data['myDefaultFirmCurrency'] = $this->NewInvoiceModel->getFirmDefaultCurrency();
         $data['quantityTypes'] = $this->NewInvoiceModel->getAllQuantityTypes();
@@ -89,7 +89,16 @@ class Newinvoice extends USER_Controller
                 $this->NewInvoiceModel->updateInvoice($_POST);
             } else {
                 $_POST['userInfo'] = $this->userInfo; // get info for logged user
-                $this->NewInvoiceModel->setInvoice($_POST);
+                /*
+                 * prevent from "hackers" to send 
+                 * POST information when dont have plan
+                 */
+                $planUnits = $this->planUnits;
+                if ($planUnits['num_invoices'] > 0) {
+                    $this->NewInvoiceModel->setInvoice($_POST);
+                } else {
+                    log_message('error', 'User that dont have invoices try to create invoice with POST array');
+                }
             }
             redirect(lang_url('user/' . $inv_readable_types[$_POST['inv_type']] . '/view/' . $_POST['inv_number']));
         } else {

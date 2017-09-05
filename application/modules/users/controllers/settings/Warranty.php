@@ -21,7 +21,7 @@ class Warranty extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'a';
+        $head['title'] = lang('title_everytime') . lang('title_warr_sett');
         if (isset($_POST['condition'])) {
             $this->setNewCondition();
         }

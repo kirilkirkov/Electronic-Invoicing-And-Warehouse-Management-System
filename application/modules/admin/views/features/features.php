@@ -24,7 +24,7 @@
                             </p>
                             <div class="buttons">
                                 <a href="<?= base_url('admin/addfeature?edit=' . $feature['id']) ?>" class="btn btn-default">Edit</a>
-                                <a href="<?= base_url('admin/features?delete=' . $feature['id']) ?>" class="btn btn-danger confirm-delete">Delete</a>
+                                <a href="<?= base_url('admin/features?delete=' . $feature['id']) ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
                             </div>
                         </div>
                     </div>

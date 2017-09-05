@@ -21,7 +21,7 @@ class Movementview extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] = lang('title_everytime') . lang('title_movem_prev');
 
         $movement = $this->StoreModel->getMovementByNumber($movementNumber);
         if ($movement == null) {

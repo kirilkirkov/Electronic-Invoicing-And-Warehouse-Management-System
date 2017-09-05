@@ -6,7 +6,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     </div> 
     </div>
-<?php } ?>
+    <?php
+}
+?>
 <footer>
     © PMInvoice.com Copyright 2017. All Rights Reserved.
 </footer>

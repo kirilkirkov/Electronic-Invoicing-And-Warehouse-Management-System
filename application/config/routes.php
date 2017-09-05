@@ -70,6 +70,10 @@ $route['admin/questions'] = "admin/texts/questions";
 $route['admin/addfeature'] = "admin/features/addfeature";
 $route['admin/features'] = "admin/features/features";
 $route['admin/features/(:num)'] = "admin/features/features/index/$1";
+$route['admin/plans/requests'] = "admin/plans/requests";
+$route['admin/plans/requests/(:num)'] = "admin/plans/requests/index/$1";
+$route['admin/plans/individual/request'] = "admin/plans/requests/custom";
+$route['admin/plans/individual/request/(:num)'] = "admin/plans/requests/custom/$1";
 /* ADMIN PANEL ROUTES */
 
 /* USERS PANEL ROUTES */
@@ -151,6 +155,9 @@ $route['(\w{2})?/?user/protocol/print/(:num)'] = "users/protocols/protocolview/v
 $route['(\w{2})?/?user/protocol/edit/(:num)'] = "users/protocols/protocols/addprotocol/$2";
 $route['(\w{2})?/?user/settings/protocols/delete/provider-transmit/(:num)'] = "users/settings/protocols/deleteProviderTransmitText/$2";
 $route['(\w{2})?/?user/settings/protocols/delete/contract/(:num)'] = "users/settings/protocols/deleteContract/$2";
+$route['(\w{2})?/?user/plans'] = "users/plans/PlansUsers";
+$route['(\w{2})?/?user/plan/(:any)'] = "users/plans/PlansUsers/chooseperiod/$2";
+$route['(\w{2})?/?user/myplan/request'] = "users/plans/PlansUsers/planrequest";
 $route['pdffooter'] = 'home/getinvoicefooter';
 /* USERS PANEL ROUTES */
 

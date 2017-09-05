@@ -27,7 +27,7 @@ class Employees extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Settings';
+        $head['title'] = lang('title_everytime') . lang('title_employees');
         $rowscount = $this->SettingsModel->countEmployees($_GET);
         $data['employees'] = $this->SettingsModel->getEmployees($this->num_rows, $page);
         $data['linksPagination'] = pagination('user/settings/employees', $rowscount, $this->num_rows, MY_DEFAULT_LANGUAGE_ABBR != MY_LANGUAGE_ABBR ? 5 : 4);
@@ -39,7 +39,7 @@ class Employees extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Settings';
+        $head['title'] = lang('title_everytime') . lang('title_add_employee');
         $this->editId = $id;
         if (isset($_POST['name'])) {
             $_POST['editId'] = $id;
@@ -68,7 +68,7 @@ class Employees extends USER_Controller
         $data = array();
         $head = array();
         $this->editEmployee = $id;
-        $head['title'] = 'Administration - Settings';
+        $head['title'] = lang('title_everytime') . lang('title_empl_rights');
         if (isset($_POST['savePermissions'])) {
             $this->savePermissions();
         }

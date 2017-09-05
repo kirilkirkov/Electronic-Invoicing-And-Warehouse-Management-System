@@ -12,6 +12,11 @@
 <?php if ($this->permissions->hasPerm('perm_can_manage_firms')) { ?>
     <div class="row">
         <div class="col-sm-8 col-md-6">
+            <?php if (count($firms) > $planUnits['num_firms']) { ?>
+                <div class="alert alert-danger">
+                    <?= lang('exceeded_limit_firms') ?>
+                </div>
+            <?php } ?>
             <div class="panel-content">
                 <div class="head">
                     <div><?= lang('list_firms') ?></div>
@@ -56,47 +61,49 @@
             </div>
         </div>
     </div>
-    <!-- Modal Add Company -->
-    <div class="modal fade" id="modalAddCompany" tabindex="-1" role="dialog" aria-labelledby="modalAddCompany">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form class="site-form" method="POST" action="">
-                    <input type="hidden" name="addFirm" value="">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel"><?= lang('add_new_company') ?></h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label><?= lang('firm_name') ?></label>
-                            <input type="text" name="firm_name" class="form-control field" value="<?= trim($this->session->flashdata('firm_name')) ?>">
+    <?php if (count($firms) < $planUnits['num_firms']) { ?>
+        <!-- Modal Add Company -->
+        <div class="modal fade" id="modalAddCompany" tabindex="-1" role="dialog" aria-labelledby="modalAddCompany">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form class="site-form" method="POST" action="">
+                        <input type="hidden" name="addFirm" value="">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel"><?= lang('add_new_company') ?></h4>
                         </div>
-                        <div class="form-group">
-                            <label><?= lang('firm_bulstat') ?></label>
-                            <input type="text" name="firm_bulstat" value="<?= trim($this->session->flashdata('firm_bulstat')) ?>" class="form-control field">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label><?= lang('firm_name') ?></label>
+                                <input type="text" name="firm_name" class="form-control field" value="<?= trim($this->session->flashdata('firm_name')) ?>">
+                            </div>
+                            <div class="form-group">
+                                <label><?= lang('firm_bulstat') ?></label>
+                                <input type="text" name="firm_bulstat" value="<?= trim($this->session->flashdata('firm_bulstat')) ?>" class="form-control field">
+                            </div>
+                            <div class="form-group">
+                                <label><?= lang('firm_reg_address') ?></label>
+                                <textarea name="firm_reg_address" class="form-control field"><?= trim($this->session->flashdata('firm_reg_address')) ?></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label><?= lang('firm_city') ?></label>
+                                <input type="text" name="firm_city" value="<?= trim($this->session->flashdata('firm_city')) ?>" class="form-control field">
+                            </div>
+                            <div class="form-group">
+                                <label><?= lang('firm_mol') ?></label>
+                                <input type="text" name="firm_mol" value="<?= trim($this->session->flashdata('firm_mol')) ?>" class="form-control field">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label><?= lang('firm_reg_address') ?></label>
-                            <textarea name="firm_reg_address" class="form-control field"><?= trim($this->session->flashdata('firm_reg_address')) ?></textarea>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close') ?></button>
+                            <button type="submit" class="btn btn-primary"><?= lang('add_new_company') ?></button>
                         </div>
-                        <div class="form-group">
-                            <label><?= lang('firm_city') ?></label>
-                            <input type="text" name="firm_city" value="<?= trim($this->session->flashdata('firm_city')) ?>" class="form-control field">
-                        </div>
-                        <div class="form-group">
-                            <label><?= lang('firm_mol') ?></label>
-                            <input type="text" name="firm_mol" value="<?= trim($this->session->flashdata('firm_mol')) ?>" class="form-control field">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal"><?= lang('close') ?></button>
-                        <button type="submit" class="btn btn-primary"><?= lang('add_new_company') ?></button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <?php
+        <?php
+    }
     if ($this->session->flashdata('addFirm') == '1') {
         ?>
         <script>

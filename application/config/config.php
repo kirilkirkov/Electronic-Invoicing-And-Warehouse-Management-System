@@ -570,7 +570,8 @@ $config['permissions'] = array(
     'perm_view_warranty_events' => 1,
     'perm_add_warranty_events' => 1,
     'perm_view_protocols_page' => 1,
-    'perm_add_protocol' => 1
+    'perm_add_protocol' => 1,
+    'perm_view_plans_page' => 1
 );
 $config['templates'] = array(
     'creative'

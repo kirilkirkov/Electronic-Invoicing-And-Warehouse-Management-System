@@ -21,7 +21,7 @@ class GlobalSettings extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Settings';
+        $head['title'] = lang('title_everytime') . lang('title_global_sett');
         $this->postChecker();
         $this->render('settings/global', $head, $data);
         $this->saveHistory('Go to settings employees table page');

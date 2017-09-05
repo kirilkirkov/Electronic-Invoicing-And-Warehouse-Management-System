@@ -99,3 +99,4 @@ $lang['export_in_excel'] = 'Export in EXCEL';
 $lang['excel_export_info'] = 'We also support export in XLS with invoice and client info. Exported columns: Invoice Number | Invoice Type | Client Name | Client Address | Client Bulstat/PIN | Client Vat Number | Client Accountable person | Date of issue | Date Tax Event | Invoice Amount | Discount | Tax Base | Vat Sum | Total | Currency | Payment Type | Payment status | Compiled | Sended | Received | Date of receive | Return reason | Date created | Vat Reason | Remarks | Maturity date';
 $lang['create_and_send_inv_with'] = 'Create and send invoices with';
 $lang['p_reason'] = 'Reason';
+$lang['log_me_public_home'] = 'Login to my account';

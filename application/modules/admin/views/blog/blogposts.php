@@ -33,7 +33,7 @@ if (!empty($posts)) {
                     <div class="caption">
                         <h3 style="height:113px; overflow: hiddrten;"><a href="<?= base_url('/blog/' . $row['url']) ?>" target="_blank"><?= character_limiter($row['title'], 90) ?></a></h3>
                         <a href="<?= base_url('admin/blogpublish/' . $row['id']) ?>" class="btn btn-primary" role="button">Edit</a>
-                        <a href="<?= base_url('admin/blog/?delete=' . $row['id']) ?>" class="btn btn-danger confirm-delete" role="button">Delete</a>
+                        <a href="<?= base_url('admin/blog/?delete=' . $row['id']) ?>" class="btn btn-danger" onclick="return confirm('Are you sure?')" role="button">Delete</a>
                     </div>
                 </div>
             </div> 

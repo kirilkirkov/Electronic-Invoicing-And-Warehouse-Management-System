@@ -45,6 +45,7 @@ class InvoicesModel extends CI_Model
         $this->db->where('invoices.for_user', USER_ID);
         $this->db->where('invoices.for_company', SELECTED_COMPANY_ID);
         $this->db->where('invoices.is_deleted', 0);
+        $this->db->order_by('id', 'desc');
         $this->db->join('invoices_clients', 'invoices_clients.for_invoice = invoices.id');
         $result = $this->db->get('invoices', $limit, $page);
         return $result->result_array();

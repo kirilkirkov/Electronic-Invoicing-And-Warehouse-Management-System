@@ -74,6 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <?php if (!defined('EMPLOYEE_ID')) { ?>
                                     <li><a href="<?= lang_url('user/admin') ?>"><?= lang('usr_admin_menu') ?></a></li>
                                 <?php } ?>
+                                <li><a href="<?= lang_url('user/plans') ?>"><?= lang('plans') ?></a></li>
                                 <li><a class="logout" href="<?= lang_url('user/logout') ?>"><?= lang('logout') ?></a></li>
                             </ul>
                             <?php
@@ -109,10 +110,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="col-sm-6 col-stats">
                                     <div class="stats">
                                         <div class="stat">
-                                            <span class="sprite-inv-docs icon"></span> <span class="num">61</span> <?= lang('documents') ?>
+                                            <span class="sprite-inv-docs icon"></span> <span class="num"><?= $planUnits['num_invoices'] ?></span> <?= lang('documents') ?>
                                         </div>
                                         <div class="stat">
-                                            <span class="sprite-companies icon"></span> <span class="num">61</span> <?= lang('companies') ?>
+                                            <span class="sprite-companies icon"></span> <span class="num"><?= $planUnits['num_firms'] - count($myFirms) ?></span> <?= lang('companies') ?>
                                         </div>
                                     </div>
                                 </div>
@@ -123,9 +124,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="row">
                             <div class="col-sm-3 col-md-3 col-lg-2 left-col">
                                 <div class="visible-xs text-center">
-                                    <button data-toggle="collapse" class="btn btn-blue" data-target="#demo"><?= lang('show_main_menu') ?></button>
+                                    <button data-toggle="collapse" id="btn-show-main-menu" class="btn btn-blue" data-target="#main-menu"><?= lang('show_main_menu') ?></button>
                                 </div>
-                                <div id="demo" class="left-menu collapse">
+                                <div id="main-menu" class="left-menu collapse">
                                     <ul>
                                         <li>
                                             <a href="<?= lang_url('user') ?>">

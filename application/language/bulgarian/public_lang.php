@@ -99,3 +99,4 @@ $lang['export_in_excel'] = 'Експорт в EXCEL';
 $lang['excel_export_info'] = 'Също поддържаме експорт в XLS с информация за фактура и клиент. Експортираните полета са: Invoice Number | Invoice Type | Client Name | Client Address | Client Bulstat/PIN | Client Vat Number | Client Accountable person | Date of issue | Date Tax Event | Invoice Amount | Discount | Tax Base | Vat Sum | Total | Currency | Payment Type | Payment status | Compiled | Sended | Received | Date of receive | Return reason | Date created | Vat Reason | Remarks | Maturity date';
 $lang['create_and_send_inv_with'] = 'Създавай и изпращай фактури с';
 $lang['p_reason'] = 'Причина';
+$lang['log_me_public_home'] = 'Вход в системата ми';

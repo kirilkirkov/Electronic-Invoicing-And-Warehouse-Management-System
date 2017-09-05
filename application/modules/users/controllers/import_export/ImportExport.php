@@ -23,7 +23,7 @@ class ImportExport extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Home';
+        $head['title'] =  lang('title_everytime').lang('title_import_export');
         $this->postChecker();
         $thisYear = thisyeardates();
         $data['from_date'] = $thisYear['from'];

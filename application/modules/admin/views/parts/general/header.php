@@ -65,13 +65,14 @@
                                         </form>
                                     </div>
                                 </li>
-                                <li class="header">PUBLISH</li>
+                                <li class="header">PUBLIC</li>
                                 <li><a href="<?= base_url('admin/blog') ?>" <?= urldecode(uri_string()) == 'admin/blog' ? 'class="active"' : '' ?>><i class="fa fa-edit" aria-hidden="true"></i> Blog</a></li>
                                 <li><a href="<?= base_url('admin/features') ?>" <?= urldecode(uri_string()) == 'admin/features' ? 'class="active"' : '' ?>><i class="fa fa-tasks" aria-hidden="true"></i> Features</a></li>
                                 <li><a href="<?= base_url('admin/texts') ?>" <?= urldecode(uri_string()) == 'admin/texts' ? 'class="active"' : '' ?>><i class="fa fa-text-width" aria-hidden="true"></i> Texts</a></li>
                                 <li><a href="<?= base_url('admin/questions') ?>" <?= urldecode(uri_string()) == 'admin/questions' ? 'class="active"' : '' ?>><i class="fa fa-question" aria-hidden="true"></i> Asked Questions</a></li>
                                 <li class="header">USERS</li>
-
+                                <li><a href="<?= base_url('admin/plans/requests') ?>" <?= urldecode(uri_string()) == 'admin/plans/requests' ? 'class="active"' : '' ?>><i class="fa fa-credit-card" aria-hidden="true"></i> Plans Payment Requests</a></li>
+                                <li><a href="<?= base_url('admin/plans/individual/request') ?>" <?= urldecode(uri_string()) == 'admin/plans/individual/request' ? 'class="active"' : '' ?>><i class="fa fa-american-sign-language-interpreting" aria-hidden="true"></i> Custom Plan Requests</a></li>
                                 <li class="header">SETTINGS</li>
                             </ul>
                         </div>

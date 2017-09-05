@@ -14,6 +14,7 @@ class ExcelExport
     private $to;
     private $invReadableTypes;
     private $fsize;
+    private $CI;
 
     public function __construct()
     {
@@ -101,8 +102,8 @@ class ExcelExport
             $objPHPExcel->getActiveSheet()->SetCellValue('U' . $i, $invoice['date_received'] != 0 ? date('d.m.Y', $invoice['date_received']) : '');
             $objPHPExcel->getActiveSheet()->SetCellValue('V' . $i, $invoice['return_reason']);
             $objPHPExcel->getActiveSheet()->SetCellValue('W' . $i, date('d.m.Y', $invoice['created']));
-            $objPHPExcel->getActiveSheet()->SetCellValue('X' . $i, $invoice['no_vat_reason']);
-            $objPHPExcel->getActiveSheet()->SetCellValue('Y' . $i, $invoice['remarks']);
+            $objPHPExcel->getActiveSheet()->SetCellValue('X' . $i, html_entity_decode($invoice['no_vat_reason']));
+            $objPHPExcel->getActiveSheet()->SetCellValue('Y' . $i, html_entity_decode($invoice['remarks']));
             $objPHPExcel->getActiveSheet()->SetCellValue('Z' . $i, $invoice['have_maturity_date'] == 1 ? date('d.m.Y', $invoice['maturity_date']) : '');
             $i++;
         }

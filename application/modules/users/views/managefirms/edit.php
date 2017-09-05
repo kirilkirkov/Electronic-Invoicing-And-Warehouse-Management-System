@@ -79,8 +79,8 @@
                 </div>
                 <div class="form-group">
                     <input type="hidden" name="old_image" value="<?= $companyTranslate['image'] ?>">
-                    <div class="firm-image-container">
-                        <img src="<?= base_url('attachments/' . COMPANIES_IMAGES_DIR . '/' . $companyInfo['company']['id'] . '/' . $companyTranslate['image']) ?>" alt="<?= lang('no_image') ?>">
+                    <div class="form-group firm-image-container">
+                        <img src="<?= base_url('attachments/' . COMPANIES_IMAGES_DIR . '/' . $companyInfo['company']['id'] . '/' . $companyTranslate['image']) ?>" class="img-thumbnail" alt="<?= lang('no_image') ?>">
                     </div>
                     <?php if (is_file('attachments/' . COMPANIES_IMAGES_DIR . '/' . $companyInfo['company']['id'] . '/' . $companyTranslate['image'])) { ?>
                         <div>

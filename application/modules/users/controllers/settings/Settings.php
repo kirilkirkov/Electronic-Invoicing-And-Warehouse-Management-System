@@ -20,7 +20,7 @@ class Settings extends USER_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Administration - Settings';
+        $head['title'] = lang('title_everytime') . lang('title_settings');
         $this->render('settings/index', $head, $data);
         $this->saveHistory('Go to settings page');
     }

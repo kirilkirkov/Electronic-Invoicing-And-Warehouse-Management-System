@@ -55,6 +55,8 @@ class Registration extends MY_Controller
     {
         @$_SESSION['reg_times'] += 1; //noob prevent of spam :)
         if ($_SESSION['reg_times'] < 20) {
+            $this->load->helper('get_client_ip_address');
+            $_POST['ip_address'] = get_client_ip_address();
             $this->PublicModel->registerUser($_POST);
             return $_POST['email'];
         }

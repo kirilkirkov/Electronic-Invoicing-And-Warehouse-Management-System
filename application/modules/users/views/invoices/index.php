@@ -10,13 +10,16 @@
     </div> 
 </div>
 <div class="inner-page-menu">
-    <a href="<?= lang_url('user/new/invoice') ?>" class="btn btn-blue"><?= lang('create_new_inv') ?></a>
-    <div class="pull-right">
+    <div class="left-nav-side">
+        <a href="<?= lang_url('user/new/invoice') ?>" class="btn btn-blue"><?= lang('create_new_inv') ?></a>
+    </div>
+    <div class="right-nav-side">
         <button data-toggle="collapse" class="btn btn-blue" data-target="#invoices-search"><?= lang('search') ?></button>
         <a href="javascript:void(0);" class="btn btn-blue list-action" data-action-type="delete"><?= lang('delete') ?></a>
         <a href="javascript:void(0);" class="btn btn-blue list-action" data-action-type="stat_canceled"><?= lang('to_canceled_stat') ?></a>
         <a href="javascript:void(0);" class="btn btn-blue list-action" data-action-type="remove_canceled"><?= lang('remove_canceled_stat') ?></a>
     </div>
+    <div class="clearfix"></div>
 </div> 
 <div id="invoices-search" class="collapse">    
     <form method="GET" class="site-form" action=""> 
@@ -169,9 +172,9 @@
                         </tr>
                     <?php } ?>
                 </tbody>
-            </table>
-            <?= lang('countInvoices') . ' <b>' . $countInvoices . '</b> ' . lang('with_sum_of') . ' <b>' . round($sumAmount, $opt_invRoundTo) . '</b>' ?>
+            </table> 
         </div>
+        <?= lang('countInvoices') . ' <b>' . $countInvoices . '</b> ' . lang('with_sum_of') . ' <b>' . round($sumAmount, $opt_invRoundTo) . '</b>' ?>
         <div id="payment-statuses">
             <a href="javascript:void(0);" data-new-pay-status="paid" class="change-pay-status"><?= lang('payment_status_paid') ?></a>
             <a href="javascript:void(0);" data-new-pay-status="unpaid" class="change-pay-status"><?= lang('payment_status_unpaid') ?></a>

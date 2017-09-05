@@ -10,14 +10,15 @@
     </div> 
 </div>
 <div class="inner-page-menu">
-    <div class="pull-left">
+    <div class="left-nav-side">
         <a href="<?= lang_url('user/warranties/add-warranty') ?>" class="btn btn-blue"><?= lang('add_warranty') ?></a>
         <a href="javascript:void(0);" class="btn btn-blue list-action" data-action-type="delete"><?= lang('delete_warranties') ?></a>
         <button data-toggle="collapse" class="btn btn-blue" data-target="#warranties-search"><?= lang('search') ?></button> 
     </div>
-    <div class="pull-right">
+    <div class="right-nav-side">
         <a href="<?= lang_url('user/settings/warranty') ?>" class="btn btn-blue"><?= lang('warranty_settings') ?></a>
     </div>
+    <div class="clearfix"></div>
 </div> 
 <?php if ($this->permissions->hasPerm('perm_view_warranty_page')) { ?>
     <div id="warranties-search" class="collapse">    
