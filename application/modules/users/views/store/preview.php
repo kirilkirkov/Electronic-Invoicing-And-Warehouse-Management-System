@@ -38,7 +38,7 @@ if ($movement['movement_type'] == 'move' || $movement['movement_type'] == 'revis
         <p><?= lang('preview_movem_expire') ?> <?= date('d.m.Y', $movement['expire_date']) ?><p>
     </div>
     <div class="col-sm-6 text-right">
-        <a class="btn btn-default" href="<?= base_url('user/bill-of-lading/print/' . $movement['movement_number']) ?>"><?= lang('bill_of_lading') ?></a>
+        <a class="btn btn-default" target="_blank" href="<?= base_url('user/store-order/print/' . $movement['movement_number']) ?>"><?= lang('bill_of_lading') ?></a>
     </div>
 </div>
 <hr>
