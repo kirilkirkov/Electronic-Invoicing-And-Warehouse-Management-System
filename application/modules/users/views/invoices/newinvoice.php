@@ -600,6 +600,14 @@
         <?php }
         ?>
         <script>
+        <?php
+// if load items from other document, lets calculate him
+        if (isset($_GET['create-from'])) {
+            ?>
+                $(document).ready(function () {
+                    createInvoiceCalculator();
+                });
+        <?php } ?>
             var createDocument = {
                 rountTo: <?= $opt_invRoundTo ?>,
                 calculatorStatus: <?= $opt_invCalculator ?>

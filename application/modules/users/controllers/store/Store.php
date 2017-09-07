@@ -97,12 +97,11 @@ class Store extends USER_Controller
         if ($isValid === true) {
             $this->StoreModel->setMovement($_POST);
             $this->session->set_flashdata('resultAction', lang('movement_added'));
-            redirect(lang_url('user/store'));
+            redirect(lang_url('user/movement/view/' . $_POST['movement_number']));
         } else {
             $this->session->set_flashdata('resultAction', $isValid);
             redirect(lang_url('user/store/add-movement'));
         }
-        redirect(lang_url('user/store'));
     }
 
     private function validateMovement()

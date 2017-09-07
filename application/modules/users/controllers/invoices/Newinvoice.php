@@ -32,6 +32,11 @@ class Newinvoice extends USER_Controller
         $data['invoiceLanguages'] = $this->NewInvoiceModel->getMyInvoiceLanguages();
         $data['myNoVatReasons'] = $this->SettingsModel->getMyNoVatReasons();
         $data['nextInvNumber'] = $this->NewInvoiceModel->getNextFreeInvoiceNumber();
+        //if is not edit and want get $_POST from other document
+        if (isset($_GET['create-from']) && isset($_GET['number']) && $invNum == 0) {
+            $this->getPostFromDucument();
+        }
+
         if ($invNum > 0) {
             $this->invNum = $invNum;
             $inv_readable_types = array_flip($this->config->item('inv_readable_types'));
@@ -66,6 +71,23 @@ class Newinvoice extends USER_Controller
         $this->saveHistory('Go to new invoice page');
     }
 
+    /*
+     * loads posts variable for client and items from 
+     * other document
+     */
+
+    private function getPostFromDucument()
+    {
+        if ($_GET['create-from'] == 'store-order') {
+            $this->load->model('StoreModel');
+            $result = $this->StoreModel->getMovementByNumber($_GET['number']);
+            if ($result != null) {
+                $_POST['client'] = $result['client'];
+                $_POST['items'] = $result['items'];
+            }
+        }
+    }
+
     private function postChecker()
     {
         if (isset($_POST['addNewInvoiceLanguage'])) {
@@ -96,6 +118,7 @@ class Newinvoice extends USER_Controller
                 $planUnits = $this->planUnits;
                 if ($planUnits['num_invoices'] > 0) {
                     $this->NewInvoiceModel->setInvoice($_POST);
+                    $this->setDocumentPointer($_POST['inv_number']); //optional
                 } else {
                     log_message('error', 'User that dont have invoices try to create invoice with POST array');
                 }
@@ -156,6 +179,20 @@ class Newinvoice extends USER_Controller
             return true;
         }
         return $errors;
+    }
+
+    /*
+     * When submit form for create new invoice
+     * Check if information for this invoice comes from other document
+     * And set "to invoice" in him
+     */
+
+    private function setDocumentPointer($inv_number)
+    {
+        if (isset($_GET['create-from']) == 'store-order') {
+            $this->load->model('StoreModel');
+            $this->StoreModel->updateMovementPointToInvNumber($inv_number, $_GET['number']);
+        }
     }
 
     private function addNewInvoiceLanguage()

@@ -14,7 +14,7 @@
     <a href="javascript:void(0);" class="btn btn-blue list-action" data-action-type="delete"><?= lang('delete') ?></a>
     <button data-toggle="collapse" data-target="#items-search" class="btn btn-blue"><?= lang('search') ?></button>
 </div> 
-<div id="items-search" class="collapse">    
+<div id="items-search" class="collapse <?= isset($_GET['item_name']) ? 'in' : '' ?> lists-search-form">    
     <form method="GET" action="" class="site-form"> 
         <div class="row">
             <div class="col-sm-4">

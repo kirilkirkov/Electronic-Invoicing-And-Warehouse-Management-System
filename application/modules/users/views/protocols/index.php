@@ -21,7 +21,7 @@
     <div class="clearfix"></div>
 </div> 
 <?php if ($this->permissions->hasPerm('perm_view_protocols_page')) { ?>
-    <div id="protocols-search" class="collapse">    
+    <div id="protocols-search" class="collapse <?= isset($_GET['client_name']) ? 'in' : '' ?> lists-search-form">    
         <form method="GET" action="" class="site-form"> 
             <div class="row">
                 <div class="col-sm-4"> 

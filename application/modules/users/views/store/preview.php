@@ -26,19 +26,35 @@ if ($movement['movement_type'] == 'move' || $movement['movement_type'] == 'revis
 ?>
 <div class="row">
     <div class="col-sm-6">
-        <p><?= lang('preview_movem_num') ?> <?= $movement['movement_number'] ?><p>
-        <p><?= lang('preview_movem_type') ?> <?= lang('movem_type_' . $movement['movement_type']) ?><p>
-        <p><?= lang('preview_movem_currency') ?> <?= $movement['movement_currency'] ?><p>
-        <p><?= lang('preview_movem_status') ?> <?= $movement['cancelled'] == 0 ? lang('movem_stat_confirmed') : lang('movem_stat_cancelled') ?><p>
-        <p><?= lang('preview_movem_from') ?> <?= $from ?><p>
-        <p><?= lang('preview_movem_to') ?> <?= $to ?><p>
-        <p><?= lang('preview_movem_betrayed') ?> <?= $movement['betrayed'] ?><p>
-        <p><?= lang('preview_movem_accepted') ?> <?= $movement['accepted'] ?><p>
-        <p><?= lang('preview_movem_lot') ?> <?= $movement['lot'] ?><p>
-        <p><?= lang('preview_movem_expire') ?> <?= date('d.m.Y', $movement['expire_date']) ?><p>
+        <p><?= lang('preview_movem_num') ?> <?= $movement['movement_number'] ?></p>
+        <p><?= lang('preview_movem_type') ?> <?= lang('movem_type_' . $movement['movement_type']) ?></p>
+        <p><?= lang('preview_movem_currency') ?> <?= $movement['movement_currency'] ?></p>
+        <p><?= lang('preview_movem_status') ?> <?= $movement['cancelled'] == 0 ? lang('movem_stat_confirmed') : lang('movem_stat_cancelled') ?></p>
+        <p><?= lang('preview_movem_from') ?> <?= $from ?></p>
+        <p><?= lang('preview_movem_to') ?> <?= $to ?></p>
+        <p><?= lang('preview_movem_betrayed') ?> <?= $movement['betrayed'] ?></p>
+        <p><?= lang('preview_movem_accepted') ?> <?= $movement['accepted'] ?></p>
+        <p><?= lang('preview_movem_lot') ?> <?= $movement['lot'] ?></p>
+        <p><?= lang('preview_movem_expire') ?> <?= date('d.m.Y', $movement['expire_date']) ?></p>
+        <?php if ($movement['movement_type'] == 'out') { ?>
+            <p><?= lang('preview_movem_to_inv') ?>
+                <?php
+                if ($movement['to_invoice'] != null) {
+                    ?>
+                    <a href="<?= lang_url('user/invoice/view/' . $movement['to_invoice']) ?>"><?= $movement['to_invoice'] ?></a>
+                    <?php
+                } else {
+                    echo lang('to_inv_movem_not_set');
+                }
+                ?>
+            </p>
+        <?php } ?>
     </div>
     <div class="col-sm-6 text-right">
-        <a class="btn btn-default" target="_blank" href="<?= base_url('user/store-order/print/' . $movement['movement_number']) ?>"><?= lang('bill_of_lading') ?></a>
+        <a class="btn btn-default" target="_blank" href="<?= base_url('user/store-order/print/' . $movement['movement_number']) ?>"><?= lang('bill_of_lading_down') ?></a>
+        <?php if ($movement['movement_type'] == 'out') { ?>
+            <a class="btn btn-default" href="<?= lang_url('user/new/invoice?create-from=store-order&number=' . $movement['movement_number']) ?>"><?= lang('create_invoice') ?></a>
+        <?php } ?>
     </div>
 </div>
 <hr>

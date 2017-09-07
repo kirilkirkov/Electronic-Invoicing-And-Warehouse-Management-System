@@ -541,4 +541,16 @@ class StoreModel extends CI_Model
         return $result->result_array();
     }
 
+    public function updateMovementPointToInvNumber($inv_number, $movement_number)
+    {
+        $this->db->where('movement_number', $movement_number);
+        $this->db->where('for_user', USER_ID);
+        if (!$this->db->update('movements', array(
+                    'to_invoice' => $inv_number
+                ))) {
+            log_message('error', print_r($this->db->error(), true));
+            show_error(lang('database_error'));
+        }
+    }
+
 }
