@@ -28,7 +28,7 @@ class WarrantyCardModel extends CI_Model
         $this->db->select('warranties.*, warranties_clients.client_name as client');
         $this->db->join('warranties_firms', 'warranties_firms.for_warranty = warranties.id');
         $this->db->join('warranties_clients', 'warranties_clients.for_warranty = warranties.id');
-        $this->db->order_by('warranties.id', 'asc');
+        $this->db->order_by('warranties.id', 'desc');
         $this->db->where('warranties.for_user', USER_ID);
         $this->db->where('warranties.for_company', SELECTED_COMPANY_ID);
         $this->db->where('warranties.is_deleted', 0);

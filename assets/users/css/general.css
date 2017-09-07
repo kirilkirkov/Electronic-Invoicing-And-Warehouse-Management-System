@@ -155,7 +155,7 @@ header .col-stats .stats .stat .icon {float: left; margin-right: 5px; margin-top
 .no-results-found { margin-bottom: 20px; }
 .table-list tbody tr td {padding:15px 8px;} 
 .pagination {margin:0;}
-#invoices-search {margin-bottom: 20px;background-color: #f2f2f2; border-radius: 10px; padding: 10px;}
+.lists-search-form {margin-bottom: 20px;background-color: #f2f2f2; border-radius: 10px; padding: 10px;}
 .invoices-list-form {margin-bottom: 20px;}
 .txt_status_paid {color:#23b03a;}
 .txt_status_unpaid {color:#ff0000;}
@@ -278,7 +278,7 @@ footer { background-color: #285674; color:#6dd0ed; bottom: 0; height: 60px; left
     input[type="week"],
     select:focus,
     textarea {
-        font-size: 16px;
+        font-size: 16px !important;
     }
     /* Dont zoom fileds! */
 }

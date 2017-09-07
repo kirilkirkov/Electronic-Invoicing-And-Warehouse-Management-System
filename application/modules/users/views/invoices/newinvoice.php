@@ -41,7 +41,8 @@
                     <div class="choose-translation" <?= $editId > 0 ? 'style="display:none;"' : '' ?>>
                         <p><?= lang('explain_inv_translation') ?></p>
                         <select class="selectpicker" name="invoice_translation" title="<?= lang('choose_translation') ?>">
-                            <option value="0" selected=""><?= lang('default_inv_lang') ?></option>
+                            <option value="1" selected=""><?= lang('default_inv_lang_en') ?></option>
+                            <option value="2"><?= lang('default_inv_lang_bg') ?></option>
                             <?php
                             if (!empty($invoiceLanguages)) {
                                 foreach ($invoiceLanguages as $invLanguage) {

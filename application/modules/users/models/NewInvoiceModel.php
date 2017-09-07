@@ -2,6 +2,14 @@
 
 class NewInvoiceModel extends CI_Model
 {
+    /*
+     * Ids in database of the default 
+     * invoice languages in table "invoices_languages"
+     * JUST HARDCODED $sysDefTransIds
+     * They must be same in $sysDefTransIds, newinvoice.php(view) and in "invoices_languages" table
+     */
+
+    private $sysDefTransIds = array(1, 2);
 
     public function __construct()
     {
@@ -290,8 +298,8 @@ class NewInvoiceModel extends CI_Model
 
     private function updateInvoiceTranslation($invoiceId, $translateId)
     {
-        if ($translateId == '0') {
-            $this->db->where('id', 1);
+        if (in_array($translateId, $this->sysDefTransIds)) {
+            $this->db->where('id', $translateId);
         } else {
             $this->db->where('for_user', USER_ID);
             $this->db->where('id', $translateId);
@@ -454,8 +462,8 @@ class NewInvoiceModel extends CI_Model
 
     private function setInvoiceTranslation($invoiceId, $translateId)
     {
-        if ($translateId == '0') {
-            $this->db->where('id', 1);
+        if (in_array($translateId, $this->sysDefTransIds)) {
+            $this->db->where('id', $translateId);
         } else {
             $this->db->where('for_user', USER_ID);
             $this->db->where('id', $translateId);

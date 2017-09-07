@@ -2,6 +2,14 @@
 
 class StoreModel extends CI_Model
 {
+    /*
+     * Ids in database of the default 
+     * invoice languages in table "movements_languages"
+     * JUST HARDCODED $sysDefTransIds
+     * They must be same in $sysDefTransIds, addmovement.php(view) and in "movements_languages" table
+     */
+
+    private $sysDefTransIds = array(1, 2);
 
     public function __construct()
     {
@@ -28,7 +36,7 @@ class StoreModel extends CI_Model
         $this->db->join('movements_firms', 'movements_firms.for_movement = movements.id');
         $this->db->join('movements_clients', 'movements_clients.for_movement = movements.id');
         $this->db->join('movements_from_to_store', 'movements_from_to_store.for_movement = movements.id', 'left');
-        $this->db->order_by('id', 'asc');
+        $this->db->order_by('id', 'desc');
         $this->db->where('movements.for_user', USER_ID);
         $this->db->where('movements.for_company', SELECTED_COMPANY_ID);
         $result = $this->db->get('movements', $limit, $page);
@@ -53,6 +61,15 @@ class StoreModel extends CI_Model
             $to = strtotime($get['create_to']);
             if ($to != false) {
                 $this->db->where('created <=', $to);
+            }
+        }
+        if (isset($get['lot']) && trim($get['lot']) != '') {
+            $this->db->like('movements.lot', trim($get['lot']));
+        }
+        if (isset($get['expire_date']) && trim($get['expire_date']) != '') {
+            $expire_date = strtotime($get['expire_date']);
+            if ($expire_date != false) {
+                $this->db->where('expire_date <=', $expire_date);
             }
         }
     }
@@ -99,7 +116,9 @@ class StoreModel extends CI_Model
             'payment_method' => htmlspecialchars(trim($post['payment_method'])),
             'created' => strtotime($post['date_create']),
             'betrayed' => htmlspecialchars(trim($post['betrayed'])),
-            'accepted' => htmlspecialchars(trim($post['accepted']))
+            'accepted' => htmlspecialchars(trim($post['accepted'])),
+            'lot' => htmlspecialchars(trim($post['lot'])),
+            'expire_date' => strtotime($post['expire_date'])
         );
         if (!$this->db->insert('movements', $storeMoveArr)) {
             log_message('error', print_r($this->db->error(), true));
@@ -195,8 +214,8 @@ class StoreModel extends CI_Model
 
     private function setMovementTranslation($translateId, $movementId)
     {
-        if ($translateId == '0') {
-            $this->db->where('id', 1);
+        if (in_array($translateId, $this->sysDefTransIds)) {
+            $this->db->where('id', $translateId);
         } else {
             $this->db->where('for_user', USER_ID);
             $this->db->where('id', $translateId);

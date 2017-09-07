@@ -19,7 +19,7 @@
         </a>
     </td>
      <td class="min-w-190">
-        <input type="text" value="0.00" name="items_quantities[]" class="form-control field quantity-field">
+        <input type="text" value="1.00" name="items_quantities[]" class="form-control field quantity-field">
         <div class="quantity-type">
             <select class="form-control" name="items_quantity_types[]" data-my-id="1">
                 <?php foreach ($quantityTypes as $quantityType) { ?>

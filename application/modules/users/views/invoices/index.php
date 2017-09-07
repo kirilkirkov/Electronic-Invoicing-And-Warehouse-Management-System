@@ -21,7 +21,7 @@
     </div>
     <div class="clearfix"></div>
 </div> 
-<div id="invoices-search" class="collapse">    
+<div id="invoices-search" class="collapse lists-search-form">    
     <form method="GET" class="site-form" action=""> 
         <div class="row">
             <div class="col-sm-4">

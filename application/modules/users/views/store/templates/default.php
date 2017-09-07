@@ -33,6 +33,15 @@
         </div>
         <div class="clearfix"></div>
     </div>
+    <div class="document-info">
+        <div class="number">
+            <?= $movement['translation']['lot'] . ' ' . $movement['lot'] ?>
+        </div>
+        <div class="date-create">
+            <?= $movement['translation']['expire_date'] . ' ' . date('d.m.Y', $movement['expire_date']) ?>
+        </div>
+        <div class="clearfix"></div>
+    </div>
     <div class="items">
         <table class="table table-striped">
             <thead>

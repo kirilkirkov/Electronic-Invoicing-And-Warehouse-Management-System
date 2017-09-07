@@ -2,6 +2,14 @@
 
 class ProtocolsModel extends CI_Model
 {
+    /*
+     * Ids in database of the default 
+     * invoice languages in table "protocols_languages"
+     * JUST HARDCODED $sysDefTransIds
+     * They must be same in $sysDefTransIds, addprotocol.php(view) and in "protocols_languages" table
+     */
+
+    private $sysDefTransIds = array(1, 2);
 
     public function __construct()
     {
@@ -28,7 +36,7 @@ class ProtocolsModel extends CI_Model
         $this->db->select('protocols.*, protocols_clients.client_name as client');
         $this->db->join('protocols_firms', 'protocols_firms.for_protocol = protocols.id');
         $this->db->join('protocols_clients', 'protocols_clients.for_protocol = protocols.id');
-        $this->db->order_by('protocols.id', 'asc');
+        $this->db->order_by('protocols.id', 'desc');
         $this->db->where('protocols.for_user', USER_ID);
         $this->db->where('protocols.for_company', SELECTED_COMPANY_ID);
         $this->db->where('protocols.is_deleted', 0);
@@ -355,8 +363,8 @@ class ProtocolsModel extends CI_Model
 
     private function updateProtocolTranslation($translateId, $protocolId)
     {
-        if ($translateId == '0') {
-            $this->db->where('id', 1);
+        if (in_array($translateId, $this->sysDefTransIds)) {
+            $this->db->where('id', $translateId);
         } else {
             $this->db->where('for_user', USER_ID);
             $this->db->where('id', $translateId);
@@ -446,8 +454,8 @@ class ProtocolsModel extends CI_Model
 
     private function setProtocolTranslation($translateId, $protocolId)
     {
-        if ($translateId == '0') {
-            $this->db->where('id', 1);
+        if (in_array($translateId, $this->sysDefTransIds)) {
+            $this->db->where('id', $translateId);
         } else {
             $this->db->where('for_user', USER_ID);
             $this->db->where('id', $translateId);

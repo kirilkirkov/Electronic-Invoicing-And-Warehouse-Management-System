@@ -34,6 +34,8 @@ if ($movement['movement_type'] == 'move' || $movement['movement_type'] == 'revis
         <p><?= lang('preview_movem_to') ?> <?= $to ?><p>
         <p><?= lang('preview_movem_betrayed') ?> <?= $movement['betrayed'] ?><p>
         <p><?= lang('preview_movem_accepted') ?> <?= $movement['accepted'] ?><p>
+        <p><?= lang('preview_movem_lot') ?> <?= $movement['lot'] ?><p>
+        <p><?= lang('preview_movem_expire') ?> <?= date('d.m.Y', $movement['expire_date']) ?><p>
     </div>
     <div class="col-sm-6 text-right">
         <a class="btn btn-default" href="<?= base_url('user/bill-of-lading/print/' . $movement['movement_number']) ?>"><?= lang('bill_of_lading') ?></a>

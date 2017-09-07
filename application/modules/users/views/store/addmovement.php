@@ -18,7 +18,8 @@
                 <div class="choose-translation">
                     <p><?= lang('explain_movem_translation') ?></p>
                     <select class="selectpicker" name="movement_translation" title="<?= lang('choose_movem_translation') ?>">
-                        <option value="0" selected=""><?= lang('default_inv_lang') ?></option>
+                        <option value="1" selected=""><?= lang('default_inv_lang_en') ?></option>
+                        <option value="2"><?= lang('default_inv_lang_bg') ?></option>
                         <?php
                         if (!empty($movementsLanguages)) {
                             foreach ($movementsLanguages as $mvLanguage) {
@@ -164,6 +165,14 @@
                             <div class="column-data">
                                 <label><?= lang('create_movement_date_create') ?></label>
                                 <input type="text" name="date_create" placeholder="dd.mm.yyyy" value="<?= date('d.m.Y', time()) ?>" class="form-control field datepicker">
+                            </div>
+                            <div class="column-data">
+                                <label><?= lang('create_movement_lot') ?></label>
+                                <input type="text" name="lot" value="" class="form-control field">
+                            </div>
+                            <div class="column-data">
+                                <label><?= lang('create_movement_expire') ?></label>
+                                <input type="text" name="expire_date" value="<?= date('d.m.Y', strtotime('+2 years')) ?>" class="form-control field datepicker">
                             </div>
                         </div>
                     </div>

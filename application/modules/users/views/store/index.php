@@ -22,8 +22,8 @@
     </div>
     <div class="clearfix"></div>
 </div> 
-<div id="store-search" class="collapse">    
-    <form method="GET" action=""> 
+<div id="store-search" class="collapse <?= isset($_GET['selected_store']) ? 'in' : '' ?> lists-search-form">    
+    <form method="GET" action="" class="site-form"> 
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
@@ -39,17 +39,25 @@
                 </div> 
                 <div class="form-group">
                     <label><?= lang('search_store_client') ?></label>
-                    <input type="text" name="client_name" value="<?= isset($_GET['client_name']) ? $_GET['client_name'] : '' ?>" class="form-control">
+                    <input type="text" name="client_name" value="<?= isset($_GET['client_name']) ? $_GET['client_name'] : '' ?>" class="form-control field">
                 </div>
                 <div class="form-group">
                     <label><?= lang('search_date_from') ?></label>
-                    <input type="text" name="create_from" value="<?= isset($_GET['create_from']) ? $_GET['create_from'] : '' ?>" class="form-control datepicker">
+                    <input type="text" name="create_from" value="<?= isset($_GET['create_from']) ? $_GET['create_from'] : '' ?>" class="form-control field datepicker">
                     <label><?= lang('search_to') ?></label>
-                    <input type="text" name="create_to" value="<?= isset($_GET['create_to']) ? $_GET['create_to'] : '' ?>" class="form-control datepicker">
+                    <input type="text" name="create_to" value="<?= isset($_GET['create_to']) ? $_GET['create_to'] : '' ?>" class="form-control field datepicker">
                 </div> 
+                <div class="form-group">
+                    <label><?= lang('create_movement_lot') ?></label>
+                    <input type="text" name="lot" value="<?= isset($_GET['lot']) ? $_GET['lot'] : '' ?>" class="form-control field">
+                </div> 
+                <div class="form-group">
+                    <label><?= lang('expire_date_to') ?></label>
+                    <input type="text" name="expire_date" value="<?= isset($_GET['expire_date']) ? $_GET['expire_date'] : '' ?>" class="form-control field datepicker">
+                </div>
             </div>
         </div>
-        <input type="submit" value="search"> 
+        <input type="submit" class="btn btn-green" value="<?= lang('search') ?>"> 
         <a href="<?= lang_url('user/store') ?>"><?= lang('clear_search') ?></a>
     </form>
 </div>
@@ -95,7 +103,7 @@ if ($this->permissions->hasPerm('perm_view_movement_page')) {
                             <tr>
                                 <td><input type="checkbox" name="ids[]" value="<?= $movem['id'] ?>" class="check-me-now"></td>
                                 <td><a href="<?= lang_url('user/movement/view/' . $movem['movement_number']) ?>"><?= lang('movem_preview') ?></a></td>
-                                <td><a href="<?= base_url('user/bill-of-lading/print/' . $movem['movement_number']) ?>"><?= $movem['movement_number'] ?></a></td>
+                                <td><a href="<?= base_url('user/store-order/print/' . $movem['movement_number']) ?>" target="_blank"><?= $movem['movement_number'] ?></a></td>
                                 <td><?= lang('movem_type_' . $movem['movement_type']) ?></td>
                                 <td><?= $from ?></td>
                                 <td><?= $to ?></td>
