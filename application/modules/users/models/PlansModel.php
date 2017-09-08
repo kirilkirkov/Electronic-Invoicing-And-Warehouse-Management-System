@@ -114,4 +114,16 @@ class PlansModel extends CI_Model
         return $result->result_array();
     }
 
+    /*
+     * Num invoices issued when is not on payed plan
+     * and not more before one month
+     */
+
+    public function getNumInvoicesIssuedForOneMonth()
+    {
+        $monthBefore = strtotime("-1 month", time());
+        $result = $this->db->query("SELECT count(id) as num FROM invoices WHERE created > (SELECT to_date FROM firms_plans WHERE for_user = " . USER_ID . " ORDER BY to_date DESC LIMIT 1) AND created > " . $monthBefore . " AND for_user = " . USER_ID);
+        return $result->row_array();
+    }
+
 }

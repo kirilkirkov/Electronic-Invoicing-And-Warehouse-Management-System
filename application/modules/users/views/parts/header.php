@@ -113,7 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <span class="sprite-inv-docs icon"></span> <span class="num"><?= $planUnits['num_invoices'] ?></span> <?= lang('documents') ?>
                                         </div>
                                         <div class="stat">
-                                            <span class="sprite-companies icon"></span> <span class="num"><?= $planUnits['num_firms'] - count($myFirms) ?></span> <?= lang('companies') ?>
+                                            <span class="sprite-companies icon"></span> <span class="num"><?= $planUnits['num_firms'] >= count($myFirms) ? $planUnits['num_firms'] - count($myFirms) : 0 ?></span> <?= lang('companies') ?>
                                         </div>
                                     </div>
                                 </div>

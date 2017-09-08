@@ -138,7 +138,12 @@ class USER_Controller extends HEAD_Controller
         if (!empty($this->firms)) {
             $planUnits = $this->planUnits;
             if (count($this->firms) > $planUnits['num_firms']) {
-                if (uri_string() != 'user/managefirms' && uri_string() != $this->language->getUrlAbbrevation() . '/user/managefirms') {
+                // pages that are allowed to view
+                if (uri_string() != 'user/managefirms' &&
+                        uri_string() != $this->language->getUrlAbbrevation() . '/user/managefirms' &&
+                        $this->uri->segment(2) != 'plans' &&
+                        $this->uri->segment(2) != 'plan' &&
+                        $this->uri->segment(2) != 'myplan') {
                     redirect(lang_url('user/managefirms'));
                 }
             }
