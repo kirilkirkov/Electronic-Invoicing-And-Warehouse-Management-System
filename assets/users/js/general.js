@@ -963,6 +963,7 @@ function getItem(id) {
         showError(lang.currencyItemNotSame + ' - ' + items[id].currency);
     }
     $('#modalSelector').modal('hide');
+    createInvoiceCalculator();
 }
 /*
  * Vat field visibility check
