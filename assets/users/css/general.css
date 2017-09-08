@@ -168,6 +168,7 @@ header .col-stats .stats .stat .icon {float: left; margin-right: 5px; margin-top
 .settings-page a:hover {text-decoration: none;}
 .settings-page .list-group-item {padding: 20px 15px;}
 .settings-page .list-group-item span {float: right; margin-top: 7px;}
+.settings-inner-page .col-settings {margin-bottom: 30px;}
 .settings-inner-page .col-settings h4 { text-align: center;  margin-bottom: 10px;}
 .plans .panel{text-align: center;}
 .plans .panel:hover { box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(130, 130, 130, 0.35); }

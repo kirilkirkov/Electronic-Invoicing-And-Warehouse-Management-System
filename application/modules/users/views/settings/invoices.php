@@ -31,6 +31,8 @@
                     <?php } ?>
                 </div>
             <?php } ?>
+        </div>
+        <div class="col-sm-6 col-md-4 col-settings">
             <h4><?= lang('my_currencies') ?></h4>
             <table class="table table-bordered">
                 <thead>
@@ -255,3 +257,9 @@
         </div>
     </div>
 </div>
+<script src="<?= base_url('assets/plugins/jquery.eqheight.js') ?>"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $(".settings-inner-page").eqHeight(".col-settings");
+});
+</script>
