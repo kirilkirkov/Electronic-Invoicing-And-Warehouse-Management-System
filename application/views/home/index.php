@@ -89,7 +89,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li>
                 <a href="<?= lang_url('features') ?>">
                     <img src="<?= base_url('assets/public/imgs/flat-icons/sign.png') ?>" alt="">
-                    <span><?= lang('el_sign') ?></span>
+                    <span><?= lang('invent_store') ?></span>
                 </a>
             </li>
             <li>

@@ -12,21 +12,21 @@
                         <th class="plan-header plan-header-free">
                             <div class="pricing-plan-name">FREE</div>
                             <div class="pricing-plan-price">
-                                <sup>$</sup>0<span>.00</span>
+                                <sup>EUR</sup>0<span>.00</span>
                             </div>
                             <div class="pricing-plan-period">month</div>
                         </th>
                         <th class="plan-header plan-header-blue">
                             <div class="pricing-plan-name">BASIC</div>
                             <div class="pricing-plan-price">
-                                <sup>$</sup>4<span>.99</span>
+                                <sup>EUR</sup>5<span>00</span>
                             </div>
                             <div class="pricing-plan-period">month</div>
                         </th>
                         <th class="plan-header plan-header-blue">
                             <div class="pricing-plan-name">PLUS</div>
                             <div class="pricing-plan-price">
-                                <sup>$</sup>12<span>.95</span>
+                                <sup>EUR</sup>15<span>00</span>
                             </div>
                             <div class="pricing-plan-period">month</div>
                         </th>
@@ -36,15 +36,15 @@
                                 <span class="recommended-plan-ribbon">RECOMMENDED</span>
                                 <div class="pricing-plan-name">STANDARD</div>
                                 <div class="pricing-plan-price">
-                                    <sup>$</sup>34<span>.99</span>
+                                    <sup>EUR</sup>40<span>00</span>
                                 </div>
                                 <div class="pricing-plan-period">month</div>
                             </div>
                         </th>
                         <th class="plan-header plan-header-blue">
-                            <div class="pricing-plan-name">PREMIUM</div>
+                            <div class="pricing-plan-name">CUSTOM</div>
                             <div class="pricing-plan-price">
-                                <sup>$</sup>99<span>.99</span>
+                                <sup>EUR</sup>?<span>.??</span>
                             </div>
                             <div class="pricing-plan-period">month</div>
                         </th>
@@ -53,80 +53,53 @@
                         <td></td>
 
                         <td class="action-header">
-                            <a class="btn btn-info">
-                                Downgrade
+                            <a class="btn btn-info" href="<?= base_url('registration') ?>">
+                                <?= lang('register_now') ?>
                             </a>
                         </td>
                         <td class="action-header">
-                            <a class="btn btn-info">
-                                Downgrade
+                            <a class="btn btn-info" href="<?= base_url('registration') ?>">
+                                <?= lang('register_now') ?>
                             </a>
                         </td>
                         <td class="action-header">
+                            <!--
                             <div class="current-plan">
                                 <div class="with-date">Current Plan</div>
                                 <div><em class="smaller block">renews Feb 19, 2015</em></div>
-                            </div> 
-                        </td>
-                        <td class="action-header">
-                            <a class="btn btn-success">
-                                Upgrade
+                            </div>
+                            -->
+                            <a class="btn btn-info" href="<?= base_url('registration') ?>">
+                                <?= lang('register_now') ?>
                             </a>
                         </td>
                         <td class="action-header">
-                            <a class="btn btn-info">
-                                Upgrade
+                            <a class="btn btn-success" href="<?= base_url('registration') ?>">
+                                <?= lang('register_now') ?>
+                            </a>
+                        </td>
+                        <td class="action-header">
+                            <a class="btn btn-info" href="<?= base_url('registration') ?>">
+                                <?= lang('register_now') ?>
                             </a>
                         </td>
                     </tr>
                     <tr>
-                        <td>Tutorials and Support Docs:</td>
-                        <td><span class="icon-no glyphicon glyphicon-remove-circle"></span></td>
-                        <td><span class="icon-no glyphicon glyphicon-remove-circle"></span></td>
-                        <td><span class="icon-no glyphicon glyphicon-remove-circle"></span></td>
-                        <td><span class="icon-yes glyphicon glyphicon-ok-circle"></span></td>
-                        <td><span class="icon-yes glyphicon glyphicon-ok-circle"></span></td>
+                        <td>Invoices:</td>
+                        <td>5/month</td>
+                        <td>20/month</td>
+                        <td>200/month</td>
+                        <td>1000/month</td>
+                        <td>?</td> 
                     </tr>
                     <tr>
-                        <td>Support Forum Access:</td>
-                        <td><span class="icon-no glyphicon glyphicon-remove-circle"></span></td>
-                        <td><span class="icon-no glyphicon glyphicon-remove-circle"></span></td>
-                        <td><span class="icon-no glyphicon glyphicon-remove-circle"></span></td>
-                        <td><span class="icon-yes glyphicon glyphicon-ok-circle"></span></td>
-                        <td><span class="icon-yes glyphicon glyphicon-ok-circle"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Automatic Updates:</td>
-                        <td><span class="icon-no glyphicon glyphicon-remove-circle"></span></td>
-                        <td><span class="icon-no glyphicon glyphicon-remove-circle"></span></td>
-                        <td><span class="icon-yes glyphicon glyphicon-ok-circle"></span></td>
-                        <td><span class="icon-yes glyphicon glyphicon-ok-circle"></span></td>
-                        <td><span class="icon-yes glyphicon glyphicon-ok-circle"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Unlock rewards:</td>
-                        <td><span class="icon-no glyphicon glyphicon-remove-circle"></span></td>
-                        <td><span class="icon-yes glyphicon glyphicon-ok-circle"></span></td>
-                        <td><span class="icon-yes glyphicon glyphicon-ok-circle"></span></td>
-                        <td><span class="icon-yes glyphicon glyphicon-ok-circle"></span></td>
-                        <td><span class="icon-yes glyphicon glyphicon-ok-circle"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Skills:</td>
-                        <td>20</td>
-                        <td>30</td>
-                        <td>50</td>
-                        <td>80</td>
-                        <td>200</td>
-                    </tr>
-                    <tr>
-                        <td>Websites:</td>
+                        <td>Companies:</td>
                         <td>1</td>
+                        <td>3</td>
                         <td>5</td>
-                        <td>10</td>
                         <td>20</td>
-                        <td>unlimited</td>
-                    </tr>
+                        <td>?</td>
+                    </tr>  
                 </tbody></table>
         </div>
     </div>

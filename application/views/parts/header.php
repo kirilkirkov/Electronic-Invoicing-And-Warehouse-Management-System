@@ -79,10 +79,7 @@
                                             <li><a href="<?= lang_url('features/importers') ?>"><?= lang('imports_feature') ?></a></li>
                                             <li><a href="<?= lang_url('features/exporters') ?>"><?= lang('exports_feature') ?></a></li>
                                             <li><a href="<?= lang_url('features') ?>"><?= lang('store') ?></a></li>
-                                            <li><a href="<?= lang_url('features') ?>"><?= lang('saved_clients') ?></a></li>
-                                            <li><a href="<?= lang_url('features') ?>"><?= lang('saved_articles') ?></a></li>
                                             <li><a href="<?= lang_url('features') ?>"><?= lang('create_protocols') ?></a></li>
-                                            <li><a href="<?= lang_url('features') ?>"><?= lang('periodic_invoices') ?></a></li>
                                         </ul>
                                     </li>
                                     <?php

@@ -9,10 +9,10 @@ class FeaturesModel extends CI_Model
     }
 
     public function addFeature($post)
-    {
+    { 
         if ($post['edit'] > 0) {
             if (!$this->db->where('id', $post['edit'])->update('features', array(
-                        'image' => $post['image']
+                        'image' => $post['image']['value']
                     ))) {
                 log_message('error', print_r($this->db->error(), true));
                 show_error(lang('database_error'));
@@ -20,7 +20,7 @@ class FeaturesModel extends CI_Model
             $insert_id = $post['edit'];
         } else {
             if (!$this->db->insert('features', array(
-                        'image' => $post['image']
+                        'image' => $post['image']['value']
                     ))) {
                 log_message('error', print_r($this->db->error(), true));
                 show_error(lang('database_error'));

@@ -17,14 +17,14 @@
             ?>
             <div class="row">
                 <div class="col-sm-6 part hidden-xs <?= $i == 0 ? 'visible-sm visible-md visible-lg' : 'hidden-sm hidden-md hidden-lg' ?>">
-                    <img src="<?= base_url('attachments/features/' . $feature['image']) ?>" class="img-responsive img-thumbnail" alt="pmTicket - <?= $feature['name'] ?>">
+                    <img src="<?= base_url('attachments/featuresimages/' . $feature['image']) ?>" class="img-responsive img-thumbnail" alt="pmTicket - <?= $feature['name'] ?>">
                 </div>
                 <div class="col-sm-6 part description">
-                    <h3><?= $feature['name'] ?></h3>
+                    <h3><?= $feature['title'] ?></h3>
                     <p><?= $feature['description'] ?></p>
                 </div>
                 <div class="col-sm-6 part visible-xs <?= $i == 1 ? 'visible-sm visible-md visible-lg' : 'hidden-sm hidden-md hidden-lg' ?>">
-                    <img src="<?= base_url('attachments/features/' . $feature['image']) ?>" class="img-responsive img-thumbnail" alt="pmTicket - <?= $feature['name'] ?>">
+                    <img src="<?= base_url('attachments/featuresimages/' . $feature['image']) ?>" class="img-responsive img-thumbnail" alt="pmTicket - <?= $feature['name'] ?>">
                 </div>
             </div>
             <?php
