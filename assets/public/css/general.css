@@ -185,7 +185,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 .footer .extra-inner ul li a {color:#666;}
 .footer .footer-bottom {border-top: 1px solid #292929; margin-top: 0;}
 .footer .footer-bottom .bottom-inner { background: #111 none repeat scroll 0 0; color: #999;font-size: 12px; padding: 15px 0;}
-.footer .payments li img {height: 40px;}
+.footer .payments img {height: 40px; margin-bottom: 5px;}
 
 .pagination li a, .pagination li span, .pagination li a:hover, .pagination li span:hover {color:#eb8900;}
 .pagination .active a, .pagination .active a:focus, .pagination .active a:hover, .pagination .active span, .pagination .active span:focus, .pagination .active span:hover {background-color: #eb8900; color:#fff; border:1px solid #ddd;}

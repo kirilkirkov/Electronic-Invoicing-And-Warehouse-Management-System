@@ -721,3 +721,4 @@ $lang['expire_date_to'] = 'Срок на годност до:';
 $lang['bill_of_lading_down'] = 'Свали стокова рапзиска';
 $lang['preview_movem_to_inv'] = 'Към фактура:';
 $lang['to_inv_movem_not_set'] = 'Не е създадена фактура';
+$lang['pay_elsewhere'] = 'Искам да платя от друго място. Покажи ми банковата сметка.';

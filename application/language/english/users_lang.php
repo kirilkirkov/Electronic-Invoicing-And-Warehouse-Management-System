@@ -721,3 +721,4 @@ $lang['expire_date_to'] = 'Expiry date to:';
 $lang['bill_of_lading_down'] = 'Download store order';
 $lang['preview_movem_to_inv'] = 'To invoice:';
 $lang['to_inv_movem_not_set'] = 'No created invoice';
+$lang['pay_elsewhere'] = 'I want to pay elsewhere. Show me bank details.';

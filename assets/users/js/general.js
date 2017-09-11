@@ -1192,3 +1192,18 @@ function makePlanRequest() {
         document.getElementById("formMakePlanReq").submit();
     }
 }
+/*
+ * Make direct bank payments to paypal
+ */
+function makeBankPayment() {
+    $.ajax({
+        type: "POST",
+        url: "http://in.dev/bankpayment",
+        data: {posta:'aa'}
+    }).done(function (data) {
+      
+    }).fail(function (err) {
+       
+    }).always(function () { 
+    });
+}

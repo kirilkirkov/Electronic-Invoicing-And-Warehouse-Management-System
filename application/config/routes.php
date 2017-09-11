@@ -75,7 +75,8 @@ $route['admin/plans/requests/(:num)'] = "admin/plans/requests/index/$1";
 $route['admin/plans/individual/request'] = "admin/plans/requests/custom";
 $route['admin/plans/individual/request/(:num)'] = "admin/plans/requests/custom/$1";
 /* ADMIN PANEL ROUTES */
-
+$route['bankpayment'] = "users/plans/PlansUsers/cardPayment";
+/* AJAX CALLED */
 /* USERS PANEL ROUTES */
 $route['(\w{2})?/?user'] = "users/home";
 $route['(\w{2})?/?user/logout'] = "home/logout";

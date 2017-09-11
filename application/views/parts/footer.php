@@ -26,12 +26,14 @@
                     </div>
                     <div class="col-sm-3">
                         <h4><?= lang('payment_methods') ?></h4>
-                        <ul class="payments">
-                            <li>
-                                <img src="<?= base_url('assets/public/imgs/visa-payment.png') ?>" alt="pminvoice.com visa payment">
-                                <img src="<?= base_url('assets/public/imgs/paypal-payment.png') ?>" alt="pminvoice.com paypal payment">
-                            </li>
-                        </ul>
+                        <div class="payments"> 
+                            <img src="<?= base_url('assets/public/imgs/paypal-payment.png') ?>" alt="pminvoice.com paypal payment">
+                            <img src="<?= base_url('assets/public/imgs/discover-card.png') ?>" alt="pminvoice.com payment">
+                            <img src="<?= base_url('assets/public/imgs/amex-card.png') ?>" alt="pminvoice.com payment">
+                            <img src="<?= base_url('assets/public/imgs/Maestro-v2.png') ?>" alt="pminvoice.com payment">
+                            <img src="<?= base_url('assets/public/imgs/master-card-icon-4.jpg') ?>" alt="pminvoice.com payment">
+                            <img src="<?= base_url('assets/public/imgs/payment_method_card_visa-512.png') ?>" alt="pminvoice.com payment">
+                        </div>
                     </div>
                 </div>
             </div>

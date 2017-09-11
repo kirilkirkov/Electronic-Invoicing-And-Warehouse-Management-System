@@ -196,6 +196,12 @@ header .col-stats .stats .stat .icon {float: left; margin-right: 5px; margin-top
 .payment-details {margin-bottom: 20px;}
 .payment-details h3 {margin-bottom: 10px;}
 .my-active-plans {margin-bottom: 20px;}
+.plan-req-page .credit-cards-box {background-color: #ebe9eb; border-radius: 5px; padding: 10px; margin-bottom: 20px;}
+.plan-req-page .credit-cards-box .icons { margin-bottom: 20px;}
+.plan-req-page .credit-cards-box .cards-icons {height: 30px;}
+.plan-req-page .credit-cards-box .border {width:100%; height: 1px; background-color: #dfdcde; margin-bottom: 20px;}
+.plan-req-page .credit-cards-box .card-fields {border-bottom:1px solid #dfdcde; padding: 20px; margin-bottom: 20px; background-color: #dfdcde;}
+
 footer { background-color: #285674; color:#6dd0ed; bottom: 0; height: 60px; left: 0; padding: 20px 0; position: absolute; text-align: center; width: 100%;}
 /*
  * Spay icons 

@@ -104,4 +104,36 @@ class PlansUsers extends USER_Controller
         $this->saveHistory('Go to plan request page');
     }
 
+    /*
+     * called from ajax
+     */
+
+    public function cardPayment()
+    {
+        $this->load->helper('get_client_ip_address'); 
+        $card_ipaddress = get_client_ip_address();
+        $res = exec("curl https://api-3t.sandbox.paypal.com/nvp \
+  --insecure  \
+  -d VERSION=56.0 \
+  -d SIGNATURE=AFcWxV21C7fd0v3bYYYRCpSSRl31AjZDUnpG2q.kA5xeqyBR7GjKw8Ra \
+  -d USER=kirkata1_api1.abv.bg \
+  -d PWD=WK8FU3DWQB9TLKQ5 \
+  -d METHOD=DoDirectPayment \
+  -d PAYMENTACTION=Sale \
+  -d IPADDRESS=$card_ipaddress \
+  -d AMT=8.88 \
+  -d CREDITCARDTYPE=Visa \
+  -d ACCT=4683075410516684 \
+  -d EXPDATE=042018 \
+  -d CVV2=123 \
+  -d FIRSTNAME=John \
+  -d LASTNAME=Smith \
+  -d STREET=1 Main St. \
+  -d CITY=San Jose \
+  -d STATE=FR \
+  -d ZIP=95131 \
+  -d COUNTRYCODE=EUR");
+        var_dump($res);
+    }
+
 }
