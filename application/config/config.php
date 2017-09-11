@@ -574,7 +574,8 @@ $config['permissions'] = array(
     'perm_view_plans_page' => 1
 );
 $config['templates'] = array(
-    'creative'
+    'creative',
+    'toner-save'
 );
 /*
  * used for links (routes)

@@ -6,7 +6,7 @@
 tr {page-break-inside: avoid !important;}
 .view-container .pageDelivery {position: absolute; top:0; width: 833px; left:50%; margin-left: -416px; height: 38px; background-image: url('/assets/users/imgs/pages-delivery.png');}
 
- .invoice-creative { min-height: 1000px; background-color: #fff; padding:35px; font-size:14px; font-family: Arial;}
+.invoice-creative { min-height: 1000px; background-color: #fff; padding:35px; font-size:14px; font-family: Arial;}
 .invoice-creative .row-my-firm {color:#9f9f9f; margin-bottom: 30px;}
 .invoice-creative .firm-logo {width:200px;float: left; margin-right: 50px;}
 .invoice-creative .firm-logo img {width: 100%;}
@@ -38,3 +38,33 @@ tr {page-break-inside: avoid !important;}
 .invoice-creative .signature .sign {float: left;}
 .invoice-creative .signature .cipher {float: right;}
 .invoice-creative .remarks {color:#2c2c2c;}
+
+.invoice-toner-save { min-height: 1000px; background-color: #fff; padding:35px; font-size:14px; font-family: Arial; color:#000;}
+.invoice-toner-save .row-my-firm {margin-bottom: 30px;}
+.invoice-toner-save .firm-logo {width:200px;float: left; margin-right: 50px;}
+.invoice-toner-save .firm-logo img {width: 100%;}
+.invoice-toner-save .my-firm-info {float: left; font-size:16px; max-width: 400px; word-break: break-all; overflow: hidden;}
+.invoice-toner-save .my-firm-info p {margin-bottom: 4px;}
+.invoice-toner-save .my-firm-info .firm-name {margin-bottom: 7px;}
+.invoice-toner-save p {margin-bottom: 7px;}
+.invoice-toner-save .row-my-firm .firm-name { font-size:20px;}
+.invoice-toner-save .invoice-type {font-size:16px; display: inline-block; margin-bottom: 5px;}
+.invoice-toner-save .row-invoice-info .info {padding-top: 7px; padding-bottom: 7px;}
+.invoice-toner-save .head-td {padding-right: 20px;}
+.invoice-toner-save .row-invoice-info table {float: left; width: 210px; margin-right: 40px;}
+.invoice-toner-save .row-invoice-info .client-info {float: left; max-width:200px; word-break: break-all; overflow: hidden;}
+.invoice-toner-save .row-invoice-info { margin-bottom: 30px;}
+.invoice-toner-save .row-invoice-info .origin {float:right; font-weight: normal; text-transform: uppercase; font-size: 36px;}
+.invoice-toner-save .invoice-totals {float: right; width:300px; text-align: right; font-size:16px; }
+.invoice-toner-save .invoice-totals table {width:100%;}
+.invoice-toner-save .invoice-totals .info {text-align: left;}
+.invoice-toner-save .invoice-totals .final-total td {padding-top: 20px; font-size: 18px;}
+.invoice-toner-save .invoice-payment {float:left;  max-width: 200px; word-break: break-all; overflow: hidden;}
+.invoice-toner-save .invoice-payments {margin-bottom: 30px;}
+.invoice-toner-save .recipient {margin-bottom: 30px; }
+.invoice-toner-save .recipient .rec {float: left;}
+.invoice-toner-save .recipient .comp {float: right;}
+.invoice-toner-save .signature {margin-bottom: 30px; }
+.invoice-toner-save .signature .sign {float: left;}
+.invoice-toner-save .signature .cipher {float: right;}
+.invoice-toner-save .table th {font-weight: normal;}

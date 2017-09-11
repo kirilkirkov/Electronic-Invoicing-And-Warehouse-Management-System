@@ -28,7 +28,14 @@ class Invoiceview extends USER_Controller
             log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to view invoice with type -' . $invType . ' and number - ' . $invNum);
             show_404();
         }
-        $choosedTemplate = 'creative';
+        $this->load->model('SettingsModel');
+        $template = $this->SettingsModel->getValueStores('opt_invTemplate');
+        $templates = $this->config->item('templates');
+        if (!in_array($template, $templates)) {
+            $template = $templates[0];
+        } else {
+            $choosedTemplate = $template;
+        }
         $templatesDir = 'application/modules/users/views/invoices/templates/';
         $templateFile = $templatesDir . $choosedTemplate . '.php';
         if (!is_file($templateFile)) {
@@ -51,7 +58,14 @@ class Invoiceview extends USER_Controller
             log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to render PDF invoice with type -' . $invType . ' and number - ' . $invNum);
             show_404();
         }
-        $choosedTemplate = 'creative';
+        $this->load->model('SettingsModel');
+        $template = $this->SettingsModel->getValueStores('opt_invTemplate');
+        $templates = $this->config->item('templates');
+        if (!in_array($template, $templates)) {
+            $template = $templates[0];
+        } else {
+            $choosedTemplate = $template;
+        }
         $templatesDir = 'application/modules/users/views/invoices/templates/';
         $templateFile = $templatesDir . $choosedTemplate . '.php';
         if (!is_file($templateFile)) {

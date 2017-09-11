@@ -187,6 +187,11 @@ class PublicModel extends CI_Model
                 'for_user' => $user_id,
                 '_key' => 'opt_protocolRoundTo',
                 'value' => '1'
+            ),
+            array(
+                'for_user' => $user_id,
+                '_key' => 'opt_invTemplate',
+                'value' => 'creative'
             )
         );
         if (!$this->db->insert_batch('value_store', $data)) {

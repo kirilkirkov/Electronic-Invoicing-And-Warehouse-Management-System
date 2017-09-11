@@ -247,19 +247,31 @@
             <form method="POST" action="">
                 <div class="checkbox">
                     <label><input type="checkbox" name="opt_invCalculator" <?= $opt_invCalculator == 0 ? 'checked="checked"' : '' ?> value=""><?= lang('stop_inv_calculator') ?></label>
+                </div> 
+                <button class="btn btn-default" name="updateInvCalculator" value="" type="submit">
+                    <?= lang('save') ?>
+                </button> 
+            </form>
+        </div>
+        <div class="col-sm-6 col-md-4 col-settings">     
+            <h4><?= lang('inv_templ_change') ?></h4>
+            <form method="POST" action="">
+                <div class="radio">
+                    <label><input type="radio" <?= $opt_invTemplate == 'creative' ? 'checked=""' : '' ?>  name="invTempl" value="creative">Creative</label>
                 </div>
-                <span class="input-group-btn">
-                    <button class="btn btn-default" name="updateInvCalculator" value="" type="submit">
-                        <?= lang('save') ?>
-                    </button> 
-
+                <div class="radio">
+                    <label><input type="radio" <?= $opt_invTemplate == 'toner-save' ? 'checked=""' : '' ?> name="invTempl" value="toner-save">Toner-save</label>
+                </div> 
+                <button class="btn btn-default" name="updateInvTemplate" value="" type="submit">
+                    <?= lang('save') ?>
+                </button> 
             </form>
         </div>
     </div>
 </div>
 <script src="<?= base_url('assets/plugins/jquery.eqheight.js') ?>"></script>
 <script type="text/javascript">
-$(document).ready(function () {
-    $(".settings-inner-page").eqHeight(".col-settings");
-});
+                                $(document).ready(function () {
+                                    $(".settings-inner-page").eqHeight(".col-settings");
+                                });
 </script>

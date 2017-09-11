@@ -29,6 +29,7 @@ class Invoices extends USER_Controller
         $data['myQuantityTypes'] = $this->SettingsModel->getMyQuantityTypes();
         $data['myPaymentMethods'] = $this->SettingsModel->getMyPaymentMethods();
         $data['myNoVatReasons'] = $this->SettingsModel->getMyNoVatReasons();
+        $data['opt_invTemplate'] = $this->SettingsModel->getValueStores('opt_invTemplate');
         $this->render('settings/invoices', $head, $data);
         $this->saveHistory('Go to settings invoices page');
     }
@@ -55,6 +56,9 @@ class Invoices extends USER_Controller
         }
         if (isset($_POST['updateInvCalculator'])) {
             $this->updateInvCaluculatorUsage();
+        }
+        if (isset($_POST['updateInvTemplate'])) {
+            $this->updateInvTemplate();
         }
     }
 
@@ -97,6 +101,13 @@ class Invoices extends USER_Controller
     {
         $this->NewInvoiceModel->setNewCustomQuantityType($_POST['quantityTypeName']);
         $this->saveHistory('Add new quantity type - ' . $_POST['quantityTypeName']);
+        redirect(lang_url('user/settings/invoices'));
+    }
+
+    private function updateInvTemplate()
+    {
+        $this->SettingsModel->setValueStore('opt_invTemplate', $_POST['invTempl']);
+        $this->saveHistory('Update invoices template to - ' . $_POST['invTempl']);
         redirect(lang_url('user/settings/invoices'));
     }
 
