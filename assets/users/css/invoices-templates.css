@@ -7,7 +7,7 @@ tr {page-break-inside: avoid !important;}
 .view-container .pageDelivery {position: absolute; top:0; width: 833px; left:50%; margin-left: -416px; height: 38px; background-image: url('/assets/users/imgs/pages-delivery.png');}
 
 .invoice-creative { min-height: 1000px; background-color: #fff; padding:35px; font-size:14px; font-family: Arial;}
-.invoice-creative .row-my-firm {color:#9f9f9f; margin-bottom: 30px;}
+.invoice-creative .row-my-firm {color:#6c6c6c; margin-bottom: 30px;}
 .invoice-creative .firm-logo {width:200px;float: left; margin-right: 50px;}
 .invoice-creative .firm-logo img {width: 100%;}
 .invoice-creative .my-firm-info {float: left; font-size:16px; max-width: 400px; word-break: break-all; overflow: hidden;}
