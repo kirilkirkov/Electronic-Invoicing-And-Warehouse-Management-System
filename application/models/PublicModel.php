@@ -121,7 +121,7 @@ class PublicModel extends CI_Model
         $this->db->trans_begin();
         if (!$this->db->insert('users', array(
                     'email' => $post['email'],
-                    'password' => md5salt($post['password']),
+                    'password' => password_hash($post['password'], PASSWORD_DEFAULT),
                     'ip_address' => $post['ip_address'],
                     'time_registered' => time()
                 ))) {
@@ -255,15 +255,29 @@ class PublicModel extends CI_Model
 
     public function loginCheck($post)
     {
+        $this->db->select('password');
         $this->db->where('enabled', 1);
         $this->db->where('email', $post['email']);
-        $this->db->where('password', md5salt($post['password']));
-        $numUsers = $this->db->count_all_results('users');
+        $resultUsers = $this->db->get('users');
+        $rows = $resultUsers->result_array();
+        $numUsers = 0;
+        foreach ($rows as $row) {
+            if (password_verify($post['password'], $row['password'])) {
+                $numUsers++;
+            }
+        }
 
+        $this->db->select('password');
         $this->db->where('enabled', 1);
         $this->db->where('email', $post['email']);
-        $this->db->where('password', md5salt($post['password']));
-        $numEmployees = $this->db->count_all_results('employees');
+        $resultEmployees = $this->db->get('employees');
+        $rows = $resultEmployees->result_array();
+        $numEmployees = 0;
+        foreach ($rows as $row) {
+            if (password_verify($post['password'], $row['password'])) {
+                $numEmployees++;
+            }
+        }
 
         if ($numUsers > 0 && $numEmployees > 0) {
             return 3;

@@ -165,7 +165,7 @@ class SettingsModel extends CI_Model
             'email' => htmlspecialchars(trim($post['email'])),
             'phone' => htmlspecialchars(trim($post['phone'])),
             'schiffer' => htmlspecialchars(trim($post['schiffer'])),
-            'password' => md5salt($post['password']),
+            'password' => password_hash($post['password'], PASSWORD_DEFAULT),
             'time_added' => time()
         );
         if (isset($post['firms'])) {

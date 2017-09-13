@@ -12,7 +12,7 @@ class GeneralAdminModel extends CI_Model
     {
         $arr = array(
             'username' => $values['username'],
-            'password' => md5salt($values['password']),
+            'password' => md5($values['password']),
         );
         $this->db->where($arr);
         $result = $this->db->get('admin_users');

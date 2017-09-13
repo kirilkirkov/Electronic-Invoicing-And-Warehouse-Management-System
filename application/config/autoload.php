@@ -99,8 +99,7 @@ $autoload['helper'] = array(
     'language',
     'lang_url',
     'text',
-    'geterror',
-    'md5salt',
+    'geterror', 
     'full_document_number',
     'thisyeardates'
 );
