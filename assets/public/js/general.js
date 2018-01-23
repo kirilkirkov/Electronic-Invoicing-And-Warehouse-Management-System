@@ -25,11 +25,6 @@ function registerValidate() {
         $('.err-password').text(lang.invalid_pass);
         valid = false;
     }
-    var check_rules = $('#user_rules').is(":checked");
-    if (!check_rules) {
-        $('.err-rules').text(lang.rules_not_checked);
-        valid = false;
-    }
     if (valid == true) {
         document.getElementById("registerMe").submit();
     }

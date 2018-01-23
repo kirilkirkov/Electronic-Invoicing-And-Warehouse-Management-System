@@ -1,56 +1,3 @@
-<div class="footer">
-    <div class="extra">
-        <div class="extra-inner">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <h4><?= lang('support_footer') ?></h4>
-                        <ul>
-                            <li><a href="mailto:support@domain.com">support@domain.com</a> - 24/7</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3">
-                        <h4><?= lang('support_questions') ?></h4>
-                        <ul>
-                            <li>
-                                <a href="<?= lang_url('help') ?>"><?= lang('help_footer') ?></a>
-                            </li>
-                        </ul>
-                    </div> 
-                    <div class="col-sm-3">
-                        <h4><?= lang('support_menu') ?></h4>
-                        <ul>
-                            <li><a href="<?= lang_url('registration') ?>"><?= lang('registration') ?></a></li>
-                            <li><a href="<?= lang_url('login') ?>"><?= lang('login') ?></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3">
-                        <h4><?= lang('payment_methods') ?></h4>
-                        <div class="payments"> 
-                            <img src="<?= base_url('assets/public/imgs/paypal-payment.png') ?>" alt="pminvoice.com paypal payment">
-                            <img src="<?= base_url('assets/public/imgs/discover-card.png') ?>" alt="pminvoice.com payment">
-                            <img src="<?= base_url('assets/public/imgs/amex-card.png') ?>" alt="pminvoice.com payment">
-                            <img src="<?= base_url('assets/public/imgs/visa-debit-card-logo.png') ?>" alt="pminvoice.com payment">
-                            <img src="<?= base_url('assets/public/imgs/master-card-icon-4.jpg') ?>" alt="pminvoice.com payment">
-                            <img src="<?= base_url('assets/public/imgs/payment_method_card_visa-512.png') ?>" alt="pminvoice.com payment">
-							<img src="<?= base_url('assets/public/imgs/icon_cc-logo_jcb.png') ?>" alt="pminvoice.com payment">
-							<img src="<?= base_url('assets/public/imgs/icon_cc-logo_dinersclub.png') ?>" alt="pminvoice.com payment">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <div class="bottom-inner">
-            <div class="container">
-                <span>invoicepro.fr © 2018</span>
-            </div>
-        </div>
-    </div>
-</div> 
-</div>
-</div>
 <?php if (uri_string() != 'registration') { ?>
     <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="modalRegister">
         <div class="modal-dialog" role="document">
@@ -69,10 +16,6 @@
                             <label for="user_password"><?= lang('reg_pass') ?></label><sup class="err-password"></sup>
                             <input type="password" id="user_password" name="password" placeholder="<?= lang('reg_p_secret') ?>" class="form-control">
                         </div>
-                        <a href="<?= lang_url('rules') ?>" target="_blank"><?= lang('read_rules') ?></a>
-                        <div class="checkbox">
-                            <label><input type="checkbox" id="user_rules" <?= $this->session->flashdata('rules') != null ? 'checked' : '' ?> name="rules" value=""><?= lang('confirm_rules') ?><sup class="err-rules"></sup></label>
-                        </div> 
                     </form>
                 </div>
                 <div class="modal-footer">

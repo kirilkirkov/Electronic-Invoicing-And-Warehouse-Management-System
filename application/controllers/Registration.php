@@ -19,8 +19,8 @@ class Registration extends MY_Controller
                 redirect(lang_url('registration'));
             }
         }
-		$head['title'] = lang('title_register');
-		$head['description'] = lang('description_register');
+        $head['title'] = lang('title_register');
+        $head['description'] = lang('description_register');
         $this->render('registration/index', $head, $data);
     }
 
@@ -38,18 +38,12 @@ class Registration extends MY_Controller
         if (mb_strlen(trim($_POST['password'])) == 0) {
             $errors[] = lang('empty_password');
         }
-        if (!isset($_POST['rules'])) {
-            $errors[] = lang('rules_not_checked');
-        }
         if (empty($errors)) {
             return true;
         }
         $this->session->set_flashdata('email', $_POST['email']);
         $this->session->set_flashdata('password', $_POST['password']);
         $this->session->set_flashdata('password2', $_POST['password2']);
-        if (isset($_POST['rules'])) {
-            $this->session->set_flashdata('rules', $_POST['rules']);
-        }
         return $errors;
     }
 
@@ -71,8 +65,8 @@ class Registration extends MY_Controller
         if (isset($_POST['email'])) {
             $this->loginCheck();
         }
-		$head['title'] = lang('title_login');
-		$head['description'] = lang('description_login');
+        $head['title'] = lang('title_login');
+        $head['description'] = lang('description_login');
         $this->render('registration/login', $head, $data);
     }
 
@@ -97,8 +91,8 @@ class Registration extends MY_Controller
     {
         $data = array();
         $head = array();
-		$head['title'] = lang('title_forgotten');
-		$head['description'] = lang('description_forgotten');
+        $head['title'] = lang('title_forgotten');
+        $head['description'] = lang('description_forgotten');
         $this->render('registration/forgotten', $head, $data);
     }
 

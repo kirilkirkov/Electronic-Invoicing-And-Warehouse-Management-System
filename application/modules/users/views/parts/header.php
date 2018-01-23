@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><?= $title ?></title>
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
         <link href="<?= base_url('assets/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/users/css/general.css') ?>" rel="stylesheet">
@@ -87,9 +87,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= lang('language') ?><span class="sprite-caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?= base_url($cleanUriString) ?>">Français</a></li>
+                                        <li><a href="<?= base_url($cleanUriString) ?>">English</a></li>
                                         <li><a href="<?= base_url('bg/' . $cleanUriString) ?>">Български</a></li>
-										<li><a href="<?= base_url('en/' . $cleanUriString) ?>">English</a></li>
+                                        <li><a href="<?= base_url('fr/' . $cleanUriString) ?>">Français</a></li>
                                     </ul>
                                 </li>    
                             </ul>

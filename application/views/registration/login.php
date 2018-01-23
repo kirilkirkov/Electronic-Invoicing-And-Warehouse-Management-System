@@ -1,10 +1,9 @@
 <div id="subpage">
     <div class="container">
-        <h1><img src="<?= base_url('assets/public/imgs/pm-subpages.png') ?>" alt="pm:"><?= lang('login') ?></h1>
+        <h1><?= lang('login') ?></h1>
     </div>
 </div>
-<div class="container" id="registration">
-    <h1 class="shadows-font"><?= lang('log_to_your_acc') ?></h1>
+<div class="container" id="registration"> 
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <form class="form-registration" method="POST" action="">

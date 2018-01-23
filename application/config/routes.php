@@ -58,18 +58,6 @@ $route['translate_uri_dashes'] = FALSE;
 /* ADMIN PANEL ROUTES */
 $route['admin'] = "admin/home/login";
 $route['admin/logout'] = "admin/home/login/logout";
-// BLOG GROUP
-$route['admin/blogpublish'] = "admin/blog/BlogPublish";
-$route['admin/blogpublish/(:num)'] = "admin/blog/BlogPublish/index/$1";
-$route['admin/blog'] = "admin/blog/blog";
-$route['admin/blog/(:num)'] = "admin/blog/blog/index/$1";
-// BLOG GROUP FINISH
-$route['admin/texts'] = "admin/texts/texts";
-$route['admin/addquestion'] = "admin/texts/addquestion";
-$route['admin/questions'] = "admin/texts/questions";
-$route['admin/addfeature'] = "admin/features/addfeature";
-$route['admin/features'] = "admin/features/features";
-$route['admin/features/(:num)'] = "admin/features/features/index/$1";
 $route['admin/plans/requests'] = "admin/plans/requests";
 $route['admin/plans/requests/(:num)'] = "admin/plans/requests/index/$1";
 $route['admin/plans/individual/request'] = "admin/plans/requests/custom";
@@ -163,12 +151,7 @@ $route['pdffooter'] = 'home/getinvoicefooter';
 /* USERS PANEL ROUTES */
 
 $route['^(\w{2})$'] = $route['default_controller'];
-$route['blog/(:num)'] = "blog/index/$1";
-$route['blog/(:any)_(:num)'] = "blog/viewArticle/$2";
-$route['rules'] = "help/rules";
 $route['(\w{2})?/?login'] = "registration/login";
-$route['(\w{2})?/features/exporters'] = "features/exporters";
-$route['(\w{2})?/features/importers'] = "features/importers";
 $route['(\w{2})?/?password-forgotten'] = "registration/forgotten";
 $route['(\w{2})?/?choose-type-of-login'] = 'registration/choosetype';
 $route['accept/invoice/(:any)'] = 'home/publicAcceptInvoice/$1';

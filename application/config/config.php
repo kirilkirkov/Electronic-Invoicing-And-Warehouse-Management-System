@@ -94,8 +94,8 @@ $config['url_suffix'] = '';
   | than english.
   |
  */
-$config['language'] = 'france';
-$config['language_abbr'] = 'fr';
+$config['language'] = 'english';
+$config['language_abbr'] = 'en';
 $config['currency'] = 'EUR';
 $config['currencyKey'] = 'EUR';
 

@@ -17,8 +17,7 @@ class Home extends MY_Controller
         $data = array();
         $head = array();
 		$head['title'] = lang('title_home');
-		$head['description'] = lang('description_home');
-        $data['last_articles'] = $this->PublicModel->lastInBlog($this->blogLimit);
+		$head['description'] = lang('description_home'); 
         $this->render('home/index', $head, $data);
     }
 

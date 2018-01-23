@@ -21,34 +21,6 @@ CREATE TABLE `admin_users` (
 INSERT INTO `admin_users` (`id`, `name`, `username`, `password`, `email`, `image`, `registered`, `last_login`) VALUES
 (1, 'Kiril Kirkov', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@admin.admin', '16427489_1341882885869514_8248047917573720528_n2.jpg', 0, 1516633925);
 
-CREATE TABLE `blog` (
-  `id` int(11) NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `url` varchar(255) NOT NULL,
-  `tags` varchar(255) NOT NULL,
-  `time` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `blog` (`id`, `image`, `url`, `tags`, `time`) VALUES
-(1, NULL, 'Api-for-invoices-manage_1', 'api,create invoices api', 1492518797),
-(2, NULL, 'ImportExport_2', 'import,export,accounting', 1492590359);
-
-CREATE TABLE `blog_translates` (
-  `id` int(11) NOT NULL,
-  `for_id` int(10) UNSIGNED NOT NULL,
-  `abbr` varchar(5) NOT NULL,
-  `title` varchar(500) NOT NULL,
-  `description` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `blog_translates` (`id`, `for_id`, `abbr`, `title`, `description`) VALUES
-(1, 1, 'en', 'Api for invoices manage', '<p>&nbsp;Soon we will launch a new feature allowing management of invoices by api</p>\r\n'),
-(2, 2, 'en', 'Import/Export', '<p>We will soon make it possible to import and export to most used accounting programs</p>\r\n'),
-(3, 1, 'bg', 'Api за управление на фактурите', '<p>Скоро ще бъде добавена опция за оправление на фактурите през API</p>\r\n'),
-(4, 1, 'fr', 'Api pour les factures gérer', '<p>Bientôt, nous allons lancer une nouvelle fonctionnalité permettant la gestion des factures par api</p>\r\n'),
-(5, 2, 'bg', 'Import/Export', '<p>Скоро ще направим възможно внасянето и експортирането в най-използваните счетоводни програми</p>\r\n'),
-(6, 2, 'fr', 'Import/Export', '<p>Nous allons bientôt permettre l\'importation et l\'exportation vers les programmes de comptabilité les plus utilisés </p>');
-
 CREATE TABLE `clients` (
   `id` int(11) NOT NULL,
   `for_user` int(10) UNSIGNED NOT NULL,
@@ -216,35 +188,6 @@ CREATE TABLE `employees_permissions` (
   `perm` varchar(50) NOT NULL,
   `role` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `features` (
-  `id` int(11) NOT NULL,
-  `image` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `features` (`id`, `image`) VALUES
-(2, 'inventory-management-software2.png'),
-(3, 'priemo-predavatelen-protokol.gif'),
-(4, 'W');
-
-CREATE TABLE `features_translates` (
-  `id` int(11) NOT NULL,
-  `for_id` int(10) UNSIGNED NOT NULL,
-  `abbr` varchar(5) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `features_translates` (`id`, `for_id`, `abbr`, `title`, `description`) VALUES
-(3, 2, 'en', 'Inventory System', '<p>Through our storage system, you can add type moves (picking, inserting, moving) and keep track of stocks in your various warehouses. You can issue commodity receipts and have the opportunity to issue an invoice directly from a receipt.</p>\r\n'),
-(4, 2, 'bg', 'Склад', '<p>Чрез складовата ни система ще можете да добавяте движения от тип (изкадване, вкарване, преместване) и да следите постоянните наличности в различните ви складове. Можете да издавате стокови разписки и има възможност и за издаване на фактура директно от стокова разписка.</p>\r\n'),
-(5, 3, 'en', 'Protocols', '<p>Create acceptable transmission protocols, download/print.</p>\r\n'),
-(6, 3, 'bg', 'Протоколи', '<p>Създаване на приемно предавателни протоколи. Сваляне като PDF и принтиране</p>\r\n'),
-(7, 4, 'en', 'Warranty', '<p>You can issue warranties and download/print as pdf.</p>\r\n'),
-(8, 4, 'bg', 'Гаранционни карти', '<p>Можете да създавате гаранционни карти колко да сваляте/принтирате като pdf</p>\r\n'),
-(9, 2, 'fr', 'Entrepôt', '<p>Grâce à notre système de stockage, vous pouvez ajouter des mouvements de type (picking, insertion, déplacement) et garder une trace des stocks dans vos différents entrepôts. Vous pouvez émettre des reçus de marchandises et avoir la possibilité d\'émettre une facture directement à partir d\'un reçu.</p>\r\n'),
-(10, 3, 'fr', 'Protocoles', '<p>Créez des protocoles de transmission hôte. Télécharger en PDF et Imprimer</p>\r\n'),
-(11, 4, 'fr', 'Cartes de garantie', '<p>Vous pouvez créer des cartes de garantie combien vous téléchargez / imprimez en pdf</p>\r\n');
 
 CREATE TABLE `firms_payment_requests` (
   `id` int(11) NOT NULL,
@@ -869,41 +812,6 @@ CREATE TABLE `stores` (
   `created` int(10) UNSIGNED NOT NULL,
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `texts` (
-  `id` int(11) NOT NULL,
-  `admin_info` varchar(255) NOT NULL,
-  `my_key` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `texts` (`id`, `admin_info`, `my_key`) VALUES
-(1, 'Home Text 1', 'homeOne'),
-(2, 'Home Text 2 - Specifications', 'homeSpecifications'),
-(3, 'Features Page Text', 'featuresText'),
-(4, 'Terms & Conditions', 'termsCondit'),
-(5, 'Home Security', 'homeSecurity');
-
-CREATE TABLE `texts_translates` (
-  `id` int(11) NOT NULL,
-  `for_id` int(10) UNSIGNED NOT NULL,
-  `abbr` varchar(5) NOT NULL,
-  `text` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `texts_translates` (`id`, `for_id`, `abbr`, `text`) VALUES
-(1, 1, 'en', '<p>One reason for not using free software or storing invoices on your personal computer is that they are not safe there. The reasons for data loss can be many like viruses, broken hard drive, hacker attack and more. We provide you with a highly secure server on which we will store your important documents so that they will never be lost unless you choose to delete them. You will also always be able to refer to the issued documents as well as quickly and easily find them as customer search, date, number and many other varied options. You can translate your documents, currency, company name and everything you need to issue invoices in your language.<br />\r\nOur support team will waiting for all yours questions and help need.</p>\r\n'),
-(2, 2, 'en', '<p>The interface for creating invoices as simple as possible so as to be most suitable for each type of user. The system is designed so that it can be used in any devices like tablet, PC and phone. In addition invoicing offer and a bunch of other accounting services so as to make your work easier. Your account can be accessed from anywhere in the world.</p>\r\n'),
-(3, 3, 'en', '<p>Other inventory system help features</p>\r\n'),
-(4, 4, 'en', '<p>ds asd as</p>\r\n'),
-(5, 1, 'bg', '<p>Една от причините да не използвате свободен софтуер или да съхранявате фактури на вашия персонален компютър е, че те не са в безопасност там. Причините за загуба на данни могат да бъдат много като вируси, счупен твърд диск, хакерски атаки и др. Ние ви предоставяме високо сигурен сървър, на който ще съхраняваме Вашите важни документи, така че те никога няма да бъдат изгубени, освен ако не изберете да ги изтриете. Винаги ще можете да препращате към издадените документи, както и бързо и лесно да ги намерите като търсене на клиенти, дата, номер и много други разнообразни опции. Можете да превеждате документите, валутата, името на фирмата си и всичко, от което се нуждаете, за да издавате фактури на вашия език. <br />\r\nНашият екип за поддръжка ще чака всичките ви въпроси и ще ви помогне.</p>\r\n'),
-(6, 1, 'fr', '<p>L\'une des raisons pour lesquelles vous n\'utilisez pas de logiciels gratuits ou ne stockez pas de factures sur votre ordinateur personnel, c\'est qu\'ils n\'y sont pas en sécurité. Les raisons de la perte de données peuvent être nombreuses comme les virus, les disques durs cassés, les attaques de pirates informatiques et plus encore. Nous vous fournissons un serveur hautement sécurisé sur lequel nous stockons vos documents importants afin qu\'ils ne soient jamais perdus à moins que vous ne choisissiez de les supprimer. Vous serez également toujours en mesure de se référer aux documents émis ainsi que rapidement et facilement les trouver comme la recherche du client, la date, le nombre et de nombreuses autres options variées. Vous pouvez traduire vos documents, votre devise, le nom de votre entreprise et tout ce dont vous avez besoin pour émettre des factures dans votre langue. <br />\r\nNotre équipe de support vous attendra pour toutes vos questions et besoins d\'aide.</p>\r\n'),
-(7, 2, 'bg', '<p>Интерфейсът за създаване на фактури е колкото е възможно по-прост, за да бъде най-подходящ за всеки тип потребител. Системата е проектирана така, че да може да се използва във всяко устройство като таблет, компютър и телефон. Освен оферта за фактуриране и куп други счетоводни услуги, за да улесните работата си. Профилът ви може да бъде достъпен от всяка точка на света.</p>\r\n'),
-(8, 2, 'fr', '<p>L\'interface pour créer des factures aussi simple que possible afin d\'être le plus approprié pour chaque type d\'utilisateur. Le système est conçu pour pouvoir être utilisé sur n\'importe quel appareil comme une tablette, un PC ou un téléphone. En plus de l\'offre de facturation et d\'un tas d\'autres services de comptabilité afin de faciliter votre travail. Votre compte est accessible depuis n\'importe où dans le monde.</p>\r\n'),
-(9, 3, 'bg', '<p>Други помощни функции за системата за инвентаризация</p>\r\n'),
-(10, 3, 'fr', '<p>Autres fonctionnalités d\'aide du système d\'inventaire</p>\r\n'),
-(11, 5, 'en', '<p>Le logiciel que nous proposons est fourni via une connexion crypt&eacute;e afin que les donn&eacute;es que vous utilisez soient aussi s&ucirc;res que possible des virus malveillants. Les informations stock&eacute;es sur nos serveurs disposent d&#39;une archive quotidienne afin que vous puissiez &ecirc;tre prot&eacute;g&eacute; contre la perte de donn&eacute;es.<br />\r\n<br />\r\nNous vous offrons un syst&egrave;me de stockage enti&egrave;rement prot&eacute;g&eacute; pour les documents importants.</p>\r\n'),
-(12, 5, 'bg', '<p>Софтуера който ви предлагаме минава през криптирана връзка така, че данните които използвате да бъдат максималко предпазени от злонамерени вируси. Информацията която се съхранява на нашите сървъри има всекидневен архив така, че да бъдете максилано предпазени от загуба на данни.</p>\r\n\r\n<p>Предлагаме ви една напълно защитена система за съхранение да важни документи.</p>\r\n'),
-(13, 5, 'fr', '<p>Le logiciel que nous proposons est fourni via une connexion crypt&eacute;e afin que les donn&eacute;es que vous utilisez soient aussi s&ucirc;res que possible des virus malveillants. Les informations stock&eacute;es sur nos serveurs disposent d&#39;une archive quotidienne afin que vous puissiez &ecirc;tre prot&eacute;g&eacute; contre la perte de donn&eacute;es.<br />\r\n<br />\r\nNous vous offrons un syst&egrave;me de stockage enti&egrave;rement prot&eacute;g&eacute; pour les documents importants.</p>\r\n');
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
