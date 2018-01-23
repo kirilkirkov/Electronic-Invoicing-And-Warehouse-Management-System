@@ -22,7 +22,8 @@
                 <div class="choose-translation">
                     <p><?= lang('explain_protocol_translation') ?></p>
                     <select class="selectpicker" name="protocol_translation" title="<?= lang('choose_war_translation') ?>">
-                        <option value="1" selected=""><?= lang('default_inv_lang_en') ?></option>
+					    <option value="3" selected=""><?= lang('default_inv_lang_fr') ?></option>
+                        <option value="1"><?= lang('default_inv_lang_en') ?></option>
                         <option value="2"><?= lang('default_inv_lang_bg') ?></option>
                         <?php
                         if (!empty($protocolsLanguages)) {

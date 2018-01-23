@@ -8,12 +8,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><?= $title ?></title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
         <link href="<?= base_url('assets/font-awesome/css/font-awesome.min.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/users/css/general.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/bootstrap-select-1.12.2/dist/css/bootstrap-select.min.css') ?>" rel="stylesheet">
         <link href="<?= base_url('assets/bootstrap-datepicker-1.6.4-dist/css/bootstrap-datepicker.min.css') ?>" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
         <script src="<?= base_url('assets/jquery/jquery.min.js') ?>"></script>
         <script src="<?= base_url('assets/jquery/jquery-ui-1.12.1.custom/jquery-ui.min.js') ?>"></script> 
         <script src="<?= lang_url('loadlanguage/all.js') ?>"></script>
@@ -87,8 +87,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= lang('language') ?><span class="sprite-caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?= base_url($cleanUriString) ?>">English</a></li>
+                                        <li><a href="<?= base_url($cleanUriString) ?>">Français</a></li>
                                         <li><a href="<?= base_url('bg/' . $cleanUriString) ?>">Български</a></li>
+										<li><a href="<?= base_url('en/' . $cleanUriString) ?>">English</a></li>
                                     </ul>
                                 </li>    
                             </ul>

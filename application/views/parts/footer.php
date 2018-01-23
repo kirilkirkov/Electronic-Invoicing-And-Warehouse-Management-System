@@ -30,9 +30,11 @@
                             <img src="<?= base_url('assets/public/imgs/paypal-payment.png') ?>" alt="pminvoice.com paypal payment">
                             <img src="<?= base_url('assets/public/imgs/discover-card.png') ?>" alt="pminvoice.com payment">
                             <img src="<?= base_url('assets/public/imgs/amex-card.png') ?>" alt="pminvoice.com payment">
-                            <img src="<?= base_url('assets/public/imgs/Maestro-v2.png') ?>" alt="pminvoice.com payment">
+                            <img src="<?= base_url('assets/public/imgs/visa-debit-card-logo.png') ?>" alt="pminvoice.com payment">
                             <img src="<?= base_url('assets/public/imgs/master-card-icon-4.jpg') ?>" alt="pminvoice.com payment">
                             <img src="<?= base_url('assets/public/imgs/payment_method_card_visa-512.png') ?>" alt="pminvoice.com payment">
+							<img src="<?= base_url('assets/public/imgs/icon_cc-logo_jcb.png') ?>" alt="pminvoice.com payment">
+							<img src="<?= base_url('assets/public/imgs/icon_cc-logo_dinersclub.png') ?>" alt="pminvoice.com payment">
                         </div>
                     </div>
                 </div>
@@ -42,7 +44,7 @@
     <div class="footer-bottom">
         <div class="bottom-inner">
             <div class="container">
-                <span>pminvoice.com © 2017</span>
+                <span>invoicepro.fr © 2018</span>
             </div>
         </div>
     </div>
@@ -50,7 +52,7 @@
 </div>
 </div>
 <?php if (uri_string() != 'registration') { ?>
-    <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="Modal Registration">
+    <div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="modalRegister">
         <div class="modal-dialog" role="document">
             <div class="modal-content"> 
                 <div class="modal-header">
@@ -81,6 +83,7 @@
         </div>
     </div>
 <?php } ?>
+<script src="<?= base_url('assets/jquery/jquery.min.js') ?>"></script>
 <script src="<?= base_url('assets/public/js/general.js') ?>"></script> 
 <script src="<?= base_url('assets/plugins/placeholders.min.js') ?>"></script>
 <script src="<?= base_url('assets/bootstrap/js/bootstrap.min.js') ?>"></script>          

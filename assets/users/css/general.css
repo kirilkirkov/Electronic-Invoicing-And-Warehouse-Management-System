@@ -203,6 +203,7 @@ header .col-stats .stats .stat .icon {float: left; margin-right: 5px; margin-top
 .plan-req-page .credit-cards-box .card-fields {border-bottom:1px solid #dfdcde; padding: 20px; margin-bottom: 20px; background-color: #dfdcde;}
 .limit-error, .no-permissions {font-size:22px;}
 .no-permissions {padding: 20px; background-color: #f44336; color: white; margin-bottom: 15px;}
+.pay-type-imgs img {height:40px;}
 footer { background-color: #285674; color:#6dd0ed; bottom: 0; height: 60px; left: 0; padding: 20px 0; position: absolute; text-align: center; width: 100%;}
 /*
  * Spay icons 

@@ -13,12 +13,14 @@ class Registration extends MY_Controller
             $result = $this->validateRegisterForm();
             if ($result === true) {
                 $returned_email = $this->registerUser();
-                $this->setUserLogin($returned_email);
+                $this->setUserLogin($returned_email, 1);
             } else {
                 $this->session->set_flashdata('resultRegister', $result);
                 redirect(lang_url('registration'));
             }
         }
+		$head['title'] = lang('title_register');
+		$head['description'] = lang('description_register');
         $this->render('registration/index', $head, $data);
     }
 
@@ -69,6 +71,8 @@ class Registration extends MY_Controller
         if (isset($_POST['email'])) {
             $this->loginCheck();
         }
+		$head['title'] = lang('title_login');
+		$head['description'] = lang('description_login');
         $this->render('registration/login', $head, $data);
     }
 
@@ -93,6 +97,8 @@ class Registration extends MY_Controller
     {
         $data = array();
         $head = array();
+		$head['title'] = lang('title_forgotten');
+		$head['description'] = lang('description_forgotten');
         $this->render('registration/forgotten', $head, $data);
     }
 

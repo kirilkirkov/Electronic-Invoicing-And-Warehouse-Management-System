@@ -48,6 +48,7 @@ class Language
         }
         $this->CI->lang->load('public', $language);
         $this->CI->lang->load('users', $language);
+		$this->CI->lang->load('titles', $language);
 
         define('MY_LANGUAGE_FULL_NAME', $language);
         define('MY_LANGUAGE_ABBR', $myLanguage);

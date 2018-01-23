@@ -12,6 +12,8 @@ class Plans extends MY_Controller
 
     public function index()
     {
+		show_404();
+		exit;
         $data = array();
         $head = array();
         $data['questions'] = $this->PublicModel->getQuestions();

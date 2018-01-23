@@ -14,9 +14,8 @@ class Features extends MY_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Issue and project tracking system with many features';
-        $head['description'] = 'pmTicket has many features like dashboard/agile, issue tracking, multilanguage, mobile friendly and etc.';
-        $head['keywords'] = 'dashboard, aglile, issue tracking, multilanguage, mobilefriendly';
+		$head['title'] = lang('title_features');
+		$head['description'] = lang('description_features');
         $data['features'] = $this->PublicModel->getFeatures();
         $this->render('features/index', $head, $data);
     }
@@ -25,9 +24,8 @@ class Features extends MY_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Issue and project tracking system with many features';
-        $head['description'] = 'pmTicket has many features like dashboard/agile, issue tracking, multilanguage, mobile friendly and etc.';
-        $head['keywords'] = 'dashboard, aglile, issue tracking, multilanguage, mobilefriendly';
+		$head['title'] = lang('title_importers');
+		$head['description'] = lang('description_importers');
         $this->render('features/importers', $head, $data);
     }
 
@@ -35,9 +33,8 @@ class Features extends MY_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'Issue and project tracking system with many features';
-        $head['description'] = 'pmTicket has many features like dashboard/agile, issue tracking, multilanguage, mobile friendly and etc.';
-        $head['keywords'] = 'dashboard, aglile, issue tracking, multilanguage, mobilefriendly';
+		$head['title'] = lang('title_exporters');
+		$head['description'] = lang('description_exporters');
         $this->render('features/exporters', $head, $data);
     }
 

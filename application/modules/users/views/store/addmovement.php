@@ -18,7 +18,8 @@
                 <div class="choose-translation">
                     <p><?= lang('explain_movem_translation') ?></p>
                     <select class="selectpicker" name="movement_translation" title="<?= lang('choose_movem_translation') ?>">
-                        <option value="1" selected=""><?= lang('default_inv_lang_en') ?></option>
+					    <option value="3"  selected=""><?= lang('default_inv_lang_fr') ?></option>
+                        <option value="1"><?= lang('default_inv_lang_en') ?></option>
                         <option value="2"><?= lang('default_inv_lang_bg') ?></option>
                         <?php
                         if (!empty($movementsLanguages)) {

@@ -22,7 +22,8 @@
                 <div class="choose-translation">
                     <p><?= lang('explain_war_translation') ?></p>
                     <select class="selectpicker" name="warranty_translation" title="<?= lang('choose_war_translation') ?>">
-                        <option value="0" selected=""><?= lang('default_inv_lang') ?></option>
+                        <option value="2" selected=""><?= lang('default_inv_lang_fr') ?></option>
+                        <option value="1"><?= lang('default_inv_lang_en') ?></option>
                         <?php
                         if (!empty($warrantiesLanguages)) {
                             foreach ($warrantiesLanguages as $waLanguage) {

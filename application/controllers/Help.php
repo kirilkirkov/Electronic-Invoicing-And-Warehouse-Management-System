@@ -15,9 +15,8 @@ class Help extends MY_Controller
         $data = array();
         $head = array();
         $data['questions'] = $this->PublicModel->getQuestions();
-        $head['title'] = 'Collaboration Software Support - 24/7';
-        $head['description'] = 'Use pmTicket.com online for minimal price on the internet and get 24/7 support';
-        $head['keywords'] = '24/7 support, pmTicket support, pmTicket online support';
+		$head['title'] = lang('title_help');
+		$head['description'] = lang('description_help');
         $this->render('help/index', $head, $data);
     }
 
@@ -26,9 +25,8 @@ class Help extends MY_Controller
         $data = array();
         $head = array();
         $data['questions'] = $this->PublicModel->getQuestions();
-        $head['title'] = 'Collaboration Software Support - 24/7';
-        $head['description'] = 'Use pmTicket.com online for minimal price on the internet and get 24/7 support';
-        $head['keywords'] = '24/7 support, pmTicket support, pmTicket online support';
+		$head['title'] = lang('title_rules');
+		$head['description'] = lang('description_rules');
         $this->render('help/rules', $head, $data);
     }
 

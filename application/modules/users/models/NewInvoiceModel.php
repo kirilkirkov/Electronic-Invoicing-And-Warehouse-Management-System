@@ -9,7 +9,7 @@ class NewInvoiceModel extends CI_Model
      * They must be same in $sysDefTransIds, newinvoice.php(view) and in "invoices_languages" table
      */
 
-    private $sysDefTransIds = array(1, 2);
+    private $sysDefTransIds = array(1, 2, 3);
 
     public function __construct()
     {

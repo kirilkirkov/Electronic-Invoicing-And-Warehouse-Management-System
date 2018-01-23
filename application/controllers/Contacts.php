@@ -36,9 +36,8 @@ class Contacts extends MY_Controller
             $spam = $this->session->userdata('spam');
             $this->session->set_userdata(array('spam' => $spam + 1));
         }
-        $head['title'] = 'Collaboration Software Support - 24/7';
-        $head['description'] = 'Use pmTicket.com online for minimal price on the internet and get 24/7 support';
-        $head['keywords'] = '24/7 support, pmTicket support, pmTicket online support';
+		$head['title'] = lang('title_contact');
+		$head['description'] = lang('description_contact');
         $this->render('contacts/index', $head, $data);
     }
 

@@ -107,7 +107,7 @@ class Invoiceview extends USER_Controller
         }
         $this->htmltopdf->setType($invTypeT); // set invoice type to give it to footer 
         $this->htmltopdf->setPageTranslate($invoice['translation']['page']); // set invoice translation of 'page' word
-        $pdf = $this->htmltopdf->generatePdf($html);
+		$pdf = $this->htmltopdf->generatePdf($html); 
         $filename = $invType . ' - ' . $invNum . '.pdf';
 
         header('Content-Type: application/pdf');

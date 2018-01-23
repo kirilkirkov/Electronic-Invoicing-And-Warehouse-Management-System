@@ -1,0 +1,20 @@
+#carousel-main #slide-1 .carousel-caption h1 {font-size:50px;}
+#carousel-main #slide-2 .carousel-caption p {width:510px;}
+#after-carousel p  {font-size:20px;}
+
+@media (min-width: 992px) and (max-width: 1199px) { 
+    
+}
+@media (min-width: 768px) and (max-width: 991px)  {
+#carousel-main #slide-1 .carousel-caption h1 {font-size:40px;}
+.right-side-ca-2 {position:absolute; right:0;}
+}
+
+@media (max-width: 991px) {
+ nav.navbar ul.nav li a {font-size:11px;}
+}
+/* Landscape phones and portrait tablets */
+@media screen and (max-width: 767px) {
+	#carousel-main #slide-1 .carousel-caption h1 {font-size:36px;}
+	#carousel-main #slide-2 .carousel-caption p {width:auto;}
+}

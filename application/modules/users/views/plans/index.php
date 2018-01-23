@@ -28,67 +28,6 @@ if ($this->permissions->hasPerm('perm_view_plans_page')) {
     <?php } ?>
     <div class="plans row">
         <div class="col-xs-12 col-md-4 col-lg-3">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?= lang('plan_basic') ?></h3>
-                </div>
-                <div class="panel-body">
-                    <div class="the-price">
-                        <h1>
-                            <?= $plans['BASIC']['PRICE'] . CURRENCY ?><span class="subscript">/<?= lang('plans_month') ?></span>
-                        </h1> 
-                    </div>
-                    <table class="table">
-                        <tr>
-                            <td>
-                                <?= $plans['BASIC']['NUM_INVOICES'] ?> <?= lang('plans_num_inv') ?>/<?= lang('plans_month') ?>
-                            </td>
-                        </tr>
-                        <tr class="active">
-                            <td>
-                                <?= $plans['BASIC']['NUM_FIRMS'] ?> <?= lang('plans_num_firms') ?>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="panel-footer">
-                    <a href="<?= lang_url('user/plan/basic') ?>" class="btn btn-success" role="button"><?= lang('plans_choose') ?></a></div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-md-4 col-lg-3">
-            <div class="panel panel-success">
-                <div class="cnrflash"> 
-                    <?= lang('plans_most') ?>
-                    <br>
-                    <?= lang('plans_popular') ?>
-                </div>
-                <div class="panel-heading">
-                    <h3 class="panel-title"><?= lang('plan_advanced') ?></h3>
-                </div>
-                <div class="panel-body">
-                    <div class="the-price">
-                        <h1>
-                            <?= $plans['ADVANCED']['PRICE'] . CURRENCY ?><span class="subscript">/<?= lang('plans_month') ?></span>
-                        </h1>
-                    </div>
-                    <table class="table">
-                        <tr>
-                            <td>
-                                <?= $plans['ADVANCED']['NUM_INVOICES'] ?> <?= lang('plans_num_inv') ?>/<?= lang('plans_month') ?>
-                            </td>
-                        </tr>
-                        <tr class="active">
-                            <td>
-                                <?= $plans['ADVANCED']['NUM_FIRMS'] ?> <?= lang('plans_num_firms') ?>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="panel-footer">
-                    <a href="<?= lang_url('user/plan/advanced') ?>" class="btn btn-success" role="button"><?= lang('plans_choose') ?></a></div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-md-4 col-lg-3">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?= lang('plan_pro') ?></h3>
@@ -96,7 +35,7 @@ if ($this->permissions->hasPerm('perm_view_plans_page')) {
                 <div class="panel-body">
                     <div class="the-price">
                         <h1>
-                            <?= $plans['PRO']['PRICE'] . CURRENCY ?><span class="subscript">/<?= lang('plans_month') ?></span>
+                            <?= $plans['PRO']['PRICE'] . CURRENCY ?><span class="subscript">/<?= lang('plans_year') ?></span>
                         </h1>
                     </div>
                     <table class="table">
@@ -123,7 +62,7 @@ if ($this->permissions->hasPerm('perm_view_plans_page')) {
                 </div>
                 <div class="panel-body">
                     <div class="the-price">
-                        <h1><?= $individualPlan == null ? '?' : $individualPlan['price'] . CURRENCY ?><span class="subscript">/<?= lang('plans_month') ?></span></h1>
+                        <h1><?= $individualPlan == null ? '?' : $individualPlan['price'] . CURRENCY ?><span class="subscript">/<?= lang('plans_year') ?></span></h1>
                     </div>
                     <table class="table">
                         <tr>

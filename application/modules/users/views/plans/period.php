@@ -19,20 +19,20 @@
                     <div class="plan-header">
                         <div class="icon-box"><i class="fa fa-users icon"></i></div>
                         <h2><?= lang('plan_' . $planType) ?></h2>
-                        <p><?= $plans[strtoupper($planType)]['PRICE'] . CURRENCY ?>/<?= lang('plans_month') ?></p>
+                        <p><?= $plans[strtoupper($planType)]['PRICE'] . CURRENCY ?>/<?= lang('plans_year') ?></p>
                     </div>
                     <div class="plan-details">
                         <ul>
                             <li class="option-li">
                                 <?= lang('plan_period') ?>
                                 <select class="selectpicker" name="period"> 
-                                    <option value="1" selected="">1 <?= lang('plan_period_month') ?></option>
-                                    <option value="3">3 <?= lang('plan_period_months') ?></option>
-                                    <option value="6">6 <?= lang('plan_period_months') ?></option>
-                                    <option value="12">1 <?= lang('plan_period_year') ?></option>
+                                    <option value="12" selected="">1 <?= lang('plan_period_year') ?></option>
+                                    <option value="24">2 <?= lang('plan_period_years') ?></option>
+                                    <option value="36">3 <?= lang('plan_period_years') ?></option>
+                                    <option value="48">4 <?= lang('plan_period_years') ?></option>
                                 </select>
                             </li>
-                            <li class="option-li">
+                            <li class="option-li hidden">
                                 <?= lang('plan_payment_type') ?> 
                                 <select class="selectpicker" name="payment_type"> 
                                     <option value="bank" selected=""><?= lang('plan_payment_bank') ?></option>

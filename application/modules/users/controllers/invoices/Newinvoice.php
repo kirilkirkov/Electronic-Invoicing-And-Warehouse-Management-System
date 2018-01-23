@@ -64,7 +64,7 @@ class Newinvoice extends USER_Controller
         } else {
             $theCurrency = 'EUR';
         }
-        $data['currentItems'] = $currentItems;
+        $data['currentItems'] = isset($currentItems) ? $currentItems : null;
         $data['theCurrency'] = $theCurrency;
         $data['allForFirm'] = $this->ManagefirmsModel->getCompanyInfo(SELECTED_COMPANY_ID);
         $this->render('invoices/newinvoice', $head, $data);

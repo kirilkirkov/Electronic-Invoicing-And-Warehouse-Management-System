@@ -94,8 +94,8 @@ $config['url_suffix'] = '';
   | than english.
   |
  */
-$config['language'] = 'english';
-$config['language_abbr'] = 'en';
+$config['language'] = 'france';
+$config['language_abbr'] = 'fr';
 $config['currency'] = 'EUR';
 $config['currencyKey'] = 'EUR';
 
@@ -612,8 +612,8 @@ $config['plans'] = array(
         'NUM_FIRMS' => 3
     ),
     'PRO' => array(
-        'PRICE' => 40,
-        'NUM_INVOICES' => 1000,
-        'NUM_FIRMS' => 5
+        'PRICE' => 50, // per year
+        'NUM_INVOICES' => 3000,
+        'NUM_FIRMS' => 10
     )
 );

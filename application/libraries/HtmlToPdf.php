@@ -52,9 +52,12 @@ class HtmlToPdf
         if ($tmpfname === false) {
             log_message('error', 'Was not able to generate a temporary file 2 for ' . $this->type . ' preview in system /tmp for user - ' . print_r($_SESSION['user_login'], true));
         }
+		if(!file_exists('/home/kirilkirkov91/wkhtmltox/bin/wkhtmltopdf')) {
+			log_message('error', 'Please choose directory of wkhtmltopdf bin file in next $cmd variable');
+		}
 
         $footerUrl = base_url('pdffooter?num=' . $this->num . '&type=' . $this->type . '&pageTranslate=' . $this->pageTranslation);
-        $cmd = '/home/kiro/wkhtmltox/bin/wkhtmltopdf --footer-html "' . $footerUrl . '" --load-error-handling ignore --enable-local-file-access' .
+        $cmd = '/home/kirilkirkov91/wkhtmltox/bin/wkhtmltopdf --footer-html "' . $footerUrl . '" --load-error-handling ignore --enable-local-file-access' .
                 ' --no-stop-slow-scripts' .
                 ' -q ' . $extra_params .
                 ' -d ' . $dpi .

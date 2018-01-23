@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+<div class="before-carousel"><?= lang('reg_for_free_use_for') ?></div>
 <div id="carousel-main">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -28,17 +29,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="pull-left left-side">
                         <img alt="pmTicket arrow" class="hand-made-down" src="<?= base_url('assets/public/imgs/handmade-arrow-down.png') ?>">
                         <img alt="pmTicket arrow" class="hand-made-cicle" src="<?= base_url('assets/public/imgs/hand-made-cicle.png') ?>">
-                        <h3 class="shadows-font use-it">Use it online</h3>
+                        <h3 class="shadows-font use-it"><?= lang('use_it_online') ?></h3>
                         <p>
-                            There is <span>NO need</span> to download nothing. You can use it absolutley<br> 
-                            online and save your data to our high protected servers. <br> 
-                            You will have support <span>everyday and hour</span>.
+                            <?= lang('there_is') ?> <span><?= lang('no_need') ?></span> <?= lang('to_down_noth') ?><br> 
+                            <?= lang('high_protect_serve') ?> <br> 
+                            <?= lang('have_support') ?> <span><?= lang('every_day_and_hour') ?></span>.
                         </p>
                     </div>
-                    <div class="pull-right  hidden-xs">
-                        <h3 class="right-h3">We will support you</h3>
-                        <h4 class="text-right">Make it easy!</h4>
-                        <a href="<?= base_url('plans') ?>" class="btn btn-orange pull-right">Check our plans</a>
+                    <div class="pull-right right-side-ca-2 hidden-xs"> 
+                        <h4 class="text-right"><?= lang('make_it_easy') ?></h4>
                     </div>
                 </div>
             </div>
@@ -107,9 +106,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </ul>
     </div>
 </div>
+<div class="before-carousel"><?= lang('issue_to_5') ?></div>
 <div class="container">
     <div class="intro">
-        <h2 class="text-center"><?= lang('what_is') ?> <img src="<?= base_url('assets/public/imgs/pm-small-bg_backgr.png') ?>" alt="pm:"><span class="orange-gradient">Invoice</span> <?= lang('and_how_it_works') ?></h2>
+        <h2 class="text-center"><?= lang('what_is') ?><span class="orange-gradient">InvoicePro</span> <?= lang('and_how_it_works') ?></h2>
         <div class="deliver"></div>
         <div>
             <?= $homeOne ?>
@@ -130,6 +130,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="deliver"></div>
         <div>
             <?= $homeSpecifications ?>
+        </div>
+    </div>
+    <hr>
+    <div class="intro">
+        <h2 class="text-center"><?= lang('security') ?></h2>
+        <div class="deliver"></div>
+        <div>
+			<div class="text-center">
+			    <img src="<?= base_url('assets/public/imgs/ssl_enc.jpg') ?>" alt="SSL Encrypted">
+				<img src="<?= base_url('assets/public/imgs/backups.jpg') ?>" alt="SSL Encrypted">
+			</div>
+            <?= $homeSecurity ?>
         </div>
     </div>
     <hr>

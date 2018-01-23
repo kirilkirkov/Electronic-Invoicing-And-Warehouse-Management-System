@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Blog extends MY_Controller
 {
 
-    private $num_rows = 1;
+    private $num_rows = 10;
 
     public function __construct()
     {
@@ -17,9 +17,8 @@ class Blog extends MY_Controller
     {
         $data = array();
         $head = array();
-        $head['title'] = 'pmTicket: Blog - Latest news';
-        $head['description'] = 'Latest news from our blog. New features, future developments';
-        $head['keywords'] = 'blog, latest news, future developments';
+		$head['title'] = lang('title_blog');
+		$head['description'] = lang('description_blog');
         if (isset($_GET['find'])) {
             $find = $_GET['find'];
         } else {

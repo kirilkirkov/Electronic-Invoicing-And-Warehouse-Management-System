@@ -18,6 +18,7 @@ header .support-top a {color: #fff;}
 div#navbar {margin-right:-30px;}
 nav.navbar {margin-bottom: 0;}
 nav.navbar ul.nav li a {font-size:12px; text-transform: uppercase; font-weight: 700; line-height: 20px; color:#eb8900; border-radius: 5px;  margin-bottom: 2px; margin-top: 2px; margin-left: 2px; padding-bottom: 8px; padding-top: 8px;}
+nav.navbar ul.nav  li .dropdown-menu li a {background:transparent !important;}
 nav.navbar ul.nav li.active a, nav.navbar ul.nav li a:hover, nav.navbar ul.nav li a:active, nav.navbar ul.nav li a:focus, .nav .open a, .nav .open a:focus, .nav .open  a:hover { background-color: #eb8900; color: #fff;}
 nav.navbar ul.nav li.active a, nav.navbar ul.nav li a:hover, nav.navbar ul.nav li a:active, nav.navbar ul.nav li a:focus, .nav .open a, .nav .open a:focus, .nav .open a:hover, .orange-gradient { background: rgb(242,156,35);background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2YyOWMyMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlYjg5MDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+); background: -moz-linear-gradient(top, rgba(242,156,35,1) 0%, rgba(235,137,0,1) 100%);  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(242,156,35,1)), color-stop(100%,rgba(235,137,0,1))); background: -webkit-linear-gradient(top, rgba(242,156,35,1) 0%,rgba(235,137,0,1) 100%);background: -o-linear-gradient(top, rgba(242,156,35,1) 0%,rgba(235,137,0,1) 100%);  background: -ms-linear-gradient(top, rgba(242,156,35,1) 0%,rgba(235,137,0,1) 100%);  background: linear-gradient(to bottom, rgba(242,156,35,1) 0%,rgba(235,137,0,1) 100%);filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f29c23', endColorstr='#eb8900',GradientType=0 );}
 nav.navbar ul.nav li.dropdown a:hover, nav.navbar ul.nav li.dropdown a:active, nav.navbar ul.nav li.dropdown a:focus {border-bottom-left-radius: 0; border-bottom-right-radius: 0;}
@@ -73,6 +74,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 #collapseLogin .logme {padding: 2px 5px; }
 #collapseLogin .forgot {font-size: 12px; color:#fff;}
 
+.before-carousel {background-color:#f3f2f2; padding:5px; text-align:center;font-size:13px;padding-left:10px; padding-right:10px;}
 #carousel-main #slide-1 .carousel-caption span {font-size:22px; border-bottom: 2px solid #fff;}
 #carousel-main #slide-1 .carousel-caption span span {border-bottom: 0;}
 #carousel-main #slide-1 .carousel-caption h1 {font-size:60px; font-weight: 800; width:350px; text-align: center; line-height:50px;}
@@ -87,8 +89,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 #carousel-main #slide-2 .carousel-caption .left-side h3.http {font-size: 30px;margin-top: 115px;}
 #carousel-main #slide-2 .carousel-caption .left-side h3.use-it {font-size: 25px;margin-top: 190px;}
 #carousel-main #slide-2 .carousel-caption .left-side img.hand-made-cicle {position: absolute; top:170px; left:115px; width:200px;}
-#carousel-main #slide-2 .carousel-caption img.hand-made-down {left: 90px;; position: absolute; top: 40px; height:110px;}
-#carousel-main #slide-2 .carousel-caption h3.right-h3 {text-transform: none; font-size:50px; margin-top:180px;}
+#carousel-main #slide-2 .carousel-caption img.hand-made-down {left: 90px;; position: absolute; top: 40px; height:110px;} 
 #carousel-main #slide-2 .carousel-caption h4 {color:#777;}
 #carousel-main #slide-2 .carousel-caption p {margin-top: 40px;}
 #carousel-main #slide-2 .carousel-caption span {background-color:#eb8900; color:#fff;}
@@ -104,6 +105,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
 .form-registration label {font-size:12px;}
 .form-registration sup {color:red; font-size:14px;}
 
+#carousel-blog { margin-bottom:40px; }
 #carousel-blog #quote-carousel a {color:#777;}
 #carousel-blog #quote-carousel { padding: 0 10px 30px 10px;    margin-top: 30px;}
 #carousel-blog #quote-carousel .carousel-control{    background: none;    color: #222;    font-size: 2.3em;    text-shadow: none;    margin-top: 30px;}
@@ -214,6 +216,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
     footer .fast-links { margin-bottom: 80px;}
     #carousel-main #slide-1 .carousel-caption h1 {font-size:40px; line-height: 40px;}
     #carousel-main #slide-1 .carousel-caption .left-side h4 {font-size: 30px;}
+	#content {padding-bottom:300px;}
 }
 
 @media (max-width: 991px) {
@@ -249,7 +252,7 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
     #features .row { border-bottom: 1px solid #777; padding-bottom:20px;}
     #features .top-text {font-size:18px;}
     footer {height: 750px;}
-    #content {padding-bottom:400px;}
+    #content {padding-bottom:450px;}
     #register .intro {margin-bottom: 0;}
     footer .contact-us {float:none;}
     footer .the-social {float:none;}
@@ -263,7 +266,9 @@ nav.navbar ul.dropdown-menu li a {border-radius: 0; margin-left:0;}
     #support .contact-form input, #support .contact-form textarea {padding: 12px 12px 12px 54px; height: auto;} 
     #registration h1 {font-size:20px;}
     header .support-top {float: right; }
-    .inv-accept h1 {font-size:18px;} 
+    .inv-accept h1 {font-size:18px;}
+	.before-carousel  {font-side:12px;}
+	#after-carousel p {font-size:16px;}
 
     /* Dont zoom fileds! */
     input[type="color"],

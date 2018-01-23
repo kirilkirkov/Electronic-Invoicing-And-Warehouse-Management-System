@@ -6,9 +6,9 @@
             <?= lang('invoices') ?>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
+            <li><a href="<?= lang_url('user') ?>"><?= lang('home') ?></a></li> 
+			<li><a href="<?= lang_url('user/invoices') ?>"><?= lang('invoices') ?></a></li>
+            <li class="active"><?= $invNum ?></li>
         </ol>
     </div> 
 </div>

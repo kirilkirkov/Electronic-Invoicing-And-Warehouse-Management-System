@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * CodeIgniter
  *
@@ -53,10 +53,8 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-if($_SERVER['SERVER_NAME'] != 'in.dev') {
-    exit;
-}
-	define('ENVIRONMENT', 'production');
+
+ define('ENVIRONMENT', 'production');
 
 /*
  *---------------------------------------------------------------

@@ -3,17 +3,16 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title><?= @$title ?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <meta name="description" content="<?= @$description ?>">
-        <meta name="keywords" content="<?= @$keywords ?>">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<title><?= @$title ?></title>
         <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" type="text/css">
-        <link href="<?= base_url('assets/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
-        <link href="<?= base_url('assets/public/css/general.css') ?>" rel="stylesheet">
-        <script src="<?= base_url('assets/jquery/jquery.min.js') ?>"></script>
+		<link href="<?= base_url('assets/font-awesome-4.7.0/css/font-awesome.min.css') ?>" rel="stylesheet" type="text/css">
+        <link href="<?= base_url('assets/animate.min.css') ?>" rel="stylesheet" type="text/css">
+        <link href="<?= base_url('assets/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet" type="text/css">
+        <link href="<?= base_url('assets/public/css/general.css?v2') ?>" rel="stylesheet" type="text/css">
+		<link href="<?= base_url('assets/public/css/stabilizator_'.MY_LANGUAGE_ABBR.'.css') ?>" rel="stylesheet" type="text/css">
         <script src="<?= lang_url('loadlanguage/all.js') ?>"></script>
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -72,7 +71,6 @@
                                 <ul class="nav navbar-nav">
                                     <li <?= uri_string() == '' ? ' class="active"' : '' ?>><a href="<?= lang_url() ?>"><?= lang('btn_home') ?></a></li>
                                     <li <?= uri_string() == 'registration' ? ' class="active"' : '' ?>><a href="javascript:void(0);" data-toggle="modal" data-target="#modalRegister"><?= lang('btn_register') ?></a></li>
-                                    <li <?= uri_string() == 'plans' ? ' class="active"' : '' ?>><a href="<?= lang_url('plans') ?>"><?= lang('btn_plans') ?></a></li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= lang('btn_features') ?> <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
@@ -87,19 +85,20 @@
                                     if (mb_strlen($this->uri->segment(1)) == 2) {
                                         $cleanUriString = str_replace($this->uri->segment(1) . '/', '', uri_string());
                                     }
-                                    ?>
-                                    <ul class="nav navbar-nav navbar-right">
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= lang('language') ?><b class="caret"></b></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="<?= base_url($cleanUriString) ?>">English</a></li>
-                                                <li><a href="<?= base_url('bg/' . $cleanUriString) ?>">Български</a></li>
-                                            </ul>
-                                        </li>    
-                                    </ul>
+                                    ?> 
                                     <li <?= uri_string() == 'help' ? ' class="active"' : '' ?>><a href="<?= lang_url('help') ?>"><?= lang('btn_help') ?></a></li>
                                     <li <?= uri_string() == 'contacts' ? ' class="active"' : '' ?>><a href="<?= lang_url('contacts') ?>"><?= lang('btn_contacts') ?></a></li>
                                 </ul>
+								<ul class="nav navbar-nav navbar-right">
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= lang('language') ?><b class="caret"></b></a>
+										<ul class="dropdown-menu">
+											<li><a href="<?= base_url() ?>">Français</a></li>
+											<li><a href="<?= base_url('en') ?>">English</a></li>
+											<li><a href="<?= base_url('bg') ?>">Български</a></li>
+										</ul>
+									</li>    
+								</ul>
                             </div>
                         </div>
                     </nav>

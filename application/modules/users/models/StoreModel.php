@@ -9,7 +9,7 @@ class StoreModel extends CI_Model
      * They must be same in $sysDefTransIds, addmovement.php(view) and in "movements_languages" table
      */
 
-    private $sysDefTransIds = array(1, 2);
+    private $sysDefTransIds = array(1, 2, 3);
 
     public function __construct()
     {

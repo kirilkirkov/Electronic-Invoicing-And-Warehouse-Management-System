@@ -1,0 +1,23 @@
+var lang = {
+    invalid_email: 'Adresse e-mail invalide!',
+    invalid_pass: 'Veuillez entrer le mot de passe!',
+    invalid_pass2: 'Merci de répéter le mot de passe!',
+    passwords_dont_match: 'Les mots de passe ne correspondent pas!',
+    rules_not_checked: 'Veuillez vérifier les règles!',
+    proforma: 'Pro-forme',
+    invoice: "Facture d'achat",
+    debit_note: 'Note de débit',
+    credit_note: 'Note de crédit',
+    errorCreateDocument: 'Nous avons trouvé les champs vides suivants',
+    currencyItemNotSame: 'Le prix saisi pour cet article est dans une devise différente',
+    errorCreateClient: 'Certains champs obligatoires du client sont vides!',
+    errorCreateItem: 'Certains champs obligatoires sont vides!',
+    errorCreateEmployee: 'Vous avez des champs invalides!',
+    noCheckedCheckboxes: "Il n'y a rien sélectionné!",
+    confirmDelete: 'Voulez-vous vraiment supprimer?',
+    errorChangeInvStatusAjax: "Erreur de changement d'état de la facture. Essayez à nouveau s'il vous plaît!",
+    confirmCancel: 'Êtes-vous sûr de vouloir annuler?',
+    confirmRemoveCancel: 'Voulez-vous vraiment supprimer le statut annulé?',
+    show_main_menu: 'Afficher le menu',
+    hide_main_menu: 'Masquer le menu'
+};

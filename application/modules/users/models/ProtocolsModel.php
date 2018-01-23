@@ -9,7 +9,7 @@ class ProtocolsModel extends CI_Model
      * They must be same in $sysDefTransIds, addprotocol.php(view) and in "protocols_languages" table
      */
 
-    private $sysDefTransIds = array(1, 2);
+    private $sysDefTransIds = array(1, 2, 3);
 
     public function __construct()
     {
