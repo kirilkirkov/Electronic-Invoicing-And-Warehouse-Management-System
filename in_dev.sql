@@ -987,12 +987,6 @@ CREATE TABLE `warranty_events` (
 ALTER TABLE `admin_users`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `blog`
-  ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `blog_translates`
-  ADD PRIMARY KEY (`id`);
-
 ALTER TABLE `clients`
   ADD PRIMARY KEY (`id`);
 
@@ -1006,12 +1000,6 @@ ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `employees_permissions`
-  ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `features`
-  ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `features_translates`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `firms_payment_requests`
@@ -1127,13 +1115,6 @@ ALTER TABLE `stock_availability`
 ALTER TABLE `stores`
   ADD PRIMARY KEY (`id`);
 
-ALTER TABLE `texts`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `my_key` (`my_key`);
-
-ALTER TABLE `texts_translates`
-  ADD PRIMARY KEY (`id`);
-
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email_unique` (`email`);
@@ -1180,10 +1161,6 @@ ALTER TABLE `warranty_events`
 
 ALTER TABLE `admin_users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-ALTER TABLE `blog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-ALTER TABLE `blog_translates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 ALTER TABLE `clients`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `currencies`
@@ -1194,10 +1171,6 @@ ALTER TABLE `employees`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `employees_permissions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-ALTER TABLE `features_translates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 ALTER TABLE `firms_payment_requests`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `firms_plans`
@@ -1272,10 +1245,6 @@ ALTER TABLE `stock_availability`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `stores`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `texts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-ALTER TABLE `texts_translates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 ALTER TABLE `users_currencies`
