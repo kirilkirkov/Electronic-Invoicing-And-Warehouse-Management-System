@@ -642,6 +642,11 @@ function validateStoreMovement() {
     if (validItems == false) {
         valid = false;
     }
+	var selectedStore = $('[name="selected_store"]').val(); 
+	if(!selectedStore) {
+		valid = false;
+		$('.store-selector button.btn-default').css("border-color", "red");
+	}
     if (valid == true) {
         document.getElementById('setMovementForm').submit();
     } else {
