@@ -81,7 +81,7 @@
             <div class="inner">
                 <div class="row head-content">
                     <div class="col-sm-6 col-md-5"> 
-                        <div class="form-group">
+                        <div class="form-group store-selector">
                             <label class="label-from-store hidden"><?= lang('movem_from_store') ?></label> 
                             <label class="label-to-store"><?= lang('movem_to_store') ?></label> 
                             <select class="selectpicker" name="selected_store" data-live-search="true">
