@@ -6,6 +6,10 @@ Current versions:
 * Codeigniter 3.1.7
 * Bootstrap 3.3.7
 
+## Donate
+If this project help you reduce time to develop, you can give me a cup of coffee to continue its development. Thank you! :)
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PF5ES4K748ZEY)
+
 ## Support of following features
 
 1. Issue invoices and download as PDF
