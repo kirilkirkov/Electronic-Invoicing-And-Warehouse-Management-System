@@ -1,5 +1,5 @@
-# Electronic invoicing and warehouse management system - PHP, MYSQL
-## Issue electronic invoices, download as pdf, manage your clients, items, employees and etc.
+# Electronic invoicing and warehouse management system
+## Issue electronic invoices, download as pdf, manage your clients, items, employees permissions and etc.
 
 Current versions:
 
@@ -26,6 +26,9 @@ Current versions:
 1. Import in_dev.sql to your mysql
 2. Set hostname, username and password in application/config/database.php
 3. Set your site domain in application/config/config.php - $config['base_url'] = 'http://yourdomain.com';
+
+## Wiki
+External software needed - https://github.com/kirilkirkov/ei/wiki/External-needed-software
 
 ## Screenshots
 pdf invoice
