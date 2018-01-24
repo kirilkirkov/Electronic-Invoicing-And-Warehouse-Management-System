@@ -27,13 +27,14 @@ Current versions:
 2. Set hostname, username and password in application/config/database.php
 3. Set your site domain in application/config/config.php - $config['base_url'] = 'http://yourdomain.com';
 
-## Screenshots
-pdf invoice
-![alt text](https://raw.githubusercontent.com/kirilkirkov/issueei/master/design/user/design_of_invoice.png?token=ADQ0kHiVGJcnZSg5vrzxnQdYSsaGtZB2ks5acXeHwA%3D%3D "Logo Title Text 1")
-invoices list
-![alt text](https://raw.githubusercontent.com/kirilkirkov/issueei/master/design/user/design_of_invoices_list.png?token=ADQ0kBSBwpPf6FG4-c8Tom4imDrr5jftks5acXeJwA%3D%3D "Logo Title Text 1")
-create invoice page
-![alt text](https://raw.githubusercontent.com/kirilkirkov/issueei/master/design/user/create_invoice_page.png?token=ADQ0kGr-65kv46P6iFn5pv2ONkKFvF1rks5acXh-wA%3D%3D "Logo Title Text 1")
 
 ## Wiki
 External software needed - https://github.com/kirilkirkov/ei/wiki/External-needed-software
+
+## Screenshots
+pdf invoice
+![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/design_of_invoice.png?token=ADQ0kH5ObqDK3l2H-K4gXn74aIeVi0fVks5acX1HwA%3D%3D "Logo Title Text 1")
+invoices list
+![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/design_of_invoices_list.png?token=ADQ0kGLfoXLmpNGV5HYZewfaZHzr3qA9ks5acX1IwA%3D%3D "Logo Title Text 1")
+create invoice page
+![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/create_invoice_page.png?token=ADQ0kGcYR3mBvj8ANBbPJ8wg8w69gpgPks5acX1FwA%3D%3D "Logo Title Text 1")
