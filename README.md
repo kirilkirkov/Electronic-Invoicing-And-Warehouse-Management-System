@@ -25,6 +25,7 @@ If this project help you reduce time to develop, you can give me a cup of coffee
 11. Add employees, add permissions for every employee
 12. Responsive system for mobile devices, tablets and high resolution monitors
 13. Add you own translations for invoices. Can be added any language you want
+14. Many types of settings such as rounding prices, toner save pdf invoices, etc.
 
 ## Installation in 3 easy steps
 1. Import in_dev.sql to your mysql
