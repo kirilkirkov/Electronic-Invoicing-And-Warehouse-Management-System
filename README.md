@@ -32,6 +32,9 @@ If this project help you reduce time to develop, you can give me a cup of coffee
 2. Set hostname, username and password in application/config/database.php
 3. Set your site domain in application/config/config.php - $config['base_url'] = 'http://yourdomain.com';
 
+Login to /admin -
+Username: admin
+Password: admin
 
 ## Wiki
 External software needed - https://github.com/kirilkirkov/ei/wiki/External-needed-software
