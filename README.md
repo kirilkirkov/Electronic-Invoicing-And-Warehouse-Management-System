@@ -30,14 +30,21 @@ If this project help you reduce time to develop, you can give me a cup of coffee
 ## Installation in 3 easy steps
 1. Import in_dev.sql to your mysql
 2. Set hostname, username and password in application/config/database.php
-3. Set your site domain in application/config/config.php - $config['base_url'] = 'http://yourdomain.com';
+3. Set your site domain in application/config/config.php - $config['base_url'] = 'http://yourdomain.com'; (if you want to use it in directory path, set base_url to full path. Eg. http://yourdomain.com/invoicing and remove RewriteBase / from .htaccess!)
 
-Login to /admin -
+<p>
+Invoices login:
+1. Go to homepage
+2. Click Registration button and make new registration for you.
+</p>
+<p>
+Administration login: (/admin)
 Username: admin
 Password: admin
+</p>
 
 ## Wiki
-External software needed - https://github.com/kirilkirkov/ei/wiki/External-needed-software
+External software needed to download generated invoices like PDF - https://github.com/kirilkirkov/ei/wiki/External-needed-software
 
 ## Screenshots
 ###### pdf invoice

@@ -1,6 +1,7 @@
 body {font-family: "Open Sans",Arial,sans-serif;}
 
-#collapseLogin {background-color: #eb8900; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; padding: 10px; color:#fff; float:left;}
+.login {float:right;}
+#collapseLogin {background-color: #eb8900; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; padding: 10px; color:#fff; float:right;}
 #collapseLogin .my-addr {border:0; color:#333; width:175px; padding:5px 8px; font-size:12px;}
 #collapseLogin span {font-size:12px; display: inline-block; width: 55px; }
 #collapseLogin .form-group { margin-bottom: 5px;}
@@ -19,7 +20,8 @@ body {font-family: "Open Sans",Arial,sans-serif;}
 .uppercase {text-transform: uppercase;}
 .alert-errors {background-color: #e11c16;    color: #fff;    font-weight: bold;    left: 50%;    margin-left: -140px;    padding: 40px;    position: absolute;    text-align: center;    top: 10px;    width: 280px;    z-index: 2000;}
 .alert-errors a {position: absolute; top:10px; right:10px; color:#fff;}
-.langs {margin: 0; padding: 0; list-style: none; margin-bottom: 10px; margin-top: 10px; }
+.langs {margin: 0; padding: 0; list-style: none; margin-bottom: 10px; margin-top: 10px; display: inline-block; }
+.langs li {display: inline;}
 
 .inv-accept {padding-top: 20px;}
 .inv-accept .logo { display: inline-block; margin-bottom: 20px;}

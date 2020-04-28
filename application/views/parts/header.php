@@ -20,10 +20,3 @@
         <![endif]-->
     </head>
     <body>
-        <div class="container">
-            <ul class="langs">
-                <li><a href="<?= base_url() ?>">English</a></li>
-                <li><a href="<?= base_url('fr') ?>">Français</a></li> 
-                <li><a href="<?= base_url('bg') ?>">Български</a></li>
-            </ul>
-        </div>
