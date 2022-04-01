@@ -820,13 +820,10 @@ CREATE TABLE `users` (
   `schiffer` varchar(100) NOT NULL,
   `email` varchar(250) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `ip_address` varchar(15) NOT NULL,
+  `ip_address` varchar(15) NULL DEFAULT NULL,
   `time_registered` int(10) UNSIGNED NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `users` (`id`, `name`, `phone`, `schiffer`, `email`, `password`, `ip_address`, `time_registered`, `enabled`) VALUES
-(1, 'Кирката Кирков', '', '', 'asd@asd.asd', '$2y$10$uFdEn5Qr/appQnGWpNOZieD/zZgONyxU2..e0yNKzsmGE/pCTVlSm', '78.90.131.10', 1516262897, 1);
 
 CREATE TABLE `users_currencies` (
   `id` int(11) NOT NULL,

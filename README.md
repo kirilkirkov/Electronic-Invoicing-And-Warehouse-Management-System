@@ -1,7 +1,11 @@
 # Electronic invoicing and warehouse management system
 ## Issue electronic invoices, download as pdf, manage your clients, items, employees permissions and etc.
 
-Current versions:
+<h1 align="center">
+<a href="https://codecanyon.net/item/wp-invoices-pdf-electronic-invoicing-system/36891583">Download Available As WordPress Plugin</a>
+</h1>
+
+<p>Current versions:</p>
 
 * Codeigniter 3.1.7
 * Bootstrap 3.3.7
@@ -33,20 +37,20 @@ Current versions:
 14. Many types of settings such as rounding prices, toner save pdf invoices, etc.
 
 ## Installation in 3 easy steps
-1. Import in_dev.sql to your mysql
+1. Import database.sql to your mysql
 2. Set hostname, username and password in application/config/database.php
 3. Set your site domain in application/config/config.php - $config['base_url'] = 'http://yourdomain.com'; (if you want to use it in directory path, set base_url to full path. Eg. http://yourdomain.com/invoicing and remove RewriteBase / from .htaccess!)
 
-<p>
-Invoices login:
-1. Go to homepage
-2. Click Registration button and make new registration for you.
-</p>
-<p>
-Administration login: (/admin)
-Username: admin
-Password: admin
-</p>
+<p>Invoices login:</p>
+
+- Go to homepage
+- Click Registration button and make new registration for you.
+- Then login with your new credentials to start issue invoices
+
+<p>Administration login: (/admin)</p>
+    
+- Username: admin
+- Password: admin
 
 ## Wiki
 External software needed to download generated invoices like PDF - https://github.com/kirilkirkov/ei/wiki/External-needed-software

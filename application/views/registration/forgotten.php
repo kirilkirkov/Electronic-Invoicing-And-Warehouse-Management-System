@@ -3,7 +3,7 @@
         <h1><?= lang('recover_your_pass') ?></h1>
     </div>
 </div>
-<div class="container" id="registration"> 
+<div class="container forgotten-page"> 
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <form class="form-registration form-inline text-center" method="POST" action="">
