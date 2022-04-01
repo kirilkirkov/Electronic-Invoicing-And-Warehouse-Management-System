@@ -10,6 +10,12 @@ class Registration extends MY_Controller
         $data = array();
         $head = array();
         if (isset($_POST['email'])) {
+
+            if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                $this->session->set_flashdata('resultRegister', 'Invalid email');
+                redirect(lang_url('registration'));
+            }
+
             $takenEmail = $this->PublicModel->checkUserFreeEmail($_POST['email']);
             if($takenEmail !== true) {
                 $this->session->set_flashdata('resultRegister', $takenEmail);
@@ -18,8 +24,8 @@ class Registration extends MY_Controller
 
             $result = $this->PublicModel->registerUser($_POST);
             if ($result === true) {
-                $returned_email = $this->registerUser();
-                $this->setUserLogin($returned_email, 1);
+                // $returned_email = $this->registerUser();
+                // $this->setUserLogin($returned_email, 1);
                 redirect(lang_url('login'));
             } else {
                 $this->session->set_flashdata('resultRegister', $result);

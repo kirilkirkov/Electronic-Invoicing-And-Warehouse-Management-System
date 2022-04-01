@@ -23,7 +23,7 @@
                             <input type="password" name="password" class="my-addr">
                         </div>
                         <div class="form-group">
-                            <div class="pull-right">
+                            <div class="">
                                 <?php /*    
                                 <a href="<?= lang_url('password-forgotten') ?>" class="forgot"><?= lang('forgotten_pass') ?></a>
                                 */ ?>

@@ -43,10 +43,13 @@ class PublicModel extends CI_Model
         $this->addFirstFreePlan($user_id);
         if ($this->db->trans_status() === FALSE) {
             $this->db->trans_rollback();
-            show_error(lang('database_error'));
+            return false;
         } else {
             $this->db->trans_commit();
+            return true;
         }
+
+        return false;
     }
 
     /*
