@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   | a PHP script and you can easily do that on your own.
   |
  */
-$config['base_url'] = 'http://localhost/Electronic-Invoicing-And-Warehouse-Management-System';
+$config['base_url'] = defined('BASE_URL') ? BASE_URL : '';
 
 /*
   |--------------------------------------------------------------------------

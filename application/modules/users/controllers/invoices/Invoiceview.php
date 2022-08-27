@@ -54,10 +54,12 @@ class Invoiceview extends USER_Controller
     {
         $inv_readable_types = array_flip($this->config->item('inv_readable_types'));
         $invoice = $this->getInvoiceByNumber($inv_readable_types[$invType], $invNum);
+
         if ($invoice == null) {
             log_message('error', 'User with id - ' . USER_ID . ' get 404 when try to render PDF invoice with type -' . $invType . ' and number - ' . $invNum);
             show_404();
         }
+
         $this->load->model('SettingsModel');
         $template = $this->SettingsModel->getValueStores('opt_invTemplate');
         $templates = $this->config->item('templates');
@@ -71,8 +73,9 @@ class Invoiceview extends USER_Controller
         if (!is_file($templateFile)) {
             show_error(lang('no_template_file'));
         }
-        $firmInfo = $this->firmInfo;
-        $this->load->library('HtmlToPdf');
+        $cssInvTemplates = file_get_contents(base_url('assets/users/css/invoices-templates.css'));
+        $cssFonts = APPPATH . 'libraries/dompdf/lib/fonts/DejaVuSans.ttf';
+
         ob_start();
         echo '
         <!DOCTYPE html>
@@ -81,43 +84,44 @@ class Invoiceview extends USER_Controller
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Administration - Home</title> 
-        <link href="' . base_url('assets/bootstrap/css/bootstrap.min.css') . '" rel="stylesheet"> 
-        <link href="' . base_url('assets/users/css/invoices-templates.css') . '" rel="stylesheet">  
-        <script src="' . base_url('assets/jquery/jquery.min.js') . '"></script>  
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <title>Invoice ' . $invoice['inv_number'] . '</title> 
+        <style>
+            @font-face {
+            font-family: \'DejaVu Sans\';
+            font-style: normal; 
+            src: url(\'' . $cssFonts . '\') format(\'truetype\');
+          }
+          .invoice-box * {
+            font-family: \'DejaVu Sans\';
+          }
+        ' . $cssInvTemplates . '
+        </style>  
     </head>
     <body> 
     ';
         include $templateFile;
         echo '</body></html>';
         $html = ob_get_clean();
-        $this->htmltopdf->setNum($invNum); // set invoice number to give it to footer
-        if ($invType == 'invoice') {
-            $invTypeT = $invoice['translation']['invoice'];
-        } elseif ($invType == 'debit-note') {
-            $invTypeT = $invoice['translation']['debit_note'];
-        } elseif ($invType == 'credit-note') {
-            $invTypeT = $invoice['translation']['credit_note'];
-        } elseif ($invType == 'pro-forma') {
-            $invTypeT = $invoice['translation']['pro_forma'];
-        }
-        $this->htmltopdf->setType($invTypeT); // set invoice type to give it to footer 
-        $this->htmltopdf->setPageTranslate($invoice['translation']['page']); // set invoice translation of 'page' word
-		$pdf = $this->htmltopdf->generatePdf($html); 
-        $filename = $invType . ' - ' . $invNum . '.pdf';
+        
+        // DEBUG: preview real html
+        // echo $html; exit;
 
-        header('Content-Type: application/pdf');
-        header('Content-Disposition: inline; filename="' . $filename . '"');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-        header('Pragma: public');
-        header('Content-Length: ' . strlen($pdf));
-        echo $pdf;
-        exit;
+        // lets use dompdf lib to generate it.
+        require_once APPPATH . 'libraries/dompdf/autoload.inc.php';
+        $dompdf = new \Dompdf\Dompdf();
+
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation
+        // [0, 0, 867.00, 1008.00]
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+        
+        // Output the generated PDF to Browser
+        $dompdf->stream($invoice['inv_number']);
+        die();
     }
 
     public function getInvoiceByNumber($invType, $invNum)
