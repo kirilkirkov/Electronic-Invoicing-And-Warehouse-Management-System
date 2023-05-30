@@ -241,7 +241,7 @@
                             </thead>
                             <tbody class="body-items">
                                 <?php
-                                $thisDir = ltrim(str_replace(getcwd(), '', dirname(__FILE__)), '/');
+                                $thisDir = ltrim(str_replace(getcwd(), '', dirname(__FILE__)), '\\');
                                 if (isset($_POST['items'])) {
                                     foreach ($_POST['items'] as $itemPost) {
                                         include $thisDir . '/itemTableTr.php';
