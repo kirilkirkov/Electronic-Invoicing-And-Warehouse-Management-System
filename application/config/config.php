@@ -24,6 +24,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   | a PHP script and you can easily do that on your own.
   |
  */
+
+// add your base url here into the ELSE statement - ''.
 $config['base_url'] = defined('BASE_URL') ? BASE_URL : '';
 
 /*

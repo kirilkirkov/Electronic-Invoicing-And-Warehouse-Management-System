@@ -19,7 +19,7 @@ class Loader extends MY_Controller
 
     public function jsFile($file = null)
     {
-        $contents = file_get_contents('.' . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR . 'language' . DIRECTORY_SEPARATOR . MY_LANGUAGE_FULL_NAME . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . $file);
+        $contents = file_get_contents(APPPATH . 'language' . DIRECTORY_SEPARATOR . MY_LANGUAGE_FULL_NAME . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . $file);
         if (!$contents) {
             header('HTTP/1.1 404 Not Found');
             return;

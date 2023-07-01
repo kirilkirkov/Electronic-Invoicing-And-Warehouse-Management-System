@@ -42,6 +42,8 @@
 1. Import database.sql to your MySQL database
 2. Set <b>database</b>, <b>username</b> and <b>password</b> in application/config/database.php
 
+<p>If routing not works automatically, add base_url in application/config/config.php `$config['base_url'] = defined('BASE_URL') ? BASE_URL : 'https://your-website.com/';`</p>
+
 ### Invoices login and issue:
 
 - Go to homepage
