@@ -17,8 +17,6 @@
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=PF5ES4K748ZEY)
 
-<p><b>BTC Address:</b> 3FmdTVWCApEcHT6wmrSCFkUSqaowsaqS9Y</p>
-
 ## Support of following features
 
 1. Issue invoices and download as PDF
