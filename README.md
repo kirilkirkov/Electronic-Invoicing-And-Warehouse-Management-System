@@ -39,6 +39,9 @@ $config['base_url'] = defined('BASE_URL') ? BASE_URL : 'https://your-website.com
   - **Username:** admin
   - **Password:** admin
 
+## Download as WordPress Plugin
+<a href="https://codecanyon.net/item/wp-invoices-pdf-electronic-invoicing-system/36891583">Available for integration with WordPress as a plugin.</a>
+
 ## Screenshots
 - **PDF Invoice:** ![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/design_of_invoice.png?token=ADQ0kH5ObqDK3l2H-K4gXn74aIeVi0fVks5acX1HwA%3D%3D "Logo Title Text 1")
 - **Invoices List:** ![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/design_of_invoices_list.png?token=ADQ0kGLfoXLmpNGV5HYZewfaZHzr3qA9ks5acX1IwA%3D%3D "Logo Title Text 1")
@@ -49,6 +52,3 @@ $config['base_url'] = defined('BASE_URL') ? BASE_URL : 'https://your-website.com
 If this project helps you save time in development, consider buying me a cup of coffee to support its ongoing development. Thank you!
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate/?hosted_button_id=PF5ES4K748ZEY)
-
-## Download as WordPress Plugin
-<a href="https://codecanyon.net/item/wp-invoices-pdf-electronic-invoicing-system/36891583">Available for integration with WordPress as a plugin.</a>
