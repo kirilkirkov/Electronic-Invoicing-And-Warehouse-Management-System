@@ -241,13 +241,12 @@
                             </thead>
                             <tbody class="body-items">
                                 <?php
-                                $thisDir = ltrim(str_replace(getcwd(), '', dirname(__FILE__)), '\\');
                                 if (isset($_POST['items'])) {
                                     foreach ($_POST['items'] as $itemPost) {
-                                        include $thisDir . '/itemTableTr.php';
+                                        include __DIR__. '/itemTableTr.php';
                                     }
                                 } else {
-                                    include $thisDir . '/itemTableTr.php';
+                                    include __DIR__ . '/itemTableTr.php';
                                 }
                                 ?>
                             </tbody>
@@ -385,9 +384,9 @@
             </div>
         </form>
         <?php
-        include 'application/modules/users/views/invoices/modals/add_quantity_type.php';
-        include 'application/modules/users/views/invoices/modals/add_payment_method.php';
-        include 'application/modules/users/views/invoices/modals/selector.php';
+        include __DIR__ . '/modals/add_quantity_type.php';
+        include __DIR__ . '/modals/add_payment_method.php';
+        include __DIR__ . '/modals/selector.php';
         ?>
         <!-- Modal Explain Add Translations -->
         <div class="modal fade" id="modalExplainTranslation" tabindex="-1" role="dialog" aria-labelledby="modalExplainTranslation">
