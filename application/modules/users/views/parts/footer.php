@@ -10,7 +10,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 }
 ?>
 <footer>
-    © InvoicePro.fr Copyright 2018. All Rights Reserved.
+    © CI Invoices.
+    Copyright 2018. All Rights Reserved.
+    <p>
+        Download available for WordPress - <a href="https://codecanyon.net/item/wp-invoices-pdf-electronic-invoicing-system/36891583" target="_blank">WP Invoices.</a>
+    </p>
 </footer>
 </div> 
 </div> 
