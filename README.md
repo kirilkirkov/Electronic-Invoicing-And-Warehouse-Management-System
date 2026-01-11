@@ -40,7 +40,7 @@ $config['base_url'] = defined('BASE_URL') ? BASE_URL : 'https://your-website.com
   - **Password:** admin
 
 ## Download as WordPress Plugin
-<a href="https://codecanyon.net/item/wp-invoices-pdf-electronic-invoicing-system/36891583">Available for integration with WordPress as a plugin.</a>
+<a href="https://wordpress.org/plugins/kirilkirkov-pdf-invoice-manager/">Available for integration with WordPress as a plugin.</a>
 
 ## Screenshots
 - **PDF Invoice:** ![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/design_of_invoice.png?token=ADQ0kH5ObqDK3l2H-K4gXn74aIeVi0fVks5acX1HwA%3D%3D "Logo Title Text 1")
