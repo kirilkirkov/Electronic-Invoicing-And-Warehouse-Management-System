@@ -43,10 +43,10 @@ $config['base_url'] = defined('BASE_URL') ? BASE_URL : 'https://your-website.com
 <a href="https://wordpress.org/plugins/kirilkirkov-pdf-invoice-manager/">Available for integration with WordPress as a plugin.</a>
 
 ## Screenshots
-- **PDF Invoice:** ![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/design_of_invoice.png?token=ADQ0kH5ObqDK3l2H-K4gXn74aIeVi0fVks5acX1HwA%3D%3D "Logo Title Text 1")
-- **Invoices List:** ![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/design_of_invoices_list.png?token=ADQ0kGLfoXLmpNGV5HYZewfaZHzr3qA9ks5acX1IwA%3D%3D "Logo Title Text 1")
-- **Create Invoice Page:** ![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/create_invoice_page.png?token=ADQ0kGcYR3mBvj8ANBbPJ8wg8w69gpgPks5acX1FwA%3D%3D "Logo Title Text 1")
-- **Statistics:** ![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/stats.png?token=ADQ0kGcYR3mBvj8ANBbPJ8wg8w69gpgPks5acX1FwA%3D%3D "Logo Title Text 1")
+- **PDF Invoice:** ![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/design_of_invoice.png)
+- **Invoices List:** ![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/design_of_invoices_list.png)
+- **Create Invoice Page:** ![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/create_invoice_page.png)
+- **Statistics:** ![alt text](https://raw.githubusercontent.com/kirilkirkov/ei/master/design/user/stats.png)
 
 ## Donate
 If this project helps you save time in development, consider buying me a cup of coffee to support its ongoing development. Thank you!
