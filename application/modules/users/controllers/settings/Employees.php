@@ -18,6 +18,10 @@ class Employees extends USER_Controller
     public function __construct()
     {
         parent::__construct();
+        if (defined('EMPLOYEE_ID')) {
+            log_message('error', 'Employee with id - ' . EMPLOYEE_ID . ' tried to access employee management');
+            show_404();
+        }
         $this->load->model(array('SettingsModel', 'HomeModel'));
         $paginationNumRows = $this->SettingsModel->getValueStores('opt_pagination');
         $this->num_rows = $paginationNumRows;

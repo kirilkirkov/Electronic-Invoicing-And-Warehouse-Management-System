@@ -83,7 +83,7 @@ class ItemsModel extends CI_Model
             'currency' => htmlspecialchars(trim($post['currency']))
         );
         if ($post['editId'] > 0) {
-            if (!$this->db->where('id', $post['editId'])->update('items', $insertArray)) {
+            if (!$this->db->where('id', $post['editId'])->where('for_user', USER_ID)->where('for_company', SELECTED_COMPANY_ID)->update('items', $insertArray)) {
                 log_message('error', print_r($this->db->error(), true));
                 show_error(lang('database_error'));
             }

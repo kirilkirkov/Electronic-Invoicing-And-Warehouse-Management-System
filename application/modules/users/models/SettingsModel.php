@@ -136,7 +136,9 @@ class SettingsModel extends CI_Model
 
     public function getValueStores($key)
     {
-        $query = $this->db->query("SELECT value FROM value_store WHERE _key = '$key' AND for_user = " . USER_ID . "");
+        $this->db->where('_key', $key);
+        $this->db->where('for_user', USER_ID);
+        $query = $this->db->get('value_store');
         $result = $query->row_array();
         if (empty($result)) {
             return null;

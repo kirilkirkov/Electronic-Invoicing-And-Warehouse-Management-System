@@ -141,6 +141,8 @@ class InvoicesModel extends CI_Model
     public function updateInvoicePaymentStatus($invoiceId, $toStatus)
     {
         $this->db->where('id', $invoiceId);
+        $this->db->where('for_user', USER_ID);
+        $this->db->where('for_company', SELECTED_COMPANY_ID);
         if (!$this->db->update('invoices', array('payment_status' => $toStatus))) {
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
