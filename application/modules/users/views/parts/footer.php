@@ -57,9 +57,10 @@ if ($this->session->flashdata('resultAction')) {
             }
         }
 
-        // Inject on page load (covers programmatic .submit() calls)
-        document.addEventListener('DOMContentLoaded', injectCsrf);
-        // Also inject on submit event as fallback for dynamically created forms
+        // DOM is already ready here (footer script) — call directly
+        injectCsrf();
+
+        // Fallback for dynamically added forms submitted via submit event
         document.addEventListener('submit', function(e) {
             var form = e.target;
             if (form.method && form.method.toLowerCase() === 'post' && !form.querySelector('input[name="' + csrfName + '"]')) {

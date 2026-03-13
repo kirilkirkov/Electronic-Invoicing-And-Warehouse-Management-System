@@ -47,6 +47,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', injectCsrf);
+        // DOM is already ready in footer - call directly too
+        injectCsrf();
         document.addEventListener('submit', function(e) {
             var form = e.target;
             if (form.method && form.method.toLowerCase() === 'post' && !form.querySelector('input[name="' + csrfName + '"]')) {

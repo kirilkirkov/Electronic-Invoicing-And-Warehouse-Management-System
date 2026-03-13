@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 
 // add your base url here into the ELSE statement - ''.
-$config['base_url'] = 'http://electronic-invoicing-and-warehouse-management-system.test';
+$config['base_url'] = defined('BASE_URL') ? BASE_URL : '';
 
 /*
   |--------------------------------------------------------------------------
@@ -475,7 +475,7 @@ $config['csrf_protection'] = TRUE;
 $config['csrf_token_name'] = 'csrf_test_name';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
 $config['csrf_expire'] = 7200;
-$config['csrf_regenerate'] = TRUE;
+$config['csrf_regenerate'] = FALSE;
 $config['csrf_exclude_uris'] = array();
 
 /*

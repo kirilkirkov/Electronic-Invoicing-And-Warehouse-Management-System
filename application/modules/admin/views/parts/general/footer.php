@@ -21,7 +21,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         }
 
-        document.addEventListener('DOMContentLoaded', injectCsrf);
+        injectCsrf();
+
         document.addEventListener('submit', function(e) {
             var form = e.target;
             if (form.method && form.method.toLowerCase() === 'post' && !form.querySelector('input[name="' + csrfName + '"]')) {
