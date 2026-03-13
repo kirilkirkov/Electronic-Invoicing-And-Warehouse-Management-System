@@ -108,8 +108,14 @@ class Newinvoice extends USER_Controller
         $inv_readable_types = $this->config->item('inv_readable_types');
         if ($isValid === true) {
             if ($this->editId > 0) {
+                if (!$this->permissions->hasPerm('perm_edit_invoice')) {
+                    show_404();
+                }
                 $this->NewInvoiceModel->updateInvoice($_POST);
             } else {
+                if (!$this->permissions->hasPerm('perm_add_invoice')) {
+                    show_404();
+                }
                 $_POST['userInfo'] = $this->userInfo; // get info for logged user
                 /*
                  * prevent from "hackers" to send 

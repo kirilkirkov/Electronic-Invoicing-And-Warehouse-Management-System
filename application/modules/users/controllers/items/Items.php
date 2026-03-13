@@ -71,6 +71,9 @@ class Items extends USER_Controller
 
     private function deleteSelectedItems($ids)
     {
+        if (!$this->permissions->hasPerm('perm_delete_items')) {
+            show_404();
+        }
         $this->ItemsModel->multipleDeleteItems($ids);
         redirect(lang_url('user/items'));
     }
@@ -80,6 +83,12 @@ class Items extends USER_Controller
         $isValid = $this->validateItem();
         if ($isValid === true) {
             $_POST['editId'] = $this->editId;
+            if ($this->editId > 0 && !$this->permissions->hasPerm('perm_edit_items')) {
+                show_404();
+            }
+            if ($this->editId == 0 && !$this->permissions->hasPerm('perm_add_items')) {
+                show_404();
+            }
             $this->ItemsModel->setItem($_POST);
             $this->saveHistory('Add item - ' . $_POST['name']);
             redirect(lang_url('user/items'));

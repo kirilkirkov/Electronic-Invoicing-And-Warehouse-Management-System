@@ -213,7 +213,7 @@ class NewInvoiceModel extends CI_Model
             'final_total' => htmlspecialchars($post['final_total'])
         );
         $this->db->trans_begin();
-        if (!$this->db->where('id', $post['editId'])->update('invoices', $updateArray)) {
+        if (!$this->db->where('id', $post['editId'])->where('for_user', USER_ID)->where('for_company', SELECTED_COMPANY_ID)->update('invoices', $updateArray)) {
             log_message('error', print_r($this->db->error(), true));
         }
         if (isset($post['show_translations'])) {

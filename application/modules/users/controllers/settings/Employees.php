@@ -73,13 +73,13 @@ class Employees extends USER_Controller
         $head = array();
         $this->editEmployee = $id;
         $head['title'] = lang('title_everytime') . lang('title_empl_rights');
-        if (isset($_POST['savePermissions'])) {
-            $this->savePermissions();
-        }
         $data['permissions'] = $this->config->item('permissions');
         $data['userPermissions'] = $this->SettingsModel->getEmployeePermissions($id);
         if (empty($data['userPermissions'])) {
             show_404();
+        }
+        if (isset($_POST['savePermissions'])) {
+            $this->savePermissions();
         }
         $this->render('settings/employeeRights', $head, $data);
         $this->saveHistory('Go to rights employees page');

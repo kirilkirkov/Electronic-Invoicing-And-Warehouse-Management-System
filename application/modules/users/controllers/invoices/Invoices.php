@@ -55,18 +55,27 @@ class Invoices extends USER_Controller
 
     private function deleteSelectedInvoices($ids)
     {
+        if (!$this->permissions->hasPerm('perm_delete_invoice')) {
+            show_404();
+        }
         $this->InvoicesModel->multipleDeleteInvoices($ids);
         redirect(lang_url('user/invoices'));
     }
 
     private function changeStatusCanceled($ids, $doCanceled)
     {
+        if (!$this->permissions->hasPerm('perm_change_inv_status')) {
+            show_404();
+        }
         $this->InvoicesModel->multipleStatusCanceledInvoices($ids, $doCanceled);
         redirect(lang_url('user/invoices'));
     }
 
     public function deleteInvoice($id)
     {
+        if (!$this->permissions->hasPerm('perm_delete_invoice')) {
+            show_404();
+        }
         $this->InvoicesModel->deleteInvoice($id);
         redirect(lang_url('user/invoices'));
     }
@@ -75,6 +84,10 @@ class Invoices extends USER_Controller
     {
         if (!$this->input->is_ajax_request()) {
             exit('No direct script access allowed');
+        }
+        if (!$this->permissions->hasPerm('perm_change_inv_status')) {
+            echo '0';
+            return;
         }
         if ((isset($_POST['invId']) && is_numeric($_POST['invId'])) && isset($_POST['newStatus'])) {
             $this->InvoicesModel->updateInvoicePaymentStatus($_POST['invId'], $_POST['newStatus']);

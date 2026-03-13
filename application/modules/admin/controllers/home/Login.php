@@ -31,7 +31,7 @@ class Login extends ADMIN_Controller
                     $this->saveHistory('Logged in');
                     redirect('admin/home');
                 } else {
-                    $this->saveHistory('Cant login with - username: ' . $_POST['username'] . ' and password: ' . $_POST['password']);
+                    $this->saveHistory('Cant login with - username: ' . $_POST['username']);
                     $this->session->set_flashdata('err_login', 'Invalid username or password!');
                     redirect('admin');
                 }

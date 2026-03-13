@@ -178,7 +178,7 @@ class SettingsModel extends CI_Model
                 unset($insertArray['password']);
             }
             unset($insertArray['time_added']);
-            if (!$this->db->where('id', $post['editId'])->update('employees', $insertArray)) {
+            if (!$this->db->where('id', $post['editId'])->where('for_user', USER_ID)->update('employees', $insertArray)) {
                 log_message('error', print_r($this->db->error(), true));
                 show_error(lang('database_error'));
             }
@@ -211,6 +211,7 @@ class SettingsModel extends CI_Model
     public function getEmployeeInfo($id)
     {
         $this->db->where('id', $id);
+        $this->db->where('for_user', USER_ID);
         $result = $this->db->get('employees');
         return $result->row_array();
     }
@@ -294,6 +295,13 @@ class SettingsModel extends CI_Model
 
     public function updateEmployeePermissions($newPermissions, $employeeId)
     {
+        $this->db->where('id', $employeeId);
+        $this->db->where('for_user', USER_ID);
+        if ($this->db->count_all_results('employees') === 0) {
+            log_message('error', 'User ' . USER_ID . ' tried to update permissions for employee ' . $employeeId . ' they do not own');
+            show_error(lang('database_error'));
+            return;
+        }
         foreach ($newPermissions as $key => $val) {
             $this->db->where('for_employee', $employeeId);
             $this->db->where('perm', $key);
@@ -329,12 +337,18 @@ class SettingsModel extends CI_Model
 
     public function updateUserAdminInfo($post)
     {
-        unset($post['id']);
-        if (mb_strlen(trim($post['password'])) == 0) {
-            unset($post['password']);
+        $allowedFields = array('name', 'email', 'phone', 'schiffer', 'password');
+        $updateData = array();
+        foreach ($allowedFields as $field) {
+            if (isset($post[$field])) {
+                $updateData[$field] = $post[$field];
+            }
+        }
+        if (mb_strlen(trim($updateData['password'] ?? '')) == 0) {
+            unset($updateData['password']);
         }
         $this->db->where('id', USER_ID);
-        if (!$this->db->update('users', $post)) {
+        if (!$this->db->update('users', $updateData)) {
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         } else {
