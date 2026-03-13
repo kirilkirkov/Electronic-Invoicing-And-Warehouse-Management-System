@@ -40,10 +40,26 @@ if ($this->session->flashdata('resultAction')) {
 </script>
 <script src="<?= base_url('assets/users/js/general.js') ?>"></script>
 <script>
-    // Auto-inject CSRF token into every POST form that does not already have it
     (function() {
         var csrfName = '<?= $this->security->get_csrf_token_name() ?>';
         var csrfHash = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        function injectCsrf() {
+            var forms = document.querySelectorAll('form[method="post"], form[method="POST"]');
+            for (var i = 0; i < forms.length; i++) {
+                if (!forms[i].querySelector('input[name="' + csrfName + '"]')) {
+                    var input = document.createElement('input');
+                    input.type  = 'hidden';
+                    input.name  = csrfName;
+                    input.value = csrfHash;
+                    forms[i].appendChild(input);
+                }
+            }
+        }
+
+        // Inject on page load (covers programmatic .submit() calls)
+        document.addEventListener('DOMContentLoaded', injectCsrf);
+        // Also inject on submit event as fallback for dynamically created forms
         document.addEventListener('submit', function(e) {
             var form = e.target;
             if (form.method && form.method.toLowerCase() === 'post' && !form.querySelector('input[name="' + csrfName + '"]')) {
@@ -54,7 +70,8 @@ if ($this->session->flashdata('resultAction')) {
                 form.appendChild(input);
             }
         }, true);
-        // Also patch jQuery $.ajax / $.post to always send the token
+
+        // Patch jQuery $.ajax for AJAX POST requests
         if (typeof $ !== 'undefined') {
             $.ajaxSetup({
                 beforeSend: function(xhr, settings) {

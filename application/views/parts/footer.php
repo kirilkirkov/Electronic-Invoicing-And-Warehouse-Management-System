@@ -32,6 +32,21 @@
     (function() {
         var csrfName = '<?= $this->security->get_csrf_token_name() ?>';
         var csrfHash = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        function injectCsrf() {
+            var forms = document.querySelectorAll('form[method="post"], form[method="POST"]');
+            for (var i = 0; i < forms.length; i++) {
+                if (!forms[i].querySelector('input[name="' + csrfName + '"]')) {
+                    var input = document.createElement('input');
+                    input.type  = 'hidden';
+                    input.name  = csrfName;
+                    input.value = csrfHash;
+                    forms[i].appendChild(input);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', injectCsrf);
         document.addEventListener('submit', function(e) {
             var form = e.target;
             if (form.method && form.method.toLowerCase() === 'post' && !form.querySelector('input[name="' + csrfName + '"]')) {
@@ -42,6 +57,7 @@
                 form.appendChild(input);
             }
         }, true);
+
         if (typeof $ !== 'undefined') {
             $.ajaxSetup({
                 beforeSend: function(xhr, settings) {
