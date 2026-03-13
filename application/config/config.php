@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 
 // add your base url here into the ELSE statement - ''.
-$config['base_url'] = defined('BASE_URL') ? BASE_URL : '';
+$config['base_url'] = 'http://electronic-invoicing-and-warehouse-management-system.test';
 
 /*
   |--------------------------------------------------------------------------

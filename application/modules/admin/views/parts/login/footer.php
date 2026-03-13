@@ -2,6 +2,22 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?> 
 <script src="<?= base_url('assets/jquery/jquery.min.js') ?>"></script> 
-<script src="<?= base_url('assets/bootstrap/js/bootstrap.min.js') ?>"></script> 
+<script src="<?= base_url('assets/bootstrap/js/bootstrap.min.js') ?>"></script>
+<script>
+    (function() {
+        var csrfName = '<?= $this->security->get_csrf_token_name() ?>';
+        var csrfHash = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        document.addEventListener('submit', function(e) {
+            var form = e.target;
+            if (form.method && form.method.toLowerCase() === 'post' && !form.querySelector('input[name="' + csrfName + '"]')) {
+                var input = document.createElement('input');
+                input.type  = 'hidden';
+                input.name  = csrfName;
+                input.value = csrfHash;
+                form.appendChild(input);
+            }
+        }, true);
+    })();
+</script>
 </body>
 </html>
