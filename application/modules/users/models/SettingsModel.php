@@ -122,6 +122,7 @@ class SettingsModel extends CI_Model
 
     public function setValueStore($key, $value)
     {
+        $value = htmlspecialchars(trim((string) $value), ENT_QUOTES, 'UTF-8');
         $this->db->where('_key', $key);
         $query = $this->db->get('value_store');
         if ($query->num_rows() > 0) {
@@ -337,22 +338,22 @@ class SettingsModel extends CI_Model
 
     public function updateUserAdminInfo($post)
     {
-        $allowedFields = array('name', 'email', 'phone', 'schiffer', 'password');
+        $allowedFields = array('name', 'email', 'phone', 'schiffer');
         $updateData = array();
         foreach ($allowedFields as $field) {
             if (isset($post[$field])) {
-                $updateData[$field] = $post[$field];
+                $updateData[$field] = htmlspecialchars(trim($post[$field]), ENT_QUOTES, 'UTF-8');
             }
         }
-        if (mb_strlen(trim($updateData['password'] ?? '')) == 0) {
-            unset($updateData['password']);
+        if (mb_strlen(trim($post['password'] ?? '')) > 0) {
+            $updateData['password'] = password_hash($post['password'], PASSWORD_DEFAULT);
         }
         $this->db->where('id', USER_ID);
         if (!$this->db->update('users', $updateData)) {
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         } else {
-            $_SESSION['user_login']['email'] = $post['email'];
+            $_SESSION['user_login']['email'] = $updateData['email'];
         }
     }
 

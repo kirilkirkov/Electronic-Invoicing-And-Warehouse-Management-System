@@ -52,6 +52,7 @@ class XmlExport
                 <status><?= $invoice['status'] ?></status>
                 <number><?= $invoice['inv_number'] ?></number>
                 <currency><?= $invoice['inv_currency'] ?></currency>
+                <exchange_rate><?= $invoice['exchange_rate'] ?></exchange_rate>
                 <created><?= $invoice['date_create'] ?></created>
                 <tax_event_date><?= $invoice['date_tax_event'] ?></tax_event_date>
                 <cash_accounting><?= $invoice['cash_accounting'] ?></cash_accounting>
@@ -79,6 +80,7 @@ class XmlExport
                     <address><?= $invoice['firm']['address'] ?></address>
                     <city><?= $invoice['firm']['city'] ?></city>
                     <accountable_person><?= $invoice['firm']['accountable_person'] ?></accountable_person>
+                    <base_currency><?= $invoice['firm']['base_currency'] ?></base_currency>
                 </firm>
                 <client>
                     <name><?= htmlspecialchars($invoice['client']['client_name'], ENT_XML1, 'UTF-8') ?></name>

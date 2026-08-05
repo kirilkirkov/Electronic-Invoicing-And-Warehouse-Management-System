@@ -39,7 +39,7 @@ class NewInvoiceModel extends CI_Model
 
     public function setNewCustomQuantityType($newQuantityType)
     {
-        if (!$this->db->insert('users_quantity_types', array('name' => $newQuantityType, 'for_user' => USER_ID))) {
+        if (!$this->db->insert('users_quantity_types', array('name' => htmlspecialchars(trim($newQuantityType), ENT_QUOTES, 'UTF-8'), 'for_user' => USER_ID))) {
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         }
@@ -53,7 +53,7 @@ class NewInvoiceModel extends CI_Model
 
     public function setNewCustomPaymentMethod($newPaymentMethod)
     {
-        if (!$this->db->insert('users_payment_methods', array('name' => $newPaymentMethod, 'for_user' => USER_ID))) {
+        if (!$this->db->insert('users_payment_methods', array('name' => htmlspecialchars(trim($newPaymentMethod), ENT_QUOTES, 'UTF-8'), 'for_user' => USER_ID))) {
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         }
@@ -61,7 +61,7 @@ class NewInvoiceModel extends CI_Model
 
     public function setNewVatReason($newVatReason)
     {
-        if (!$this->db->insert('user_no_vat_reasons', array('reason' => $newVatReason, 'for_user' => USER_ID))) {
+        if (!$this->db->insert('user_no_vat_reasons', array('reason' => htmlspecialchars(trim($newVatReason), ENT_QUOTES, 'UTF-8'), 'for_user' => USER_ID))) {
             log_message('error', print_r($this->db->error(), true));
             show_error(lang('database_error'));
         }
@@ -140,6 +140,7 @@ class NewInvoiceModel extends CI_Model
             'status' => !in_array($post['status'], $inv_statuses) ? 'issued' : $post['status'],
             'inv_number' => full_document_number(htmlspecialchars(trim($post['inv_number']))),
             'inv_currency' => htmlspecialchars(trim($post['inv_currency'])),
+            'exchange_rate' => is_numeric($post['exchange_rate'] ?? null) && $post['exchange_rate'] > 0 ? $post['exchange_rate'] : 1,
             'date_create' => strtotime($post['date_create']),
             'date_tax_event' => strtotime($post['date_tax_event']),
             'cash_accounting' => $cash_accounting,
@@ -191,6 +192,7 @@ class NewInvoiceModel extends CI_Model
             'inv_type' => htmlspecialchars($post['inv_type']),
             'inv_number' => htmlspecialchars($post['inv_number']),
             'inv_currency' => htmlspecialchars($post['inv_currency']),
+            'exchange_rate' => is_numeric($post['exchange_rate'] ?? null) && $post['exchange_rate'] > 0 ? $post['exchange_rate'] : 1,
             'date_create' => strtotime($post['date_create']),
             'date_tax_event' => strtotime($post['date_tax_event']),
             'cash_accounting' => $cash_accounting,
@@ -251,6 +253,7 @@ class NewInvoiceModel extends CI_Model
             'accountable_person' => $firm['mol'],
             'is_vat_registered' => $firm['is_vat_registered'],
             'vat_number' => $firm['vat_number'],
+            'base_currency' => $firm['default_currency'] == null ? '' : $firm['default_currency'],
             'image' => $firm['image'] == null ? '' : $firm['image']
         );
         if (!$this->db->insert('invoices_firms', $insertArray)) {
@@ -281,14 +284,17 @@ class NewInvoiceModel extends CI_Model
         $result = $this->db->get('firms_users');
         $firm = $result->row_array();
 
+        /*
+         * bulstat/vat_number/is_vat_registered/base_currency are legal/tax identifiers
+         * snapshotted at issue time - they must NOT be overwritten from the (possibly
+         * since-changed) live firm record when an already-issued invoice is edited.
+         * Only the cosmetic, translation-dependent fields are refreshed here.
+         */
         $updateArray = array(
-            'bulstat' => $firm['bulstat'],
             'name' => $firm['name'],
             'address' => $firm['address'],
             'city' => $firm['city'],
             'accountable_person' => $firm['mol'],
-            'is_vat_registered' => $firm['is_vat_registered'],
-            'vat_number' => $firm['vat_number'],
             'image' => $firm['image']
         );
         if (!$this->db->where('for_invoice', $invoiceId)->update('invoices_firms', $updateArray)) {

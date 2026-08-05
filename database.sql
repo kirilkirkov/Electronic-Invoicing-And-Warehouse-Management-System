@@ -260,6 +260,7 @@ CREATE TABLE `invoices` (
   `status` varchar(10) NOT NULL,
   `inv_number` varchar(20) NOT NULL,
   `inv_currency` varchar(50) NOT NULL,
+  `exchange_rate` decimal(15,6) NOT NULL DEFAULT '1.000000' COMMENT 'rate from inv_currency to invoices_firms.base_currency, snapshotted at issue time',
   `date_create` int(10) UNSIGNED NOT NULL,
   `date_tax_event` int(10) UNSIGNED NOT NULL,
   `cash_accounting` tinyint(1) NOT NULL,
@@ -317,7 +318,8 @@ CREATE TABLE `invoices_firms` (
   `accountable_person` varchar(100) NOT NULL,
   `image` varchar(500) NOT NULL,
   `is_vat_registered` tinyint(1) NOT NULL,
-  `vat_number` varchar(20) NOT NULL
+  `vat_number` varchar(20) NOT NULL,
+  `base_currency` varchar(10) NOT NULL DEFAULT '' COMMENT 'firm default_currency snapshotted at issue time, reference for invoices.exchange_rate'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `invoices_items` (
@@ -1270,6 +1272,16 @@ ALTER TABLE `warranty_conditions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `warranty_events`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Migration: currency/exchange-rate snapshot on invoices (for existing installs;
+-- fresh installs already get these columns from the CREATE TABLE statements above)
+--
+ALTER TABLE `invoices`
+  ADD `exchange_rate` decimal(15,6) NOT NULL DEFAULT '1.000000' COMMENT 'rate from inv_currency to invoices_firms.base_currency, snapshotted at issue time' AFTER `inv_currency`;
+ALTER TABLE `invoices_firms`
+  ADD `base_currency` varchar(10) NOT NULL DEFAULT '' COMMENT 'firm default_currency snapshotted at issue time, reference for invoices.exchange_rate';
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
