@@ -19,18 +19,18 @@ class MailSend
         $this->mail->CharSet = "UTF-8";
         $this->mail->Host = 'smtp.gmail.com';
         $this->mail->SMTPAuth = true;
-        $this->mail->Username = 'support@lm-style.com';
-        $this->mail->Password = 'sleeder1';
+        $this->mail->Username = '';
+        $this->mail->Password = '';
         $this->mail->SMTPSecure = 'tls';
         $this->mail->Port = 587;
     }
 
     public function sendTo($toEmail, $recipientName, $subject, $msg)
     {
-        $this->mail->setFrom('support@lm-style.com', 'pmInvoice');
+        $this->mail->setFrom('you@mail.com', 'pmInvoice');
         $this->mail->addAddress($toEmail, $recipientName);
         $this->mail->ClearReplyTos();
-        $this->mail->addReplyTo('kiro2424@gmail.com', 'EXAMPLE');
+        $this->mail->addReplyTo('you1@mail.com', 'EXAMPLE');
         //$this->mail->isHTML(true);
         $this->mail->Subject = $subject;
         $this->mail->Body = $msg;
