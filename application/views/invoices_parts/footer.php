@@ -30,6 +30,6 @@
         </script>
     </head>
     <body onload="substitutePdfVariables()">
-        <p style="text-align:right;"><span style="text-transform: capitalize;"><?= $type ?></span> № <?= $num ?> | <?= $pageTranslate ?> <span class="page"></span> / <span class="topage"></span></p>
+        <p style="text-align:right;"><span style="text-transform: capitalize;"><?= html_escape($type) ?></span> № <?= html_escape($num) ?> | <?= html_escape($pageTranslate) ?> <span class="page"></span> / <span class="topage"></span></p>
     </body>
 </html>
